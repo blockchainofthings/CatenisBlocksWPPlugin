@@ -1,0 +1,122 @@
+# Copyright (C) 2019 Blockchain of Things
+# This file is distributed under the same license as the Catenis Blocks plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Catenis Blocks 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/CatenisBlocksWPPlugin\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-01-16T15:48:10-02:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.1.0\n"
+"X-Domain: catenis-blocks\n"
+
+#. Plugin Name of the plugin
+msgid "Catenis Blocks"
+msgstr ""
+
+#. Description of the plugin
+msgid "A set of Gutenberg blocks for interfacing with the Bitcoin blockchain via Catenis Enterprise services"
+msgstr ""
+
+#. Author of the plugin
+msgid "Blockchain of Things"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://blockchainofthings.com"
+msgstr ""
+
+#: src/CatenisBlocks.php:30
+msgid "Catenis"
+msgstr ""
+
+#: js/StoreMessageBlockEditor.js:9
+#: js/StoreMessageBlockEditor.js:152
+#: js/StoreMessageBlockEditor.js:186
+#: js/StoreFileBlockEditor.js:127
+#: js/StoreFileBlockEditor.js:158
+msgid "Store Message"
+msgstr ""
+
+#: js/StoreMessageBlockEditor.js:10
+msgid "Store a text message onto the Bitcoin blockchain"
+msgstr ""
+
+#: js/StoreMessageBlockEditor.js:90
+msgid "Message Box"
+msgstr ""
+
+#: js/StoreMessageBlockEditor.js:93
+msgid "Number of Lines"
+msgstr ""
+
+#: js/StoreMessageBlockEditor.js:101
+#: js/StoreFileBlockEditor.js:77
+msgid "Store Options"
+msgstr ""
+
+#: js/StoreMessageBlockEditor.js:105
+#: js/StoreFileBlockEditor.js:81
+msgid "Encrypt"
+msgstr ""
+
+#: js/StoreMessageBlockEditor.js:106
+#: js/StoreFileBlockEditor.js:82
+msgid "Encrypt message before storing it"
+msgstr ""
+
+#: js/StoreMessageBlockEditor.js:106
+#: js/StoreFileBlockEditor.js:82
+msgid "Store message as it is"
+msgstr ""
+
+#: js/StoreMessageBlockEditor.js:111
+#: js/StoreFileBlockEditor.js:87
+msgid "Storage"
+msgstr ""
+
+#: js/StoreMessageBlockEditor.js:127
+#: js/StoreFileBlockEditor.js:103
+msgid "Result"
+msgstr ""
+
+#: js/StoreMessageBlockEditor.js:131
+#: js/StoreFileBlockEditor.js:107
+msgid "Success Panel ID"
+msgstr ""
+
+#: js/StoreMessageBlockEditor.js:132
+#: js/StoreMessageBlockEditor.js:138
+#: js/StoreFileBlockEditor.js:108
+#: js/StoreFileBlockEditor.js:114
+msgid "Enter ID of an HTML element on the page"
+msgstr ""
+
+#: js/StoreMessageBlockEditor.js:137
+#: js/StoreFileBlockEditor.js:113
+msgid "Error Panel ID"
+msgstr ""
+
+#: js/StoreMessageBlockEditor.js:181
+msgid "Write your message"
+msgstr ""
+
+#: js/StoreMessageBlock.js:81
+msgid "No message to be stored"
+msgstr ""
+
+#: js/StoreMessageBlock.js:92
+msgid "Message successfully stored.<br>Message Id: "
+msgstr ""
+
+#: js/StoreFileBlockEditor.js:9
+msgid "Store File"
+msgstr ""
+
+#: js/StoreFileBlockEditor.js:10
+msgid "Store a file onto the Bitcoin blockchain"
+msgstr ""

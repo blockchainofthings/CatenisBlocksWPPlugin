@@ -1,0 +1,29 @@
+{
+  "name": "blockchainofthings/catenis-blocks-wp",
+  "description": "Catenis Blocks plugin for WordPress",
+  "version": "1.0.0",
+  "type": "wordpress-plugin",
+  "keywords": [
+    "Wordpress",
+    "Gutenberg",
+    "blocks",
+    "Catenis",
+    "blockchain"
+  ],
+  "require": {
+    "php": ">=5.6.0",
+    "ext-posix": "*"
+  },
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Cláudio de Castro",
+      "email": "claudio@blockchainofthings.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Catenis\\WP\\Blocks\\": "src/"
+    }
+  }
+}
