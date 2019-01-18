@@ -1,0 +1,35 @@
+div.wp-block-catenis-blocks-send-message input[type="text"][name="deviceId"] {
+    display: block;
+    min-width: 15em;
+}
+
+div.wp-block-catenis-blocks-send-message input[type="text"][name="deviceId"].prodUniqueId {
+    min-width: 20em;
+}
+
+div.wp-block-catenis-blocks-send-message textarea[name="message"] {
+    display: block;
+}
+
+div.wp-block-catenis-blocks-send-message > div.ctnBlkDivMsgSuccess {
+    display: none;
+    margin-top: 2em
+}
+
+div.wp-block-catenis-blocks-send-message > div.ctnBlkDivMsgSuccess > p.ctnBlkTxtSuccess {
+    color: dimgray
+}
+
+div.wp-block-catenis-blocks-send-message > div.ctnBlkDivMsgError {
+    display: none;
+    margin-top: 2em
+}
+
+div.wp-block-catenis-blocks-send-message > div.ctnBlkDivMsgError > p.ctnBlkTxtError {
+    color: crimson
+}
+
+div.wp-block-catenis-blocks-send-message input[type="submit"]:disabled {
+    background-color: lightgray;
+    cursor: not-allowed;
+}
