@@ -1,0 +1,67 @@
+div.wp-block-catenis-blocks-send-file input[type="text"][name="deviceId"] {
+    display: block;
+    min-width: 15em;
+}
+
+div.wp-block-catenis-blocks-send-file input[type="text"][name="deviceId"].prodUniqueId {
+    min-width: 20em;
+}
+
+div.wp-block-catenis-blocks-send-file div.dropzone {
+    background-color: transparent;
+    position: relative;
+}
+
+div.wp-block-catenis-blocks-send-file div.dropcontainer {
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: black;
+    background-color: lightgray;
+    padding: 20px 20px;
+    outline: 2px dashed #92b0b3;
+    outline-offset: -10px;
+    text-align: center;
+    position: relative;
+    z-index: -1;
+}
+
+div.wp-block-catenis-blocks-send-file div.dropcontainer.dragover {
+    background-color: aquamarine;
+}
+
+div.wp-block-catenis-blocks-send-file div.dropzone > div.dropcontainer > p.instruction {
+    color: gray;
+    position: relative;
+}
+
+div.wp-block-catenis-blocks-send-file div.dropzone > div.dropcontainer > p.selected {
+    color: black;
+    position: relative;
+}
+
+div.wp-block-catenis-blocks-send-file input[type="file"] {
+    display: none
+}
+
+div.wp-block-catenis-blocks-send-file > div.ctnBlkDivMsgSuccess {
+    display: none;
+    margin-top: 2em
+}
+
+div.wp-block-catenis-blocks-send-file > div.ctnBlkDivMsgSuccess > p.ctnBlkTxtSuccess {
+    color: dimgray
+}
+
+div.wp-block-catenis-blocks-send-file > div.ctnBlkDivMsgError {
+    display: none;
+    margin-top: 2em
+}
+
+div.wp-block-catenis-blocks-send-file > div.ctnBlkDivMsgError > p.ctnBlkTxtError {
+    color: crimson
+}
+
+div.wp-block-catenis-blocks-send-file input[type="submit"]:disabled {
+    background-color: lightgray;
+    cursor: not-allowed;
+}
