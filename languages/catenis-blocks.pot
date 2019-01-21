@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2019-01-18T08:59:36-02:00\n"
+"POT-Creation-Date: 2019-01-21T18:26:11-02:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.1.0\n"
 "X-Domain: catenis-blocks\n"
@@ -35,123 +35,299 @@ msgid "Catenis"
 msgstr ""
 
 #: js/StoreMessageBlockEditor.js:9
-#: js/StoreMessageBlockEditor.js:155
-#: js/StoreMessageBlockEditor.js:190
-msgid "Store Message"
-msgstr ""
-
-#: js/StoreMessageBlockEditor.js:10
-msgid "Store a text message onto the Bitcoin blockchain"
-msgstr ""
-
-#: js/StoreMessageBlockEditor.js:90
-msgid "Message Box"
-msgstr ""
-
-#: js/StoreMessageBlockEditor.js:93
-msgid "Number of Lines"
-msgstr ""
-
-#: js/StoreMessageBlockEditor.js:101
-#: js/StoreFileBlockEditor.js:70
-msgid "Store Options"
-msgstr ""
-
-#: js/StoreMessageBlockEditor.js:105
-#: js/StoreFileBlockEditor.js:74
-msgid "Encrypt"
-msgstr ""
-
-#: js/StoreMessageBlockEditor.js:106
-msgid "Encrypt message before storing it"
-msgstr ""
-
-#: js/StoreMessageBlockEditor.js:106
-msgid "Store message as it is"
-msgstr ""
-
-#: js/StoreMessageBlockEditor.js:111
-msgid "Storage"
-msgstr ""
-
-#: js/StoreMessageBlockEditor.js:127
-#: js/StoreFileBlockEditor.js:81
-msgid "Result"
-msgstr ""
-
-#: js/StoreMessageBlockEditor.js:131
-#: js/StoreFileBlockEditor.js:85
-msgid "Success Panel ID"
-msgstr ""
-
-#: js/StoreMessageBlockEditor.js:132
-#: js/StoreMessageBlockEditor.js:138
-#: js/StoreFileBlockEditor.js:86
-#: js/StoreFileBlockEditor.js:92
-msgid "Enter ID of an HTML element on the page"
-msgstr ""
-
-#: js/StoreMessageBlockEditor.js:137
-#: js/StoreFileBlockEditor.js:91
-msgid "Error Panel ID"
-msgstr ""
-
-#: js/StoreMessageBlockEditor.js:151
-#: js/StoreMessageBlockEditor.js:185
+#: js/SendMessageBlockEditor.js:11
 msgid "Write your message"
 msgstr ""
 
-#: js/StoreMessageBlock.js:81
-msgid "No message to be stored"
+#: js/StoreMessageBlockEditor.js:10
+#: js/StoreMessageBlockEditor.js:14
+#: js/SendMessageBlockEditor.js:12
+msgid "Store Message"
 msgstr ""
 
-#: js/StoreMessageBlock.js:92
-msgid "Message successfully stored.<br>Message Id: "
+#: js/StoreMessageBlockEditor.js:11
+#: js/SendMessageBlockEditor.js:13
+msgid ""
+"Message successfully stored.\n"
+"Message Id: {!messageId}"
 msgstr ""
 
-#: js/StoreFileBlock.js:152
-msgid "No file selected to be stored"
+#: js/StoreMessageBlockEditor.js:15
+msgid "Store a text message onto the Bitcoin blockchain"
 msgstr ""
 
-#: js/StoreFileBlock.js:172
-msgid "File successfully stored.<br>Message Id: "
+#: js/StoreMessageBlockEditor.js:139
+#: js/SendMessageBlockEditor.js:221
+msgid "Message Box"
 msgstr ""
 
-#: js/StoreFileBlock.js:190
-msgid "Error reading file: inconsistent data"
+#: js/StoreMessageBlockEditor.js:142
+#: js/SendMessageBlockEditor.js:224
+msgid "Number of Lines"
 msgstr ""
 
-#: js/StoreFileBlock.js:198
-msgid "Empty file; nothing to store"
+#: js/StoreMessageBlockEditor.js:150
+#: js/SendFileBlockEditor.js:199
+#: js/SendMessageBlockEditor.js:232
+#: js/StoreFileBlockEditor.js:117
+msgid "Advanced UI Settings"
 msgstr ""
 
-#: js/StoreFileBlock.js:214
-msgid "Error reading file: "
+#: js/StoreMessageBlockEditor.js:154
+#: js/SendMessageBlockEditor.js:246
+msgid "Message Placeholder"
 msgstr ""
 
-#: js/StoreFileBlock.js:218
-msgid "Reading of file has been aborted"
+#: js/StoreMessageBlockEditor.js:159
+#: js/SendFileBlockEditor.js:218
+#: js/SendMessageBlockEditor.js:251
+#: js/StoreFileBlockEditor.js:126
+msgid "Button Label"
 msgstr ""
 
+#: js/StoreMessageBlockEditor.js:164
+#: js/SendFileBlockEditor.js:223
+#: js/SendMessageBlockEditor.js:256
+#: js/StoreFileBlockEditor.js:131
+msgid "Success Message Template"
+msgstr ""
+
+#: js/StoreMessageBlockEditor.js:165
+#: js/SendFileBlockEditor.js:224
+#: js/SendMessageBlockEditor.js:257
+#: js/StoreFileBlockEditor.js:132
+msgid "Use the term {!messageId} as a placeholder for the returned message ID"
+msgstr ""
+
+#: js/StoreMessageBlockEditor.js:176
+#: js/SendFileBlockEditor.js:235
+#: js/SendMessageBlockEditor.js:268
+#: js/StoreFileBlockEditor.js:143
+msgid "Store Options"
+msgstr ""
+
+#: js/StoreMessageBlockEditor.js:180
+#: js/SendFileBlockEditor.js:239
+#: js/SendMessageBlockEditor.js:272
+#: js/StoreFileBlockEditor.js:147
+msgid "Encrypt"
+msgstr ""
+
+#: js/StoreMessageBlockEditor.js:181
+#: js/SendMessageBlockEditor.js:273
+msgid "Encrypt message before storing it"
+msgstr ""
+
+#: js/StoreMessageBlockEditor.js:181
+#: js/SendMessageBlockEditor.js:273
+msgid "Store message as it is"
+msgstr ""
+
+#: js/StoreMessageBlockEditor.js:186
+#: js/SendMessageBlockEditor.js:278
+msgid "Storage"
+msgstr ""
+
+#: js/StoreMessageBlockEditor.js:202
+#: js/SendFileBlockEditor.js:246
+#: js/SendMessageBlockEditor.js:294
+#: js/StoreFileBlockEditor.js:154
+msgid "Result"
+msgstr ""
+
+#: js/StoreMessageBlockEditor.js:206
+#: js/SendFileBlockEditor.js:250
+#: js/SendMessageBlockEditor.js:298
+#: js/StoreFileBlockEditor.js:158
+msgid "Success Panel ID"
+msgstr ""
+
+#: js/StoreMessageBlockEditor.js:207
+#: js/StoreMessageBlockEditor.js:213
+#: js/SendFileBlockEditor.js:251
+#: js/SendFileBlockEditor.js:257
+#: js/SendMessageBlockEditor.js:299
+#: js/SendMessageBlockEditor.js:305
+#: js/StoreFileBlockEditor.js:159
+#: js/StoreFileBlockEditor.js:165
+msgid "Enter ID of an HTML element on the page"
+msgstr ""
+
+#: js/StoreMessageBlockEditor.js:212
+#: js/SendFileBlockEditor.js:256
+#: js/SendMessageBlockEditor.js:304
+#: js/StoreFileBlockEditor.js:164
+msgid "Error Panel ID"
+msgstr ""
+
+#: js/SendFileBlockEditor.js:8
+#: js/SendMessageBlockEditor.js:9
+msgid "Target device ID"
+msgstr ""
+
+#: js/SendFileBlockEditor.js:9
+#: js/SendMessageBlockEditor.js:10
+msgid "Target device prod unique ID"
+msgstr ""
+
+#: js/SendFileBlockEditor.js:10
+#: js/StoreFileBlockEditor.js:8
+msgid "Drop a file or click to select"
+msgstr ""
+
+#: js/SendFileBlockEditor.js:11
 #: js/StoreFileBlockEditor.js:9
-#: js/StoreFileBlockEditor.js:118
-#: js/StoreFileBlockEditor.js:181
+#: js/StoreFileBlockEditor.js:13
 msgid "Store File"
 msgstr ""
 
+#: js/SendFileBlockEditor.js:12
 #: js/StoreFileBlockEditor.js:10
-msgid "Store a file onto the Bitcoin blockchain"
+msgid ""
+"File successfully stored.\n"
+"Message Id: {!messageId}"
 msgstr ""
 
-#: js/StoreFileBlockEditor.js:75
+#: js/SendFileBlockEditor.js:15
+msgid "Send File"
+msgstr ""
+
+#: js/SendFileBlockEditor.js:16
+msgid "Store a file onto the Bitcoin blockchain addessing it to another Catenis virtual device"
+msgstr ""
+
+#: js/SendFileBlockEditor.js:171
+#: js/SendMessageBlockEditor.js:193
+msgid "Target Device"
+msgstr ""
+
+#: js/SendFileBlockEditor.js:174
+#: js/SendMessageBlockEditor.js:196
+msgid "Dynamic Target Device"
+msgstr ""
+
+#: js/SendFileBlockEditor.js:175
+#: js/SendMessageBlockEditor.js:197
+msgid "Select a different target device for each message"
+msgstr ""
+
+#: js/SendFileBlockEditor.js:175
+#: js/SendMessageBlockEditor.js:197
+msgid "Use a single predefined target device"
+msgstr ""
+
+#: js/SendFileBlockEditor.js:180
+#: js/SendMessageBlockEditor.js:202
+msgid "Use Product Unique ID"
+msgstr ""
+
+#: js/SendFileBlockEditor.js:181
+#: js/SendMessageBlockEditor.js:203
+msgid "Enter product unique ID for target device"
+msgstr ""
+
+#: js/SendFileBlockEditor.js:181
+#: js/SendMessageBlockEditor.js:203
+msgid "Enter Catenis device ID for target device"
+msgstr ""
+
+#: js/SendFileBlockEditor.js:189
+#: js/SendMessageBlockEditor.js:211
+msgid "Target Device Product Unique ID"
+msgstr ""
+
+#: js/SendFileBlockEditor.js:189
+#: js/SendMessageBlockEditor.js:211
+msgid "Target Device ID"
+msgstr ""
+
+#: js/SendFileBlockEditor.js:190
+#: js/SendMessageBlockEditor.js:212
+msgid "ID of Catenis virtual device to which the message is sent"
+msgstr ""
+
+#: js/SendFileBlockEditor.js:203
+#: js/SendMessageBlockEditor.js:236
+msgid "Target Device ID Placeholder"
+msgstr ""
+
+#: js/SendFileBlockEditor.js:208
+#: js/SendMessageBlockEditor.js:241
+msgid "Target Device Prod Unique ID Placeholder"
+msgstr ""
+
+#: js/SendFileBlockEditor.js:213
+#: js/StoreFileBlockEditor.js:121
+msgid "File Drop Box Message"
+msgstr ""
+
+#: js/SendFileBlockEditor.js:240
+#: js/StoreFileBlockEditor.js:148
 msgid "Encrypt file contents before storing it"
 msgstr ""
 
-#: js/StoreFileBlockEditor.js:75
+#: js/SendFileBlockEditor.js:240
+#: js/StoreFileBlockEditor.js:148
 msgid "Store file as it is"
 msgstr ""
 
-#: js/StoreFileBlockEditor.js:110
-#: js/StoreFileBlockEditor.js:169
-msgid "Drop a file or click to select"
+#: js/StoreMessageBlock.js:82
+msgid "No message to be stored"
+msgstr ""
+
+#: js/SendFileBlock.js:154
+msgid "No file selected to be sent"
+msgstr ""
+
+#: js/SendFileBlock.js:163
+#: js/SendMessageBlock.js:92
+msgid "No target device product unique ID"
+msgstr ""
+
+#: js/SendFileBlock.js:163
+#: js/SendMessageBlock.js:92
+msgid "No target device ID"
+msgstr ""
+
+#: js/SendFileBlock.js:206
+#: js/StoreFileBlock.js:193
+msgid "Error reading file: inconsistent data"
+msgstr ""
+
+#: js/SendFileBlock.js:214
+msgid "Empty file; nothing to send"
+msgstr ""
+
+#: js/SendFileBlock.js:230
+#: js/StoreFileBlock.js:217
+msgid "Error reading file: "
+msgstr ""
+
+#: js/SendFileBlock.js:234
+#: js/StoreFileBlock.js:221
+msgid "Reading of file has been aborted"
+msgstr ""
+
+#: js/StoreFileBlock.js:153
+msgid "No file selected to be stored"
+msgstr ""
+
+#: js/StoreFileBlock.js:201
+msgid "Empty file; nothing to store"
+msgstr ""
+
+#: js/SendMessageBlockEditor.js:16
+msgid "Send Message"
+msgstr ""
+
+#: js/SendMessageBlockEditor.js:17
+msgid "Store a text message onto the Bitcoin blockchain addessing it to another Catenis virtual device"
+msgstr ""
+
+#: js/StoreFileBlockEditor.js:14
+msgid "Store a file onto the Bitcoin blockchain"
+msgstr ""
+
+#: js/SendMessageBlock.js:83
+msgid "No message to be sent"
 msgstr ""
