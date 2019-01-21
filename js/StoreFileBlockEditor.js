@@ -5,6 +5,10 @@
     var __ = wp.i18n.__;
     var cmp = wp.components;
 
+    var defFileDropBoxMessage = __('Drop a file or click to select', 'catenis-blocks');
+    var defSubmitButtonLabel = __('Store File', 'catenis-blocks');
+    var defSuccessMsgTemplate = __('File successfully stored.\nMessage Id: {!messageId}', 'catenis-blocks');
+
     registerBlockType('catenis-blocks/store-file', {
         title: __('Store File', 'catenis-blocks'),
         description: __('Store a file onto the Bitcoin blockchain', 'catenis-blocks'),
@@ -18,6 +22,20 @@
             html: false     // Removes support for an HTML mode
         },
         attributes: {
+            fileDropBoxMessage: {
+                type: 'string',
+                source: 'text',
+                selector: 'p.instruction'
+            },
+            submitButtonLabel: {
+                type: 'string',
+                source: 'attribute',
+                selector: 'input[type="submit"]',
+                attribute: 'value'
+            },
+            successMsgTemplate: {
+                type: 'string'
+            },
             encrypt: {
                 type: 'boolean'
             },
@@ -40,9 +58,38 @@
          * @return {Element}       Element to render.
          */
         edit: function(props) {
+            var fileDropBoxMessage = props.attributes.fileDropBoxMessage !== undefined ? props.attributes.fileDropBoxMessage : defFileDropBoxMessage;
+            var submitButtonLabel = props.attributes.submitButtonLabel !== undefined ? props.attributes.submitButtonLabel : defSubmitButtonLabel;
+            var successMsgTemplate = props.attributes.successMsgTemplate !== undefined ? props.attributes.successMsgTemplate : defSuccessMsgTemplate;
             var encrypt = props.attributes.encrypt !== undefined ? props.attributes.encrypt : true;
             var successPanelId = props.attributes.successPanelId;
             var errorPanelId = props.attributes.errorPanelId;
+
+            function onChangeFileDropBoxMessage(newValue) {
+                props.setAttributes({
+                    fileDropBoxMessage: newValue
+                });
+            }
+
+            function onChangeSubmitButtonLabel(newValue) {
+                props.setAttributes({
+                    submitButtonLabel: newValue
+                });
+            }
+
+            function onChangeSuccessMsgTemplate(newValue){
+                props.setAttributes({
+                    successMsgTemplate: newValue
+                });
+            }
+
+            function onClickReset() {
+                props.setAttributes({
+                    fileDropBoxMessage: defFileDropBoxMessage,
+                    submitButtonLabel: defSubmitButtonLabel,
+                    successMsgTemplate: defSuccessMsgTemplate
+                });
+            }
 
             function onChangeEncrypt(newState) {
                 props.setAttributes({
@@ -66,6 +113,32 @@
                 el(wp.element.Fragment, {},
                     // Inspector sidebar controls
                     el(wp.editor.InspectorControls, {},
+                        el(cmp.PanelBody, {
+                                title: __('Advanced UI Settings', 'catenis-blocks'),
+                                initialOpen: false
+                            },
+                            el(cmp.TextControl, {
+                                label: __('File Drop Box Message', 'catenis-blocks'),
+                                value: fileDropBoxMessage,
+                                onChange: onChangeFileDropBoxMessage
+                            }),
+                            el(cmp.TextControl, {
+                                label: __('Button Label', 'catenis-blocks'),
+                                value: submitButtonLabel,
+                                onChange: onChangeSubmitButtonLabel
+                            }),
+                            el(cmp.TextareaControl, {
+                                label: __('Success Message Template', 'catenis-blocks'),
+                                help: __('Use the term {!messageId} as a placeholder for the returned message ID', 'catenis-blocks'),
+                                value: successMsgTemplate,
+                                onChange: onChangeSuccessMsgTemplate
+                            }),
+                            el(cmp.Button, {
+                                isSmall: true,
+                                isDefault: true,
+                                onClick: onClickReset
+                            }, __('Reset Settings'))
+                        ),
                         el(cmp.PanelBody, {
                             title: __('Store Options', 'catenis-blocks'),
                             initialOpen: false
@@ -107,7 +180,7 @@
                                 },
                                 el('p', {
                                     className: 'instruction'
-                                }, __('Drop a file or click to select', 'catenis-blocks')),
+                                }, fileDropBoxMessage),
                                 el('p', {
                                     className: 'selected'
                                 })
@@ -115,7 +188,7 @@
                         ),
                         el('input', {
                             type: 'submit',
-                            value: __('Store File', 'catenis-blocks')
+                            value: submitButtonLabel
                         })
                     )
                 )
@@ -130,6 +203,9 @@
          * @return {Element}       Element to render.
          */
         save: function(props) {
+            var fileDropBoxMessage = props.attributes.fileDropBoxMessage !== undefined ? props.attributes.fileDropBoxMessage : defFileDropBoxMessage;
+            var submitButtonLabel = props.attributes.submitButtonLabel !== undefined ? props.attributes.submitButtonLabel : defSubmitButtonLabel;
+            var successMsgTemplate = props.attributes.successMsgTemplate !== undefined ? props.attributes.successMsgTemplate : defSuccessMsgTemplate;
             var encrypt = props.attributes.encrypt !== undefined ? props.attributes.encrypt : true;
             var successPanelId = props.attributes.successPanelId || '';
             var errorPanelId = props.attributes.errorPanelId || '';
@@ -151,22 +227,22 @@
                 el('div', {},
                     el('form', {
                         action: '',
-                        onSubmit: 'try{if(!this.ctnBlkStoreFile && typeof CtnBlkStoreFile === \'function\'){this.ctnBlkStoreFile = new CtnBlkStoreFile(this,{encrypt:' + boolToString(encrypt) + '},\'' + successPanelId + '\',\'' + errorPanelId + '\')}this.ctnBlkStoreFile.storeFile()}finally{return false}'
+                        onSubmit: 'try{if(!this.ctnBlkStoreFile && typeof CtnBlkStoreFile === \'function\'){this.ctnBlkStoreFile = new CtnBlkStoreFile(this,{encrypt:' + toStringLiteral(encrypt) + '},{successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}this.ctnBlkStoreFile.storeFile()}finally{return false}'
                     },
                         el('div', {
                             className: 'dropzone',
-                            onClick: 'try{var parent=this.parentElement;if(!parent.ctnBlkStoreFile && typeof CtnBlkStoreFile===\'function\'){parent.ctnBlkStoreFile=new CtnBlkStoreFile(parent,{encrypt:' + boolToString(encrypt) + '},\'' + successPanelId + '\',\'' + errorPanelId + '\')}parent.ctnBlkStoreFile.selectFile()}finally{return false}',
-                            onDrop: 'try{var parent=this.parentElement;if(!parent.ctnBlkStoreFile && typeof CtnBlkStoreFile===\'function\'){parent.ctnBlkStoreFile=new CtnBlkStoreFile(parent,{encrypt:' + boolToString(encrypt) + '},\'' + successPanelId + '\',\'' + errorPanelId + '\')}parent.ctnBlkStoreFile.dropEventHandler(event)}finally{return false}',
-                            onDragOver: 'try{var parent=this.parentElement;if(!parent.ctnBlkStoreFile && typeof CtnBlkStoreFile===\'function\'){parent.ctnBlkStoreFile=new CtnBlkStoreFile(parent,{encrypt:' + boolToString(encrypt) + '},\'' + successPanelId + '\',\'' + errorPanelId + '\')}parent.ctnBlkStoreFile.dragOverHandler(event)}finally{return false}',
-                            onDragEnter: 'try{var parent=this.parentElement;if(!parent.ctnBlkStoreFile && typeof CtnBlkStoreFile===\'function\'){parent.ctnBlkStoreFile=new CtnBlkStoreFile(parent,{encrypt:' + boolToString(encrypt) + '},\'' + successPanelId + '\',\'' + errorPanelId + '\')}parent.ctnBlkStoreFile.dragEnterHandler(event)}finally{return false}',
-                            onDragLeave: 'try{var parent=this.parentElement;if(!parent.ctnBlkStoreFile && typeof CtnBlkStoreFile===\'function\'){parent.ctnBlkStoreFile=new CtnBlkStoreFile(parent,{encrypt:' + boolToString(encrypt) + '},\'' + successPanelId + '\',\'' + errorPanelId + '\')}parent.ctnBlkStoreFile.dragLeaveHandler(event)}finally{return false}'
+                            onClick: 'try{var parent=this.parentElement;if(!parent.ctnBlkStoreFile && typeof CtnBlkStoreFile===\'function\'){parent.ctnBlkStoreFile=new CtnBlkStoreFile(parent,{encrypt:' + toStringLiteral(encrypt) + '},{successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}parent.ctnBlkStoreFile.selectFile()}finally{return false}',
+                            onDrop: 'try{var parent=this.parentElement;if(!parent.ctnBlkStoreFile && typeof CtnBlkStoreFile===\'function\'){parent.ctnBlkStoreFile=new CtnBlkStoreFile(parent,{encrypt:' + toStringLiteral(encrypt) + '},{successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}parent.ctnBlkStoreFile.dropEventHandler(event)}finally{return false}',
+                            onDragOver: 'try{var parent=this.parentElement;if(!parent.ctnBlkStoreFile && typeof CtnBlkStoreFile===\'function\'){parent.ctnBlkStoreFile=new CtnBlkStoreFile(parent,{encrypt:' + toStringLiteral(encrypt) + '},{successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}parent.ctnBlkStoreFile.dragOverHandler(event)}finally{return false}',
+                            onDragEnter: 'try{var parent=this.parentElement;if(!parent.ctnBlkStoreFile && typeof CtnBlkStoreFile===\'function\'){parent.ctnBlkStoreFile=new CtnBlkStoreFile(parent,{encrypt:' + toStringLiteral(encrypt) + '},{successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}parent.ctnBlkStoreFile.dragEnterHandler(event)}finally{return false}',
+                            onDragLeave: 'try{var parent=this.parentElement;if(!parent.ctnBlkStoreFile && typeof CtnBlkStoreFile===\'function\'){parent.ctnBlkStoreFile=new CtnBlkStoreFile(parent,{encrypt:' + toStringLiteral(encrypt) + '},{successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}parent.ctnBlkStoreFile.dragLeaveHandler(event)}finally{return false}'
                         },
                             el('div', {
                                 className: 'dropcontainer'
                             },
                                 el('p', {
                                     className: 'instruction'
-                                }, __('Drop a file or click to select', 'catenis-blocks')),
+                                }, fileDropBoxMessage),
                                 el('p', {
                                     className: 'selected'
                                 })
@@ -178,7 +254,7 @@
                         el('input', {
                             type: 'submit',
                             name: 'submitButton',
-                            value: __('Store File', 'catenis-blocks')
+                            value: submitButtonLabel
                         })
                     ),
                     el('div', {
@@ -200,7 +276,8 @@
         }
     });
 
-    function boolToString(value) {
-        return value ? 'true' : 'false';
+    function toStringLiteral(value) {
+        return typeof value !== 'string' ? '' + value :
+            '\'' + value.replace(/\\/g, '\\\\').replace(/'/g, '\\\'').replace(/\n/g, '\\n') + '\''
     }
 })(this);
