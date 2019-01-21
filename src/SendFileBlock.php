@@ -27,6 +27,7 @@ class SendFileBlock {
         $blockEditorScriptFile = '/js/SendFileBlockEditor.js';
         wp_register_script('send-file-block-editor', plugins_url($blockEditorScriptFile, $this->pluginPath), [
             'wp-blocks',
+            'wp-editor',
             'wp-i18n',
             'wp-element',
             'wp-components'

@@ -27,6 +27,7 @@ class StoreFileBlock {
         $blockEditorScriptFile = '/js/StoreFileBlockEditor.js';
         wp_register_script('store-file-block-editor', plugins_url($blockEditorScriptFile, $this->pluginPath), [
             'wp-blocks',
+            'wp-editor',
             'wp-i18n',
             'wp-element',
             'wp-components'

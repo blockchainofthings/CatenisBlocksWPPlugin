@@ -24,6 +24,7 @@ class StoreMessageBlock {
         $blockEditorScriptFile = '/js/StoreMessageBlockEditor.js';
         wp_register_script('store-message-block-editor', plugins_url($blockEditorScriptFile, $this->pluginPath), [
             'wp-blocks',
+            'wp-editor',
             'wp-i18n',
             'wp-element',
             'wp-components'

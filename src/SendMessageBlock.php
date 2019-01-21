@@ -24,6 +24,7 @@ class SendMessageBlock {
         $blockEditorScriptFile = '/js/SendMessageBlockEditor.js';
         wp_register_script('send-message-block-editor', plugins_url($blockEditorScriptFile, $this->pluginPath), [
             'wp-blocks',
+            'wp-editor',
             'wp-i18n',
             'wp-element',
             'wp-components'
