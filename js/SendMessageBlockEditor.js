@@ -102,13 +102,13 @@
 
             function onChangeSuccessPanelId(newId) {
                 props.setAttributes({
-                    successPanelId: newId
+                    successPanelId: newId.trim()
                 });
             }
 
             function onChangeErrorPanelId(newId) {
                 props.setAttributes({
-                    errorPanelId: newId
+                    errorPanelId: newId.trim()
                 });
             }
 
