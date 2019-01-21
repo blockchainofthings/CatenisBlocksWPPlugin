@@ -2,11 +2,12 @@
     var $ = context.jQuery;
     var __ = context.wp.i18n.__;
 
-    function CtnBlkStoreMessage(form, options, successPanelId, errorPanelId) {
+    function CtnBlkStoreMessage(form, options, props) {
         this.form = form;
         this.options = options;
-        this.successPanelId = successPanelId;
-        this.errorPanelId = errorPanelId;
+        this.successMsgTemplate = props.successMsgTemplate;
+        this.successPanelId = props.successPanelId;
+        this.errorPanelId = props.errorPanelId;
         this.divMsgSuccess = undefined;
         this.divMsgError = undefined;
         this.txtSuccess = undefined;
@@ -89,7 +90,9 @@
                 _self.displayError(error.toString());
             }
             else {
-                _self.displaySuccess(__('Message successfully stored.<br>Message Id: ', 'catenis-blocks') + result.messageId);
+                if (_self.successMsgTemplate) {
+                    _self.displaySuccess(_self.successMsgTemplate.replace(/{!messageId}/g, result.messageId));
+                }
                 _self.messageStored();
             }
         });

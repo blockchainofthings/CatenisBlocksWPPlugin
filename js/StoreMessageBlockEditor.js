@@ -5,6 +5,11 @@
     var __ = wp.i18n.__;
     var cmp = wp.components;
 
+    var defNumLines = 5;
+    var defMsgPlaceholder = __('Write your message', 'catenis-blocks');
+    var defSubmitButtonLabel = __('Store Message', 'catenis-blocks');
+    var defSuccessMsgTemplate = __('Message successfully stored.\nMessage Id: {!messageId}', 'catenis-blocks');
+
     registerBlockType('catenis-blocks/store-message', {
         title: __('Store Message', 'catenis-blocks'),
         description: __('Store a text message onto the Bitcoin blockchain', 'catenis-blocks'),
@@ -23,6 +28,21 @@
                 source: 'attribute',
                 selector: 'textarea',
                 attribute: 'rows'
+            },
+            msgPlaceholder: {
+                type: 'string',
+                source: 'attribute',
+                selector: 'textarea',
+                attribute: 'placeholder'
+            },
+            submitButtonLabel: {
+                type: 'string',
+                source: 'attribute',
+                selector: 'input[type="submit"]',
+                attribute: 'value'
+            },
+            successMsgTemplate: {
+                type: 'string'
             },
             encrypt: {
                 type: 'boolean'
@@ -46,7 +66,10 @@
          * @return {Element}       Element to render.
          */
         edit: function(props) {
-            var numLines = parseInt(props.attributes.numLines) || 5;
+            var numLines = parseInt(props.attributes.numLines) || defNumLines;
+            var msgPlaceholder = props.attributes.msgPlaceholder !== undefined ? props.attributes.msgPlaceholder : defMsgPlaceholder;
+            var submitButtonLabel = props.attributes.submitButtonLabel !== undefined ? props.attributes.submitButtonLabel : defSubmitButtonLabel;
+            var successMsgTemplate = props.attributes.successMsgTemplate !== undefined ? props.attributes.successMsgTemplate : defSuccessMsgTemplate;
             var encrypt = props.attributes.encrypt !== undefined ? props.attributes.encrypt : true;
             var storage = props.attributes.storage || 'auto';
             var successPanelId = props.attributes.successPanelId;
@@ -55,6 +78,32 @@
             function onChangeNumLines(newNumLines) {
                 props.setAttributes({
                     numLines: newNumLines
+                });
+            }
+
+            function onChangeMsgPlaceholder(newValue) {
+                props.setAttributes({
+                    msgPlaceholder: newValue
+                });
+            }
+
+            function onChangeSubmitButtonLabel(newValue) {
+                props.setAttributes({
+                    submitButtonLabel: newValue
+                });
+            }
+
+            function onChangeSuccessMsgTemplate(newValue){
+                props.setAttributes({
+                    successMsgTemplate: newValue
+                });
+            }
+
+            function onClickReset() {
+                props.setAttributes({
+                    msgPlaceholder: defMsgPlaceholder,
+                    submitButtonLabel: defSubmitButtonLabel,
+                    successMsgTemplate: defSuccessMsgTemplate
                 });
             }
 
@@ -96,6 +145,32 @@
                                 min: 1,
                                 max: 10
                             })
+                        ),
+                        el(cmp.PanelBody, {
+                            title: __('Advanced UI Settings', 'catenis-blocks'),
+                            initialOpen: false
+                        },
+                            el(cmp.TextControl, {
+                                label: __('Message Placeholder', 'catenis-blocks'),
+                                value: msgPlaceholder,
+                                onChange: onChangeMsgPlaceholder
+                            }),
+                            el(cmp.TextControl, {
+                                label: __('Button Label', 'catenis-blocks'),
+                                value: submitButtonLabel,
+                                onChange: onChangeSubmitButtonLabel
+                            }),
+                            el(cmp.TextareaControl, {
+                                label: __('Success Message Template', 'catenis-blocks'),
+                                help: __('Use the term {!messageId} as a placeholder for the returned message ID', 'catenis-blocks'),
+                                value: successMsgTemplate,
+                                onChange: onChangeSuccessMsgTemplate
+                            }),
+                            el(cmp.Button, {
+                                isSmall: true,
+                                isDefault: true,
+                                onClick: onClickReset
+                            }, __('Reset Settings'))
                         ),
                         el(cmp.PanelBody, {
                             title: __('Store Options', 'catenis-blocks'),
@@ -148,11 +223,11 @@
                         el('textarea', {
                             name: 'message',
                             rows: numLines,
-                            placeholder: __('Write your message', 'catenis-blocks')
+                            placeholder: msgPlaceholder
                         }),
                         el('input', {
                             type: 'submit',
-                            value: __('Store Message', 'catenis-blocks')
+                            value: submitButtonLabel
                         })
                     )
                 )
@@ -167,7 +242,10 @@
          * @return {Element}       Element to render.
          */
         save: function(props) {
-            var numLines = parseInt(props.attributes.numLines) || 5;
+            var numLines = parseInt(props.attributes.numLines) || defNumLines;
+            var msgPlaceholder = props.attributes.msgPlaceholder !== undefined ? props.attributes.msgPlaceholder : defMsgPlaceholder;
+            var submitButtonLabel = props.attributes.submitButtonLabel !== undefined ? props.attributes.submitButtonLabel : defSubmitButtonLabel;
+            var successMsgTemplate = props.attributes.successMsgTemplate !== undefined ? props.attributes.successMsgTemplate : defSuccessMsgTemplate;
             var encrypt = props.attributes.encrypt !== undefined ? props.attributes.encrypt : true;
             var storage = props.attributes.storage || 'auto';
             var successPanelId = props.attributes.successPanelId || '';
@@ -177,17 +255,17 @@
                 el('div', {},
                     el('form', {
                         action: '',
-                        onSubmit: 'try{if(!this.ctnBlkStoreMessage && typeof CtnBlkStoreMessage === \'function\'){this.ctnBlkStoreMessage = new CtnBlkStoreMessage(this,{encrypt:' + boolToString(encrypt) + ',storage:\'' + storage + '\'},\'' + successPanelId + '\',\'' + errorPanelId + '\')}this.ctnBlkStoreMessage.storeMessage()}finally{return false}'
+                        onSubmit: 'try{if(!this.ctnBlkStoreMessage && typeof CtnBlkStoreMessage === \'function\'){this.ctnBlkStoreMessage = new CtnBlkStoreMessage(this,{encrypt:' + toStringLiteral(encrypt) + ',storage:' + toStringLiteral(storage) + '},{successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}this.ctnBlkStoreMessage.storeMessage()}finally{return false}'
                     },
                         el('textarea', {
                             name: 'message',
                             rows: numLines,
-                            placeholder: __('Write your message', 'catenis-blocks')
+                            placeholder: msgPlaceholder
                         }),
                         el('input', {
                             type: 'submit',
                             name: 'submitButton',
-                            value: __('Store Message', 'catenis-blocks')
+                            value: submitButtonLabel
                         })
                     ),
                     el('div', {
@@ -209,7 +287,8 @@
         }
     });
 
-    function boolToString(value) {
-        return value ? 'true' : 'false';
+    function toStringLiteral(value) {
+        return typeof value !== 'string' ? '' + value :
+                '\'' + value.replace(/\\/g, '\\\\').replace(/'/g, '\\\'').replace(/\n/g, '\\n') + '\''
     }
 })(this);
