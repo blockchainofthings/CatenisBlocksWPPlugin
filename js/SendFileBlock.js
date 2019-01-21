@@ -3,7 +3,7 @@
     var __ = context.wp.i18n.__;
     var Buffer = context.buffer.Buffer;
 
-    function CtnBlkSendFile(form, targetDevice, options, successPanelId, errorPanelId) {
+    function CtnBlkSendFile(form, targetDevice, options, props) {
         this.form = form;
         this.targetDevice = targetDevice;
         this.divDropZone = undefined;
@@ -13,8 +13,9 @@
         this.selectedFile = undefined;
         this.options = options;
         this.options.storage = 'external';
-        this.successPanelId = successPanelId;
-        this.errorPanelId = errorPanelId;
+        this.successMsgTemplate = props.successMsgTemplate;
+        this.successPanelId = props.successPanelId;
+        this.errorPanelId = props.errorPanelId;
         this.divMsgSuccess = undefined;
         this.divMsgError = undefined;
         this.txtSuccess = undefined;
@@ -182,7 +183,9 @@
                 _self.displayError(error.toString());
             }
             else {
-                _self.displaySuccess(__('File successfully sent.<br>Message Id: ', 'catenis-blocks') + result.messageId);
+                if (_self.successMsgTemplate) {
+                    _self.displaySuccess(_self.successMsgTemplate.replace(/{!messageId}/g, result.messageId));
+                }
                 _self.fileSent();
             }
         });

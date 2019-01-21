@@ -5,6 +5,12 @@
     var __ = wp.i18n.__;
     var cmp = wp.components;
 
+    var defTargetDevIdPlaceholder = __('Target device ID', 'catenis-blocks');
+    var defTargetDevProdUniqueIdPlaceholder = __('Target device prod unique ID', 'catenis-blocks');
+    var defFileDropBoxMessage = __('Drop a file or click to select', 'catenis-blocks');
+    var defSubmitButtonLabel = __('Store File', 'catenis-blocks');
+    var defSuccessMsgTemplate = __('File successfully stored.\nMessage Id: {!messageId}', 'catenis-blocks');
+
     registerBlockType('catenis-blocks/send-file', {
         title: __('Send File', 'catenis-blocks'),
         description: __('Store a file onto the Bitcoin blockchain addessing it to another Catenis virtual device', 'catenis-blocks'),
@@ -25,6 +31,26 @@
                 type: 'boolean'
             },
             targetDeviceId: {
+                type: 'string'
+            },
+            targetDevIdPlaceholder: {
+                type: 'string'
+            },
+            targetDevProdUniqueIdPlaceholder: {
+                type: 'string'
+            },
+            fileDropBoxMessage: {
+                type: 'string',
+                source: 'text',
+                selector: 'p.instruction'
+            },
+            submitButtonLabel: {
+                type: 'string',
+                source: 'attribute',
+                selector: 'input[type="submit"]',
+                attribute: 'value'
+            },
+            successMsgTemplate: {
                 type: 'string'
             },
             encrypt: {
@@ -52,6 +78,11 @@
             var dynamicTargetDevice = props.attributes.dynamicTargetDevice !== undefined ? props.attributes.dynamicTargetDevice : false;
             var useProdUniqueId = props.attributes.useProdUniqueId !== undefined ? props.attributes.useProdUniqueId : false;
             var targetDeviceId = props.attributes.targetDeviceId || '';
+            var targetDevIdPlaceholder = props.attributes.targetDevIdPlaceholder ? props.attributes.targetDevIdPlaceholder : defTargetDevIdPlaceholder;
+            var targetDevProdUniqueIdPlaceholder = props.attributes.targetDevProdUniqueIdPlaceholder ? props.attributes.targetDevProdUniqueIdPlaceholder : defTargetDevProdUniqueIdPlaceholder;
+            var fileDropBoxMessage = props.attributes.fileDropBoxMessage !== undefined ? props.attributes.fileDropBoxMessage : defFileDropBoxMessage;
+            var submitButtonLabel = props.attributes.submitButtonLabel !== undefined ? props.attributes.submitButtonLabel : defSubmitButtonLabel;
+            var successMsgTemplate = props.attributes.successMsgTemplate !== undefined ? props.attributes.successMsgTemplate : defSuccessMsgTemplate;
             var encrypt = props.attributes.encrypt !== undefined ? props.attributes.encrypt : true;
             var successPanelId = props.attributes.successPanelId;
             var errorPanelId = props.attributes.errorPanelId;
@@ -71,6 +102,46 @@
             function onChangeTargetDeviceId(newValue) {
                 props.setAttributes({
                     targetDeviceId: newValue.trim()
+                });
+            }
+
+            function onChangeTargetDevIdPlaceholder(newValue) {
+                props.setAttributes({
+                    targetDevIdPlaceholder: newValue
+                });
+            }
+
+            function onChangeTargetDevProdUniqueIdPlaceholder(newValue) {
+                props.setAttributes({
+                    targetDevProdUniqueIdPlaceholder: newValue
+                });
+            }
+
+            function onChangeFileDropBoxMessage(newValue) {
+                props.setAttributes({
+                    fileDropBoxMessage: newValue
+                });
+            }
+
+            function onChangeSubmitButtonLabel(newValue) {
+                props.setAttributes({
+                    submitButtonLabel: newValue
+                });
+            }
+
+            function onChangeSuccessMsgTemplate(newValue){
+                props.setAttributes({
+                    successMsgTemplate: newValue
+                });
+            }
+
+            function onClickReset() {
+                props.setAttributes({
+                    targetDevIdPlaceholder: defTargetDevIdPlaceholder,
+                    targetDevProdUniqueIdPlaceholder: defTargetDevProdUniqueIdPlaceholder,
+                    fileDropBoxMessage: defFileDropBoxMessage,
+                    submitButtonLabel: defSubmitButtonLabel,
+                    successMsgTemplate: defSuccessMsgTemplate
                 });
             }
 
@@ -125,6 +196,42 @@
                             })()
                         ),
                         el(cmp.PanelBody, {
+                                title: __('Advanced UI Settings', 'catenis-blocks'),
+                                initialOpen: false
+                            },
+                            el(cmp.TextControl, {
+                                label: __('Target Device ID Placeholder', 'catenis-blocks'),
+                                value: targetDevIdPlaceholder,
+                                onChange: onChangeTargetDevIdPlaceholder
+                            }),
+                            el(cmp.TextControl, {
+                                label: __('Target Device Prod Unique ID Placeholder', 'catenis-blocks'),
+                                value: targetDevProdUniqueIdPlaceholder,
+                                onChange: onChangeTargetDevProdUniqueIdPlaceholder
+                            }),
+                            el(cmp.TextControl, {
+                                label: __('File Drop Box Message', 'catenis-blocks'),
+                                value: fileDropBoxMessage,
+                                onChange: onChangeFileDropBoxMessage
+                            }),
+                            el(cmp.TextControl, {
+                                label: __('Button Label', 'catenis-blocks'),
+                                value: submitButtonLabel,
+                                onChange: onChangeSubmitButtonLabel
+                            }),
+                            el(cmp.TextareaControl, {
+                                label: __('Success Message Template', 'catenis-blocks'),
+                                help: __('Use the term {!messageId} as a placeholder for the returned message ID', 'catenis-blocks'),
+                                value: successMsgTemplate,
+                                onChange: onChangeSuccessMsgTemplate
+                            }),
+                            el(cmp.Button, {
+                                isSmall: true,
+                                isDefault: true,
+                                onClick: onClickReset
+                            }, __('Reset Settings'))
+                        ),
+                        el(cmp.PanelBody, {
                                 title: __('Store Options', 'catenis-blocks'),
                                 initialOpen: false
                             },
@@ -163,7 +270,7 @@
                                     el('input', {
                                         type: 'text',
                                         name: 'deviceId',
-                                        placeholder: useProdUniqueId ? __('Target device prod unique ID', 'catenis-blocks') : __('Target device ID', 'catenis-blocks')
+                                        placeholder: useProdUniqueId ? targetDevProdUniqueIdPlaceholder : targetDevIdPlaceholder
                                     })
                                 );
                             }
@@ -176,7 +283,7 @@
                                 },
                                 el('p', {
                                     className: 'instruction'
-                                }, __('Drop a file or click to select', 'catenis-blocks')),
+                                }, fileDropBoxMessage),
                                 el('p', {
                                     className: 'selected'
                                 })
@@ -184,7 +291,7 @@
                         ),
                         el('input', {
                             type: 'submit',
-                            value: __('Send File', 'catenis-blocks')
+                            value: submitButtonLabel
                         })
                     )
                 )
@@ -202,6 +309,11 @@
             var dynamicTargetDevice = props.attributes.dynamicTargetDevice !== undefined ? props.attributes.dynamicTargetDevice : false;
             var useProdUniqueId = props.attributes.useProdUniqueId !== undefined ? props.attributes.useProdUniqueId : false;
             var targetDeviceId = props.attributes.targetDeviceId || '';
+            var targetDevIdPlaceholder = props.attributes.targetDevIdPlaceholder ? props.attributes.targetDevIdPlaceholder : defTargetDevIdPlaceholder;
+            var targetDevProdUniqueIdPlaceholder = props.attributes.targetDevProdUniqueIdPlaceholder ? props.attributes.targetDevProdUniqueIdPlaceholder : defTargetDevProdUniqueIdPlaceholder;
+            var fileDropBoxMessage = props.attributes.fileDropBoxMessage !== undefined ? props.attributes.fileDropBoxMessage : defFileDropBoxMessage;
+            var submitButtonLabel = props.attributes.submitButtonLabel !== undefined ? props.attributes.submitButtonLabel : defSubmitButtonLabel;
+            var successMsgTemplate = props.attributes.successMsgTemplate !== undefined ? props.attributes.successMsgTemplate : defSuccessMsgTemplate;
             var encrypt = props.attributes.encrypt !== undefined ? props.attributes.encrypt : true;
             var successPanelId = props.attributes.successPanelId || '';
             var errorPanelId = props.attributes.errorPanelId || '';
@@ -223,7 +335,7 @@
                 el('div', {},
                     el('form', {
                             action: '',
-                            onSubmit: 'try{if(!this.ctnBlkSendFile && typeof CtnBlkSendFile === \'function\'){this.ctnBlkSendFile = new CtnBlkSendFile(this,{id:\'' + targetDeviceId + '\',isProdUniqueId:' + boolToString(useProdUniqueId) + '},{encrypt:' + boolToString(encrypt) + '},\'' + successPanelId + '\',\'' + errorPanelId + '\')}this.ctnBlkSendFile.sendFile()}finally{return false}'
+                            onSubmit: 'try{if(!this.ctnBlkSendFile && typeof CtnBlkSendFile === \'function\'){this.ctnBlkSendFile = new CtnBlkSendFile(this,{id:' + toStringLiteral(targetDeviceId) + ',isProdUniqueId:' + toStringLiteral(useProdUniqueId) + '},{encrypt:' + toStringLiteral(encrypt) + '},{successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}this.ctnBlkSendFile.sendFile()}finally{return false}'
                         },
                         (function () {
                             if (dynamicTargetDevice) {
@@ -231,7 +343,7 @@
                                     type: 'text',
                                     name: 'deviceId',
                                     maxlength: useProdUniqueId ? '40' : '20',
-                                    placeholder: useProdUniqueId ? __('Target device prod unique ID', 'catenis-blocks') : __('Target device ID', 'catenis-blocks')
+                                    placeholder: useProdUniqueId ? targetDevProdUniqueIdPlaceholder : targetDevIdPlaceholder
                                 };
 
                                 if (useProdUniqueId) {
@@ -245,18 +357,18 @@
                         })(),
                         el('div', {
                                 className: 'dropzone',
-                                onClick: 'try{var parent=this.parentElement;if(!parent.ctnBlkSendFile && typeof CtnBlkSendFile===\'function\'){parent.ctnBlkSendFile=new CtnBlkSendFile(parent,{encrypt:' + boolToString(encrypt) + '},\'' + successPanelId + '\',\'' + errorPanelId + '\')}parent.ctnBlkSendFile.selectFile()}finally{return false}',
-                                onDrop: 'try{var parent=this.parentElement;if(!parent.ctnBlkSendFile && typeof CtnBlkSendFile===\'function\'){parent.ctnBlkSendFile=new CtnBlkSendFile(parent,{encrypt:' + boolToString(encrypt) + '},\'' + successPanelId + '\',\'' + errorPanelId + '\')}parent.ctnBlkSendFile.dropEventHandler(event)}finally{return false}',
-                                onDragOver: 'try{var parent=this.parentElement;if(!parent.ctnBlkSendFile && typeof CtnBlkSendFile===\'function\'){parent.ctnBlkSendFile=new CtnBlkSendFile(parent,{encrypt:' + boolToString(encrypt) + '},\'' + successPanelId + '\',\'' + errorPanelId + '\')}parent.ctnBlkSendFile.dragOverHandler(event)}finally{return false}',
-                                onDragEnter: 'try{var parent=this.parentElement;if(!parent.ctnBlkSendFile && typeof CtnBlkSendFile===\'function\'){parent.ctnBlkSendFile=new CtnBlkSendFile(parent,{encrypt:' + boolToString(encrypt) + '},\'' + successPanelId + '\',\'' + errorPanelId + '\')}parent.ctnBlkSendFile.dragEnterHandler(event)}finally{return false}',
-                                onDragLeave: 'try{var parent=this.parentElement;if(!parent.ctnBlkSendFile && typeof CtnBlkSendFile===\'function\'){parent.ctnBlkSendFile=new CtnBlkSendFile(parent,{encrypt:' + boolToString(encrypt) + '},\'' + successPanelId + '\',\'' + errorPanelId + '\')}parent.ctnBlkSendFile.dragLeaveHandler(event)}finally{return false}'
+                                onClick: 'try{var parent=this.parentElement;if(!parent.ctnBlkSendFile && typeof CtnBlkSendFile===\'function\'){parent.ctnBlkSendFile=new CtnBlkSendFile(parent,{id:' + toStringLiteral(targetDeviceId) + ',isProdUniqueId:' + toStringLiteral(useProdUniqueId) + '},{encrypt:' + toStringLiteral(encrypt) + '},{successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}parent.ctnBlkSendFile.selectFile()}finally{return false}',
+                                onDrop: 'try{var parent=this.parentElement;if(!parent.ctnBlkSendFile && typeof CtnBlkSendFile===\'function\'){parent.ctnBlkSendFile=new CtnBlkSendFile(parent,{id:' + toStringLiteral(targetDeviceId) + ',isProdUniqueId:' + toStringLiteral(useProdUniqueId) + '},{encrypt:' + toStringLiteral(encrypt) + '},{successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}parent.ctnBlkSendFile.dropEventHandler(event)}finally{return false}',
+                                onDragOver: 'try{var parent=this.parentElement;if(!parent.ctnBlkSendFile && typeof CtnBlkSendFile===\'function\'){parent.ctnBlkSendFile=new CtnBlkSendFile(parent,{id:' + toStringLiteral(targetDeviceId) + ',isProdUniqueId:' + toStringLiteral(useProdUniqueId) + '},{encrypt:' + toStringLiteral(encrypt) + '},{successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}parent.ctnBlkSendFile.dragOverHandler(event)}finally{return false}',
+                                onDragEnter: 'try{var parent=this.parentElement;if(!parent.ctnBlkSendFile && typeof CtnBlkSendFile===\'function\'){parent.ctnBlkSendFile=new CtnBlkSendFile(parent,{id:' + toStringLiteral(targetDeviceId) + ',isProdUniqueId:' + toStringLiteral(useProdUniqueId) + '},{encrypt:' + toStringLiteral(encrypt) + '},{successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}parent.ctnBlkSendFile.dragEnterHandler(event)}finally{return false}',
+                                onDragLeave: 'try{var parent=this.parentElement;if(!parent.ctnBlkSendFile && typeof CtnBlkSendFile===\'function\'){parent.ctnBlkSendFile=new CtnBlkSendFile(parent,{id:' + toStringLiteral(targetDeviceId) + ',isProdUniqueId:' + toStringLiteral(useProdUniqueId) + '},{encrypt:' + toStringLiteral(encrypt) + '},{successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}parent.ctnBlkSendFile.dragLeaveHandler(event)}finally{return false}'
                             },
                             el('div', {
                                     className: 'dropcontainer'
                                 },
                                 el('p', {
                                     className: 'instruction'
-                                }, __('Drop a file or click to select', 'catenis-blocks')),
+                                }, fileDropBoxMessage),
                                 el('p', {
                                     className: 'selected'
                                 })
@@ -268,7 +380,7 @@
                         el('input', {
                             type: 'submit',
                             name: 'submitButton',
-                            value: __('Send File', 'catenis-blocks')
+                            value: submitButtonLabel
                         })
                     ),
                     el('div', {
@@ -290,7 +402,8 @@
         }
     });
 
-    function boolToString(value) {
-        return value ? 'true' : 'false';
+    function toStringLiteral(value) {
+        return typeof value !== 'string' ? '' + value :
+            '\'' + value.replace(/\\/g, '\\\\').replace(/'/g, '\\\'').replace(/\n/g, '\\n') + '\''
     }
 })(this);
