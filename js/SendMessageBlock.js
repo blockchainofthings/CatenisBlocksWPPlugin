@@ -2,12 +2,13 @@
     var $ = context.jQuery;
     var __ = context.wp.i18n.__;
 
-    function CtnBlkSendMessage(form, targetDevice, options, successPanelId, errorPanelId) {
+    function CtnBlkSendMessage(form, targetDevice, options, props) {
         this.form = form;
         this.targetDevice = targetDevice;
         this.options = options;
-        this.successPanelId = successPanelId;
-        this.errorPanelId = errorPanelId;
+        this.successMsgTemplate = props.successMsgTemplate;
+        this.successPanelId = props.successPanelId;
+        this.errorPanelId = props.errorPanelId;
         this.divMsgSuccess = undefined;
         this.divMsgError = undefined;
         this.txtSuccess = undefined;
@@ -102,7 +103,9 @@
                 _self.displayError(error.toString());
             }
             else {
-                _self.displaySuccess(__('Message successfully sent.<br>Message Id: ', 'catenis-blocks') + result.messageId);
+                if (_self.successMsgTemplate) {
+                    _self.displaySuccess(_self.successMsgTemplate.replace(/{!messageId}/g, result.messageId));
+                }
                 _self.messageSent();
             }
         });

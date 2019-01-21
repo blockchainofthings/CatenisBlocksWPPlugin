@@ -5,6 +5,13 @@
     var __ = wp.i18n.__;
     var cmp = wp.components;
 
+    var defNumLines = 5;
+    var defTargetDevIdPlaceholder = __('Target device ID', 'catenis-blocks');
+    var defTargetDevProdUniqueIdPlaceholder = __('Target device prod unique ID', 'catenis-blocks');
+    var defMsgPlaceholder = __('Write your message', 'catenis-blocks');
+    var defSubmitButtonLabel = __('Store Message', 'catenis-blocks');
+    var defSuccessMsgTemplate = __('Message successfully stored.\nMessage Id: {!messageId}', 'catenis-blocks');
+
     registerBlockType('catenis-blocks/send-message', {
         title: __('Send Message', 'catenis-blocks'),
         description: __('Store a text message onto the Bitcoin blockchain addessing it to another Catenis virtual device', 'catenis-blocks'),
@@ -33,6 +40,27 @@
                 selector: 'textarea',
                 attribute: 'rows'
             },
+            targetDevIdPlaceholder: {
+                type: 'string'
+            },
+            targetDevProdUniqueIdPlaceholder: {
+                type: 'string'
+            },
+            msgPlaceholder: {
+                type: 'string',
+                source: 'attribute',
+                selector: 'textarea',
+                attribute: 'placeholder'
+            },
+            submitButtonLabel: {
+                type: 'string',
+                source: 'attribute',
+                selector: 'input[type="submit"]',
+                attribute: 'value'
+            },
+            successMsgTemplate: {
+                type: 'string'
+            },
             encrypt: {
                 type: 'boolean'
             },
@@ -58,7 +86,12 @@
             var dynamicTargetDevice = props.attributes.dynamicTargetDevice !== undefined ? props.attributes.dynamicTargetDevice : false;
             var useProdUniqueId = props.attributes.useProdUniqueId !== undefined ? props.attributes.useProdUniqueId : false;
             var targetDeviceId = props.attributes.targetDeviceId || '';
-            var numLines = parseInt(props.attributes.numLines) || 5;
+            var numLines = parseInt(props.attributes.numLines) || defNumLines;
+            var targetDevIdPlaceholder = props.attributes.targetDevIdPlaceholder ? props.attributes.targetDevIdPlaceholder : defTargetDevIdPlaceholder;
+            var targetDevProdUniqueIdPlaceholder = props.attributes.targetDevProdUniqueIdPlaceholder ? props.attributes.targetDevProdUniqueIdPlaceholder : defTargetDevProdUniqueIdPlaceholder;
+            var msgPlaceholder = props.attributes.msgPlaceholder !== undefined ? props.attributes.msgPlaceholder : defMsgPlaceholder;
+            var submitButtonLabel = props.attributes.submitButtonLabel !== undefined ? props.attributes.submitButtonLabel : defSubmitButtonLabel;
+            var successMsgTemplate = props.attributes.successMsgTemplate !== undefined ? props.attributes.successMsgTemplate : defSuccessMsgTemplate;
             var encrypt = props.attributes.encrypt !== undefined ? props.attributes.encrypt : true;
             var storage = props.attributes.storage || 'auto';
             var successPanelId = props.attributes.successPanelId;
@@ -85,6 +118,46 @@
             function onChangeNumLines(newNumLines) {
                 props.setAttributes({
                     numLines: newNumLines
+                });
+            }
+
+            function onChangeTargetDevIdPlaceholder(newValue) {
+                props.setAttributes({
+                    targetDevIdPlaceholder: newValue
+                });
+            }
+
+            function onChangeTargetDevProdUniqueIdPlaceholder(newValue) {
+                props.setAttributes({
+                    targetDevProdUniqueIdPlaceholder: newValue
+                });
+            }
+
+            function onChangeMsgPlaceholder(newValue) {
+                props.setAttributes({
+                    msgPlaceholder: newValue
+                });
+            }
+
+            function onChangeSubmitButtonLabel(newValue) {
+                props.setAttributes({
+                    submitButtonLabel: newValue
+                });
+            }
+
+            function onChangeSuccessMsgTemplate(newValue){
+                props.setAttributes({
+                    successMsgTemplate: newValue
+                });
+            }
+
+            function onClickReset() {
+                props.setAttributes({
+                    targetDevIdPlaceholder: defTargetDevIdPlaceholder,
+                    targetDevProdUniqueIdPlaceholder: defTargetDevProdUniqueIdPlaceholder,
+                    msgPlaceholder: defMsgPlaceholder,
+                    submitButtonLabel: defSubmitButtonLabel,
+                    successMsgTemplate: defSuccessMsgTemplate
                 });
             }
 
@@ -156,6 +229,42 @@
                             })
                         ),
                         el(cmp.PanelBody, {
+                                title: __('Advanced UI Settings', 'catenis-blocks'),
+                                initialOpen: false
+                            },
+                            el(cmp.TextControl, {
+                                label: __('Target Device ID Placeholder', 'catenis-blocks'),
+                                value: targetDevIdPlaceholder,
+                                onChange: onChangeTargetDevIdPlaceholder
+                            }),
+                            el(cmp.TextControl, {
+                                label: __('Target Device Prod Unique ID Placeholder', 'catenis-blocks'),
+                                value: targetDevProdUniqueIdPlaceholder,
+                                onChange: onChangeTargetDevProdUniqueIdPlaceholder
+                            }),
+                            el(cmp.TextControl, {
+                                label: __('Message Placeholder', 'catenis-blocks'),
+                                value: msgPlaceholder,
+                                onChange: onChangeMsgPlaceholder
+                            }),
+                            el(cmp.TextControl, {
+                                label: __('Button Label', 'catenis-blocks'),
+                                value: submitButtonLabel,
+                                onChange: onChangeSubmitButtonLabel
+                            }),
+                            el(cmp.TextareaControl, {
+                                label: __('Success Message Template', 'catenis-blocks'),
+                                help: __('Use the term {!messageId} as a placeholder for the returned message ID', 'catenis-blocks'),
+                                value: successMsgTemplate,
+                                onChange: onChangeSuccessMsgTemplate
+                            }),
+                            el(cmp.Button, {
+                                isSmall: true,
+                                isDefault: true,
+                                onClick: onClickReset
+                            }, __('Reset Settings'))
+                        ),
+                        el(cmp.PanelBody, {
                             title: __('Store Options', 'catenis-blocks'),
                             initialOpen: false
                         },
@@ -209,7 +318,7 @@
                                     el('input', {
                                         type: 'text',
                                         name: 'deviceId',
-                                        placeholder: useProdUniqueId ? __('Target device prod unique ID', 'catenis-blocks') : __('Target device ID', 'catenis-blocks')
+                                        placeholder: useProdUniqueId ? targetDevProdUniqueIdPlaceholder : targetDevIdPlaceholder
                                     })
                                 );
                             }
@@ -217,11 +326,11 @@
                         el('textarea', {
                             name: 'message',
                             rows: numLines,
-                            placeholder: __('Write your message', 'catenis-blocks')
+                            placeholder: msgPlaceholder
                         }),
                         el('input', {
                             type: 'submit',
-                            value: __('Send Message', 'catenis-blocks')
+                            value: submitButtonLabel
                         })
                     )
                 )
@@ -240,6 +349,11 @@
             var useProdUniqueId = props.attributes.useProdUniqueId !== undefined ? props.attributes.useProdUniqueId : false;
             var targetDeviceId = props.attributes.targetDeviceId || '';
             var numLines = parseInt(props.attributes.numLines) || 5;
+            var targetDevIdPlaceholder = props.attributes.targetDevIdPlaceholder ? props.attributes.targetDevIdPlaceholder : defTargetDevIdPlaceholder;
+            var targetDevProdUniqueIdPlaceholder = props.attributes.targetDevProdUniqueIdPlaceholder ? props.attributes.targetDevProdUniqueIdPlaceholder : defTargetDevProdUniqueIdPlaceholder;
+            var msgPlaceholder = props.attributes.msgPlaceholder !== undefined ? props.attributes.msgPlaceholder : defMsgPlaceholder;
+            var submitButtonLabel = props.attributes.submitButtonLabel !== undefined ? props.attributes.submitButtonLabel : defSubmitButtonLabel;
+            var successMsgTemplate = props.attributes.successMsgTemplate !== undefined ? props.attributes.successMsgTemplate : defSuccessMsgTemplate;
             var encrypt = props.attributes.encrypt !== undefined ? props.attributes.encrypt : true;
             var storage = props.attributes.storage || 'auto';
             var successPanelId = props.attributes.successPanelId || '';
@@ -249,7 +363,7 @@
                 el('div', {},
                     el('form', {
                         action: '',
-                        onSubmit: 'try{if(!this.ctnBlkSendMessage && typeof CtnBlkSendMessage === \'function\'){this.ctnBlkSendMessage = new CtnBlkSendMessage(this,{id:\'' + targetDeviceId + '\',isProdUniqueId:' + boolToString(useProdUniqueId) + '},{encrypt:' + boolToString(encrypt) + ',storage:\'' + storage + '\'},\'' + successPanelId + '\',\'' + errorPanelId + '\')}this.ctnBlkSendMessage.sendMessage()}finally{return false}'
+                        onSubmit: 'try{if(!this.ctnBlkSendMessage && typeof CtnBlkSendMessage === \'function\'){this.ctnBlkSendMessage = new CtnBlkSendMessage(this,{id:' + toStringLiteral(targetDeviceId) + ',isProdUniqueId:' + toStringLiteral(useProdUniqueId) + '},{encrypt:' + toStringLiteral(encrypt) + ',storage:' + toStringLiteral(storage) + '},{successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}this.ctnBlkSendMessage.sendMessage()}finally{return false}'
                     },
                         (function () {
                             if (dynamicTargetDevice) {
@@ -257,7 +371,7 @@
                                     type: 'text',
                                     name: 'deviceId',
                                     maxlength: useProdUniqueId ? '40' : '20',
-                                    placeholder: useProdUniqueId ? __('Target device prod unique ID', 'catenis-blocks') : __('Target device ID', 'catenis-blocks')
+                                    placeholder: useProdUniqueId ? targetDevProdUniqueIdPlaceholder : targetDevIdPlaceholder
                                 };
 
                                 if (useProdUniqueId) {
@@ -272,12 +386,12 @@
                         el('textarea', {
                             name: 'message',
                             rows: numLines,
-                            placeholder: __('Write your message', 'catenis-blocks')
+                            placeholder: msgPlaceholder
                         }),
                         el('input', {
                             type: 'submit',
                             name: 'submitButton',
-                            value: __('Send Message', 'catenis-blocks')
+                            value: submitButtonLabel
                         })
                     ),
                     el('div', {
@@ -299,7 +413,8 @@
         }
     });
 
-    function boolToString(value) {
-        return value ? 'true' : 'false';
+    function toStringLiteral(value) {
+        return typeof value !== 'string' ? '' + value :
+            '\'' + value.replace(/\\/g, '\\\\').replace(/'/g, '\\\'').replace(/\n/g, '\\n') + '\''
     }
 })(this);
