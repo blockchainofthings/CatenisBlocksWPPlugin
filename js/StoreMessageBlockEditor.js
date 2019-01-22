@@ -5,7 +5,7 @@
     var __ = wp.i18n.__;
     var cmp = wp.components;
 
-    var defNumLines = 5;
+    var defNumLines = 3;
     var defMsgPlaceholder = __('Write your message', 'catenis-blocks');
     var defSubmitButtonLabel = __('Store Message', 'catenis-blocks');
     var defSuccessMsgTemplate = __('Message successfully stored.\nMessage Id: {!messageId}', 'catenis-blocks');
@@ -75,9 +75,9 @@
             var successPanelId = props.attributes.successPanelId;
             var errorPanelId = props.attributes.errorPanelId;
 
-            function onChangeNumLines(newNumLines) {
+            function onChangeNumLines(newValue) {
                 props.setAttributes({
-                    numLines: newNumLines
+                    numLines: newValue
                 });
             }
 

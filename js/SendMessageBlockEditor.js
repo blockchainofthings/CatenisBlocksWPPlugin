@@ -5,7 +5,7 @@
     var __ = wp.i18n.__;
     var cmp = wp.components;
 
-    var defNumLines = 5;
+    var defNumLines = 3;
     var defTargetDevIdPlaceholder = __('Target device ID', 'catenis-blocks');
     var defTargetDevProdUniqueIdPlaceholder = __('Target device prod unique ID', 'catenis-blocks');
     var defMsgPlaceholder = __('Write your message', 'catenis-blocks');
@@ -115,9 +115,9 @@
                 });
             }
 
-            function onChangeNumLines(newNumLines) {
+            function onChangeNumLines(newValue) {
                 props.setAttributes({
-                    numLines: newNumLines
+                    numLines: newValue
                 });
             }
 
@@ -348,7 +348,7 @@
             var dynamicTargetDevice = props.attributes.dynamicTargetDevice !== undefined ? props.attributes.dynamicTargetDevice : false;
             var useProdUniqueId = props.attributes.useProdUniqueId !== undefined ? props.attributes.useProdUniqueId : false;
             var targetDeviceId = props.attributes.targetDeviceId || '';
-            var numLines = parseInt(props.attributes.numLines) || 5;
+            var numLines = parseInt(props.attributes.numLines) || defNumLines;
             var targetDevIdPlaceholder = props.attributes.targetDevIdPlaceholder ? props.attributes.targetDevIdPlaceholder : defTargetDevIdPlaceholder;
             var targetDevProdUniqueIdPlaceholder = props.attributes.targetDevProdUniqueIdPlaceholder ? props.attributes.targetDevProdUniqueIdPlaceholder : defTargetDevProdUniqueIdPlaceholder;
             var msgPlaceholder = props.attributes.msgPlaceholder !== undefined ? props.attributes.msgPlaceholder : defMsgPlaceholder;
