@@ -34,21 +34,21 @@ div.wp-block-catenis-blocks-store-file input[type="file"] {
     display: none
 }
 
-div.wp-block-catenis-blocks-store-file > div.success {
+div.wp-block-catenis-blocks-store-file div.success {
     display: none;
     margin-top: 2em
 }
 
-div.wp-block-catenis-blocks-store-file > div.success > p.success {
+div.wp-block-catenis-blocks-store-file div.success > p.success {
     color: dimgray
 }
 
-div.wp-block-catenis-blocks-store-file > div.error {
+div.wp-block-catenis-blocks-store-file div.error {
     display: none;
     margin-top: 2em
 }
 
-div.wp-block-catenis-blocks-store-file > div.error > p.error {
+div.wp-block-catenis-blocks-store-file div.error > p.error {
     color: crimson
 }
 

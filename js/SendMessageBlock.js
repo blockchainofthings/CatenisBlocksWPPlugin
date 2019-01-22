@@ -44,7 +44,7 @@
 
     CtnBlkSendMessage.prototype.setDefaultResultPanels = function () {
         if (!this.txtSuccess) {
-            var elems = $('form ~ div.success', this.form.parentElement);
+            var elems = $('div.success', this.form.parentElement);
             if (elems.length > 0) {
                 this.divMsgSuccess = elems[0];
 
@@ -56,7 +56,7 @@
         }
 
         if (!this.txtError) {
-            elems = $('form ~ div.error', this.form.parentElement);
+            elems = $('div.error', this.form.parentElement);
             if (elems.length > 0) {
                 this.divMsgError = elems[0];
 

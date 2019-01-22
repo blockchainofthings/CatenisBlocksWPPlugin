@@ -27,7 +27,7 @@
     }
 
     CtnBlkStoreFile.prototype.setUpDropZone = function () {
-        var elems = $('form > div.dropzone', this.form.parentElement);
+        var elems = $('div.dropzone', this.form.parentElement);
         if (elems.length > 0) {
             this.divDropZone = elems[0];
 
@@ -117,7 +117,7 @@
 
     CtnBlkStoreFile.prototype.setDefaultResultPanels = function () {
         if (!this.txtSuccess) {
-            var elems = $('form ~ div.success', this.form.parentElement);
+            var elems = $('div.success', this.form.parentElement);
             if (elems.length > 0) {
                 this.divMsgSuccess = elems[0];
 
@@ -129,7 +129,7 @@
         }
 
         if (!this.txtError) {
-            elems = $('form ~ div.error', this.form.parentElement);
+            elems = $('div.error', this.form.parentElement);
             if (elems.length > 0) {
                 this.divMsgError = elems[0];
 

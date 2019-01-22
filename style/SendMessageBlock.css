@@ -1,9 +1,9 @@
-div.wp-block-catenis-blocks-send-message input[type="text"][name="deviceId"] {
+div.wp-block-catenis-blocks-send-message input[name="deviceId"] {
     display: block;
     min-width: 15em;
 }
 
-div.wp-block-catenis-blocks-send-message input[type="text"][name="deviceId"].prodUniqueId {
+div.wp-block-catenis-blocks-send-message input[name="deviceId"].prodUniqueId {
     min-width: 20em;
 }
 
@@ -11,21 +11,21 @@ div.wp-block-catenis-blocks-send-message textarea[name="message"] {
     display: block;
 }
 
-div.wp-block-catenis-blocks-send-message > div.success {
+div.wp-block-catenis-blocks-send-message div.success {
     display: none;
     margin-top: 2em
 }
 
-div.wp-block-catenis-blocks-send-message > div.success > p.success {
+div.wp-block-catenis-blocks-send-message div.success > p.success {
     color: dimgray
 }
 
-div.wp-block-catenis-blocks-send-message > div.error {
+div.wp-block-catenis-blocks-send-message div.error {
     display: none;
     margin-top: 2em
 }
 
-div.wp-block-catenis-blocks-send-message > div.error > p.error {
+div.wp-block-catenis-blocks-send-message div.error > p.error {
     color: crimson
 }
 
