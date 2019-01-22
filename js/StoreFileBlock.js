@@ -11,6 +11,7 @@
         this.inputFile = undefined;
         this.selectedFile = undefined;
         this.options = options;
+        this.options.encoding = 'base64';
         this.options.storage = 'external';
         this.successMsgTemplate = props.successMsgTemplate;
         this.successPanelId = props.successPanelId;
