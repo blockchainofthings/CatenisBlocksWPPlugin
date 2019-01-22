@@ -4,22 +4,43 @@
 
     function CtnBlkSendMessage(form, targetDevice, options, props) {
         this.form = form;
-        this.targetDevice = targetDevice;
-        this.options = options;
-        this.successMsgTemplate = props.successMsgTemplate;
-        this.successPanelId = props.successPanelId;
-        this.errorPanelId = props.errorPanelId;
-        this.divMsgSuccess = undefined;
-        this.divMsgError = undefined;
-        this.txtSuccess = undefined;
-        this.txtError = undefined;
-        this.messageKeyDownHandler = onMessageKeyDown.bind(this);
-        this.messageKeyUpHandler = onMessageKeyUp.bind(this);
-        this.messageChangeHandler = onMessageChange.bind(this);
-        this.lastMessageValue = undefined;
 
-        this.setResultPanels();
+        if (this.checkCtnApiProxyAvailable(form.parentElement)) {
+            this.targetDevice = targetDevice;
+            this.options = options;
+            this.successMsgTemplate = props.successMsgTemplate;
+            this.successPanelId = props.successPanelId;
+            this.errorPanelId = props.errorPanelId;
+            this.divMsgSuccess = undefined;
+            this.divMsgError = undefined;
+            this.txtSuccess = undefined;
+            this.txtError = undefined;
+            this.messageKeyDownHandler = onMessageKeyDown.bind(this);
+            this.messageKeyUpHandler = onMessageKeyUp.bind(this);
+            this.messageChangeHandler = onMessageChange.bind(this);
+            this.lastMessageValue = undefined;
+
+            this.setResultPanels();
+        }
     }
+
+    CtnBlkSendMessage.prototype.checkCtnApiProxyAvailable = function (uiContainer) {
+        var result = true;
+
+        if (typeof context.ctnApiProxy !== 'object') {
+            var elems = $('div.noctnapiproxy', uiContainer.parentElement);
+            if (elems.length > 0) {
+                var noCtnApiProxy = elems[0];
+
+                noCtnApiProxy.style.display = 'block';
+            }
+
+            uiContainer.style.display = 'none';
+            result = false;
+        }
+
+        return result;
+    };
 
     CtnBlkSendMessage.prototype.setResultPanels = function () {
         if (this.successPanelId) {
@@ -69,11 +90,6 @@
     };
 
     CtnBlkSendMessage.prototype.sendMessage = function () {
-        if (typeof context.ctnApiProxy !== 'object') {
-            // Catenis API client not loaded on page. Abort processing
-            throw new Error('Catenis API client not loaded on page');
-        }
-
         this.clearResultPanels();
 
         var msg = this.form.message.value;

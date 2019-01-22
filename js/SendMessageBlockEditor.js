@@ -361,53 +361,60 @@
 
             return (
                 el('div', {},
-                    el('form', {
-                        action: '',
-                        onSubmit: 'try{if(!this.ctnBlkSendMessage && typeof CtnBlkSendMessage === \'function\'){this.ctnBlkSendMessage = new CtnBlkSendMessage(this,{id:' + toStringLiteral(targetDeviceId) + ',isProdUniqueId:' + toStringLiteral(useProdUniqueId) + '},{encrypt:' + toStringLiteral(encrypt) + ',storage:' + toStringLiteral(storage) + '},{successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}this.ctnBlkSendMessage.sendMessage()}finally{return false}'
+                    el('div', {
+                        className: 'uicontainer'
                     },
-                        (function () {
-                            if (dynamicTargetDevice) {
-                                var attr = {
-                                    type: 'text',
-                                    name: 'deviceId',
-                                    maxlength: useProdUniqueId ? '40' : '20',
-                                    placeholder: useProdUniqueId ? targetDevProdUniqueIdPlaceholder : targetDevIdPlaceholder
-                                };
+                        el('form', {
+                            action: '',
+                            onSubmit: 'try{if(!this.ctnBlkSendMessage && typeof CtnBlkSendMessage === \'function\'){this.ctnBlkSendMessage = new CtnBlkSendMessage(this,{id:' + toStringLiteral(targetDeviceId) + ',isProdUniqueId:' + toStringLiteral(useProdUniqueId) + '},{encrypt:' + toStringLiteral(encrypt) + ',storage:' + toStringLiteral(storage) + '},{successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}this.ctnBlkSendMessage.sendMessage()}finally{return false}'
+                        },
+                            (function () {
+                                if (dynamicTargetDevice) {
+                                    var attr = {
+                                        type: 'text',
+                                        name: 'deviceId',
+                                        maxlength: useProdUniqueId ? '40' : '20',
+                                        placeholder: useProdUniqueId ? targetDevProdUniqueIdPlaceholder : targetDevIdPlaceholder
+                                    };
 
-                                if (useProdUniqueId) {
-                                    attr.className = 'prodUniqueId';
+                                    if (useProdUniqueId) {
+                                        attr.className = 'prodUniqueId';
+                                    }
+
+                                    return (
+                                        el('input', attr)
+                                    );
                                 }
-
-                                return (
-                                    el('input', attr)
-                                );
-                            }
-                        })(),
-                        el('textarea', {
-                            name: 'message',
-                            rows: numLines,
-                            placeholder: msgPlaceholder
-                        }),
-                        el('input', {
-                            type: 'submit',
-                            name: 'submitButton',
-                            value: submitButtonLabel
-                        })
-                    ),
-                    el('div', {
-                        className: 'success'
-                    },
-                        el('p', {
+                            })(),
+                            el('textarea', {
+                                name: 'message',
+                                rows: numLines,
+                                placeholder: msgPlaceholder
+                            }),
+                            el('input', {
+                                type: 'submit',
+                                name: 'submitButton',
+                                value: submitButtonLabel
+                            })
+                        ),
+                        el('div', {
                             className: 'success'
-                        })
+                        },
+                            el('p', {
+                                className: 'success'
+                            })
+                        ),
+                        el('div', {
+                            className: 'error'
+                        },
+                            el('p', {
+                                className: 'error'
+                            })
+                        )
                     ),
                     el('div', {
-                        className: 'error'
-                    },
-                        el('p', {
-                            className: 'error'
-                        })
-                    )
+                        className: 'noctnapiproxy'
+                    }, __('Catenis API client not loaded on page', 'catenis-blocks'))
                 )
             );
         }

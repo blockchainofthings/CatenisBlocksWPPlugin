@@ -225,52 +225,59 @@
 
             return (
                 el('div', {},
-                    el('form', {
-                        action: '',
-                        onSubmit: 'try{if(!this.ctnBlkStoreFile && typeof CtnBlkStoreFile === \'function\'){this.ctnBlkStoreFile = new CtnBlkStoreFile(this,{encrypt:' + toStringLiteral(encrypt) + '},{successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}this.ctnBlkStoreFile.storeFile()}finally{return false}'
+                    el('div', {
+                        className: 'uicontainer'
                     },
-                        el('div', {
-                            className: 'dropzone',
-                            onClick: '(function(){try{var parent=this.parentElement;if(!parent.ctnBlkStoreFile && typeof CtnBlkStoreFile===\'function\'){parent.ctnBlkStoreFile=new CtnBlkStoreFile(parent,{encrypt:' + toStringLiteral(encrypt) + '},{successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}parent.ctnBlkStoreFile.selectFile()}finally{return false}}).call(this)',
-                            onDrop: '(function(){try{var parent=this.parentElement;if(!parent.ctnBlkStoreFile && typeof CtnBlkStoreFile===\'function\'){parent.ctnBlkStoreFile=new CtnBlkStoreFile(parent,{encrypt:' + toStringLiteral(encrypt) + '},{successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}parent.ctnBlkStoreFile.dropEventHandler(event)}finally{return false}}).call(this)',
-                            onDragOver: '(function(){try{var parent=this.parentElement;if(!parent.ctnBlkStoreFile && typeof CtnBlkStoreFile===\'function\'){parent.ctnBlkStoreFile=new CtnBlkStoreFile(parent,{encrypt:' + toStringLiteral(encrypt) + '},{successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}parent.ctnBlkStoreFile.dragOverHandler(event)}finally{return false}}).call(this)',
-                            onDragEnter: '(function(){try{var parent=this.parentElement;if(!parent.ctnBlkStoreFile && typeof CtnBlkStoreFile===\'function\'){parent.ctnBlkStoreFile=new CtnBlkStoreFile(parent,{encrypt:' + toStringLiteral(encrypt) + '},{successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}parent.ctnBlkStoreFile.dragEnterHandler(event)}finally{return false}}).call(this)',
-                            onDragLeave: '(function(){try{var parent=this.parentElement;if(!parent.ctnBlkStoreFile && typeof CtnBlkStoreFile===\'function\'){parent.ctnBlkStoreFile=new CtnBlkStoreFile(parent,{encrypt:' + toStringLiteral(encrypt) + '},{successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}parent.ctnBlkStoreFile.dragLeaveHandler(event)}finally{return false}}).call(this)'
+                        el('form', {
+                            action: '',
+                            onSubmit: 'try{if(!this.ctnBlkStoreFile && typeof CtnBlkStoreFile === \'function\'){this.ctnBlkStoreFile = new CtnBlkStoreFile(this,{encrypt:' + toStringLiteral(encrypt) + '},{successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}this.ctnBlkStoreFile.storeFile()}finally{return false}'
                         },
                             el('div', {
-                                className: 'dropcontainer'
+                                className: 'dropzone',
+                                onClick: '(function(){try{var parent=this.parentElement;if(!parent.ctnBlkStoreFile && typeof CtnBlkStoreFile===\'function\'){parent.ctnBlkStoreFile=new CtnBlkStoreFile(parent,{encrypt:' + toStringLiteral(encrypt) + '},{successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}parent.ctnBlkStoreFile.selectFile()}finally{return false}}).call(this)',
+                                onDrop: '(function(){try{var parent=this.parentElement;if(!parent.ctnBlkStoreFile && typeof CtnBlkStoreFile===\'function\'){parent.ctnBlkStoreFile=new CtnBlkStoreFile(parent,{encrypt:' + toStringLiteral(encrypt) + '},{successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}parent.ctnBlkStoreFile.dropEventHandler(event)}finally{return false}}).call(this)',
+                                onDragOver: '(function(){try{var parent=this.parentElement;if(!parent.ctnBlkStoreFile && typeof CtnBlkStoreFile===\'function\'){parent.ctnBlkStoreFile=new CtnBlkStoreFile(parent,{encrypt:' + toStringLiteral(encrypt) + '},{successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}parent.ctnBlkStoreFile.dragOverHandler(event)}finally{return false}}).call(this)',
+                                onDragEnter: '(function(){try{var parent=this.parentElement;if(!parent.ctnBlkStoreFile && typeof CtnBlkStoreFile===\'function\'){parent.ctnBlkStoreFile=new CtnBlkStoreFile(parent,{encrypt:' + toStringLiteral(encrypt) + '},{successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}parent.ctnBlkStoreFile.dragEnterHandler(event)}finally{return false}}).call(this)',
+                                onDragLeave: '(function(){try{var parent=this.parentElement;if(!parent.ctnBlkStoreFile && typeof CtnBlkStoreFile===\'function\'){parent.ctnBlkStoreFile=new CtnBlkStoreFile(parent,{encrypt:' + toStringLiteral(encrypt) + '},{successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}parent.ctnBlkStoreFile.dragLeaveHandler(event)}finally{return false}}).call(this)'
                             },
-                                el('p', {
-                                    className: 'instruction'
-                                }, fileDropBoxMessage),
-                                el('p', {
-                                    className: 'selected'
-                                })
-                            )
+                                el('div', {
+                                    className: 'dropcontainer'
+                                },
+                                    el('p', {
+                                        className: 'instruction'
+                                    }, fileDropBoxMessage),
+                                    el('p', {
+                                        className: 'selected'
+                                    })
+                                )
+                            ),
+                            el('input', {
+                                type: 'file'
+                            }),
+                            el('input', {
+                                type: 'submit',
+                                name: 'submitButton',
+                                value: submitButtonLabel
+                            })
                         ),
-                        el('input', {
-                            type: 'file'
-                        }),
-                        el('input', {
-                            type: 'submit',
-                            name: 'submitButton',
-                            value: submitButtonLabel
-                        })
-                    ),
-                    el('div', {
-                        className: 'success'
-                    },
-                        el('p', {
+                        el('div', {
                             className: 'success'
-                        })
+                        },
+                            el('p', {
+                                className: 'success'
+                            })
+                        ),
+                        el('div', {
+                            className: 'error'
+                        },
+                            el('p', {
+                                className: 'error'
+                            })
+                        )
                     ),
                     el('div', {
-                        className: 'error'
-                    },
-                        el('p', {
-                            className: 'error'
-                        })
-                    )
+                        className: 'noctnapiproxy'
+                    }, __('Catenis API client not loaded on page', 'catenis-blocks'))
                 )
             );
         }

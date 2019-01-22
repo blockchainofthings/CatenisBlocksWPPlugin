@@ -253,35 +253,42 @@
 
             return (
                 el('div', {},
-                    el('form', {
-                        action: '',
-                        onSubmit: 'try{if(!this.ctnBlkStoreMessage && typeof CtnBlkStoreMessage === \'function\'){this.ctnBlkStoreMessage = new CtnBlkStoreMessage(this,{encrypt:' + toStringLiteral(encrypt) + ',storage:' + toStringLiteral(storage) + '},{successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}this.ctnBlkStoreMessage.storeMessage()}finally{return false}'
-                    },
-                        el('textarea', {
-                            name: 'message',
-                            rows: numLines,
-                            placeholder: msgPlaceholder
-                        }),
-                        el('input', {
-                            type: 'submit',
-                            name: 'submitButton',
-                            value: submitButtonLabel
-                        })
-                    ),
                     el('div', {
-                        className: 'success'
+                        className: 'uicontainer'
                     },
-                        el('p', {
+                        el('form', {
+                            action: '',
+                            onSubmit: 'try{if(!this.ctnBlkStoreMessage && typeof CtnBlkStoreMessage === \'function\'){this.ctnBlkStoreMessage = new CtnBlkStoreMessage(this,{encrypt:' + toStringLiteral(encrypt) + ',storage:' + toStringLiteral(storage) + '},{successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}this.ctnBlkStoreMessage.storeMessage()}finally{return false}'
+                        },
+                            el('textarea', {
+                                name: 'message',
+                                rows: numLines,
+                                placeholder: msgPlaceholder
+                            }),
+                            el('input', {
+                                type: 'submit',
+                                name: 'submitButton',
+                                value: submitButtonLabel
+                            })
+                        ),
+                        el('div', {
                             className: 'success'
-                        })
+                        },
+                            el('p', {
+                                className: 'success'
+                            })
+                        ),
+                        el('div', {
+                            className: 'error'
+                        },
+                            el('p', {
+                                className: 'error'
+                            })
+                        )
                     ),
                     el('div', {
-                        className: 'error'
-                    },
-                        el('p', {
-                            className: 'error'
-                        })
-                    )
+                        className: 'noctnapiproxy'
+                    }, __('Catenis API client not loaded on page', 'catenis-blocks'))
                 )
             );
         }

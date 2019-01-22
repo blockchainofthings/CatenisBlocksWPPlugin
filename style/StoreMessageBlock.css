@@ -24,3 +24,11 @@ div.wp-block-catenis-blocks-store-message input[type="submit"]:disabled {
     background-color: lightgray;
     cursor: not-allowed;
 }
+
+div.wp-block-catenis-blocks-store-message div.noctnapiproxy {
+    border: 1px solid red;
+    padding: 2em;
+    text-align: center;
+    color: crimson;
+    display: none
+}

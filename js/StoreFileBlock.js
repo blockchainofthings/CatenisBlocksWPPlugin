@@ -5,26 +5,47 @@
 
     function CtnBlkStoreFile(form, options, props) {
         this.form = form;
-        this.divDropZone = undefined;
-        this.divDropContainer = undefined;
-        this.txtSelectedFile = undefined;
-        this.inputFile = undefined;
-        this.selectedFile = undefined;
-        this.options = options;
-        this.options.encoding = 'base64';
-        this.options.storage = 'external';
-        this.successMsgTemplate = props.successMsgTemplate;
-        this.successPanelId = props.successPanelId;
-        this.errorPanelId = props.errorPanelId;
-        this.divMsgSuccess = undefined;
-        this.divMsgError = undefined;
-        this.txtSuccess = undefined;
-        this.txtError = undefined;
-        this.inputFileChangeHandler = onInputFileChange.bind(this);
 
-        this.setUpDropZone();
-        this.setResultPanels();
+        if (this.checkCtnApiProxyAvailable(form.parentElement)) {
+            this.divDropZone = undefined;
+            this.divDropContainer = undefined;
+            this.txtSelectedFile = undefined;
+            this.inputFile = undefined;
+            this.selectedFile = undefined;
+            this.options = options;
+            this.options.encoding = 'base64';
+            this.options.storage = 'external';
+            this.successMsgTemplate = props.successMsgTemplate;
+            this.successPanelId = props.successPanelId;
+            this.errorPanelId = props.errorPanelId;
+            this.divMsgSuccess = undefined;
+            this.divMsgError = undefined;
+            this.txtSuccess = undefined;
+            this.txtError = undefined;
+            this.inputFileChangeHandler = onInputFileChange.bind(this);
+
+            this.setUpDropZone();
+            this.setResultPanels();
+        }
     }
+
+    CtnBlkStoreFile.prototype.checkCtnApiProxyAvailable = function (uiContainer) {
+        var result = true;
+
+        if (typeof context.ctnApiProxy !== 'object') {
+            var elems = $('div.noctnapiproxy', uiContainer.parentElement);
+            if (elems.length > 0) {
+                var noCtnApiProxy = elems[0];
+
+                noCtnApiProxy.style.display = 'block';
+            }
+
+            uiContainer.style.display = 'none';
+            result = false;
+        }
+
+        return result;
+    };
 
     CtnBlkStoreFile.prototype.setUpDropZone = function () {
         var elems = $('div.dropzone', this.form.parentElement);
@@ -142,11 +163,6 @@
     };
 
     CtnBlkStoreFile.prototype.storeFile = function () {
-        if (typeof context.ctnApiProxy !== 'object') {
-            // Catenis API client not loaded on page. Abort processing
-            throw new Error('Catenis API client not loaded on page');
-        }
-
         this.clearResultPanels();
 
         if (!this.selectedFile) {

@@ -65,3 +65,11 @@ div.wp-block-catenis-blocks-send-file input[type="submit"]:disabled {
     background-color: lightgray;
     cursor: not-allowed;
 }
+
+div.wp-block-catenis-blocks-send-file div.noctnapiproxy {
+    border: 1px solid red;
+    padding: 2em;
+    text-align: center;
+    color: crimson;
+    display: none
+}
