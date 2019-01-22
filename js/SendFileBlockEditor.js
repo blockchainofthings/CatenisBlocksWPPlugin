@@ -384,17 +384,17 @@
                         })
                     ),
                     el('div', {
-                            className: 'ctnBlkDivMsgSuccess'
+                            className: 'success'
                         },
                         el('p', {
-                            className: 'ctnBlkTxtSuccess'
+                            className: 'success'
                         })
                     ),
                     el('div', {
-                            className: 'ctnBlkDivMsgError'
+                            className: 'error'
                         },
                         el('p', {
-                            className: 'ctnBlkTxtError'
+                            className: 'error'
                         })
                     )
                 )

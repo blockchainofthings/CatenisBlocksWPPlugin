@@ -117,11 +117,11 @@
 
     CtnBlkStoreFile.prototype.setDefaultResultPanels = function () {
         if (!this.txtSuccess) {
-            var elems = $('form ~ div.ctnBlkDivMsgSuccess', this.form.parentElement);
+            var elems = $('form ~ div.success', this.form.parentElement);
             if (elems.length > 0) {
                 this.divMsgSuccess = elems[0];
 
-                elems = $('p.ctnBlkTxtSuccess', this.divMsgSuccess);
+                elems = $('p.success', this.divMsgSuccess);
                 if (elems.length > 0) {
                     this.txtSuccess = elems[0];
                 }
@@ -129,11 +129,11 @@
         }
 
         if (!this.txtError) {
-            elems = $('form ~ div.ctnBlkDivMsgError', this.form.parentElement);
+            elems = $('form ~ div.error', this.form.parentElement);
             if (elems.length > 0) {
                 this.divMsgError = elems[0];
 
-                elems = $('p.ctnBlkTxtError', this.divMsgError);
+                elems = $('p.error', this.divMsgError);
                 if (elems.length > 0) {
                     this.txtError = elems[0];
                 }

@@ -11,21 +11,21 @@ div.wp-block-catenis-blocks-send-message textarea[name="message"] {
     display: block;
 }
 
-div.wp-block-catenis-blocks-send-message > div.ctnBlkDivMsgSuccess {
+div.wp-block-catenis-blocks-send-message > div.success {
     display: none;
     margin-top: 2em
 }
 
-div.wp-block-catenis-blocks-send-message > div.ctnBlkDivMsgSuccess > p.ctnBlkTxtSuccess {
+div.wp-block-catenis-blocks-send-message > div.success > p.success {
     color: dimgray
 }
 
-div.wp-block-catenis-blocks-send-message > div.ctnBlkDivMsgError {
+div.wp-block-catenis-blocks-send-message > div.error {
     display: none;
     margin-top: 2em
 }
 
-div.wp-block-catenis-blocks-send-message > div.ctnBlkDivMsgError > p.ctnBlkTxtError {
+div.wp-block-catenis-blocks-send-message > div.error > p.error {
     color: crimson
 }
 

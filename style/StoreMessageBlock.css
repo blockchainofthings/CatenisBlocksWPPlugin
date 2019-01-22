@@ -2,21 +2,21 @@ div.wp-block-catenis-blocks-store-message textarea[name="message"] {
     display: block;
 }
 
-div.wp-block-catenis-blocks-store-message > div.ctnBlkDivMsgSuccess {
+div.wp-block-catenis-blocks-store-message > div.success {
     display: none;
     margin-top: 2em
 }
 
-div.wp-block-catenis-blocks-store-message > div.ctnBlkDivMsgSuccess > p.ctnBlkTxtSuccess {
+div.wp-block-catenis-blocks-store-message > div.success > p.success {
     color: dimgray
 }
 
-div.wp-block-catenis-blocks-store-message > div.ctnBlkDivMsgError {
+div.wp-block-catenis-blocks-store-message > div.error {
     display: none;
     margin-top: 2em
 }
 
-div.wp-block-catenis-blocks-store-message > div.ctnBlkDivMsgError > p.ctnBlkTxtError {
+div.wp-block-catenis-blocks-store-message > div.error > p.error {
     color: crimson
 }
 

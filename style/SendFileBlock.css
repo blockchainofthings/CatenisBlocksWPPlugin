@@ -43,21 +43,21 @@ div.wp-block-catenis-blocks-send-file input[type="file"] {
     display: none
 }
 
-div.wp-block-catenis-blocks-send-file > div.ctnBlkDivMsgSuccess {
+div.wp-block-catenis-blocks-send-file > div.success {
     display: none;
     margin-top: 2em
 }
 
-div.wp-block-catenis-blocks-send-file > div.ctnBlkDivMsgSuccess > p.ctnBlkTxtSuccess {
+div.wp-block-catenis-blocks-send-file > div.success > p.success {
     color: dimgray
 }
 
-div.wp-block-catenis-blocks-send-file > div.ctnBlkDivMsgError {
+div.wp-block-catenis-blocks-send-file > div.error {
     display: none;
     margin-top: 2em
 }
 
-div.wp-block-catenis-blocks-send-file > div.ctnBlkDivMsgError > p.ctnBlkTxtError {
+div.wp-block-catenis-blocks-send-file > div.error > p.error {
     color: crimson
 }
 
