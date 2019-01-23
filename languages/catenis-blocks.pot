@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2019-01-21T18:26:11-02:00\n"
+"POT-Creation-Date: 2019-01-23T12:37:30-02:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.1.0\n"
 "X-Domain: catenis-blocks\n"
@@ -67,6 +67,7 @@ msgid "Number of Lines"
 msgstr ""
 
 #: js/StoreMessageBlockEditor.js:150
+#: js/MessageInputBlockEditor.js:93
 #: js/SendFileBlockEditor.js:199
 #: js/SendMessageBlockEditor.js:232
 #: js/StoreFileBlockEditor.js:117
@@ -79,6 +80,7 @@ msgid "Message Placeholder"
 msgstr ""
 
 #: js/StoreMessageBlockEditor.js:159
+#: js/MessageInputBlockEditor.js:102
 #: js/SendFileBlockEditor.js:218
 #: js/SendMessageBlockEditor.js:251
 #: js/StoreFileBlockEditor.js:126
@@ -158,6 +160,47 @@ msgstr ""
 #: js/SendMessageBlockEditor.js:304
 #: js/StoreFileBlockEditor.js:164
 msgid "Error Panel ID"
+msgstr ""
+
+#: js/StoreMessageBlockEditor.js:291
+#: js/SendFileBlockEditor.js:406
+#: js/SendMessageBlockEditor.js:417
+#: js/StoreFileBlockEditor.js:280
+#: js/DisplayMessageBlockEditor.js:108
+msgid "Catenis API client not loaded on page"
+msgstr ""
+
+#: js/MessageInputBlockEditor.js:8
+#: js/DisplayMessageBlockEditor.js:54
+msgid "Message ID"
+msgstr ""
+
+#: js/MessageInputBlockEditor.js:9
+msgid "Submit"
+msgstr ""
+
+#: js/MessageInputBlockEditor.js:12
+msgid "Message Input"
+msgstr ""
+
+#: js/MessageInputBlockEditor.js:13
+msgid "Input field to enter ID of message for display/download"
+msgstr ""
+
+#: js/MessageInputBlockEditor.js:83
+msgid "Target"
+msgstr ""
+
+#: js/MessageInputBlockEditor.js:86
+msgid "HTML Anchor"
+msgstr ""
+
+#: js/MessageInputBlockEditor.js:87
+msgid "Reference to block to display/download message contents"
+msgstr ""
+
+#: js/MessageInputBlockEditor.js:97
+msgid "Message ID Placeholder"
 msgstr ""
 
 #: js/SendFileBlockEditor.js:8
@@ -271,48 +314,48 @@ msgstr ""
 msgid "Store file as it is"
 msgstr ""
 
-#: js/StoreMessageBlock.js:82
+#: js/StoreMessageBlock.js:98
 msgid "No message to be stored"
 msgstr ""
 
-#: js/SendFileBlock.js:154
+#: js/SendFileBlock.js:171
 msgid "No file selected to be sent"
 msgstr ""
 
-#: js/SendFileBlock.js:163
-#: js/SendMessageBlock.js:92
+#: js/SendFileBlock.js:180
+#: js/SendMessageBlock.js:108
 msgid "No target device product unique ID"
 msgstr ""
 
-#: js/SendFileBlock.js:163
-#: js/SendMessageBlock.js:92
+#: js/SendFileBlock.js:180
+#: js/SendMessageBlock.js:108
 msgid "No target device ID"
 msgstr ""
 
-#: js/SendFileBlock.js:206
-#: js/StoreFileBlock.js:193
+#: js/SendFileBlock.js:223
+#: js/StoreFileBlock.js:210
 msgid "Error reading file: inconsistent data"
 msgstr ""
 
-#: js/SendFileBlock.js:214
+#: js/SendFileBlock.js:231
 msgid "Empty file; nothing to send"
 msgstr ""
 
-#: js/SendFileBlock.js:230
-#: js/StoreFileBlock.js:217
+#: js/SendFileBlock.js:247
+#: js/StoreFileBlock.js:234
 msgid "Error reading file: "
 msgstr ""
 
-#: js/SendFileBlock.js:234
-#: js/StoreFileBlock.js:221
+#: js/SendFileBlock.js:251
+#: js/StoreFileBlock.js:238
 msgid "Reading of file has been aborted"
 msgstr ""
 
-#: js/StoreFileBlock.js:153
+#: js/StoreFileBlock.js:170
 msgid "No file selected to be stored"
 msgstr ""
 
-#: js/StoreFileBlock.js:201
+#: js/StoreFileBlock.js:218
 msgid "Empty file; nothing to store"
 msgstr ""
 
@@ -328,6 +371,26 @@ msgstr ""
 msgid "Store a file onto the Bitcoin blockchain"
 msgstr ""
 
-#: js/SendMessageBlock.js:83
+#: js/SendMessageBlock.js:99
 msgid "No message to be sent"
+msgstr ""
+
+#: js/DisplayMessageBlockEditor.js:9
+msgid "Display Message"
+msgstr ""
+
+#: js/DisplayMessageBlockEditor.js:10
+msgid "Display a text message retrieved from the Bitcoin blockchain"
+msgstr ""
+
+#: js/DisplayMessageBlockEditor.js:51
+msgid "Message"
+msgstr ""
+
+#: js/DisplayMessageBlockEditor.js:55
+msgid "ID of message to be retrieved"
+msgstr ""
+
+#: js/DisplayMessageBlockEditor.js:70
+msgid "Sample retrieved message"
 msgstr ""
