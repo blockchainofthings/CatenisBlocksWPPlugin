@@ -1,0 +1,4 @@
+div.wp-block-catenis-blocks-message-input input[name="messageId"] {
+    display: block;
+    min-width: 15em;
+}
