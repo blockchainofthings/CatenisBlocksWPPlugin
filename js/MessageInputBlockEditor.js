@@ -10,7 +10,7 @@
 
     registerBlockType('catenis-blocks/message-input', {
         title: __('Message Input', 'catenis-blocks'),
-        description: __('Input field to enter ID of message for display/download', 'catenis-blocks'),
+        description: __('Enter ID of message for display/saving', 'catenis-blocks'),
         category: 'catenis',
         keywords: [
             'Catenis',
@@ -84,7 +84,7 @@
                             },
                             el(cmp.TextControl, {
                                 label: __('HTML Anchor', 'catenis-blocks'),
-                                help: __('Reference to block to display/download message contents', 'catenis-blocks'),
+                                help: __('Reference to block used to display/save the message contents', 'catenis-blocks'),
                                 value: targetHtmlAnchor,
                                 onChange: onChangeTargetHtmlAnchor
                             })
