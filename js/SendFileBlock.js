@@ -16,6 +16,7 @@
             this.options = options;
             this.options.encoding = 'base64';
             this.options.storage = 'external';
+            this.addFileHeader = props.addFileHeader;
             this.successMsgTemplate = props.successMsgTemplate;
             this.successPanelId = props.successPanelId;
             this.errorPanelId = props.errorPanelId;
@@ -188,14 +189,16 @@
     };
 
     CtnBlkSendFile.prototype.sendReadFile = function (fileInfo) {
-        var fileDataBuf = Buffer.concat([
-            Buffer.from('CTN_FILE_METADATA::' + fileInfo.fileName + '::' + fileInfo.fileType + '::CTN_FILE_METADATA\r\n'),
-            Buffer.from(fileInfo.fileContents, 'base64')
-        ]);
+        var message = this.addFileHeader ?
+                Buffer.concat([
+                    Buffer.from('CTN_FILE_METADATA::' + fileInfo.fileName + '::' + fileInfo.fileType + '::CTN_FILE_METADATA\r\n'),
+                    Buffer.from(fileInfo.fileContents, 'base64')
+                ]).toString('base64')
+                : fileInfo.fileContents;
 
         var _self = this;
 
-        context.ctnApiProxy.sendMessage(this.targetDevice, fileDataBuf.toString('base64'), this.options, function(error, result) {
+        context.ctnApiProxy.sendMessage(this.targetDevice, message, this.options, function(error, result) {
             if (error) {
                 _self.displayError(error.toString());
             }
