@@ -117,7 +117,6 @@
                         el('input', {
                             type: 'text',
                             name: 'messageId',
-                            maxlength: '20',
                             placeholder: msgIdPlaceholder
                         }),
                         el('input', {
