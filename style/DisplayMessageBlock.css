@@ -1,0 +1,20 @@
+div.wp-block-catenis-blocks-display-message div.error {
+    display: none;
+    margin-top: 2em
+}
+
+div.wp-block-catenis-blocks-display-message div.error > p.error {
+    color: crimson
+}
+
+div.wp-block-catenis-blocks-display-message pre {
+    word-wrap: break-word
+}
+
+div.wp-block-catenis-blocks-display-message div.noctnapiproxy {
+    border: 1px solid red;
+    padding: 2em;
+    text-align: center;
+    color: crimson;
+    display: none
+}

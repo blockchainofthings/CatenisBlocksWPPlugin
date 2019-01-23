@@ -36,6 +36,7 @@ class CatenisBlocks {
         $this->blockInstances['store-file'] = new StoreFileBlock($pluginPath);
         $this->blockInstances['send-message'] = new SendMessageBlock($pluginPath);
         $this->blockInstances['send-file'] = new SendFileBlock($pluginPath);
+        $this->blockInstances['display-message'] = new DisplayMessageBlock($pluginPath);
     }
 
     function initialize() {
