@@ -207,17 +207,29 @@
         var _self = this;
 
         fileReader.onload = function (event) {
-            var matchResult = event.target.result.match(/^data:(.*\/.*)?;base64,(.*)$/);
+            var fileData = event.target.result;
+            var dataPrefix = 'data:';
 
-            if (!matchResult) {
+            // Note: depending on the browser, the result for reading an empty file varies.
+            //  So we try to address all the possible (known) outcomes below
+            if (!fileData || fileData === dataPrefix) {
+                // Empty file; nothing to do
+                _self.displayError(__('Empty file; nothing to send', 'catenis-blocks'));
+                return;
+            }
+
+            var base64Mark = ';base64,';
+            var base64MarkePos;
+
+            if (fileData.indexOf(dataPrefix) !== 0 || (base64MarkePos = fileData.indexOf(base64Mark, dataPrefix.length)) < 0) {
                 _self.displayError(__('Error reading file: inconsistent data', 'catenis-blocks'));
                 return;
             }
 
-            var mimeType = matchResult[1];
-            var data = matchResult[2];
+            var mimeType = fileData.substring(dataPrefix.length, base64MarkePos);
+            var data = fileData.substring(base64MarkePos + base64Mark.length);
 
-            if (!data || data.length === 0) {
+            if (data.length === 0) {
                 _self.displayError(__('Empty file; nothing to store', 'catenis-blocks'));
                 return;
             }
