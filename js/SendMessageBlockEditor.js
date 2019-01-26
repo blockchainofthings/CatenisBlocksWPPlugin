@@ -9,8 +9,8 @@
     var defTargetDevIdPlaceholder = __('Target device ID', 'catenis-blocks');
     var defTargetDevProdUniqueIdPlaceholder = __('Target device prod unique ID', 'catenis-blocks');
     var defMsgPlaceholder = __('Write your message', 'catenis-blocks');
-    var defSubmitButtonLabel = __('Store Message', 'catenis-blocks');
-    var defSuccessMsgTemplate = __('Message successfully stored.\nMessage Id: {!messageId}', 'catenis-blocks');
+    var defSubmitButtonLabel = __('Send Message', 'catenis-blocks');
+    var defSuccessMsgTemplate = __('Message successfully sent.\nMessage Id: {!messageId}', 'catenis-blocks');
 
     registerBlockType('catenis-blocks/send-message', {
         title: __('Send Message', 'catenis-blocks'),

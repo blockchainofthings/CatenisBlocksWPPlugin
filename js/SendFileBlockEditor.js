@@ -8,8 +8,8 @@
     var defTargetDevIdPlaceholder = __('Target device ID', 'catenis-blocks');
     var defTargetDevProdUniqueIdPlaceholder = __('Target device prod unique ID', 'catenis-blocks');
     var defFileDropBoxMessage = __('Drop a file or click to select', 'catenis-blocks');
-    var defSubmitButtonLabel = __('Store File', 'catenis-blocks');
-    var defSuccessMsgTemplate = __('File successfully stored.\nMessage Id: {!messageId}', 'catenis-blocks');
+    var defSubmitButtonLabel = __('Send File', 'catenis-blocks');
+    var defSuccessMsgTemplate = __('File successfully sent.\nMessage Id: {!messageId}', 'catenis-blocks');
     var defAddFileHeader = true;
     var defEncrypt = true;
 
