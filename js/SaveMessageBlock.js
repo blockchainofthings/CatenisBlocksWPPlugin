@@ -1,7 +1,7 @@
 (function (context) {
     var $ = context.jQuery;
     var __ = context.wp.i18n.__;
-    var Buffer = context.buffer.Buffer;
+    var CtnFileHeader = context.CtnFileHeader;
 
     function CtnBlkSaveMessage(uiContainer) {
         this.uiContainer = uiContainer;
@@ -79,30 +79,25 @@
     };
 
     CtnBlkSaveMessage.prototype.prepareMsgToSave = function (message) {
-        var msgBuf = Buffer.from(message, 'base64');
-        var fileName = __('unnamed', 'catenis-blocks');
-        var fileType = 'application/octet-stream';
+        var fileName;
+        var fileType;
+        var fileContents;
 
-        // Check if file header is present
-        var firstLineEndPos = msgBuf.indexOf('\r\n');
+        var fileInfo = CtnFileHeader.decode(message);
 
-        if (firstLineEndPos > 0) {
-            var firstLine = msgBuf.slice(0, firstLineEndPos).toString();
-            var matchResult = firstLine.match(/^CTN_FILE_METADATA::(.+)::(.+)::CTN_FILE_METADATA$/);
-
-            if (matchResult) {
-                // Valid file header. Extract file name and type
-                fileName = matchResult[1];
-                fileType = matchResult[2];
-            }
+        if (fileInfo) {
+            fileName = fileInfo.fileName;
+            fileType = fileInfo.fileType;
+            fileContents = fileInfo.fileContents;
         }
         else {
-            // Adjust index so the whole message is used as the file contents
-            firstLineEndPos = -2;
+            fileName = __('unnamed', 'catenis-blocks');
+            fileType = 'application/octet-stream';
+            fileContents = message;
         }
 
         // Compose data URL using file attributes
-        var dataUrl = 'data:' + fileType + ';base64,' + msgBuf.slice(firstLineEndPos + 2).toString('base64');
+        var dataUrl = 'data:' + fileType + ';base64,' + fileContents;
 
         this.setSaveMsgLink(dataUrl, fileName);
     };

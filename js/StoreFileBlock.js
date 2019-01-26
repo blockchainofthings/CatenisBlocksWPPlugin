@@ -1,7 +1,7 @@
 (function (context) {
     var $ = context.jQuery;
     var __ = context.wp.i18n.__;
-    var Buffer = context.buffer.Buffer;
+    var CtnFileHeader = context.CtnFileHeader;
 
     function CtnBlkStoreFile(form, options, props) {
         this.form = form;
@@ -176,12 +176,7 @@
     };
 
     CtnBlkStoreFile.prototype.storeReadFile = function (fileInfo) {
-        var message = this.addFileHeader ?
-                Buffer.concat([
-                    Buffer.from('CTN_FILE_METADATA::' + fileInfo.fileName + '::' + fileInfo.fileType + '::CTN_FILE_METADATA\r\n'),
-                    Buffer.from(fileInfo.fileContents, 'base64')
-                ]).toString('base64')
-                : fileInfo.fileContents;
+        var message = this.addFileHeader ? CtnFileHeader.encode(fileInfo) : fileInfo.fileContents;
 
         var _self = this;
 
