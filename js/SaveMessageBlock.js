@@ -1,6 +1,7 @@
 (function (context) {
     var $ = context.jQuery;
     var __ = context.wp.i18n.__;
+    var Buffer = context.buffer.Buffer;
     var CtnFileHeader = context.CtnFileHeader;
 
     function CtnBlkSaveMessage(uiContainer) {
@@ -81,9 +82,9 @@
     CtnBlkSaveMessage.prototype.prepareMsgToSave = function (message) {
         var fileName;
         var fileType;
-        var fileContents;
+        var fileContents = Buffer.from(message, 'base64');
 
-        var fileInfo = CtnFileHeader.decode(message);
+        var fileInfo = CtnFileHeader.decode(fileContents);
 
         if (fileInfo) {
             fileName = fileInfo.fileName;
@@ -93,18 +94,37 @@
         else {
             fileName = __('unnamed', 'catenis-blocks');
             fileType = 'application/octet-stream';
-            fileContents = message;
         }
 
-        // Compose data URL using file attributes
-        var dataUrl = 'data:' + fileType + ';base64,' + fileContents;
+        var fileBlob = new Blob([fileContents], {type: fileType});
 
-        this.setSaveMsgLink(dataUrl, fileName);
+        this.setSaveMsgLink(fileBlob, fileName);
     };
 
-    CtnBlkSaveMessage.prototype.setSaveMsgLink = function (url, fileName) {
+    CtnBlkSaveMessage.prototype.setSaveMsgLink = function (fileBlob, fileName) {
         if (this.saveMsgAnchor) {
-            this.saveMsgAnchor.href = url;
+            if (context.navigator && context.navigator.msSaveBlob && context.navigator.userAgent.indexOf('Edge/') < 0) {
+                // Internet Explorer
+                this.saveMsgAnchor.file = {
+                    blob: fileBlob,
+                    name: fileName
+                };
+
+                if (!this.saveMsgAnchor.clickEventSet) {
+                    this.saveMsgAnchor.addEventListener('click', function (event) {
+                        event.stopPropagation();
+                        event.preventDefault();
+
+                        window.navigator.msSaveBlob(event.target.file.blob, event.target.file.name);
+                    });
+
+                    this.saveMsgAnchor.clickEventSet = true;
+                }
+            }
+            else {
+                this.saveMsgAnchor.href = context.URL.createObjectURL(fileBlob);
+            }
+
             this.saveMsgAnchor.download = fileName;
             this.saveMsgAnchor.style.display = 'inline'
         }
@@ -112,7 +132,15 @@
 
     CtnBlkSaveMessage.prototype.hideSaveMsgLink = function () {
         if (this.saveMsgAnchor) {
-            this.saveMsgAnchor.href = '#';
+            if (context.navigator && context.navigator.msSaveBlob && context.navigator.userAgent.indexOf('Edge/') < 0) {
+                // Internet Explorer
+                delete this.saveMsgAnchor.file;
+            }
+            else if (!(this.saveMsgAnchor.href.length >= 1 && this.saveMsgAnchor.href.substring(this.saveMsgAnchor.href.length - 1) === '#')) {
+                context.URL.revokeObjectURL(this.saveMsgAnchor.href);
+                this.saveMsgAnchor.href = '#';
+            }
+
             this.saveMsgAnchor.download = '';
             this.saveMsgAnchor.style.display = 'none';
         }

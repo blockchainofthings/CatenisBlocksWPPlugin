@@ -1,6 +1,7 @@
 (function (context) {
     var $ = context.jQuery;
     var __ = context.wp.i18n.__;
+    var Buffer = context.buffer.Buffer;
     var CtnFileHeader = context.CtnFileHeader;
 
     function CtnBlkStoreFile(form, options, props) {
@@ -176,11 +177,11 @@
     };
 
     CtnBlkStoreFile.prototype.storeReadFile = function (fileInfo) {
-        var message = this.addFileHeader ? CtnFileHeader.encode(fileInfo) : fileInfo.fileContents;
+        var fileContents = this.addFileHeader ? CtnFileHeader.encode(fileInfo) : fileInfo.fileContents;
 
         var _self = this;
 
-        context.ctnApiProxy.logMessage(message, this.options, function(error, result) {
+        context.ctnApiProxy.logMessage(fileContents.toString('base64'), this.options, function (error, result) {
             if (error) {
                 _self.displayError(error.toString());
             }
@@ -194,45 +195,23 @@
     };
 
     CtnBlkStoreFile.prototype.readFile = function (file) {
-        var fileInfo = {
-            fileName: file.name
-        };
-
         var fileReader = new FileReader();
         var _self = this;
 
         fileReader.onload = function (event) {
             var fileData = event.target.result;
-            var dataPrefix = 'data:';
 
-            // Note: depending on the browser, the result for reading an empty file varies.
-            //  So we try to address all the possible (known) outcomes below
-            if (!fileData || fileData === dataPrefix) {
+            if (!fileData || fileData.byteLength === 0) {
                 // Empty file; nothing to do
-                _self.displayError(__('Empty file; nothing to send', 'catenis-blocks'));
-                return;
-            }
-
-            var base64Mark = ';base64,';
-            var base64MarkePos;
-
-            if (fileData.indexOf(dataPrefix) !== 0 || (base64MarkePos = fileData.indexOf(base64Mark, dataPrefix.length)) < 0) {
-                _self.displayError(__('Error reading file: inconsistent data', 'catenis-blocks'));
-                return;
-            }
-
-            var mimeType = fileData.substring(dataPrefix.length, base64MarkePos);
-            var data = fileData.substring(base64MarkePos + base64Mark.length);
-
-            if (data.length === 0) {
                 _self.displayError(__('Empty file; nothing to store', 'catenis-blocks'));
                 return;
             }
 
-            fileInfo.fileType = mimeType ? mimeType : 'text/plain';
-            fileInfo.fileContents = data;
-
-            _self.storeReadFile(fileInfo);
+            _self.storeReadFile({
+                fileName: file.name,
+                fileType: file.type ? file.type : 'text/plain',
+                fileContents: Buffer.from(fileData)
+            });
         };
 
         fileReader.onerror = function (event) {
@@ -248,7 +227,7 @@
             _self.displayError(__('Reading of file has been aborted', 'catenis-blocks'));
         };
 
-        fileReader.readAsDataURL(file);
+        fileReader.readAsArrayBuffer(file);
     };
 
     CtnBlkStoreFile.prototype.selectedFileChanged = function () {

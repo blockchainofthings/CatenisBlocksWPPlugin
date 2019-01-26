@@ -45,6 +45,7 @@ class StoreFileBlock {
         wp_register_script('store-file-block', plugins_url($blockScriptFile, $this->pluginPath), [
             'wp-i18n',
             'jquery',
+            'buffer',
             'CtnFileHeader'
         ], filemtime("$pluginDir/$blockScriptFile"));
 

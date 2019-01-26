@@ -45,6 +45,7 @@ class SaveMessageBlock {
         wp_register_script('save-message-block', plugins_url($blockScriptFile, $this->pluginPath), [
             'wp-i18n',
             'jquery',
+            'buffer',
             'CtnFileHeader'
         ], filemtime("$pluginDir/$blockScriptFile"));
 

@@ -18,16 +18,15 @@
 
         return Buffer.concat([
             Buffer.from(checksum + header),
-            Buffer.from(fileInfo.fileContents, 'base64')
-        ]).toString('base64');
+            fileInfo.fileContents
+        ]);
     };
 
     CtnFileHeader.decode = function (fileContents) {
-        var bufFileContents = Buffer.from(fileContents, 'base64');
-        var firstLineEndPos = bufFileContents.indexOf('\n');
+        var firstLineEndPos = fileContents.indexOf('\n');
 
         if (firstLineEndPos > checksumLength + 1) {
-            var firstLine = bufFileContents.toString('utf8', 0, firstLineEndPos + 1);
+            var firstLine = fileContents.toString('utf8', 0, firstLineEndPos + 1);
             var checksum = firstLine.substring(0, checksumLength);
             var header = firstLine.substring(checksumLength);
             var fileMeta;
@@ -42,7 +41,7 @@
                 return {
                     fileName: fileMeta.fn,
                     fileType: fileMeta.mt,
-                    fileContents: bufFileContents.toString('base64', firstLineEndPos + 1)
+                    fileContents: fileContents.slice(firstLineEndPos + 1)
                 }
             }
         }
