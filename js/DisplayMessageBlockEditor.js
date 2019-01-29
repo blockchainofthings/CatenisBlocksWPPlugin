@@ -5,6 +5,9 @@
     var __ = wp.i18n.__;
     var cmp = wp.components;
 
+    var defLimitMsg = true;
+    var defMaxMsgLength = 1024;
+
     registerBlockType('catenis-blocks/display-message', {
         title: __('Display Message', 'catenis-blocks'),
         description: __('Display a text message retrieved from the Bitcoin blockchain', 'catenis-blocks'),
@@ -24,6 +27,12 @@
                 source: 'attribute',
                 selector: 'input[name="messageId"]',
                 attribute: 'value'
+            },
+            limitMsg: {
+                type: 'boolean'
+            },
+            maxMsgLength: {
+                type: 'number'
             }
         },
         /**
@@ -36,10 +45,26 @@
          */
         edit: function(props) {
             var messageId = props.attributes.messageId;
+            var limitMsg = props.attributes.limitMsg !== undefined ? props.attributes.limitMsg : defLimitMsg;
+            var maxMsgLength = props.attributes.maxMsgLength !== undefined ? props.attributes.maxMsgLength : defMaxMsgLength;
 
             function onChangeMessageId(newValue) {
                 props.setAttributes({
                     messageId: newValue
+                });
+            }
+
+            function onChangeLimitMsg(newState) {
+                props.setAttributes({
+                    limitMsg: newState
+                });
+            }
+
+            function onChangeMaxMsgLength(newValue) {
+                newValue = parseInt(newValue);
+
+                props.setAttributes({
+                    maxMsgLength: isNaN(newValue) ? undefined : newValue
                 });
             }
 
@@ -56,6 +81,27 @@
                                 value: messageId,
                                 onChange: onChangeMessageId
                             })
+                        ),
+                        el(cmp.PanelBody, {
+                                title: __('Display', 'catenis-blocks'),
+                                initialOpen: false
+                            },
+                            el(cmp.ToggleControl, {
+                                label: __('Limit Message', 'catenis-blocks'),
+                                help: limitMsg ? __('Truncate message if it is too large', 'catenis-blocks') : __('Always display the whole message', 'catenis-blocks'),
+                                checked: limitMsg,
+                                onChange: onChangeLimitMsg
+                            }),
+                            (function () {
+                                if (limitMsg) {
+                                    return el(cmp.TextControl, {
+                                        label: __('Max Message Length', 'catenis-blocks'),
+                                        help: __('Maximum number of characters that can be displayed', 'catenis-blocks'),
+                                        value: maxMsgLength,
+                                        onChange: onChangeMaxMsgLength
+                                    });
+                                }
+                            })()
                         )
                     ),
                     // Block controls
@@ -82,6 +128,8 @@
          */
         save: function(props) {
             var messageId = props.attributes.messageId;
+            var limitMsg = props.attributes.limitMsg !== undefined ? props.attributes.limitMsg : defLimitMsg;
+            var maxMsgLength = props.attributes.maxMsgLength !== undefined ? props.attributes.maxMsgLength : defMaxMsgLength;
 
             return (
                 el('div', {},
@@ -92,7 +140,7 @@
                             type: 'hidden',
                             name: 'messageId',
                             value: messageId,
-                            onChange: '(function(){try{var parent=this.parentElement;if(!parent.ctnBlkDisplayMessage && typeof CtnBlkDisplayMessage===\'function\'){parent.ctnBlkDisplayMessage=new CtnBlkDisplayMessage(parent)}parent.ctnBlkDisplayMessage.checkRetrieveMessage()}finally{return false}}).call(this)'
+                            onChange: '(function(){try{var parent=this.parentElement;if(!parent.ctnBlkDisplayMessage && typeof CtnBlkDisplayMessage===\'function\'){parent.ctnBlkDisplayMessage=new CtnBlkDisplayMessage(parent, {limitMsg:' + toStringLiteral(limitMsg) + ',maxMsgLength:' + toStringLiteral(maxMsgLength) + '})}parent.ctnBlkDisplayMessage.checkRetrieveMessage()}finally{return false}}).call(this)'
                         }),
                         el('pre', {}),
                         el('div', {
@@ -106,10 +154,14 @@
                     el('div', {
                         className: 'noctnapiproxy'
                     }, __('Catenis API client not loaded on page', 'catenis-blocks')),
-                    el(wp.element.RawHTML, {}, '<script type="text/javascript">(function(){var elems=jQuery(\'script[type="text/javascript"]\');if(elems.length > 0){var uiContainer=jQuery(\'div.uicontainer\', elems[elems.length-1].parentElement)[0];if(!uiContainer.ctnBlkDisplayMessage && typeof CtnBlkDisplayMessage===\'function\'){uiContainer.ctnBlkDisplayMessage=new CtnBlkDisplayMessage(uiContainer);}uiContainer.ctnBlkDisplayMessage.checkRetrieveMessage()}})()</script>')
+                    el(wp.element.RawHTML, {}, '<script type="text/javascript">(function(){var elems=jQuery(\'script[type="text/javascript"]\');if(elems.length > 0){var uiContainer=jQuery(\'div.uicontainer\', elems[elems.length-1].parentElement)[0];if(!uiContainer.ctnBlkDisplayMessage && typeof CtnBlkDisplayMessage===\'function\'){uiContainer.ctnBlkDisplayMessage=new CtnBlkDisplayMessage(uiContainer, {limitMsg:' + toStringLiteral(limitMsg) + ',maxMsgLength:' + toStringLiteral(maxMsgLength) + '});}uiContainer.ctnBlkDisplayMessage.checkRetrieveMessage()}})()</script>')
                 )
             );
         }
     });
 
+    function toStringLiteral(value) {
+        return typeof value !== 'string' ? '' + value :
+            '\'' + value.replace(/\\/g, '\\\\').replace(/'/g, '\\\'').replace(/\n/g, '\\n') + '\'';
+    }
 })(this);

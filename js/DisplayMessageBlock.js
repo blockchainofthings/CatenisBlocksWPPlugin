@@ -2,10 +2,12 @@
     var $ = context.jQuery;
     var __ = context.wp.i18n.__;
 
-    function CtnBlkDisplayMessage(uiContainer) {
+    function CtnBlkDisplayMessage(uiContainer, props) {
         this.uiContainer = uiContainer;
 
         if (this.checkCtnApiProxyAvailable(this.uiContainer)) {
+            this.limitMsg = props.limitMsg;
+            this.maxMsgLength = props.maxMsgLength;
             this.messageId = undefined;
             this.msgContainer = undefined;
             this.divError = undefined;
@@ -79,13 +81,45 @@
 
     CtnBlkDisplayMessage.prototype.displayMessage = function (message) {
         if (this.msgContainer) {
-            $(this.msgContainer).text(message);
+            var $msgContainer = $(this.msgContainer);
+
+            var onClickHandler = function (event) {
+                event.stopPropagation();
+                event.preventDefault();
+
+                // Delete message continuation info
+                $(event.target).parent().remove();
+
+                // Display the whole message
+                $msgContainer.text(message);
+            };
+
+            var truncatedMsg;
+
+            if (this.limitMsg && (truncatedMsg = truncateMessage(message, this.maxMsgLength))) {
+                // Prepare msg continuation
+                var $span = $(context.document.createElement('span'))
+                        .html('... (<a href="#">show remaining ' + (message.length - truncatedMsg.length).toLocaleString() + ' characters</a>)');
+
+                $('a', $span[0]).click(onClickHandler);
+
+                $msgContainer
+                    .after($span)
+                    .text(truncatedMsg);
+            }
+            else {
+                // Display the whole message
+                $msgContainer.text(message);
+            }
         }
     };
 
     CtnBlkDisplayMessage.prototype.hideMessage = function () {
         if (this.msgContainer) {
-            $(this.msgContainer).text('');
+            var $msgContainer = $(this.msgContainer);
+
+            $('span', $msgContainer.parent()[0]).remove();
+            $msgContainer.text('');
         }
     };
 
@@ -112,6 +146,26 @@
 
     function convertLineBreak(text) {
         return text.replace(/\n/g, '<br>');
+    }
+
+    function truncateMessage(message, maxLength) {
+        if (message.length > maxLength) {
+            var truncateLength = maxLength;
+            var lastCharCode = message.charCodeAt(maxLength - 1);
+
+            if (lastCharCode >= 0xd800 && lastCharCode <= 0xdbff) {
+                // Last character is first code unit of a UTF-16 surrogate pair.
+                //  So add one more character, to include the whole pair
+                truncateLength++;
+
+                if (message.length === truncateLength) {
+                    // No need to truncate message. Just return
+                    return;
+                }
+            }
+
+            return message.substring(0, truncateLength);
+        }
     }
 
     context.CtnBlkDisplayMessage = CtnBlkDisplayMessage;
