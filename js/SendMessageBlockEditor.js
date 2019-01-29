@@ -5,12 +5,16 @@
     var __ = wp.i18n.__;
     var cmp = wp.components;
 
+    var defDynamicTargetDevice = false;
+    var defUseProdUniqueId = false;
     var defNumLines = 3;
     var defTargetDevIdPlaceholder = __('Target device ID', 'catenis-blocks');
     var defTargetDevProdUniqueIdPlaceholder = __('Target device prod unique ID', 'catenis-blocks');
     var defMsgPlaceholder = __('Write your message', 'catenis-blocks');
     var defSubmitButtonLabel = __('Send Message', 'catenis-blocks');
     var defSuccessMsgTemplate = __('Message successfully sent.\nMessage Id: {!messageId}', 'catenis-blocks');
+    var defEncrypt = true;
+    var defStorage = 'auto';
 
     registerBlockType('catenis-blocks/send-message', {
         title: __('Send Message', 'catenis-blocks'),
@@ -83,8 +87,8 @@
          * @return {Element}       Element to render.
          */
         edit: function(props) {
-            var dynamicTargetDevice = props.attributes.dynamicTargetDevice !== undefined ? props.attributes.dynamicTargetDevice : false;
-            var useProdUniqueId = props.attributes.useProdUniqueId !== undefined ? props.attributes.useProdUniqueId : false;
+            var dynamicTargetDevice = props.attributes.dynamicTargetDevice !== undefined ? props.attributes.dynamicTargetDevice : defDynamicTargetDevice;
+            var useProdUniqueId = props.attributes.useProdUniqueId !== undefined ? props.attributes.useProdUniqueId : defUseProdUniqueId;
             var targetDeviceId = props.attributes.targetDeviceId || '';
             var numLines = parseInt(props.attributes.numLines) || defNumLines;
             var targetDevIdPlaceholder = props.attributes.targetDevIdPlaceholder ? props.attributes.targetDevIdPlaceholder : defTargetDevIdPlaceholder;
@@ -92,8 +96,8 @@
             var msgPlaceholder = props.attributes.msgPlaceholder !== undefined ? props.attributes.msgPlaceholder : defMsgPlaceholder;
             var submitButtonLabel = props.attributes.submitButtonLabel !== undefined ? props.attributes.submitButtonLabel : defSubmitButtonLabel;
             var successMsgTemplate = props.attributes.successMsgTemplate !== undefined ? props.attributes.successMsgTemplate : defSuccessMsgTemplate;
-            var encrypt = props.attributes.encrypt !== undefined ? props.attributes.encrypt : true;
-            var storage = props.attributes.storage || 'auto';
+            var encrypt = props.attributes.encrypt !== undefined ? props.attributes.encrypt : defEncrypt;
+            var storage = props.attributes.storage || defStorage;
             var successPanelId = props.attributes.successPanelId;
             var errorPanelId = props.attributes.errorPanelId;
 
@@ -345,8 +349,8 @@
          * @return {Element}       Element to render.
          */
         save: function(props) {
-            var dynamicTargetDevice = props.attributes.dynamicTargetDevice !== undefined ? props.attributes.dynamicTargetDevice : false;
-            var useProdUniqueId = props.attributes.useProdUniqueId !== undefined ? props.attributes.useProdUniqueId : false;
+            var dynamicTargetDevice = props.attributes.dynamicTargetDevice !== undefined ? props.attributes.dynamicTargetDevice : defDynamicTargetDevice;
+            var useProdUniqueId = props.attributes.useProdUniqueId !== undefined ? props.attributes.useProdUniqueId : defUseProdUniqueId;
             var targetDeviceId = props.attributes.targetDeviceId || '';
             var numLines = parseInt(props.attributes.numLines) || defNumLines;
             var targetDevIdPlaceholder = props.attributes.targetDevIdPlaceholder ? props.attributes.targetDevIdPlaceholder : defTargetDevIdPlaceholder;
@@ -354,8 +358,8 @@
             var msgPlaceholder = props.attributes.msgPlaceholder !== undefined ? props.attributes.msgPlaceholder : defMsgPlaceholder;
             var submitButtonLabel = props.attributes.submitButtonLabel !== undefined ? props.attributes.submitButtonLabel : defSubmitButtonLabel;
             var successMsgTemplate = props.attributes.successMsgTemplate !== undefined ? props.attributes.successMsgTemplate : defSuccessMsgTemplate;
-            var encrypt = props.attributes.encrypt !== undefined ? props.attributes.encrypt : true;
-            var storage = props.attributes.storage || 'auto';
+            var encrypt = props.attributes.encrypt !== undefined ? props.attributes.encrypt : defEncrypt;
+            var storage = props.attributes.storage || defStorage;
             var successPanelId = props.attributes.successPanelId || '';
             var errorPanelId = props.attributes.errorPanelId || '';
 

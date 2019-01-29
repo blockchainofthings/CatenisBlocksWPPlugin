@@ -9,6 +9,8 @@
     var defMsgPlaceholder = __('Write your message', 'catenis-blocks');
     var defSubmitButtonLabel = __('Store Message', 'catenis-blocks');
     var defSuccessMsgTemplate = __('Message successfully stored.\nMessage Id: {!messageId}', 'catenis-blocks');
+    var defEncrypt = true;
+    var defStorage = 'auto';
 
     registerBlockType('catenis-blocks/store-message', {
         title: __('Store Message', 'catenis-blocks'),
@@ -70,8 +72,8 @@
             var msgPlaceholder = props.attributes.msgPlaceholder !== undefined ? props.attributes.msgPlaceholder : defMsgPlaceholder;
             var submitButtonLabel = props.attributes.submitButtonLabel !== undefined ? props.attributes.submitButtonLabel : defSubmitButtonLabel;
             var successMsgTemplate = props.attributes.successMsgTemplate !== undefined ? props.attributes.successMsgTemplate : defSuccessMsgTemplate;
-            var encrypt = props.attributes.encrypt !== undefined ? props.attributes.encrypt : true;
-            var storage = props.attributes.storage || 'auto';
+            var encrypt = props.attributes.encrypt !== undefined ? props.attributes.encrypt : defEncrypt;
+            var storage = props.attributes.storage || defStorage;
             var successPanelId = props.attributes.successPanelId;
             var errorPanelId = props.attributes.errorPanelId;
 
@@ -246,8 +248,8 @@
             var msgPlaceholder = props.attributes.msgPlaceholder !== undefined ? props.attributes.msgPlaceholder : defMsgPlaceholder;
             var submitButtonLabel = props.attributes.submitButtonLabel !== undefined ? props.attributes.submitButtonLabel : defSubmitButtonLabel;
             var successMsgTemplate = props.attributes.successMsgTemplate !== undefined ? props.attributes.successMsgTemplate : defSuccessMsgTemplate;
-            var encrypt = props.attributes.encrypt !== undefined ? props.attributes.encrypt : true;
-            var storage = props.attributes.storage || 'auto';
+            var encrypt = props.attributes.encrypt !== undefined ? props.attributes.encrypt : defEncrypt;
+            var storage = props.attributes.storage || defStorage;
             var successPanelId = props.attributes.successPanelId || '';
             var errorPanelId = props.attributes.errorPanelId || '';
 
