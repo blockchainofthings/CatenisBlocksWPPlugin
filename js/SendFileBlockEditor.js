@@ -11,6 +11,7 @@
     var defSubmitButtonLabel = __('Send File', 'catenis-blocks');
     var defSuccessMsgTemplate = __('File successfully sent.\nMessage Id: {!messageId}', 'catenis-blocks');
     var defAddFileHeader = true;
+    var defReadConfirmation = false;
     var defEncrypt = true;
 
     registerBlockType('catenis-blocks/send-file', {
@@ -58,6 +59,9 @@
             addFileHeader: {
                 type: 'boolean'
             },
+            readConfirmation: {
+                type: 'boolean'
+            },
             encrypt: {
                 type: 'boolean'
             },
@@ -89,6 +93,7 @@
             var submitButtonLabel = props.attributes.submitButtonLabel !== undefined ? props.attributes.submitButtonLabel : defSubmitButtonLabel;
             var successMsgTemplate = props.attributes.successMsgTemplate !== undefined ? props.attributes.successMsgTemplate : defSuccessMsgTemplate;
             var addFileHeader = props.attributes.addFileHeader !== undefined ? props.attributes.addFileHeader : defAddFileHeader;
+            var readConfirmation = props.attributes.readConfirmation !== undefined ? props.attributes.readConfirmation : defReadConfirmation;
             var encrypt = props.attributes.encrypt !== undefined ? props.attributes.encrypt : defEncrypt;
             var successPanelId = props.attributes.successPanelId;
             var errorPanelId = props.attributes.errorPanelId;
@@ -154,6 +159,12 @@
             function onChangeAddFileHeader(newState) {
                 props.setAttributes({
                     addFileHeader: newState
+                });
+            }
+
+            function onChangeReadConfirmation(newState) {
+                props.setAttributes({
+                    readConfirmation: newState
                 });
             }
 
@@ -254,6 +265,12 @@
                                 onChange: onChangeAddFileHeader
                             }),
                             el(cmp.ToggleControl, {
+                                label: __('Read Confirmation', 'catenis-blocks'),
+                                help: readConfirmation ? __('Send file with read confirmation', 'catenis-blocks') : __('No read confirmation requested', 'catenis-blocks'),
+                                checked: readConfirmation,
+                                onChange: onChangeReadConfirmation
+                            }),
+                            el(cmp.ToggleControl, {
                                 label: __('Encrypt', 'catenis-blocks'),
                                 help: encrypt ? __('Encrypt file contents before storing them', 'catenis-blocks') : __('Store file contents as they are', 'catenis-blocks'),
                                 checked: encrypt,
@@ -333,6 +350,7 @@
             var submitButtonLabel = props.attributes.submitButtonLabel !== undefined ? props.attributes.submitButtonLabel : defSubmitButtonLabel;
             var successMsgTemplate = props.attributes.successMsgTemplate !== undefined ? props.attributes.successMsgTemplate : defSuccessMsgTemplate;
             var addFileHeader = props.attributes.addFileHeader !== undefined ? props.attributes.addFileHeader : defAddFileHeader;
+            var readConfirmation = props.attributes.readConfirmation !== undefined ? props.attributes.readConfirmation : defReadConfirmation;
             var encrypt = props.attributes.encrypt !== undefined ? props.attributes.encrypt : defEncrypt;
             var successPanelId = props.attributes.successPanelId || '';
             var errorPanelId = props.attributes.errorPanelId || '';
@@ -344,7 +362,7 @@
                     },
                         el('form', {
                             action: '',
-                            onSubmit: 'try{if(!this.ctnBlkSendFile && typeof CtnBlkSendFile === \'function\'){this.ctnBlkSendFile = new CtnBlkSendFile(this,{id:' + toStringLiteral(targetDeviceId) + ',isProdUniqueId:' + toStringLiteral(useProdUniqueId) + '},{encrypt:' + toStringLiteral(encrypt) + '},{addFileHeader:' + toStringLiteral(addFileHeader) + ',successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}this.ctnBlkSendFile.sendFile()}finally{return false}'
+                            onSubmit: 'try{if(!this.ctnBlkSendFile && typeof CtnBlkSendFile === \'function\'){this.ctnBlkSendFile = new CtnBlkSendFile(this,{id:' + toStringLiteral(targetDeviceId) + ',isProdUniqueId:' + toStringLiteral(useProdUniqueId) + '},{readConfirmation:' + toStringLiteral(readConfirmation) + ',encrypt:' + toStringLiteral(encrypt) + '},{addFileHeader:' + toStringLiteral(addFileHeader) + ',successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}this.ctnBlkSendFile.sendFile()}finally{return false}'
                         },
                             (function () {
                                 if (dynamicTargetDevice) {
@@ -366,11 +384,11 @@
                             })(),
                             el('div', {
                                 className: 'dropzone',
-                                onClick: '(function(){try{var parent=this.parentElement;if(!parent.ctnBlkSendFile && typeof CtnBlkSendFile===\'function\'){parent.ctnBlkSendFile=new CtnBlkSendFile(parent,{id:' + toStringLiteral(targetDeviceId) + ',isProdUniqueId:' + toStringLiteral(useProdUniqueId) + '},{encrypt:' + toStringLiteral(encrypt) + '},{addFileHeader:' + toStringLiteral(addFileHeader) + ',successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}parent.ctnBlkSendFile.selectFile()}finally{return false}}).call(this)',
-                                onDrop: '(function(){try{var parent=this.parentElement;if(!parent.ctnBlkSendFile && typeof CtnBlkSendFile===\'function\'){parent.ctnBlkSendFile=new CtnBlkSendFile(parent,{id:' + toStringLiteral(targetDeviceId) + ',isProdUniqueId:' + toStringLiteral(useProdUniqueId) + '},{encrypt:' + toStringLiteral(encrypt) + '},{addFileHeader:' + toStringLiteral(addFileHeader) + ',successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}parent.ctnBlkSendFile.dropEventHandler(event)}finally{return false}}).call(this)',
-                                onDragOver: '(function(){try{var parent=this.parentElement;if(!parent.ctnBlkSendFile && typeof CtnBlkSendFile===\'function\'){parent.ctnBlkSendFile=new CtnBlkSendFile(parent,{id:' + toStringLiteral(targetDeviceId) + ',isProdUniqueId:' + toStringLiteral(useProdUniqueId) + '},{encrypt:' + toStringLiteral(encrypt) + '},{addFileHeader:' + toStringLiteral(addFileHeader) + ',successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}parent.ctnBlkSendFile.dragOverHandler(event)}finally{return false}}).call(this)',
-                                onDragEnter: '(function(){try{var parent=this.parentElement;if(!parent.ctnBlkSendFile && typeof CtnBlkSendFile===\'function\'){parent.ctnBlkSendFile=new CtnBlkSendFile(parent,{id:' + toStringLiteral(targetDeviceId) + ',isProdUniqueId:' + toStringLiteral(useProdUniqueId) + '},{encrypt:' + toStringLiteral(encrypt) + '},{addFileHeader:' + toStringLiteral(addFileHeader) + ',successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}parent.ctnBlkSendFile.dragEnterHandler(event)}finally{return false}}).call(this)',
-                                onDragLeave: '(function(){try{var parent=this.parentElement;if(!parent.ctnBlkSendFile && typeof CtnBlkSendFile===\'function\'){parent.ctnBlkSendFile=new CtnBlkSendFile(parent,{id:' + toStringLiteral(targetDeviceId) + ',isProdUniqueId:' + toStringLiteral(useProdUniqueId) + '},{encrypt:' + toStringLiteral(encrypt) + '},{addFileHeader:' + toStringLiteral(addFileHeader) + ',successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}parent.ctnBlkSendFile.dragLeaveHandler(event)}finally{return false}}).call(this)'
+                                onClick: '(function(){try{var parent=this.parentElement;if(!parent.ctnBlkSendFile && typeof CtnBlkSendFile===\'function\'){parent.ctnBlkSendFile=new CtnBlkSendFile(parent,{id:' + toStringLiteral(targetDeviceId) + ',isProdUniqueId:' + toStringLiteral(useProdUniqueId) + '},{readConfirmation:' + toStringLiteral(readConfirmation) + ',encrypt:' + toStringLiteral(encrypt) + '},{addFileHeader:' + toStringLiteral(addFileHeader) + ',successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}parent.ctnBlkSendFile.selectFile()}finally{return false}}).call(this)',
+                                onDrop: '(function(){try{var parent=this.parentElement;if(!parent.ctnBlkSendFile && typeof CtnBlkSendFile===\'function\'){parent.ctnBlkSendFile=new CtnBlkSendFile(parent,{id:' + toStringLiteral(targetDeviceId) + ',isProdUniqueId:' + toStringLiteral(useProdUniqueId) + '},{readConfirmation:' + toStringLiteral(readConfirmation) + ',encrypt:' + toStringLiteral(encrypt) + '},{addFileHeader:' + toStringLiteral(addFileHeader) + ',successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}parent.ctnBlkSendFile.dropEventHandler(event)}finally{return false}}).call(this)',
+                                onDragOver: '(function(){try{var parent=this.parentElement;if(!parent.ctnBlkSendFile && typeof CtnBlkSendFile===\'function\'){parent.ctnBlkSendFile=new CtnBlkSendFile(parent,{id:' + toStringLiteral(targetDeviceId) + ',isProdUniqueId:' + toStringLiteral(useProdUniqueId) + '},{readConfirmation:' + toStringLiteral(readConfirmation) + ',encrypt:' + toStringLiteral(encrypt) + '},{addFileHeader:' + toStringLiteral(addFileHeader) + ',successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}parent.ctnBlkSendFile.dragOverHandler(event)}finally{return false}}).call(this)',
+                                onDragEnter: '(function(){try{var parent=this.parentElement;if(!parent.ctnBlkSendFile && typeof CtnBlkSendFile===\'function\'){parent.ctnBlkSendFile=new CtnBlkSendFile(parent,{id:' + toStringLiteral(targetDeviceId) + ',isProdUniqueId:' + toStringLiteral(useProdUniqueId) + '},{readConfirmation:' + toStringLiteral(readConfirmation) + ',encrypt:' + toStringLiteral(encrypt) + '},{addFileHeader:' + toStringLiteral(addFileHeader) + ',successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}parent.ctnBlkSendFile.dragEnterHandler(event)}finally{return false}}).call(this)',
+                                onDragLeave: '(function(){try{var parent=this.parentElement;if(!parent.ctnBlkSendFile && typeof CtnBlkSendFile===\'function\'){parent.ctnBlkSendFile=new CtnBlkSendFile(parent,{id:' + toStringLiteral(targetDeviceId) + ',isProdUniqueId:' + toStringLiteral(useProdUniqueId) + '},{readConfirmation:' + toStringLiteral(readConfirmation) + ',encrypt:' + toStringLiteral(encrypt) + '},{addFileHeader:' + toStringLiteral(addFileHeader) + ',successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}parent.ctnBlkSendFile.dragLeaveHandler(event)}finally{return false}}).call(this)'
                             },
                                 el('div', {
                                     className: 'dropcontainer'

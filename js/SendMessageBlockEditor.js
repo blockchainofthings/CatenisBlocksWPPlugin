@@ -13,6 +13,7 @@
     var defMsgPlaceholder = __('Write your message', 'catenis-blocks');
     var defSubmitButtonLabel = __('Send Message', 'catenis-blocks');
     var defSuccessMsgTemplate = __('Message successfully sent.\nMessage Id: {!messageId}', 'catenis-blocks');
+    var defReadConfirmation = false;
     var defEncrypt = true;
     var defStorage = 'auto';
 
@@ -65,6 +66,9 @@
             successMsgTemplate: {
                 type: 'string'
             },
+            readConfirmation: {
+                type: 'boolean'
+            },
             encrypt: {
                 type: 'boolean'
             },
@@ -96,6 +100,7 @@
             var msgPlaceholder = props.attributes.msgPlaceholder !== undefined ? props.attributes.msgPlaceholder : defMsgPlaceholder;
             var submitButtonLabel = props.attributes.submitButtonLabel !== undefined ? props.attributes.submitButtonLabel : defSubmitButtonLabel;
             var successMsgTemplate = props.attributes.successMsgTemplate !== undefined ? props.attributes.successMsgTemplate : defSuccessMsgTemplate;
+            var readConfirmation = props.attributes.readConfirmation !== undefined ? props.attributes.readConfirmation : defReadConfirmation;
             var encrypt = props.attributes.encrypt !== undefined ? props.attributes.encrypt : defEncrypt;
             var storage = props.attributes.storage || defStorage;
             var successPanelId = props.attributes.successPanelId;
@@ -162,6 +167,12 @@
                     msgPlaceholder: defMsgPlaceholder,
                     submitButtonLabel: defSubmitButtonLabel,
                     successMsgTemplate: defSuccessMsgTemplate
+                });
+            }
+
+            function onChangeReadConfirmation(newState) {
+                props.setAttributes({
+                    readConfirmation: newState
                 });
             }
 
@@ -273,6 +284,12 @@
                             initialOpen: false
                         },
                             el(cmp.ToggleControl, {
+                                label: __('Read Confirmation', 'catenis-blocks'),
+                                help: readConfirmation ? __('Send message with read confirmation', 'catenis-blocks') : __('No read confirmation requested', 'catenis-blocks'),
+                                checked: readConfirmation,
+                                onChange: onChangeReadConfirmation
+                            }),
+                            el(cmp.ToggleControl, {
                                 label: __('Encrypt', 'catenis-blocks'),
                                 help: encrypt ? __('Encrypt message before storing it', 'catenis-blocks') : __('Store message as it is', 'catenis-blocks'),
                                 checked: encrypt,
@@ -358,6 +375,7 @@
             var msgPlaceholder = props.attributes.msgPlaceholder !== undefined ? props.attributes.msgPlaceholder : defMsgPlaceholder;
             var submitButtonLabel = props.attributes.submitButtonLabel !== undefined ? props.attributes.submitButtonLabel : defSubmitButtonLabel;
             var successMsgTemplate = props.attributes.successMsgTemplate !== undefined ? props.attributes.successMsgTemplate : defSuccessMsgTemplate;
+            var readConfirmation = props.attributes.readConfirmation !== undefined ? props.attributes.readConfirmation : defReadConfirmation;
             var encrypt = props.attributes.encrypt !== undefined ? props.attributes.encrypt : defEncrypt;
             var storage = props.attributes.storage || defStorage;
             var successPanelId = props.attributes.successPanelId || '';
@@ -370,7 +388,7 @@
                     },
                         el('form', {
                             action: '',
-                            onSubmit: 'try{if(!this.ctnBlkSendMessage && typeof CtnBlkSendMessage === \'function\'){this.ctnBlkSendMessage = new CtnBlkSendMessage(this,{id:' + toStringLiteral(targetDeviceId) + ',isProdUniqueId:' + toStringLiteral(useProdUniqueId) + '},{encrypt:' + toStringLiteral(encrypt) + ',storage:' + toStringLiteral(storage) + '},{successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}this.ctnBlkSendMessage.sendMessage()}finally{return false}'
+                            onSubmit: 'try{if(!this.ctnBlkSendMessage && typeof CtnBlkSendMessage === \'function\'){this.ctnBlkSendMessage = new CtnBlkSendMessage(this,{id:' + toStringLiteral(targetDeviceId) + ',isProdUniqueId:' + toStringLiteral(useProdUniqueId) + '},{readConfirmation:' + toStringLiteral(readConfirmation) + ',encrypt:' + toStringLiteral(encrypt) + ',storage:' + toStringLiteral(storage) + '},{successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}this.ctnBlkSendMessage.sendMessage()}finally{return false}'
                         },
                             (function () {
                                 if (dynamicTargetDevice) {
