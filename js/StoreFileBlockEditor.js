@@ -229,19 +229,6 @@
             var successPanelId = props.attributes.successPanelId || '';
             var errorPanelId = props.attributes.errorPanelId || '';
 
-            function func () {
-                try {
-                    var parent = this.parentElement;
-                    if (!parent.ctnBlkStoreFile && typeof CtnBlkStoreFile === 'function') {
-                        parent.ctnBlkStoreFile = new CtnBlkStoreFile(this,{encrypt: boolToString(encrypt)},successPanelId,errorPanelId);
-                    }
-                    parent.ctnBlkStoreFile.selectFile();
-                }
-                finally {
-                    return false
-                }
-            }
-
             return (
                 el('div', {},
                     el('div', {

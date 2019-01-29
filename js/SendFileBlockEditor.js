@@ -337,19 +337,6 @@
             var successPanelId = props.attributes.successPanelId || '';
             var errorPanelId = props.attributes.errorPanelId || '';
 
-            function func () {
-                try {
-                    var parent = this.parentElement;
-                    if (!parent.ctnBlkSendFile && typeof CtnBlkSendFile === 'function') {
-                        parent.ctnBlkSendFile = new CtnBlkSendFile(this,{encrypt: boolToString(encrypt)},successPanelId,errorPanelId);
-                    }
-                    parent.ctnBlkSendFile.selectFile();
-                }
-                finally {
-                    return false
-                }
-            }
-
             return (
                 el('div', {},
                     el('div', {
