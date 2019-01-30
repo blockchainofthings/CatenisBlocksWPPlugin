@@ -5,6 +5,7 @@
     var __ = wp.i18n.__;
     var cmp = wp.components;
 
+    var defStripFileHeader = true;
     var defLimitMsg = true;
     var defMaxMsgLength = 1024;
 
@@ -28,6 +29,9 @@
                 selector: 'input[name="messageId"]',
                 attribute: 'value'
             },
+            stripFileHeader: {
+                type: 'boolean'
+            },
             limitMsg: {
                 type: 'boolean'
             },
@@ -45,12 +49,19 @@
          */
         edit: function(props) {
             var messageId = props.attributes.messageId;
+            var stripFileHeader = props.attributes.stripFileHeader !== undefined ? props.attributes.stripFileHeader : defStripFileHeader;
             var limitMsg = props.attributes.limitMsg !== undefined ? props.attributes.limitMsg : defLimitMsg;
             var maxMsgLength = props.attributes.maxMsgLength !== undefined ? props.attributes.maxMsgLength : defMaxMsgLength;
 
             function onChangeMessageId(newValue) {
                 props.setAttributes({
                     messageId: newValue
+                });
+            }
+
+            function onChangeStripFileHeader(newState) {
+                props.setAttributes({
+                    stripFileHeader: newState
                 });
             }
 
@@ -86,6 +97,12 @@
                                 title: __('Display', 'catenis-blocks'),
                                 initialOpen: false
                             },
+                            el(cmp.ToggleControl, {
+                                label: __('Strip File Header', 'catenis-blocks'),
+                                help: stripFileHeader ? __('Do not display file header if present', 'catenis-blocks') : __('Display message as it is', 'catenis-blocks'),
+                                checked: stripFileHeader,
+                                onChange: onChangeStripFileHeader
+                            }),
                             el(cmp.ToggleControl, {
                                 label: __('Limit Message', 'catenis-blocks'),
                                 help: limitMsg ? __('Truncate message if it is too large', 'catenis-blocks') : __('Always display the whole message', 'catenis-blocks'),
@@ -128,6 +145,7 @@
          */
         save: function(props) {
             var messageId = props.attributes.messageId;
+            var stripFileHeader = props.attributes.stripFileHeader !== undefined ? props.attributes.stripFileHeader : defStripFileHeader;
             var limitMsg = props.attributes.limitMsg !== undefined ? props.attributes.limitMsg : defLimitMsg;
             var maxMsgLength = props.attributes.maxMsgLength !== undefined ? props.attributes.maxMsgLength : defMaxMsgLength;
 
@@ -140,7 +158,7 @@
                             type: 'hidden',
                             name: 'messageId',
                             value: messageId,
-                            onChange: '(function(){try{var parent=this.parentElement;if(!parent.ctnBlkDisplayMessage && typeof CtnBlkDisplayMessage===\'function\'){parent.ctnBlkDisplayMessage=new CtnBlkDisplayMessage(parent, {limitMsg:' + toStringLiteral(limitMsg) + ',maxMsgLength:' + toStringLiteral(maxMsgLength) + '})}parent.ctnBlkDisplayMessage.checkRetrieveMessage()}finally{return false}}).call(this)'
+                            onChange: '(function(){try{var parent=this.parentElement;if(!parent.ctnBlkDisplayMessage && typeof CtnBlkDisplayMessage===\'function\'){parent.ctnBlkDisplayMessage=new CtnBlkDisplayMessage(parent, {stripFileHeader:' + toStringLiteral(stripFileHeader) + ',limitMsg:' + toStringLiteral(limitMsg) + ',maxMsgLength:' + toStringLiteral(maxMsgLength) + '})}parent.ctnBlkDisplayMessage.checkRetrieveMessage()}finally{return false}}).call(this)'
                         }),
                         el('pre', {}),
                         el('div', {
@@ -154,7 +172,7 @@
                     el('div', {
                         className: 'noctnapiproxy'
                     }, __('Catenis API client not loaded on page', 'catenis-blocks')),
-                    el(wp.element.RawHTML, {}, '<script type="text/javascript">(function(){var elems=jQuery(\'script[type="text/javascript"]\');if(elems.length > 0){var uiContainer=jQuery(\'div.uicontainer\', elems[elems.length-1].parentElement)[0];if(!uiContainer.ctnBlkDisplayMessage && typeof CtnBlkDisplayMessage===\'function\'){uiContainer.ctnBlkDisplayMessage=new CtnBlkDisplayMessage(uiContainer, {limitMsg:' + toStringLiteral(limitMsg) + ',maxMsgLength:' + toStringLiteral(maxMsgLength) + '});}uiContainer.ctnBlkDisplayMessage.checkRetrieveMessage()}})()</script>')
+                    el(wp.element.RawHTML, {}, '<script type="text/javascript">(function(){var elems=jQuery(\'script[type="text/javascript"]\');if(elems.length > 0){var uiContainer=jQuery(\'div.uicontainer\', elems[elems.length-1].parentElement)[0];if(!uiContainer.ctnBlkDisplayMessage && typeof CtnBlkDisplayMessage===\'function\'){uiContainer.ctnBlkDisplayMessage=new CtnBlkDisplayMessage(uiContainer, {stripFileHeader:' + toStringLiteral(stripFileHeader) + ',limitMsg:' + toStringLiteral(limitMsg) + ',maxMsgLength:' + toStringLiteral(maxMsgLength) + '});}uiContainer.ctnBlkDisplayMessage.checkRetrieveMessage()}})()</script>')
                 )
             );
         }

@@ -21,6 +21,17 @@ class DisplayMessageBlock {
     function initialize() {
         $pluginDir = dirname($this->pluginPath);
 
+        // Register local lib dependent scripts
+        wp_register_script('buffer', plugins_url('/js/lib/buffer.min.js', $this->pluginPath), [], '5.2.1');
+        wp_register_script('sjcl', plugins_url('/js/lib/sjcl-sha1.min.js', $this->pluginPath), [], '1.0.8-sha1');
+
+        // Register other dependent scripts
+        $ctnFileHeaderScriptFile = '/js/CtnFileHeader.js';
+        wp_register_script('CtnFileHeader', plugins_url($ctnFileHeaderScriptFile, $this->pluginPath), [
+            'buffer',
+            'sjcl'
+        ], filemtime("$pluginDir/$ctnFileHeaderScriptFile"));
+
         $blockEditorScriptFile = '/js/DisplayMessageBlockEditor.js';
         wp_register_script('display-message-block-editor', plugins_url($blockEditorScriptFile, $this->pluginPath), [
             'wp-blocks',
@@ -33,7 +44,9 @@ class DisplayMessageBlock {
         $blockScriptFile = '/js/DisplayMessageBlock.js';
         wp_register_script('display-message-block', plugins_url($blockScriptFile, $this->pluginPath), [
             'wp-i18n',
-            'jquery'
+            'jquery',
+            'buffer',
+            'CtnFileHeader'
         ], filemtime("$pluginDir/$blockScriptFile"));
 
         $blockEditorStyleFile = '/style/DisplayMessageBlockEditor.css';

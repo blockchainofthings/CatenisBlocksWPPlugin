@@ -1,11 +1,14 @@
 (function (context) {
     var $ = context.jQuery;
     var __ = context.wp.i18n.__;
+    var Buffer = context.buffer.Buffer;
+    var CtnFileHeader = context.CtnFileHeader;
 
     function CtnBlkDisplayMessage(uiContainer, props) {
         this.uiContainer = uiContainer;
 
         if (this.checkCtnApiProxyAvailable(this.uiContainer)) {
+            this.stripFileHeader = props.stripFileHeader;
             this.limitMsg = props.limitMsg;
             this.maxMsgLength = props.maxMsgLength;
             this.messageId = undefined;
@@ -81,6 +84,10 @@
 
     CtnBlkDisplayMessage.prototype.displayMessage = function (message) {
         if (this.msgContainer) {
+            if (this.stripFileHeader) {
+                message = checkStripFileHeader(message);
+            }
+
             var $msgContainer = $(this.msgContainer);
 
             var onClickHandler = function (event) {
@@ -146,6 +153,18 @@
 
     function convertLineBreak(text) {
         return text.replace(/\n/g, '<br>');
+    }
+
+    function checkStripFileHeader(message) {
+        var fileContents = Buffer.from(message);
+
+        var fileInfo = CtnFileHeader.decode(fileContents);
+
+        if (fileInfo) {
+            message = fileInfo.fileContents.toString();
+        }
+
+        return message;
     }
 
     function truncateMessage(message, maxLength) {
