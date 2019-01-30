@@ -4,11 +4,12 @@
     var Buffer = context.buffer.Buffer;
     var CtnFileHeader = context.CtnFileHeader;
 
-    function CtnBlkSaveMessage(uiContainer) {
+    function CtnBlkSaveMessage(uiContainer, props) {
         this.uiContainer = uiContainer;
 
         if (this.checkCtnApiProxyAvailable(this.uiContainer)) {
             this.messageId = undefined;
+            this.autoSave = props.autoSave;
             this.saveMsgAnchor = undefined;
             this.divError = undefined;
             this.txtError = undefined;
@@ -126,7 +127,13 @@
             }
 
             this.saveMsgAnchor.download = fileName;
-            this.saveMsgAnchor.style.display = 'inline'
+
+            if (this.autoSave) {
+                this.saveMsgAnchor.click();
+            }
+            else {
+                this.saveMsgAnchor.style.display = 'inline'
+            }
         }
     };
 

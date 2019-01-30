@@ -1,3 +1,7 @@
+div.wp-block-catenis-blocks-save-message span {
+    color: lightgray;
+}
+
 div.wp-block-catenis-blocks-save-message a {
     display: inline;
 }

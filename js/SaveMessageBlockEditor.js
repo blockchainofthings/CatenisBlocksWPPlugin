@@ -5,6 +5,7 @@
     var __ = wp.i18n.__;
     var cmp = wp.components;
 
+    var defAutoSave = false;
     var defSaveMessageLink = __('Save retrieved message', 'catenis-blocks');
 
     registerBlockType('catenis-blocks/save-message', {
@@ -27,6 +28,9 @@
                 selector: 'input[name="messageId"]',
                 attribute: 'value'
             },
+            autoSave: {
+                type: 'boolean'
+            },
             saveMessageLink: {
                 type: 'string',
                 source: 'text',
@@ -43,11 +47,18 @@
          */
         edit: function(props) {
             var messageId = props.attributes.messageId;
+            var autoSave = props.attributes.autoSave !== undefined ? props.attributes.autoSave : defAutoSave;
             var saveMessageLink = props.attributes.saveMessageLink !== undefined ? props.attributes.saveMessageLink : defSaveMessageLink;
 
             function onChangeMessageId(newValue) {
                 props.setAttributes({
                     messageId: newValue
+                });
+            }
+
+            function onChangeAutoSave(newState) {
+                props.setAttributes({
+                    autoSave: newState
                 });
             }
 
@@ -68,8 +79,8 @@
                     // Inspector sidebar controls
                     el(wp.editor.InspectorControls, {},
                         el(cmp.PanelBody, {
-                                title: __('Message', 'catenis-blocks')
-                            },
+                            title: __('Message', 'catenis-blocks')
+                        },
                             el(cmp.TextControl, {
                                 label: __('Message ID', 'catenis-blocks'),
                                 help: __('ID of message to be retrieved', 'catenis-blocks'),
@@ -78,34 +89,56 @@
                             })
                         ),
                         el(cmp.PanelBody, {
-                                title: __('Advanced UI Settings', 'catenis-blocks'),
-                                initialOpen: false
-                            },
-                            el(cmp.TextControl, {
-                                label: __('Save Message Link', 'catenis-blocks'),
-                                value: saveMessageLink,
-                                onChange: onChangeSaveMessageLink
-                            }),
-                            el(cmp.Button, {
-                                isSmall: true,
-                                isDefault: true,
-                                onClick: onClickReset
-                            }, __('Reset Settings'))
-                        )
+                            title: __('Action', 'catenis-blocks'),
+                            initialOpen: false
+                        },
+                            el(cmp.ToggleControl, {
+                                label: __('Auto Save', 'catenis-blocks'),
+                                help: autoSave ? __('Automatically save message after it is retrieved', 'catenis-blocks') : __('Show link to save retrieved message', 'catenis-blocks'),
+                                checked: autoSave,
+                                onChange: onChangeAutoSave
+                            })
+                        ),
+                        (function () {
+                            if (!autoSave) {
+                                return el(cmp.PanelBody, {
+                                    title: __('Advanced UI Settings', 'catenis-blocks'),
+                                    initialOpen: false
+                                },
+                                    el(cmp.TextControl, {
+                                        label: __('Save Message Link', 'catenis-blocks'),
+                                        value: saveMessageLink,
+                                        onChange: onChangeSaveMessageLink
+                                    }),
+                                    el(cmp.Button, {
+                                        isSmall: true,
+                                        isDefault: true,
+                                        onClick: onClickReset
+                                    }, __('Reset Settings'))
+                                );
+                            }
+                        })()
                     ),
                     // Block controls
                     el('div', {
-                            className: props.className
-                        },
+                        className: props.className
+                    },
                         el('input', {
                             type: 'hidden',
                             name: 'messageId',
                             value: messageId
                         }),
-                        el('a', {
-                            href: '#',
-                            onClick: function () {return false}
-                        }, saveMessageLink)
+                        (function () {
+                            if (autoSave) {
+                                return el('span', {}, 'Auto save message');
+                            }
+                            else {
+                                return el('a', {
+                                    href: '#',
+                                    onClick: function () {return false}
+                                }, saveMessageLink);
+                            }
+                        })()
                     )
                 )
             );
@@ -120,18 +153,19 @@
          */
         save: function(props) {
             var messageId = props.attributes.messageId;
+            var autoSave = props.attributes.autoSave !== undefined ? props.attributes.autoSave : defAutoSave;
             var saveMessageLink = props.attributes.saveMessageLink !== undefined ? props.attributes.saveMessageLink : defSaveMessageLink;
 
             return (
                 el('div', {},
                     el('div', {
-                            className: 'uicontainer'
-                        },
+                        className: 'uicontainer'
+                    },
                         el('input', {
                             type: 'hidden',
                             name: 'messageId',
                             value: messageId,
-                            onChange: '(function(){try{var parent=this.parentElement;if(!parent.ctnBlkSaveMessage && typeof CtnBlkSaveMessage===\'function\'){parent.ctnBlkSaveMessage=new CtnBlkSaveMessage(parent)}parent.ctnBlkSaveMessage.checkRetrieveMessage()}finally{return false}}).call(this)'
+                            onChange: '(function(){try{var parent=this.parentElement;if(!parent.ctnBlkSaveMessage && typeof CtnBlkSaveMessage===\'function\'){parent.ctnBlkSaveMessage=new CtnBlkSaveMessage(parent,{autoSave:' + toStringLiteral(autoSave) + '})}parent.ctnBlkSaveMessage.checkRetrieveMessage()}finally{return false}}).call(this)'
                         }),
                         el('a', {
                             href: '#'
@@ -147,10 +181,14 @@
                     el('div', {
                         className: 'noctnapiproxy'
                     }, __('Catenis API client not loaded on page', 'catenis-blocks')),
-                    el(wp.element.RawHTML, {}, '<script type="text/javascript">(function(){var elems=jQuery(\'script[type="text/javascript"]\');if(elems.length > 0){var uiContainer=jQuery(\'div.uicontainer\', elems[elems.length-1].parentElement)[0];if(!uiContainer.ctnBlkSaveMessage && typeof CtnBlkSaveMessage===\'function\'){uiContainer.ctnBlkSaveMessage=new CtnBlkSaveMessage(uiContainer);}uiContainer.ctnBlkSaveMessage.checkRetrieveMessage()}})()</script>')
+                    el(wp.element.RawHTML, {}, '<script type="text/javascript">(function(){var elems=jQuery(\'script[type="text/javascript"]\');if(elems.length > 0){var uiContainer=jQuery(\'div.uicontainer\', elems[elems.length-1].parentElement)[0];if(!uiContainer.ctnBlkSaveMessage && typeof CtnBlkSaveMessage===\'function\'){uiContainer.ctnBlkSaveMessage=new CtnBlkSaveMessage(uiContainer,{autoSave:' + toStringLiteral(autoSave) + '});}uiContainer.ctnBlkSaveMessage.checkRetrieveMessage()}})()</script>')
                 )
             );
         }
     });
 
+    function toStringLiteral(value) {
+        return typeof value !== 'string' ? '' + value :
+            '\'' + value.replace(/\\/g, '\\\\').replace(/'/g, '\\\'').replace(/\n/g, '\\n') + '\''
+    }
 })(this);
