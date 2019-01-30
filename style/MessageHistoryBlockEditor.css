@@ -1,0 +1,17 @@
+.edit-post-settings-sidebar__panel-block .components-panel__body .msgListColumnEntry {
+    margin-bottom: 0
+}
+
+div.wp-block-catenis-blocks-message-history table {
+    -webkit-border-horizontal-spacing: 0;
+    -webkit-border-vertical-spacing: 0;
+    border-spacing: 0;
+}
+
+div.wp-block-catenis-blocks-message-history thead th {
+    font-weight: normal;
+    font-size: 70%;
+    padding-left: .5em;
+    padding-right: .5em;
+    border: darkgray solid 1px;
+}
