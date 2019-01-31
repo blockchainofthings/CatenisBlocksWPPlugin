@@ -114,7 +114,8 @@
             if (_self.columns[column]) {
                 switch (column) {
                     case 'action':
-                        $tdElem = $(context.document.createElement('td'));
+                        $tdElem = $(context.document.createElement('td'))
+                            .addClass('action');
 
                         if (messageInfo.action === 'log') {
                             var hasLink = false;
@@ -147,24 +148,29 @@
 
                     case 'messageId':
                         $trElem.append($(context.document.createElement('td'))
+                            .addClass('messageId')
+                            .attr('id', messageInfo.messageId)
                             .text(messageInfo.messageId)
                         );
                         break;
 
                     case 'type':
                         $trElem.append($(context.document.createElement('td'))
+                            .addClass('type')
                             .text(mapMsgAction(messageInfo.action))
                         );
                         break;
 
                     case 'date':
                         $trElem.append($(context.document.createElement('td'))
+                            .addClass('date')
                             .text(formatDate(messageInfo.date))
                         );
                         break;
 
                     case 'targetDevice':
-                        $tdElem = $(context.document.createElement('td'));
+                        $tdElem = $(context.document.createElement('td'))
+                            .addClass('targetDevice');
 
                         if (messageInfo.to) {
                             $tdElem.text(deviceName(messageInfo.to));
@@ -175,7 +181,8 @@
                         break;
 
                     case 'msgRead':
-                        $tdElem = $(context.document.createElement('td'));
+                        $tdElem = $(context.document.createElement('td'))
+                            .addClass('msgRead');
 
                         if (messageInfo.read !== undefined) {
                             $tdElem.text(booleanValue(messageInfo.read));
@@ -189,6 +196,24 @@
         });
 
         return $trElem[0];
+    };
+
+    CtnBlkMessageHistory.prototype.highlightMessageEntry = function (messageId, columns) {
+        var $trElem = $('td#' + messageId, this.tableBody).parent();
+
+        if ($trElem.length > 0) {
+            $trElem.addClass('highlight');
+
+            if (columns) {
+                columns = Array.isArray(columns) ? columns : [columns];
+
+                var selectorItems = columns.map(function (column) {
+                    return 'td.' + column;
+                });
+
+                $(selectorItems.join(','), $trElem[0]).addClass('highlight');
+            }
+        }
     };
 
     CtnBlkMessageHistory.prototype.displayError = function (text) {
