@@ -75,7 +75,7 @@
                 newValue = parseInt(newValue);
 
                 props.setAttributes({
-                    maxMsgLength: isNaN(newValue) ? undefined : newValue
+                    maxMsgLength: isNaN(newValue) || newValue === 0 ? undefined : Math.abs(newValue)
                 });
             }
 
