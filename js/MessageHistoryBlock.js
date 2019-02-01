@@ -160,6 +160,9 @@
 
             this.resetPageNumber(1);
         }
+        else {
+            this.addNoMessageEntry();
+        }
     };
 
     CtnBlkMessageHistory.prototype.resetPageNumber = function (newPageNumber) {
@@ -204,6 +207,17 @@
                 $tableBody.append(_self.newMessageEntry(messageInfo));
             });
         }
+    };
+
+    CtnBlkMessageHistory.prototype.addNoMessageEntry = function () {
+        $(this.tableBody).append(
+            $(context.document.createElement('tr')).append(
+                $(context.document.createElement('td'))
+                    .addClass('nomessage')
+                    .attr('colspan', Object.keys(this.columns).length)
+                    .text(__('No messages', 'catenis-blocks'))
+            )
+        );
     };
 
     CtnBlkMessageHistory.prototype.newMessageEntry = function (messageInfo) {

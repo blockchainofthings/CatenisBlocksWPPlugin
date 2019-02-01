@@ -75,6 +75,11 @@ div.wp-block-catenis-blocks-message-history table td {
     word-break: normal;
 }
 
+div.wp-block-catenis-blocks-message-history table td.nomessage {
+    color: lightgray;
+    text-align: center
+}
+
 div.wp-block-catenis-blocks-message-history table tbody tr.highlight td {
     background-color: aquamarine;
 }
