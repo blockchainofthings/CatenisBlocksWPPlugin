@@ -7,6 +7,7 @@
 
     var defMsgAction = 'any';
     var defPeriod = 'last_7_days';
+    var defMsgsPerPage = 10;
     var defColumns = {
         action: true,
         messageId: true,
@@ -36,6 +37,9 @@
             period: {
                 type: 'string'
             },
+            msgsPerPage: {
+                type: 'number'
+            },
             columns: {
                 type: 'string'
             },
@@ -60,6 +64,7 @@
         edit: function(props) {
             var msgAction = props.attributes.msgAction !== undefined ? props.attributes.msgAction : defMsgAction;
             var period = props.attributes.period !== undefined ? props.attributes.period : defPeriod;
+            var msgsPerPage = props.attributes.msgsPerPage !== undefined ? JSON.parse(props.attributes.msgsPerPage) : defMsgsPerPage;
             var columns = props.attributes.columns !== undefined ? JSON.parse(props.attributes.columns) : defColumns;
             var actionLinks = props.attributes.actionLinks !== undefined ? props.attributes.actionLinks : defActionLinks;
             var displayTargetHtmlAnchor = props.attributes.displayTargetHtmlAnchor;
@@ -74,6 +79,14 @@
             function onChangePeriod(newValue) {
                 props.setAttributes({
                     period: newValue
+                });
+            }
+
+            function onChangeMsgsPerPage(newValue) {
+                newValue = parseInt(newValue);
+
+                props.setAttributes({
+                    msgsPerPage: isNaN(newValue) || newValue === 0 ? undefined : Math.abs(newValue)
                 });
             }
 
@@ -194,6 +207,11 @@
                                 title: __('Message List', 'catenis-blocks'),
                                 initialOpen: false
                             },
+                            el(cmp.TextControl, {
+                                label: __('Messages Per Page', 'catenis-blocks'),
+                                value: msgsPerPage,
+                                onChange: onChangeMsgsPerPage
+                            }),
                             el(cmp.CheckboxControl, {
                                 heading: __('Columns', 'catenis-blocks'),
                                 label: __('Action', 'catenis-blocks'),
@@ -337,6 +355,7 @@
         save: function(props) {
             var msgAction = props.attributes.msgAction !== undefined ? props.attributes.msgAction : defMsgAction;
             var period = props.attributes.period !== undefined ? props.attributes.period : defPeriod;
+            var msgsPerPage = props.attributes.msgsPerPage !== undefined ? JSON.parse(props.attributes.msgsPerPage) : defMsgsPerPage;
             var columns = props.attributes.columns !== undefined ? JSON.parse(props.attributes.columns) : defColumns;
             var actionLinks = props.attributes.actionLinks !== undefined ? props.attributes.actionLinks : defActionLinks;
             var displayTargetHtmlAnchor = props.attributes.displayTargetHtmlAnchor;
@@ -347,6 +366,67 @@
                     el('div', {
                             className: 'uicontainer'
                         },
+                        el('div', {
+                            className: 'header hidden'
+                        },
+                            el('div', {
+                                className: 'left-overlay'
+                            },
+                                el('span', {
+                                    className: 'icon reload',
+                                    title: __('Reload', 'catenis-blocks')
+                                },
+                                    el(wp.element.RawHTML, {},
+                                        '<svg height="1em" width="1em" fill="#000000" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24" x="0px" y="0px"><path d="M21,12A9.00042,9.00042,0,0,1,3.06543,13.08984a.74954.74954,0,1,1,1.48828-.17968A7.53176,7.53176,0,1,0,5.38165,8.5H7.75a.75.75,0,0,1,0,1.5h-3A1.75213,1.75213,0,0,1,3,8.25v-3a.75.75,0,0,1,1.5,0V7.05823A8.98578,8.98578,0,0,1,21,12Z"></path></svg>'
+                                    )
+                                )
+                            ),
+                            el('span', {
+                                className: 'icon first-page disabled',
+                                title: __('First page', 'catenis-blocks')
+                            },
+                                el(wp.element.RawHTML, {},
+                                    '<svg height="1em" width="1em" fill="#000000" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" x="0px" y="0px"><g><path d="M17,19a1,1,0,0,0,.707-1.707L12.41406,12l5.293-5.293A.99989.99989,0,0,0,16.293,5.293l-6,6a.99962.99962,0,0,0,0,1.41406l6,6A.99676.99676,0,0,0,17,19Zm-6,0a1,1,0,0,0,.707-1.707L6.41406,12l5.293-5.293A.99989.99989,0,0,0,10.293,5.293l-6,6a.99962.99962,0,0,0,0,1.41406l6,6A.99676.99676,0,0,0,11,19Z"></path></g></svg>'
+                                )
+                            ),
+                            el('span', {
+                                className: 'icon prev-page disabled',
+                                title: __('Previous page', 'catenis-blocks')
+                            },
+                                el(wp.element.RawHTML, {},
+                                    '<svg height="1em" width="1em" fill="#000000" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" x="0px" y="0px"><g><path d="M6,18V6A1,1,0,0,1,8,6V18a1,1,0,0,1-2,0Zm11,1a1,1,0,0,0,.707-1.707L12.41406,12l5.293-5.293A.99989.99989,0,0,0,16.293,5.293l-6,6a.99962.99962,0,0,0,0,1.41406l6,6A.99676.99676,0,0,0,17,19Z"></path></g></svg>'
+                                )
+                            ),
+                            el('span', {
+                                className: 'page-number'
+                            },
+                                'Page\u00A0',
+                                el('input', {
+                                    type: 'text',
+                                    maxlength: '3'
+                                }),
+                                '\u00A0of\u00A0',
+                                el('span', {
+                                    className: 'max-page'
+                                }, '')
+                            ),
+                            el('span', {
+                                className: 'icon next-page disabled',
+                                title: __('Next page', 'catenis-blocks')
+                            },
+                                el(wp.element.RawHTML, {},
+                                    '<svg height="1em" width="1em" fill="#000000" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" x="0px" y="0px"><g><path d="M17,19a.99943.99943,0,0,1-1-1V6a1,1,0,0,1,2,0V18A.99943.99943,0,0,1,17,19Zm-9.293-.293,6-6a.99962.99962,0,0,0,0-1.41406l-6-6A.99989.99989,0,0,0,6.293,6.707L11.58594,12,6.293,17.293A.99989.99989,0,1,0,7.707,18.707Z"></path></g></svg>'
+                                )
+                            ),
+                            el('span', {
+                                className: 'icon last-page disabled',
+                                title: __('Last page', 'catenis-blocks')
+                            },
+                                el(wp.element.RawHTML, {},
+                                    '<svg height="1em" width="1em" fill="#000000" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" x="0px" y="0px"><g><path d="M7.707,18.707l6-6a.99962.99962,0,0,0,0-1.41406l-6-6A.99989.99989,0,0,0,6.293,6.707L11.58594,12,6.293,17.293A.99989.99989,0,1,0,7.707,18.707Zm6,0,6-6a.99962.99962,0,0,0,0-1.41406l-6-6A.99989.99989,0,0,0,12.293,6.707L17.58594,12l-5.293,5.293A.99989.99989,0,1,0,13.707,18.707Z"></path></g></svg>'
+                                )
+                            )
+                        ),
                         el('table', {},
                             el('thead', {},
                                 el('tr', {},
@@ -394,7 +474,7 @@
                     el('div', {
                         className: 'noctnapiproxy'
                     }, __('Catenis API client not loaded on page', 'catenis-blocks')),
-                    el(wp.element.RawHTML, {}, '<script type="text/javascript">(function(){var elems=jQuery(\'script[type="text/javascript"]\');if(elems.length > 0){var uiContainer=jQuery(\'div.uicontainer\', elems[elems.length-1].parentElement)[0];if(!uiContainer.ctnBlkMessageHistory && typeof CtnBlkMessageHistory===\'function\'){uiContainer.ctnBlkMessageHistory=new CtnBlkMessageHistory(uiContainer, {msgAction:' + toStringLiteral(msgAction) + ',period:' + toStringLiteral(period) + ',columns:' + toStringLiteral(JSON.stringify(columns)) + ',actionLinks:' + toStringLiteral(actionLinks) + ',displayTargetHtmlAnchor:' + toStringLiteral(displayTargetHtmlAnchor) + ',saveTargetHtmlAnchor:' + toStringLiteral(saveTargetHtmlAnchor) + '});}uiContainer.ctnBlkMessageHistory.listMessages()}})()</script>')
+                    el(wp.element.RawHTML, {}, '<script type="text/javascript">(function(){var elems=jQuery(\'script[type="text/javascript"]\');if(elems.length > 0){var uiContainer=jQuery(\'div.uicontainer\', elems[elems.length-1].parentElement)[0];if(!uiContainer.ctnBlkMessageHistory && typeof CtnBlkMessageHistory===\'function\'){uiContainer.ctnBlkMessageHistory=new CtnBlkMessageHistory(uiContainer, {msgAction:' + toStringLiteral(msgAction) + ',period:' + toStringLiteral(period) + ',msgsPerPage:' + toStringLiteral(msgsPerPage) + ',columns:' + toStringLiteral(JSON.stringify(columns)) + ',actionLinks:' + toStringLiteral(actionLinks) + ',displayTargetHtmlAnchor:' + toStringLiteral(displayTargetHtmlAnchor) + ',saveTargetHtmlAnchor:' + toStringLiteral(saveTargetHtmlAnchor) + '});}uiContainer.ctnBlkMessageHistory.listMessages()}})()</script>')
                 )
             );
         }

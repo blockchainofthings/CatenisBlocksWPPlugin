@@ -9,15 +9,51 @@
         if (this.checkCtnApiProxyAvailable(this.uiContainer)) {
             this.msgAction = props.msgAction;
             this.period = props.period;
+            this.msgsPerPage = props.msgsPerPage;
             this.columns = JSON.parse(props.columns);
             this.actionLinks = props.actionLinks;
             this.displayTargetHtmlAnchor = props.displayTargetHtmlAnchor;
             this.saveTargetHtmlAnchor = props.saveTargetHtmlAnchor;
+            this.headerPanel = undefined;
+            this.pageNumberField = undefined;
+            this.totalPagesField = undefined;
+            this.headerButton = {
+                reload: {
+                    className: 'reload',
+                    $elem: undefined,
+                    onClickHandler: this.reload.bind(this)
+                },
+                firstPage: {
+                    className: 'first-page',
+                    $elem: undefined,
+                    onClickHandler: this.firstPage.bind(this)
+                },
+                prevPage: {
+                    className: 'prev-page',
+                    $elem: undefined,
+                    onClickHandler: this.previousPage.bind(this)
+                },
+                nextPage: {
+                    className: 'next-page',
+                    $elem: undefined,
+                    onClickHandler: this.nextPage.bind(this)
+                },
+                lastPage: {
+                    className: 'last-page',
+                    $elem: undefined,
+                    onClickHandler: this.lastPage.bind(this)
+                }
+            };
             this.tableBody = undefined;
             this.msgContainer = undefined;
             this.divError = undefined;
             this.txtError = undefined;
+            this.messages = undefined;
+            this.totalPages = undefined;
+            this.currentPageNumber = undefined;
+            this.viewMessages = undefined;
 
+            this.setHeaderElements();
             this.setTableElements();
             this.setErrorPanel();
         }
@@ -41,6 +77,38 @@
         return result;
     };
 
+    CtnBlkMessageHistory.prototype.setHeaderElements = function () {
+        var $headerPanel = $('div.header', this.uiContainer);
+
+        if ($headerPanel.length > 0) {
+            this.headerPanel = $headerPanel[0];
+
+            var $pageNumberField = $('span.page-number input[type="text"]', this.headerPanel);
+
+            if ($pageNumberField.length > 0) {
+                $pageNumberField.change(this.pageNumberChanged.bind(this));
+
+                this.pageNumberField = $pageNumberField[0];
+            }
+
+            var $totalPagesField = $('span.max-page', this.headerPanel);
+
+            if ($totalPagesField.length > 0) {
+                this.totalPagesField = $totalPagesField[0];
+            }
+
+            var _self = this;
+
+            // Set reference to all buttons in header
+            Object.keys(this.headerButton).forEach(function (buttonId) {
+                var buttonInfo = _self.headerButton[buttonId];
+
+                buttonInfo.$elem = $('span.' + buttonInfo.className, _self.headerPanel);
+                buttonInfo.$elem.on('click', buttonInfo.onClickHandler);
+            });
+        }
+    };
+
     CtnBlkMessageHistory.prototype.setTableElements = function () {
         var elems = $('tbody', this.uiContainer);
         if (elems.length > 0) {
@@ -61,6 +129,8 @@
     };
 
     CtnBlkMessageHistory.prototype.listMessages = function () {
+        this.clearMessages();
+
         var options = {
             action: this.action,
             direction: 'outbound',
@@ -74,19 +144,64 @@
                 _self.displayError(error.toString());
             }
             else {
-                _self.addMessagesToList(result.messages);
+                _self.processRetrievedMessages(result.messages);
             }
         })
     };
 
-    CtnBlkMessageHistory.prototype.addMessagesToList = function (messages) {
+    CtnBlkMessageHistory.prototype.processRetrievedMessages = function (messages) {
+        // Reverse retrieved list so last stored/sent messages are shown first
+        this.messages = messages.reverse();
+
+        if (messages.length > 0) {
+            // Calculate total number of pages
+            this.totalPages = Math.ceil(messages.length / this.msgsPerPage);
+            $(this.totalPagesField).text(this.totalPages);
+
+            this.resetPageNumber(1);
+        }
+    };
+
+    CtnBlkMessageHistory.prototype.resetPageNumber = function (newPageNumber) {
+        if (newPageNumber > 0 && newPageNumber <= this.totalPages) {
+            this.currentPageNumber = newPageNumber;
+            this.pageNumberField.value = newPageNumber;
+
+            if (newPageNumber === 1) {
+                this.disableHeaderButtons(['firstPage', 'prevPage']);
+
+                this.pageNumberField.disabled = this.totalPages === 1;
+            }
+            else {
+                this.enableHeaderButtons(['firstPage', 'prevPage']);
+            }
+
+            if (newPageNumber === this.totalPages) {
+                this.disableHeaderButtons(['nextPage', 'lastPage']);
+            }
+            else {
+                this.enableHeaderButtons(['nextPage', 'lastPage']);
+            }
+
+            // Separate messages to be displayed
+            var startIdx = this.msgsPerPage * (newPageNumber - 1);
+            this.viewMessages = this.messages.slice(startIdx, startIdx + this.msgsPerPage);
+
+            // Display messages
+            this.addMessagesToList();
+        }
+    };
+
+    CtnBlkMessageHistory.prototype.addMessagesToList = function () {
         if (this.tableBody) {
+            this.emptyMessageList();
+
             var $tableBody = $(this.tableBody);
 
             var _self = this;
 
-            messages.forEach(function (messageInfo) {
-                $tableBody.prepend(_self.newMessageEntry(messageInfo));
+            this.viewMessages.forEach(function (messageInfo) {
+                $tableBody.append(_self.newMessageEntry(messageInfo));
             });
         }
     };
@@ -213,6 +328,112 @@
 
                 $(selectorItems.join(','), $trElem[0]).addClass('highlight');
             }
+        }
+    };
+
+    CtnBlkMessageHistory.prototype.clearMessages = function () {
+        this.hideError();
+        this.clearHeader();
+        this.emptyMessageList();
+    };
+
+    CtnBlkMessageHistory.prototype.emptyMessageList = function () {
+        if (this.tableBody) {
+            $(this.tableBody).children().remove();
+        }
+    };
+
+    CtnBlkMessageHistory.prototype.clearHeader = function () {
+        this.disableHeaderButtons(['firstPage', 'prevPage', 'nextPage', 'lastPage']);
+        this.pageNumberField.value = '';
+        $(this.totalPagesField).text('');
+    };
+
+    CtnBlkMessageHistory.prototype.disableHeaderButtons = function (buttonIds) {
+        if (!Array.isArray(buttonIds)) {
+            buttonIds = [buttonIds];
+        }
+        
+        var _self = this;
+        
+        buttonIds.forEach(function (buttonId) {
+            var buttonInfo = _self.headerButton[buttonId];
+
+            if (buttonInfo) {
+                if (!buttonInfo.$elem.hasClass('disabled')) {
+                    buttonInfo.$elem.addClass('disabled');
+                    buttonInfo.$elem.off('click', buttonInfo.onClickHandler);
+                }
+            }
+        });
+    };
+
+    CtnBlkMessageHistory.prototype.enableHeaderButtons = function (buttonIds) {
+        if (!Array.isArray(buttonIds)) {
+            buttonIds = [buttonIds];
+        }
+
+        var _self = this;
+
+        buttonIds.forEach(function (buttonId) {
+            var buttonInfo = _self.headerButton[buttonId];
+
+            if (buttonInfo) {
+                if (buttonInfo.$elem.hasClass('disabled')) {
+                    buttonInfo.$elem.removeClass('disabled');
+                    buttonInfo.$elem.on('click', buttonInfo.onClickHandler);
+                }
+            }
+        });
+    };
+
+    CtnBlkMessageHistory.prototype.reload = function (event) {
+        event.stopPropagation();
+        event.preventDefault();
+
+        this.listMessages();
+    };
+
+    CtnBlkMessageHistory.prototype.firstPage = function (event) {
+        event.stopPropagation();
+        event.preventDefault();
+
+        this.resetPageNumber(1);
+    };
+
+    CtnBlkMessageHistory.prototype.previousPage = function (event) {
+        event.stopPropagation();
+        event.preventDefault();
+
+        this.resetPageNumber(this.currentPageNumber - 1);
+    };
+
+    CtnBlkMessageHistory.prototype.nextPage = function (event) {
+        event.stopPropagation();
+        event.preventDefault();
+
+        this.resetPageNumber(this.currentPageNumber + 1);
+    };
+
+    CtnBlkMessageHistory.prototype.lastPage = function (event) {
+        event.stopPropagation();
+        event.preventDefault();
+
+        this.resetPageNumber(this.totalPages);
+    };
+
+    CtnBlkMessageHistory.prototype.pageNumberChanged = function (event) {
+        event.stopPropagation();
+        event.preventDefault();
+
+        var newValue = parseInt(event.target.value);
+
+        if (isNaN(newValue) || newValue < 0 || newValue > this.totalPages) {
+            // Reset field value to current page number
+            this.pageNumberField.value = this.currentPageNumber;
+        }
+        else {
+            this.resetPageNumber(newValue);
         }
     };
 

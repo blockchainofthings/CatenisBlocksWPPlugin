@@ -15,6 +15,52 @@ div.wp-block-catenis-blocks-message-history div.noctnapiproxy {
     display: none
 }
 
+div.wp-block-catenis-blocks-message-history div.header {
+    color: gray;
+    text-align: right;
+    padding: 0 0.5em 0 0.5em
+}
+
+div.wp-block-catenis-blocks-message-history div.header span.icon {
+    background-color: transparent;
+    position: relative;
+    cursor: pointer;
+}
+
+div.wp-block-catenis-blocks-message-history div.header span.icon svg {
+    position: relative;
+    z-index: -1;
+    margin-bottom: -0.2em;
+}
+
+div.wp-block-catenis-blocks-message-history div.header span.icon.disabled {
+    color: lightgray;
+    cursor: default;
+}
+
+div.wp-block-catenis-blocks-message-history div.header span.page-number {
+    font-size: 80%;
+    margin: 0 0.2em 0 0.2em
+}
+
+div.wp-block-catenis-blocks-message-history div.header span.page-number input[type="text"] {
+    height: 1.8em;
+    width: 2.5em;
+    padding: 0 0.2em 0.2em 0.2em;
+    text-align: center;
+    color: gray;
+    border-color: gray;
+}
+
+div.wp-block-catenis-blocks-message-history div.header span.page-number span.max-page {
+}
+
+div.wp-block-catenis-blocks-message-history div.header div.left-overlay {
+    position: absolute;
+    x: 0;
+    y: 0;
+}
+
 div.wp-block-catenis-blocks-message-history table {
     font-size: 70%
 }
