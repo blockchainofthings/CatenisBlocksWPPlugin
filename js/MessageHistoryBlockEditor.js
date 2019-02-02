@@ -373,7 +373,7 @@
                                 className: 'left-overlay'
                             },
                                 el('span', {
-                                    className: 'icon reload',
+                                    className: 'button-icon reload',
                                     title: __('Reload', 'catenis-blocks')
                                 },
                                     el(wp.element.RawHTML, {},
@@ -382,7 +382,7 @@
                                 )
                             ),
                             el('span', {
-                                className: 'icon first-page disabled',
+                                className: 'button-icon first-page disabled',
                                 title: __('First page', 'catenis-blocks')
                             },
                                 el(wp.element.RawHTML, {},
@@ -390,7 +390,7 @@
                                 )
                             ),
                             el('span', {
-                                className: 'icon prev-page disabled',
+                                className: 'button-icon prev-page disabled',
                                 title: __('Previous page', 'catenis-blocks')
                             },
                                 el(wp.element.RawHTML, {},
@@ -411,7 +411,7 @@
                                 }, '')
                             ),
                             el('span', {
-                                className: 'icon next-page disabled',
+                                className: 'button-icon next-page disabled',
                                 title: __('Next page', 'catenis-blocks')
                             },
                                 el(wp.element.RawHTML, {},
@@ -419,7 +419,7 @@
                                 )
                             ),
                             el('span', {
-                                className: 'icon last-page disabled',
+                                className: 'button-icon last-page disabled',
                                 title: __('Last page', 'catenis-blocks')
                             },
                                 el(wp.element.RawHTML, {},

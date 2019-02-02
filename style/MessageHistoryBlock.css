@@ -18,19 +18,20 @@ div.wp-block-catenis-blocks-message-history div.noctnapiproxy {
 div.wp-block-catenis-blocks-message-history div.header {
     color: gray;
     text-align: right;
+    vertical-align: baseline;
     padding: 0 0.5em 0 0.5em
 }
 
-div.wp-block-catenis-blocks-message-history div.header span.icon {
+div.wp-block-catenis-blocks-message-history div.header span.button-icon {
     cursor: pointer;
 }
 
-div.wp-block-catenis-blocks-message-history div.header span.icon svg {
-    margin-bottom: -0.2em;
+div.wp-block-catenis-blocks-message-history div.header span.button-icon svg {
+    margin-bottom: -0.18em;
     fill: currentColor;
 }
 
-div.wp-block-catenis-blocks-message-history div.header span.icon.disabled {
+div.wp-block-catenis-blocks-message-history div.header span.button-icon.disabled {
     color: lightgray;
     cursor: default;
 }
@@ -47,6 +48,7 @@ div.wp-block-catenis-blocks-message-history div.header span.page-number input[ty
     text-align: center;
     color: gray;
     border-color: gray;
+    display: inline;
 }
 
 div.wp-block-catenis-blocks-message-history div.header span.page-number span.max-page {
@@ -59,17 +61,30 @@ div.wp-block-catenis-blocks-message-history div.header div.left-overlay {
 }
 
 div.wp-block-catenis-blocks-message-history table {
-    font-size: 70%
+    font-size: 70%;
+    table-layout: auto;
 }
 
 div.wp-block-catenis-blocks-message-history table th {
     word-wrap: normal;
     word-break: normal;
+    -moz-hyphens: manual;
+    -ms-hyphens: manual;
+    -webkit-hyphens: manual;
+    hyphens: manual;
 }
 
 div.wp-block-catenis-blocks-message-history table td {
-    word-wrap: normal;
+    word-wrap: break-word;
     word-break: normal;
+}
+
+div.wp-block-catenis-blocks-message-history table td.messageId {
+    word-wrap: normal;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    -webkit-hyphens: none;
+    hyphens: none;
 }
 
 div.wp-block-catenis-blocks-message-history table td.nomessage {
