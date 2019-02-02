@@ -9,7 +9,10 @@ div.wp-block-catenis-blocks-display-message div.error > p.error {
 
 div.wp-block-catenis-blocks-display-message pre {
     display: inline;
-    word-wrap: break-word
+    word-wrap: break-word;
+    border: none;
+    background-color: transparent;
+    padding: 0;
 }
 
 div.wp-block-catenis-blocks-display-message pre + span {
