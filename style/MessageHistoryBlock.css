@@ -22,15 +22,12 @@ div.wp-block-catenis-blocks-message-history div.header {
 }
 
 div.wp-block-catenis-blocks-message-history div.header span.icon {
-    background-color: transparent;
-    position: relative;
     cursor: pointer;
 }
 
 div.wp-block-catenis-blocks-message-history div.header span.icon svg {
-    position: relative;
-    z-index: -1;
     margin-bottom: -0.2em;
+    fill: currentColor;
 }
 
 div.wp-block-catenis-blocks-message-history div.header span.icon.disabled {
