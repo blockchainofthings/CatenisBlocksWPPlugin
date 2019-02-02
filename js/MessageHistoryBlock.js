@@ -158,7 +158,10 @@
                 var buttonInfo = _self.headerButton[buttonId];
 
                 buttonInfo.$elem = $('span.' + buttonInfo.className, _self.headerPanel);
-                buttonInfo.$elem.on('click', buttonInfo.onClickHandler);
+
+                if (!buttonInfo.$elem.hasClass('disabled')) {
+                    buttonInfo.$elem.on('click', buttonInfo.onClickHandler);
+                }
             });
         }
     };
