@@ -12,6 +12,7 @@
             this.msgsPerPage = props.msgsPerPage;
             this.columns = JSON.parse(props.columns);
             this.actionLinks = props.actionLinks;
+            this.targetDeviceId = props.targetDeviceId;
             this.displayTargetHtmlAnchor = props.displayTargetHtmlAnchor;
             this.saveTargetHtmlAnchor = props.saveTargetHtmlAnchor;
             this.headerPanel = undefined;
@@ -374,7 +375,7 @@
                             .addClass('targetDevice');
 
                         if (messageInfo.to) {
-                            $tdElem.text(deviceName(messageInfo.to));
+                            $tdElem.text(_self.deviceName(messageInfo.to));
                         }
 
                         $trElem.append($tdElem);
@@ -421,6 +422,8 @@
         if ($trElem.length > 0) {
             var columnsToHighlight = [];
 
+            var _self = this;
+
             Object.keys(newProps).forEach(function (prop) {
                 switch (prop) {
                     case 'messageId':
@@ -442,7 +445,7 @@
                         break;
 
                     case 'to':
-                        $('.targetDevice', $trElem[0]).text(deviceName(newProps[prop]));
+                        $('.targetDevice', $trElem[0]).text(_self.deviceName(newProps[prop]));
                         columnsToHighlight.push('targetDevice');
 
                         break;
@@ -607,6 +610,12 @@
         }
     };
 
+    CtnBlkMessageHistory.prototype.deviceName = function (device) {
+        var id = this.targetDeviceId === 'prodUniqueId' && device.prodUniqueId ? device.prodUniqueId : device.deviceId;
+
+        return device.name ? device.name + ' (' + id + ')' : id;
+    };
+
     function getPeriodStartDate(period) {
         var date;
 
@@ -657,12 +666,6 @@
 
     function convertLineBreak(text) {
         return text.replace(/\n/g, '<br>');
-    }
-
-    function deviceName(device) {
-        var id = device.prodUniqueId ? device.prodUniqueId : device.deviceId;
-
-        return device.name ? device.name + '(' + id + ')' : id;
     }
 
     function booleanValue(value) {

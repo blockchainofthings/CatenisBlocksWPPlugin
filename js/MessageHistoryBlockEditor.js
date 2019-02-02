@@ -17,6 +17,7 @@
         msgRead: true
     };
     var defActionLinks = 'both';
+    var defTargetDeviceId = 'deviceId';
 
     registerBlockType('catenis-blocks/message-history', {
         title: __('Message History', 'catenis-blocks'),
@@ -46,6 +47,9 @@
             actionLinks: {
                 type: 'string'
             },
+            targetDeviceId: {
+                type: 'string'
+            },
             displayTargetHtmlAnchor: {
                 type: 'string'
             },
@@ -67,6 +71,7 @@
             var msgsPerPage = props.attributes.msgsPerPage !== undefined ? JSON.parse(props.attributes.msgsPerPage) : defMsgsPerPage;
             var columns = props.attributes.columns !== undefined ? JSON.parse(props.attributes.columns) : defColumns;
             var actionLinks = props.attributes.actionLinks !== undefined ? props.attributes.actionLinks : defActionLinks;
+            var targetDeviceId = props.attributes.targetDeviceId !== undefined ? props.attributes.targetDeviceId : defTargetDeviceId;
             var displayTargetHtmlAnchor = props.attributes.displayTargetHtmlAnchor;
             var saveTargetHtmlAnchor = props.attributes.saveTargetHtmlAnchor;
 
@@ -141,6 +146,12 @@
             function onChangeActionLinks(newValue) {
                 props.setAttributes({
                     actionLinks: newValue
+                });
+            }
+
+            function onChangeTargetDeviceId(newValue) {
+                props.setAttributes({
+                    targetDeviceId: newValue
                 });
             }
 
@@ -271,6 +282,23 @@
                                         onChange: onChangeActionLinks
                                     });
                                 }
+                            })(),
+                            (function () {
+                                if (columns.targetDevice) {
+                                    return el(cmp.SelectControl, {
+                                        label: __('Target Device ID (\'To\' Column)', 'catenis-blocks'),
+                                        help: targetDeviceId === 'deviceId' ? __('Always show device ID', 'catenis-blocks') : __('Show product unique ID instead if present', 'catenis-blocks'),
+                                        options: [{
+                                            value: 'deviceId',
+                                            label: 'Device ID'
+                                        }, {
+                                            value: 'prodUniqueId',
+                                            label: 'Product Unique ID'
+                                        }],
+                                        value: targetDeviceId,
+                                        onChange: onChangeTargetDeviceId
+                                    });
+                                }
                             })()
                         ),
                         (function () {
@@ -358,6 +386,7 @@
             var msgsPerPage = props.attributes.msgsPerPage !== undefined ? JSON.parse(props.attributes.msgsPerPage) : defMsgsPerPage;
             var columns = props.attributes.columns !== undefined ? JSON.parse(props.attributes.columns) : defColumns;
             var actionLinks = props.attributes.actionLinks !== undefined ? props.attributes.actionLinks : defActionLinks;
+            var targetDeviceId = props.attributes.targetDeviceId !== undefined ? props.attributes.targetDeviceId : defActionLinks;
             var displayTargetHtmlAnchor = props.attributes.displayTargetHtmlAnchor;
             var saveTargetHtmlAnchor = props.attributes.saveTargetHtmlAnchor;
 
@@ -474,7 +503,7 @@
                     el('div', {
                         className: 'noctnapiproxy'
                     }, __('Catenis API client not loaded on page', 'catenis-blocks')),
-                    el(wp.element.RawHTML, {}, '<script type="text/javascript">(function(){var elems=jQuery(\'script[type="text/javascript"]\');if(elems.length > 0){var uiContainer=jQuery(\'div.uicontainer\', elems[elems.length-1].parentElement)[0];if(!uiContainer.ctnBlkMessageHistory && typeof CtnBlkMessageHistory===\'function\'){uiContainer.ctnBlkMessageHistory=new CtnBlkMessageHistory(uiContainer, {msgAction:' + toStringLiteral(msgAction) + ',period:' + toStringLiteral(period) + ',msgsPerPage:' + toStringLiteral(msgsPerPage) + ',columns:' + toStringLiteral(JSON.stringify(columns)) + ',actionLinks:' + toStringLiteral(actionLinks) + ',displayTargetHtmlAnchor:' + toStringLiteral(displayTargetHtmlAnchor) + ',saveTargetHtmlAnchor:' + toStringLiteral(saveTargetHtmlAnchor) + '});}uiContainer.ctnBlkMessageHistory.listMessages()}})()</script>')
+                    el(wp.element.RawHTML, {}, '<script type="text/javascript">(function(){var elems=jQuery(\'script[type="text/javascript"]\');if(elems.length > 0){var uiContainer=jQuery(\'div.uicontainer\', elems[elems.length-1].parentElement)[0];if(!uiContainer.ctnBlkMessageHistory && typeof CtnBlkMessageHistory===\'function\'){uiContainer.ctnBlkMessageHistory=new CtnBlkMessageHistory(uiContainer, {msgAction:' + toStringLiteral(msgAction) + ',period:' + toStringLiteral(period) + ',msgsPerPage:' + toStringLiteral(msgsPerPage) + ',columns:' + toStringLiteral(JSON.stringify(columns)) + ',targetDeviceId:' + toStringLiteral(targetDeviceId) + ',actionLinks:' + toStringLiteral(actionLinks) + ',displayTargetHtmlAnchor:' + toStringLiteral(displayTargetHtmlAnchor) + ',saveTargetHtmlAnchor:' + toStringLiteral(saveTargetHtmlAnchor) + '});}uiContainer.ctnBlkMessageHistory.listMessages()}})()</script>')
                 )
             );
         }
