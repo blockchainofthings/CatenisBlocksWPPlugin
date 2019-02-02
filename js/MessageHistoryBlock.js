@@ -49,6 +49,7 @@
             this.divError = undefined;
             this.txtError = undefined;
             this.messages = undefined;
+            this.mapIdMsgIdx = undefined;
             this.totalPages = undefined;
             this.currentPageNumber = undefined;
             this.viewMessages = undefined;
@@ -56,8 +57,61 @@
             this.setHeaderElements();
             this.setTableElements();
             this.setErrorPanel();
+            this.setUpNotification();
         }
     }
+
+    CtnBlkMessageHistory.prototype.setUpNotification = function () {
+        var _self = this;
+
+        context.ctnApiProxy.on('comm_error', function (error) {
+            // Error communicating with Catenis notification process
+            console.error('Catenis notification process error:', error);
+        });
+
+        context.ctnApiProxy.on('notify_channel_opened', function (eventName, success, error) {
+            if (success) {
+                // Underlying WebSocket connection successfully established
+                console.log('[' + eventName + '] - Catenis notification channel successfully opened');
+            }
+            else {
+                // Error establishing underlying WebSocket connection
+                console.error('[' + eventName + '] - Error establishing Catenis notification channel:', error);
+            }
+        });
+
+        context.ctnApiProxy.on('notify_channel_error', function (eventName, error) {
+            // Error in the underlying WebSocket connection
+            console.error('[' + eventName + '] - Catenis notification WebSocket connection error:', error);
+        });
+
+        context.ctnApiProxy.on('notify_channel_closed', function (eventName, code, reason) {
+            // Underlying WebSocket connection has been closed
+            console.error('[' + eventName + '] - Catenis notification channel closed; code: ' + code + ', reason: ' + reason);
+        });
+
+        context.ctnApiProxy.on('notification', function (eventName, eventData) {
+            switch (eventName) {
+                case 'sent-msg-read':
+                    _self.processReadConfirmation(eventData);
+            }
+        });
+
+        context.ctnApiProxy.openNotifyChannel('sent-msg-read', function (error) {
+            if (error) {
+                // Error from calling method
+                console.error('Error opening Catenis notification channel:', error);
+            }
+            else {
+                console.debug('ctnApiProxy.openNotifyChannel successfully returned');
+            }
+        });
+    };
+
+    CtnBlkMessageHistory.prototype.processReadConfirmation = function (eventData) {
+        // Update message's read confirmation state
+        this.updateMessageEntry(eventData.messageId, {read: true}, true, true);
+    };
 
     CtnBlkMessageHistory.prototype.checkCtnApiProxyAvailable = function (uiContainer) {
         var result = true;
@@ -151,7 +205,7 @@
 
     CtnBlkMessageHistory.prototype.processRetrievedMessages = function (messages) {
         // Reverse retrieved list so last stored/sent messages are shown first
-        this.messages = messages.reverse();
+        this.messages = this.indexReverseMessages(messages);
 
         if (messages.length > 0) {
             // Calculate total number of pages
@@ -161,8 +215,23 @@
             this.resetPageNumber(1);
         }
         else {
+            this.viewMessages = [];
             this.addNoMessageEntry();
         }
+    };
+
+    CtnBlkMessageHistory.prototype.indexReverseMessages = function (messages) {
+        this.mapIdMsgIdx = {};
+        var reversedMessages = [];
+
+        for (var idx = messages.length - 1, mapIdx = 0; idx >= 0; idx--, mapIdx++) {
+            var message = messages[idx];
+
+            this.mapIdMsgIdx[message.messageId] = mapIdx;
+            reversedMessages.push(message);
+        }
+
+        return reversedMessages;
     };
 
     CtnBlkMessageHistory.prototype.resetPageNumber = function (newPageNumber) {
@@ -327,20 +396,88 @@
         return $trElem[0];
     };
 
-    CtnBlkMessageHistory.prototype.highlightMessageEntry = function (messageId, columns) {
+    CtnBlkMessageHistory.prototype.updateMessageEntry = function (messageId, newProps, updateDisplay, highlightEntry) {
+        var msgIdx = this.mapIdMsgIdx[messageId];
+
+        if (msgIdx !== undefined) {
+            var message = this.messages[msgIdx];
+
+            Object.keys(newProps).forEach(function (prop) {
+                message[prop] = newProps[prop];
+            });
+
+            if (updateDisplay) {
+                this.updateDisplayedMsgEntry(messageId, newProps, highlightEntry);
+            }
+        }
+    };
+
+    CtnBlkMessageHistory.prototype.updateDisplayedMsgEntry = function (messageId, newProps, highlightEntry) {
         var $trElem = $('td#' + messageId, this.tableBody).parent();
 
         if ($trElem.length > 0) {
-            $trElem.addClass('highlight');
+            var columnsToHighlight = [];
 
-            if (columns) {
-                columns = Array.isArray(columns) ? columns : [columns];
+            Object.keys(newProps).forEach(function (prop) {
+                switch (prop) {
+                    case 'messageId':
+                        $('.messageId', $trElem[0]).text(newProps[prop]);
+                        columnsToHighlight.push('messageId');
 
-                var selectorItems = columns.map(function (column) {
-                    return 'td.' + column;
-                });
+                        break;
 
-                $(selectorItems.join(','), $trElem[0]).addClass('highlight');
+                    case 'action':
+                        $('.type', $trElem[0]).text(mapMsgAction(newProps[prop]));
+                        columnsToHighlight.push('type');
+
+                        break;
+
+                    case 'date':
+                        $('.date', $trElem[0]).text(formatDate(newProps[prop]));
+                        columnsToHighlight.push('date');
+
+                        break;
+
+                    case 'to':
+                        $('.targetDevice', $trElem[0]).text(deviceName(newProps[prop]));
+                        columnsToHighlight.push('targetDevice');
+
+                        break;
+
+                    case 'read':
+                        $('.msgRead', $trElem[0]).text(booleanValue(newProps[prop]));
+                        columnsToHighlight.push('msgRead');
+
+                        break;
+                }
+            });
+
+            if (highlightEntry) {
+                this.highlightMessageEntry($trElem, messageId, columnsToHighlight);
+            }
+        }
+    };
+
+    CtnBlkMessageHistory.prototype.highlightMessageEntry = function ($trElem, messageId, columns) {
+        if ($trElem instanceof jQuery || typeof $trElem === 'string') {
+            if (typeof $trElem === 'string') {
+                columns = messageId;
+                messageId = $trElem;
+                $trElem = $('td#' + messageId, this.tableBody).parent();
+            }
+
+            if ($trElem.length > 0) {
+                $trElem.addClass('highlight');
+
+                if (columns) {
+                    columns = Array.isArray(columns) ? columns : [columns];
+
+                    var selectorItems = columns.map(function (column) {
+                        return 'td.' + column;
+                    });
+
+                    $(selectorItems.join(','), $trElem[0]).addClass('highlight');
+                }
             }
         }
     };
