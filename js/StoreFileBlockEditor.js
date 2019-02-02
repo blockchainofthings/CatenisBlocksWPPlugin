@@ -191,18 +191,14 @@
                         className: props.className
                     },
                         el('div', {
-                                className: 'dropzone'
-                            },
-                            el('div', {
-                                    className: 'dropcontainer'
-                                },
-                                el('p', {
-                                    className: 'instruction'
-                                }, fileDropBoxMessage),
-                                el('p', {
-                                    className: 'selected'
-                                })
-                            )
+                            className: 'dropzone'
+                        },
+                            el('p', {
+                                className: 'instruction'
+                            }, fileDropBoxMessage),
+                            el('p', {
+                                className: 'selected'
+                            })
                         ),
                         el('input', {
                             type: 'submit',
@@ -246,16 +242,12 @@
                                 onDragEnter: '(function(){try{var parent=this.parentElement;if(!parent.ctnBlkStoreFile && typeof CtnBlkStoreFile===\'function\'){parent.ctnBlkStoreFile=new CtnBlkStoreFile(parent,{encrypt:' + toStringLiteral(encrypt) + '},{addFileHeader:' + toStringLiteral(addFileHeader) + ',successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}parent.ctnBlkStoreFile.dragEnterHandler(event)}finally{return false}}).call(this)',
                                 onDragLeave: '(function(){try{var parent=this.parentElement;if(!parent.ctnBlkStoreFile && typeof CtnBlkStoreFile===\'function\'){parent.ctnBlkStoreFile=new CtnBlkStoreFile(parent,{encrypt:' + toStringLiteral(encrypt) + '},{addFileHeader:' + toStringLiteral(addFileHeader) + ',successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}parent.ctnBlkStoreFile.dragLeaveHandler(event)}finally{return false}}).call(this)'
                             },
-                                el('div', {
-                                    className: 'dropcontainer'
-                                },
-                                    el('p', {
-                                        className: 'instruction'
-                                    }, fileDropBoxMessage),
-                                    el('p', {
-                                        className: 'selected'
-                                    })
-                                )
+                                el('p', {
+                                    className: 'instruction'
+                                }, fileDropBoxMessage),
+                                el('p', {
+                                    className: 'selected'
+                                })
                             ),
                             el('input', {
                                 type: 'file'

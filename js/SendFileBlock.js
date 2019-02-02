@@ -10,7 +10,6 @@
         if (this.checkCtnApiProxyAvailable(form.parentElement)) {
             this.targetDevice = targetDevice;
             this.divDropZone = undefined;
-            this.divDropContainer = undefined;
             this.txtSelectedFile = undefined;
             this.inputFile = undefined;
             this.selectedFile = undefined;
@@ -55,14 +54,9 @@
         if (elems.length > 0) {
             this.divDropZone = elems[0];
 
-            elems = $('div.dropzone > div.dropcontainer', this.divDropZone.parentElement);
+            elems = $('div.dropzone > p.selected', this.divDropZone.parentElement);
             if (elems.length > 0) {
-                this.divDropContainer = elems[0];
-
-                elems = $('div.dropcontainer > p.selected', this.divDropContainer.parentElement);
-                if (elems.length > 0) {
-                    this.txtSelectedFile = elems[0];
-                }
+                this.txtSelectedFile = elems[0];
             }
 
             elems = $('input[type="file"]', this.divDropZone.parentElement);
@@ -84,8 +78,8 @@
         event.stopPropagation();
         event.preventDefault();
 
-        if (this.divDropContainer) {
-            this.divDropContainer.classList.remove('dragover');
+        if (this.divDropZone) {
+            this.divDropZone.classList.remove('dragover');
         }
 
         var files = event.dataTransfer ? event.dataTransfer.files : event.target.files;
@@ -99,8 +93,9 @@
         event.stopPropagation();
         event.preventDefault();
 
-        if (this.divDropContainer) {
-            this.divDropContainer.classList.add('dragover');
+        if (this.divDropZone) {
+            this.divDropZone.classList.add('dragover');
+            this.lastDragEnterElem = event.target;
         }
     };
 
@@ -108,8 +103,8 @@
         event.stopPropagation();
         event.preventDefault();
 
-        if (this.divDropContainer) {
-            this.divDropContainer.classList.remove('dragover');
+        if (this.divDropZone && event.target === this.lastDragEnterElem) {
+            this.divDropZone.classList.remove('dragover');
         }
     };
 

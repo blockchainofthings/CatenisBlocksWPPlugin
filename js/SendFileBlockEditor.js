@@ -311,18 +311,14 @@
                             }
                         })(),
                         el('div', {
-                                className: 'dropzone'
-                            },
-                            el('div', {
-                                    className: 'dropcontainer'
-                                },
-                                el('p', {
-                                    className: 'instruction'
-                                }, fileDropBoxMessage),
-                                el('p', {
-                                    className: 'selected'
-                                })
-                            )
+                            className: 'dropzone'
+                        },
+                            el('p', {
+                                className: 'instruction'
+                            }, fileDropBoxMessage),
+                            el('p', {
+                                className: 'selected'
+                            })
                         ),
                         el('input', {
                             type: 'submit',
@@ -390,16 +386,12 @@
                                 onDragEnter: '(function(){try{var parent=this.parentElement;if(!parent.ctnBlkSendFile && typeof CtnBlkSendFile===\'function\'){parent.ctnBlkSendFile=new CtnBlkSendFile(parent,{id:' + toStringLiteral(targetDeviceId) + ',isProdUniqueId:' + toStringLiteral(useProdUniqueId) + '},{readConfirmation:' + toStringLiteral(readConfirmation) + ',encrypt:' + toStringLiteral(encrypt) + '},{addFileHeader:' + toStringLiteral(addFileHeader) + ',successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}parent.ctnBlkSendFile.dragEnterHandler(event)}finally{return false}}).call(this)',
                                 onDragLeave: '(function(){try{var parent=this.parentElement;if(!parent.ctnBlkSendFile && typeof CtnBlkSendFile===\'function\'){parent.ctnBlkSendFile=new CtnBlkSendFile(parent,{id:' + toStringLiteral(targetDeviceId) + ',isProdUniqueId:' + toStringLiteral(useProdUniqueId) + '},{readConfirmation:' + toStringLiteral(readConfirmation) + ',encrypt:' + toStringLiteral(encrypt) + '},{addFileHeader:' + toStringLiteral(addFileHeader) + ',successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}parent.ctnBlkSendFile.dragLeaveHandler(event)}finally{return false}}).call(this)'
                             },
-                                el('div', {
-                                    className: 'dropcontainer'
-                                },
-                                    el('p', {
-                                        className: 'instruction'
-                                    }, fileDropBoxMessage),
-                                    el('p', {
-                                        className: 'selected'
-                                    })
-                                )
+                                el('p', {
+                                    className: 'instruction'
+                                }, fileDropBoxMessage),
+                                el('p', {
+                                    className: 'selected'
+                                })
                             ),
                             el('input', {
                                 type: 'file'
