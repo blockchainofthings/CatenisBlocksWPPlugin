@@ -367,7 +367,7 @@
                             className: 'uicontainer'
                         },
                         el('div', {
-                            className: 'header hidden'
+                            className: 'header'
                         },
                             el('div', {
                                 className: 'left-overlay'
