@@ -63,6 +63,8 @@
     }
 
     CtnBlkMessageHistory.prototype.setUpNotification = function () {
+        $(this.uiContainer).on('ctn-msg-read', this.processCtnMsgReadNotify.bind(this));
+
         var _self = this;
 
         context.ctnApiProxy.on('comm_error', function (error) {
@@ -103,10 +105,12 @@
                 // Error from calling method
                 console.error('Error opening Catenis notification channel:', error);
             }
-            else {
-                console.debug('ctnApiProxy.openNotifyChannel successfully returned');
-            }
         });
+    };
+
+    CtnBlkMessageHistory.prototype.processCtnMsgReadNotify = function (event, messageId) {
+        // Update message's read confirmation state
+        this.updateMessageEntry(messageId, {read: true}, true, true);
     };
 
     CtnBlkMessageHistory.prototype.processReadConfirmation = function (eventData) {
@@ -304,10 +308,13 @@
                 event.stopPropagation();
                 event.preventDefault();
 
-                var elems = $('#' + targetHtmlAnchor + ' input[name="messageId"]');
+                var $targetMessageId = $('#' + targetHtmlAnchor + ' input[name="messageId"]');
 
-                if (elems.length > 0) {
-                    elems.val(messageId).trigger('change');
+                if ($targetMessageId.length > 0) {
+                    // Set up for receiving notification after message is read
+                    $targetMessageId[0].ctnMsgReadNotify = _self.uiContainer;
+                    // Send message ID and trigger event to display/save message
+                    $targetMessageId.val(messageId).trigger('change');
                 }
             };
         };
@@ -405,12 +412,16 @@
 
         if (msgIdx !== undefined) {
             var message = this.messages[msgIdx];
+            var propsUpdated = false;
 
             Object.keys(newProps).forEach(function (prop) {
-                message[prop] = newProps[prop];
+                if ((prop in message) && message[prop] !== newProps[prop]) {
+                    message[prop] = newProps[prop];
+                    propsUpdated = true;
+                }
             });
 
-            if (updateDisplay) {
+            if (propsUpdated && updateDisplay) {
                 this.updateDisplayedMsgEntry(messageId, newProps, highlightEntry);
             }
         }

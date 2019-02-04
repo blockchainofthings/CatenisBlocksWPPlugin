@@ -76,9 +76,18 @@
                     _self.displayError(error.toString());
                 }
                 else {
+                    _self.checkNotifyMsgRead(messageId);
                     _self.displayMessage(result.message);
                 }
             })
+        }
+    };
+
+    CtnBlkDisplayMessage.prototype.checkNotifyMsgRead = function (messageId) {
+        if (this.messageId.ctnMsgReadNotify) {
+            // Dispatch event notifying that Catenis message had been read
+            $(this.messageId.ctnMsgReadNotify).trigger('ctn-msg-read', messageId);
+            delete this.messageId.ctnMsgReadNotify;
         }
     };
 
