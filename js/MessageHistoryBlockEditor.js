@@ -4,7 +4,9 @@
     var el = wp.element.createElement;
     var __ = wp.i18n.__;
     var cmp = wp.components;
+    var moment = context.moment;
 
+    var dateFormat = 'YYYY-MM-DD';
     var defMsgAction = 'any';
     var defPeriod = 'last_7_days';
     var defMsgsPerPage = 10;
@@ -38,6 +40,18 @@
             period: {
                 type: 'string'
             },
+            customStartDate: {
+                type: 'string'
+            },
+            selectCustomStartDate: {
+                type: 'boolean'
+            },
+            customEndDate: {
+                type: 'string'
+            },
+            selectCustomEndDate: {
+                type: 'boolean'
+            },
             msgsPerPage: {
                 type: 'number'
             },
@@ -68,6 +82,23 @@
         edit: function(props) {
             var msgAction = props.attributes.msgAction !== undefined ? props.attributes.msgAction : defMsgAction;
             var period = props.attributes.period !== undefined ? props.attributes.period : defPeriod;
+            
+            if (props.attributes.customEndDate === undefined) {
+                props.setAttributes({
+                    customEndDate: moment().format(dateFormat)
+                });
+            }
+            var customEndDate = props.attributes.customEndDate;
+
+            if (props.attributes.customStartDate === undefined) {
+                props.setAttributes({
+                    customStartDate: customEndDate
+                });
+            }
+            var customStartDate = props.attributes.customStartDate;
+            
+            var selectCustomStartDate = props.attributes.selectCustomStartDate ? props.attributes.selectCustomStartDate : false;
+            var selectCustomEndDate = props.attributes.selectCustomEndDate ? props.attributes.selectCustomEndDate : false;
             var msgsPerPage = props.attributes.msgsPerPage !== undefined ? JSON.parse(props.attributes.msgsPerPage) : defMsgsPerPage;
             var columns = props.attributes.columns !== undefined ? JSON.parse(props.attributes.columns) : defColumns;
             var actionLinks = props.attributes.actionLinks !== undefined ? props.attributes.actionLinks : defActionLinks;
@@ -85,6 +116,98 @@
                 props.setAttributes({
                     period: newValue
                 });
+            }
+
+            function onChangeCustomStartDate(newValue) {
+                // Filter out spurious characters
+                newValue = newValue.replace(/[^0-9-]/, '');
+
+                if (newValue.length > dateFormat.length) {
+                    newValue = newValue.substring(0, dateFormat.length);
+                }
+
+                props.setAttributes({
+                    customStartDate: newValue
+                });
+            }
+            
+            function onBlurCustomStartDate(event) {
+                var mt = moment(event.target.value, dateFormat);
+
+                props.setAttributes({
+                    customStartDate: mt.isValid() && mt.isSameOrBefore(moment(customEndDate, dateFormat)) ? mt.format(dateFormat) : customEndDate,
+                    selectCustomStartDate: false
+                });
+            }
+
+            function onClickCustomStartDateButton(event) {
+                props.setAttributes({
+                    selectCustomStartDate: !selectCustomStartDate
+                });
+            }
+
+            function onCloseCustomStartDatePopover(event) {
+                props.setAttributes({
+                    selectCustomStartDate: false
+                });
+            }
+
+            function onChangeCustomStartDatePicker(newDate) {
+                var mt = moment(newDate);
+
+                props.setAttributes({
+                    customStartDate: mt.isValid() && mt.isSameOrBefore(moment(customEndDate, dateFormat)) ? mt.format(dateFormat) : customEndDate,
+                    selectCustomStartDate: false
+                });
+
+                $('.ctn-date-picker.custom-start-date .components-text-control__input').focus();
+            }
+
+            function onChangeCustomEndDate(newValue) {
+                // Filter out spurious characters
+                newValue = newValue.replace(/[^0-9-]/, '');
+
+                if (newValue.length > dateFormat.length) {
+                    newValue = newValue.substring(0, dateFormat.length);
+                }
+
+                props.setAttributes({
+                    customEndDate: newValue
+                });
+            }
+
+            function onBlurCustomEndDate(event) {
+                var mt = moment(event.target.value, dateFormat);
+                var mtToday = moment();
+
+                props.setAttributes({
+                    customEndDate: mt.isValid() && mt.isSameOrAfter(moment(customStartDate, dateFormat)) && mt.isSameOrBefore(mtToday) ? mt.format(dateFormat) : (mt.isAfter(mtToday) ? mtToday.format(dateFormat) : customStartDate),
+                    selectCustomEndDate: false
+                });
+            }
+
+            function onClickCustomEndDateButton(event) {
+                props.setAttributes({
+                    selectCustomEndDate: !selectCustomEndDate
+                });
+            }
+
+            function onCloseCustomEndDatePopover(event) {
+                props.setAttributes({
+                    selectCustomEndDate: false
+                });
+            }
+
+            function onChangeCustomEndDatePicker(newDate) {
+                var mt = moment(newDate);
+                var mtToday = moment();
+
+                props.setAttributes({
+                    customEndDate: mt.isValid() && mt.isSameOrAfter(moment(customStartDate, dateFormat)) && mt.isSameOrBefore(mtToday) ? mt.format(dateFormat) : (mt.isAfter(mtToday) ? mtToday.format(dateFormat) : customStartDate),
+                    selectCustomEndDate: false
+                });
+
+                $('.ctn-date-picker.custom-end-date .components-text-control__input').focus();
             }
 
             function onChangeMsgsPerPage(newValue) {
@@ -193,26 +316,109 @@
                                 label: __('Period', 'catenis-blocks'),
                                 options: [{
                                     value: 'today',
-                                    label: 'Today'
+                                    label: __('Today', 'catenis-blocks')
                                 }, {
                                     value: 'last_7_days',
-                                    label: 'Last 7 days'
+                                    label: __('Last 7 days', 'catenis-blocks')
                                 }, {
                                     value: 'last_30_days',
-                                    label: 'Last 30 days'
+                                    label: __('Last 30 days', 'catenis-blocks')
                                 }, {
                                     value: 'current_month',
-                                    label: 'Current month'
+                                    label: __('Current month', 'catenis-blocks')
                                 }, {
                                     value: 'last_3_months',
-                                    label: 'Last 3 months'
+                                    label: __('Last 3 months', 'catenis-blocks')
                                 }, {
                                     value: 'last_6_months',
-                                    label: 'Last 6 months'
+                                    label: __('Last 6 months', 'catenis-blocks')
+                                }, {
+                                    value: 'custom',
+                                    label: __('Custom', 'catenis-blocks')
                                 }],
                                 value: period,
                                 onChange: onChangePeriod
-                            })
+                            }),
+                            (function () {
+                                if (period === 'custom') {
+                                    var startDateComps = [
+                                        el(cmp.TextControl, {
+                                            label: __('Start Date', 'catenis-blocks'),
+                                            value: customStartDate,
+                                            className: 'ctn-date-picker custom-start-date',
+                                            instanceId: 'custom-start-date',
+                                            onChange: onChangeCustomStartDate,
+                                            onBlur: onBlurCustomStartDate
+                                        }),
+                                        el('span', {
+                                            onClick: onClickCustomStartDateButton
+                                        },
+                                            el(cmp.Dashicon, {
+                                                icon:'calendar-alt',
+                                                className: 'ctn-date-picker'
+                                            })
+                                        )
+                                    ];
+
+                                    if (selectCustomStartDate) {
+                                        startDateComps.push(el(cmp.Popover, {
+                                            position: 'bottom center',
+                                            focusOnMount: 'container',
+                                            expandOnMobile: true,
+                                            headerTitle: __('Start Date', 'catenis-blocks'),
+                                            onClose: onCloseCustomStartDatePopover
+                                        },
+                                            el(cmp.DatePicker, {
+                                                currentDate: customStartDate,
+                                                onChange: onChangeCustomStartDatePicker
+                                            })
+                                        ));
+                                    }
+
+                                    var endDateComps = [
+                                        el(cmp.TextControl, {
+                                            label: __('End Date', 'catenis-blocks'),
+                                            value: customEndDate,
+                                            className: 'ctn-date-picker custom-end-date',
+                                            instanceId: 'custom-end-date',
+                                            onChange: onChangeCustomEndDate,
+                                            onBlur: onBlurCustomEndDate
+                                        }),
+                                        el('span', {
+                                                onClick: onClickCustomEndDateButton
+                                            },
+                                            el(cmp.Dashicon, {
+                                                icon:'calendar-alt',
+                                                className: 'ctn-date-picker'
+                                            })
+                                        )
+                                    ];
+
+                                    if (selectCustomEndDate) {
+                                        endDateComps.push(el(cmp.Popover, {
+                                                position: 'bottom center',
+                                                focusOnMount: 'container',
+                                                expandOnMobile: true,
+                                                headerTitle: __('End Date', 'catenis-blocks'),
+                                                onClose: onCloseCustomEndDatePopover
+                                            },
+                                            el(cmp.DatePicker, {
+                                                currentDate: customEndDate,
+                                                onChange: onChangeCustomEndDatePicker
+                                            })
+                                        ));
+                                    }
+
+                                    return [
+                                        el('div', {
+                                            className: 'ctn-date-picker'
+                                        }, startDateComps),
+                                        el('div', {
+                                            className: 'ctn-date-picker'
+                                        }, endDateComps)
+                                    ];
+                                }
+                            })()
                         ),
                         el(cmp.PanelBody, {
                                 title: __('Message List', 'catenis-blocks'),
@@ -383,6 +589,8 @@
         save: function(props) {
             var msgAction = props.attributes.msgAction !== undefined ? props.attributes.msgAction : defMsgAction;
             var period = props.attributes.period !== undefined ? props.attributes.period : defPeriod;
+            var customEndDate = props.attributes.customEndDate;
+            var customStartDate = props.attributes.customStartDate;
             var msgsPerPage = props.attributes.msgsPerPage !== undefined ? JSON.parse(props.attributes.msgsPerPage) : defMsgsPerPage;
             var columns = props.attributes.columns !== undefined ? JSON.parse(props.attributes.columns) : defColumns;
             var actionLinks = props.attributes.actionLinks !== undefined ? props.attributes.actionLinks : defActionLinks;
@@ -503,7 +711,7 @@
                     el('div', {
                         className: 'noctnapiproxy'
                     }, __('Catenis API client not loaded on page', 'catenis-blocks')),
-                    el(wp.element.RawHTML, {}, '<script type="text/javascript">(function(){var elems=jQuery(\'script[type="text/javascript"]\');if(elems.length > 0){var uiContainer=jQuery(\'div.uicontainer\', elems[elems.length-1].parentElement)[0];if(!uiContainer.ctnBlkMessageHistory && typeof CtnBlkMessageHistory===\'function\'){uiContainer.ctnBlkMessageHistory=new CtnBlkMessageHistory(uiContainer, {msgAction:' + toStringLiteral(msgAction) + ',period:' + toStringLiteral(period) + ',msgsPerPage:' + toStringLiteral(msgsPerPage) + ',columns:' + toStringLiteral(JSON.stringify(columns)) + ',targetDeviceId:' + toStringLiteral(targetDeviceId) + ',actionLinks:' + toStringLiteral(actionLinks) + ',displayTargetHtmlAnchor:' + toStringLiteral(displayTargetHtmlAnchor) + ',saveTargetHtmlAnchor:' + toStringLiteral(saveTargetHtmlAnchor) + '});}uiContainer.ctnBlkMessageHistory.listMessages()}})()</script>')
+                    el(wp.element.RawHTML, {}, '<script type="text/javascript">(function(){var elems=jQuery(\'script[type="text/javascript"]\');if(elems.length > 0){var uiContainer=jQuery(\'div.uicontainer\', elems[elems.length-1].parentElement)[0];if(!uiContainer.ctnBlkMessageHistory && typeof CtnBlkMessageHistory===\'function\'){uiContainer.ctnBlkMessageHistory=new CtnBlkMessageHistory(uiContainer, {msgAction:' + toStringLiteral(msgAction) + ',period:' + toStringLiteral(period) + ',customStartDate:' + toStringLiteral(customStartDate) + ',customEndDate:' + toStringLiteral(customEndDate) + ',msgsPerPage:' + toStringLiteral(msgsPerPage) + ',columns:' + toStringLiteral(JSON.stringify(columns)) + ',targetDeviceId:' + toStringLiteral(targetDeviceId) + ',actionLinks:' + toStringLiteral(actionLinks) + ',displayTargetHtmlAnchor:' + toStringLiteral(displayTargetHtmlAnchor) + ',saveTargetHtmlAnchor:' + toStringLiteral(saveTargetHtmlAnchor) + '});}uiContainer.ctnBlkMessageHistory.listMessages()}})()</script>')
                 )
             );
         }

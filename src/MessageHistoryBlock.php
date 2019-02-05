@@ -27,7 +27,8 @@ class MessageHistoryBlock {
             'wp-editor',
             'wp-i18n',
             'wp-element',
-            'wp-components'
+            'wp-components',
+            'moment'
         ], filemtime("$pluginDir/$blockEditorScriptFile"));
 
         $blockScriptFile = '/js/MessageHistoryBlock.js';

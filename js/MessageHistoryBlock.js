@@ -9,6 +9,8 @@
         if (this.checkCtnApiProxyAvailable(this.uiContainer)) {
             this.msgAction = props.msgAction;
             this.period = props.period;
+            this.customStartDate = props.customStartDate;
+            this.customEndDate = props.customEndDate;
             this.msgsPerPage = props.msgsPerPage;
             this.columns = JSON.parse(props.columns);
             this.actionLinks = props.actionLinks;
@@ -195,9 +197,16 @@
 
         var options = {
             action: this.action,
-            direction: 'outbound',
-            startDate: getPeriodStartDate(this.period)
+            direction: 'outbound'
         };
+
+        if (this.period !== 'custom') {
+            options.startDate = getPeriodStartDate(this.period);
+        }
+        else {
+            options.startDate = moment(this.customStartDate).utc().toDate();
+            options.endDate = moment(this.customEndDate).endOf('d').utc().toDate();
+        }
 
         var _self = this;
 

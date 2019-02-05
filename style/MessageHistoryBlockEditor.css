@@ -15,3 +15,22 @@ div.wp-block-catenis-blocks-message-history thead th {
     padding-right: .5em;
     border: darkgray solid 1px;
 }
+
+div.ctn-date-picker {
+    margin-bottom: 1.5em;
+}
+
+.edit-post-settings-sidebar__panel-block .components-panel__body .components-base-control.ctn-date-picker {
+    display: inline-block;
+    margin-bottom: 0;
+}
+
+.components-base-control.ctn-date-picker .components-base-control__field {
+    margin-bottom: 0;
+}
+
+svg.ctn-date-picker {
+    margin: 0.5em 0.5em 0.6em 0.5em;
+    vertical-align: bottom;
+    cursor: pointer;
+}
