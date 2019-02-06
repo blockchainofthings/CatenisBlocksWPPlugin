@@ -53,7 +53,7 @@
             this.txtError = undefined;
             this.messages = undefined;
             this.mapIdMsgIdx = undefined;
-            this.totalPages = undefined;
+            this.totalPages = 0;
             this.currentPageNumber = undefined;
             this.viewMessages = undefined;
 
@@ -148,6 +148,7 @@
 
             if ($pageNumberField.length > 0) {
                 $pageNumberField.change(this.pageNumberChanged.bind(this));
+                $pageNumberField.on('input', this.pageNumberEntered.bind(this));
 
                 this.pageNumberField = $pageNumberField[0];
             }
@@ -237,6 +238,7 @@
         }
         else {
             this.viewMessages = [];
+            this.totalPages = 0;
             this.addNoMessageEntry();
         }
     };
@@ -256,32 +258,50 @@
     };
 
     CtnBlkMessageHistory.prototype.resetPageNumber = function (newPageNumber) {
-        if (newPageNumber > 0 && newPageNumber <= this.totalPages) {
-            this.currentPageNumber = newPageNumber;
-            this.pageNumberField.value = newPageNumber;
+        if (typeof newPageNumber === 'number') {
+            if (this.totalPages > 0) {
+                // Make sure that number is integer
+                newPageNumber = Math.floor(newPageNumber);
 
-            if (newPageNumber === 1) {
-                this.disableHeaderButtons(['firstPage', 'prevPage']);
+                if (newPageNumber < 1) {
+                    newPageNumber = 1;
+                } else if (newPageNumber > this.totalPages) {
+                    newPageNumber = this.totalPages;
+                }
 
-                this.pageNumberField.disabled = this.totalPages === 1;
+                if (!this.currentPageNumber) {
+                    $(this.totalPagesField).text(this.totalPages);
+                }
+
+                this.currentPageNumber = newPageNumber;
+                this.pageNumberField.value = newPageNumber;
+
+                if (newPageNumber === 1) {
+                    this.disableHeaderButtons(['firstPage', 'prevPage']);
+
+                    this.pageNumberField.disabled = this.totalPages === 1;
+                } else {
+                    this.enableHeaderButtons(['firstPage', 'prevPage']);
+                }
+
+                if (newPageNumber === this.totalPages) {
+                    this.disableHeaderButtons(['nextPage', 'lastPage']);
+                } else {
+                    this.enableHeaderButtons(['nextPage', 'lastPage']);
+                }
+
+                // Separate messages to be displayed
+                var startIdx = this.msgsPerPage * (newPageNumber - 1);
+                this.viewMessages = this.messages.slice(startIdx, startIdx + this.msgsPerPage);
+
+                // Display messages
+                this.addMessagesToList();
             }
             else {
-                this.enableHeaderButtons(['firstPage', 'prevPage']);
+                this.clearHeader();
+                this.currentPageNumber = undefined;
+                this.addNoMessageEntry();
             }
-
-            if (newPageNumber === this.totalPages) {
-                this.disableHeaderButtons(['nextPage', 'lastPage']);
-            }
-            else {
-                this.enableHeaderButtons(['nextPage', 'lastPage']);
-            }
-
-            // Separate messages to be displayed
-            var startIdx = this.msgsPerPage * (newPageNumber - 1);
-            this.viewMessages = this.messages.slice(startIdx, startIdx + this.msgsPerPage);
-
-            // Display messages
-            this.addMessagesToList();
         }
     };
 
@@ -300,14 +320,18 @@
     };
 
     CtnBlkMessageHistory.prototype.addNoMessageEntry = function () {
-        $(this.tableBody).append(
-            $(context.document.createElement('tr')).append(
-                $(context.document.createElement('td'))
-                    .addClass('nomessage')
-                    .attr('colspan', Object.keys(this.columns).length)
-                    .text(__('No messages', 'catenis-blocks'))
-            )
-        );
+        if (this.tableBody) {
+            this.emptyMessageList();
+
+            $(this.tableBody).append(
+                $(context.document.createElement('tr')).append(
+                    $(context.document.createElement('td'))
+                        .addClass('nomessage')
+                        .attr('colspan', Object.keys(this.columns).length)
+                        .text(__('No messages', 'catenis-blocks'))
+                )
+            );
+        }
     };
 
     CtnBlkMessageHistory.prototype.newMessageEntry = function (messageInfo) {
@@ -603,13 +627,20 @@
         this.resetPageNumber(this.totalPages);
     };
 
+    CtnBlkMessageHistory.prototype.pageNumberEntered = function (event) {
+        event.stopPropagation();
+        event.preventDefault();
+
+        event.target.value = event.target.value.replace(/[^0-9]/, '');
+    };
+
     CtnBlkMessageHistory.prototype.pageNumberChanged = function (event) {
         event.stopPropagation();
         event.preventDefault();
 
         var newValue = parseInt(event.target.value);
 
-        if (isNaN(newValue) || newValue < 0 || newValue > this.totalPages) {
+        if (isNaN(newValue)) {
             // Reset field value to current page number
             this.pageNumberField.value = this.currentPageNumber;
         }
