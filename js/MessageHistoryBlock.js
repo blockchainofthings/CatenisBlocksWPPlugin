@@ -197,7 +197,7 @@
         this.clearMessages();
 
         var options = {
-            action: this.action,
+            action: this.msgAction,
             direction: 'outbound'
         };
 
