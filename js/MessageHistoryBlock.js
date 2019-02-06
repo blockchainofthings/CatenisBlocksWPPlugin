@@ -206,7 +206,10 @@
         }
         else {
             options.startDate = moment(this.customStartDate).utc().toDate();
-            options.endDate = moment(this.customEndDate).endOf('d').utc().toDate();
+
+            if (this.customEndDate) {
+                options.endDate = moment(this.customEndDate).endOf('d').utc().toDate();
+            }
         }
 
         var _self = this;

@@ -82,21 +82,15 @@
         edit: function(props) {
             var msgAction = props.attributes.msgAction !== undefined ? props.attributes.msgAction : defMsgAction;
             var period = props.attributes.period !== undefined ? props.attributes.period : defPeriod;
-            
-            if (props.attributes.customEndDate === undefined) {
-                props.setAttributes({
-                    customEndDate: moment().format(dateFormat)
-                });
-            }
-            var customEndDate = props.attributes.customEndDate;
 
             if (props.attributes.customStartDate === undefined) {
                 props.setAttributes({
-                    customStartDate: customEndDate
+                    customStartDate: moment().format(dateFormat)
                 });
             }
             var customStartDate = props.attributes.customStartDate;
-            
+
+            var customEndDate = props.attributes.customEndDate;
             var selectCustomStartDate = props.attributes.selectCustomStartDate ? props.attributes.selectCustomStartDate : false;
             var selectCustomEndDate = props.attributes.selectCustomEndDate ? props.attributes.selectCustomEndDate : false;
             var msgsPerPage = props.attributes.msgsPerPage !== undefined ? JSON.parse(props.attributes.msgsPerPage) : defMsgsPerPage;
@@ -133,9 +127,12 @@
             
             function onBlurCustomStartDate(event) {
                 var mt = moment(event.target.value, dateFormat);
+                var mtCustomEndDate = moment(customEndDate, dateFormat);
+                var mtToday = moment().format(dateFormat);
 
                 props.setAttributes({
-                    customStartDate: mt.isValid() && mt.isSameOrBefore(moment(customEndDate, dateFormat)) ? mt.format(dateFormat) : customEndDate,
+                    customStartDate: !mt.isValid() ? (!mtCustomEndDate.isValid() ? mtToday : (mtCustomEndDate.isBefore(mtToday) ? mtCustomEndDate.format(dateFormat) : mtToday.format(dateFormat)))
+                            : (!mtCustomEndDate.isValid() || mt.isSameOrBefore(mtCustomEndDate) ? mt.format(dateFormat) : mtCustomEndDate.format(dateFormat)),
                     selectCustomStartDate: false
                 });
             }
@@ -154,9 +151,12 @@
 
             function onChangeCustomStartDatePicker(newDate) {
                 var mt = moment(newDate);
+                var mtCustomEndDate = moment(customEndDate, dateFormat);
+                var mtToday = moment().format(dateFormat);
 
                 props.setAttributes({
-                    customStartDate: mt.isValid() && mt.isSameOrBefore(moment(customEndDate, dateFormat)) ? mt.format(dateFormat) : customEndDate,
+                    customStartDate: !mt.isValid() ? (!mtCustomEndDate.isValid() ? mtToday : (mtCustomEndDate.isBefore(mtToday) ? mtCustomEndDate.format(dateFormat) : mtToday.format(dateFormat)))
+                        : (!mtCustomEndDate.isValid() || mt.isSameOrBefore(mtCustomEndDate) ? mt.format(dateFormat) : mtCustomEndDate.format(dateFormat)),
                     selectCustomStartDate: false
                 });
 
@@ -178,10 +178,10 @@
 
             function onBlurCustomEndDate(event) {
                 var mt = moment(event.target.value, dateFormat);
-                var mtToday = moment();
+                var mtCustomStartDate = moment(customStartDate, dateFormat);
 
                 props.setAttributes({
-                    customEndDate: mt.isValid() && mt.isSameOrAfter(moment(customStartDate, dateFormat)) && mt.isSameOrBefore(mtToday) ? mt.format(dateFormat) : (mt.isAfter(mtToday) ? mtToday.format(dateFormat) : customStartDate),
+                    customEndDate: !mt.isValid() ? '' : (mt.isBefore(mtCustomStartDate) ? mtCustomStartDate.format(dateFormat) : mt.format(dateFormat)),
                     selectCustomEndDate: false
                 });
             }
@@ -200,10 +200,10 @@
 
             function onChangeCustomEndDatePicker(newDate) {
                 var mt = moment(newDate);
-                var mtToday = moment();
+                var mtCustomStartDate = moment(customStartDate, dateFormat);
 
                 props.setAttributes({
-                    customEndDate: mt.isValid() && mt.isSameOrAfter(moment(customStartDate, dateFormat)) && mt.isSameOrBefore(mtToday) ? mt.format(dateFormat) : (mt.isAfter(mtToday) ? mtToday.format(dateFormat) : customStartDate),
+                    customEndDate: !mt.isValid() ? '' : (mt.isBefore(mtCustomStartDate) ? mtCustomStartDate.format(dateFormat) : mt.format(dateFormat)),
                     selectCustomEndDate: false
                 });
 
