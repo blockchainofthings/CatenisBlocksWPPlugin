@@ -215,6 +215,10 @@
                 _self.displayError(error.toString());
             }
             else {
+                if (result.countExceeded) {
+                    _self.displayError(__('Maximum number of allowed returned messages has been exceeded; not all messages have been retrieved', 'catenis-block'));
+                }
+
                 _self.processRetrievedMessages(result.messages);
             }
         })
