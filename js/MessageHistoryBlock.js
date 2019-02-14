@@ -98,7 +98,7 @@
         context.ctnApiProxy.on('notification', function (eventName, eventData) {
             switch (eventName) {
                 case 'sent-msg-read':
-                    _self.processReadConfirmation(eventData);
+                    _self.processSentMessageRead(eventData);
             }
         });
 
@@ -110,14 +110,14 @@
         });
     };
 
-    CtnBlkMessageHistory.prototype.processCtnMsgReadNotify = function (event, messageId) {
-        // Update message's read confirmation state
-        this.updateMessageEntry(messageId, {read: true}, true, true);
+    CtnBlkMessageHistory.prototype.processSentMessageRead = function (eventData) {
+        // Update message's read state
+        this.updateMessageEntry(eventData.messageId, {read: true}, true, true);
     };
 
-    CtnBlkMessageHistory.prototype.processReadConfirmation = function (eventData) {
-        // Update message's read confirmation state
-        this.updateMessageEntry(eventData.messageId, {read: true}, true, true);
+    CtnBlkMessageHistory.prototype.processCtnMsgReadNotify = function (event, messageId) {
+        // Update message's read state
+        this.updateMessageEntry(messageId, {read: true}, true, true);
     };
 
     CtnBlkMessageHistory.prototype.checkCtnApiProxyAvailable = function (uiContainer) {
