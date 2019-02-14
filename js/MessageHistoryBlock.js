@@ -57,6 +57,10 @@
             this.totalPages = 0;
             this.currentPageNumber = undefined;
             this.viewMessages = undefined;
+            this.sortColumnOrderField = undefined;
+            this.sortColumn = undefined;
+            this.sortOrder = undefined;
+            this.$tableHeaders = undefined;
 
             this.setHeaderElements();
             this.setTableElements();
@@ -182,9 +186,64 @@
     };
 
     CtnBlkMessageHistory.prototype.setTableElements = function () {
+        var $sortColumnOrder = $('input[type="hidden"][name="sortColumnOrder"]', this.uiContainer);
+        if ($sortColumnOrder.length > 0) {
+            this.sortColumnOrderField = $sortColumnOrder[0];
+
+            var sortParts = this.sortColumnOrderField.value.split('-');
+            this.sortColumn = sortParts[0];
+            this.sortOrder = sortParts[1];
+        }
+
+        this.$tableHeaders = $('table thead tr th', this.uiContainer);
+
         var elems = $('tbody', this.uiContainer);
         if (elems.length > 0) {
             this.tableBody = elems[0];
+        }
+
+        // Hook up handler to process request to sort message list by a different column/order
+        var $headerName = $('table thead tr span.headerName', this.uiContainer);
+        var _self = this;
+
+        $headerName.click(function (event) {
+            var column = $(event.target).parent()[0].className;
+
+            if (_self.sortColumn === column) {
+                _self.sortOrder = _self.sortOrder === 'up' ? 'down' : 'up';
+            }
+            else {
+                _self.clearSortIcons();
+                _self.sortColumn = column;
+                _self.sortOrder = 'up';
+            }
+
+            _self.setSortIcon();
+
+            _self.sortColumnOrderField.value = _self.sortColumn + '-' + _self.sortOrder;
+
+            // Sort messages and rewind list
+            _self.processRetrievedMessages(_self.messages);
+        });
+    };
+
+    CtnBlkMessageHistory.prototype.clearSortIcons = function () {
+        var thElem = this.$tableHeaders.filter('.' + this.sortColumn)[0];
+
+        $('span.order-icon.up', thElem).addClass('hidden');
+        $('span.order-icon.down', thElem).addClass('hidden');
+    };
+
+    CtnBlkMessageHistory.prototype.setSortIcon = function () {
+        var thElem = this.$tableHeaders.filter('.' + this.sortColumn)[0];
+
+        if (this.sortOrder === 'up') {
+            $('span.order-icon.up', thElem).removeClass('hidden');
+            $('span.order-icon.down', thElem).addClass('hidden');
+        }
+        else {
+            $('span.order-icon.up', thElem).addClass('hidden');
+            $('span.order-icon.down', thElem).removeClass('hidden');
         }
     };
 
@@ -240,8 +299,8 @@
     };
 
     CtnBlkMessageHistory.prototype.processRetrievedMessages = function (messages) {
-        // Reverse retrieved list so last stored/sent messages are shown first
-        this.messages = this.indexReverseMessages(messages);
+        // Sort and index messages
+        this.messages = this.indexSortMessages(messages);
 
         if (messages.length > 0) {
             // Calculate total number of pages
@@ -257,18 +316,67 @@
         }
     };
 
-    CtnBlkMessageHistory.prototype.indexReverseMessages = function (messages) {
+    CtnBlkMessageHistory.prototype.indexSortMessages = function (messages) {
+        // Sort messages according to current sort column/order
+        var _self = this;
+
+        messages.sort(function (msgInfo1, msgInfo2) {
+            var retVal;
+
+            switch (_self.sortColumn) {
+                case 'messageId':
+                    retVal = msgInfo1.messageId.localeCompare(msgInfo2.messageId);
+
+                    break;
+
+                case 'type':
+                    retVal = mapMsgAction(msgInfo1.action).localeCompare(mapMsgAction(msgInfo2.action));
+
+                    break;
+
+                case 'date':
+                    retVal = moment(msgInfo1.date).diff(msgInfo2.date);
+
+                    break;
+
+                case 'targetDevice':
+                    if (!msgInfo1.to) {
+                        return 1;
+                    }
+                    else if (!msgInfo2.to) {
+                        return -1;
+                    }
+                    else {
+                        retVal = _self.deviceName(msgInfo1.to).localeCompare(_self.deviceName(msgInfo2.to));
+                    }
+
+                    break;
+
+                case 'msgRead':
+                    if (msgInfo1.read === undefined) {
+                        return 1;
+                    }
+                    else if (msgInfo2.read === undefined) {
+                        return -1;
+                    }
+                    else {
+                        retVal = booleanValue(msgInfo1.read).localeCompare(booleanValue(msgInfo2.read));
+                    }
+
+                    break;
+            }
+
+            return _self.sortOrder === 'up' ? retVal : -retVal;
+        });
+
+        // And now index the messages
         this.mapIdMsgIdx = {};
-        var reversedMessages = [];
 
-        for (var idx = messages.length - 1, mapIdx = 0; idx >= 0; idx--, mapIdx++) {
-            var message = messages[idx];
+        messages.forEach(function (msgInfo, idx) {
+            _self.mapIdMsgIdx[msgInfo.messageId] = idx;
+        });
 
-            this.mapIdMsgIdx[message.messageId] = mapIdx;
-            reversedMessages.push(message);
-        }
-
-        return reversedMessages;
+        return messages;
     };
 
     CtnBlkMessageHistory.prototype.removeMessage = function (messageId) {

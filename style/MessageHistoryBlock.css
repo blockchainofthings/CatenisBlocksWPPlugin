@@ -54,10 +54,11 @@ div.wp-block-catenis-blocks-message-history div.header span.page-number input[ty
 div.wp-block-catenis-blocks-message-history div.header span.page-number span.max-page {
 }
 
-div.wp-block-catenis-blocks-message-history div.header div.left-overlay {
+div.wp-block-catenis-blocks-message-history div.left-overlay {
     position: absolute;
     x: 0;
     y: 0;
+    text-align: left;
 }
 
 div.wp-block-catenis-blocks-message-history table {
@@ -66,12 +67,38 @@ div.wp-block-catenis-blocks-message-history table {
 }
 
 div.wp-block-catenis-blocks-message-history table th {
+    white-space: nowrap;
     word-wrap: normal;
     word-break: normal;
-    -moz-hyphens: manual;
-    -ms-hyphens: manual;
-    -webkit-hyphens: manual;
-    hyphens: manual;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    -webkit-hyphens: none;
+    hyphens: none;
+}
+
+div.wp-block-catenis-blocks-message-history table th span.headerName {
+    cursor: pointer;
+}
+
+div.wp-block-catenis-blocks-message-history table th span.order-icon {
+    color: gray;
+    margin: 0 0.1em 0 -0.2em
+}
+
+div.wp-block-catenis-blocks-message-history table th span.order-icon.hidden {
+    display: none;
+}
+
+div.wp-block-catenis-blocks-message-history table th span.order-icon svg {
+    fill: currentColor;
+}
+
+div.wp-block-catenis-blocks-message-history table th span.order-icon.up svg {
+    margin-bottom: 0;
+}
+
+div.wp-block-catenis-blocks-message-history table th span.order-icon.down svg {
+    margin-bottom: -0.1em;
 }
 
 div.wp-block-catenis-blocks-message-history table td {

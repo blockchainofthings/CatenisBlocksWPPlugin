@@ -19,6 +19,7 @@
     };
     var defActionLinks = 'both';
     var defOriginDeviceId = 'deviceId';
+    var defSortColumnOrder = 'date-down';
 
     registerBlockType('catenis-blocks/message-inbox', {
         title: __('Message Inbox', 'catenis-blocks'),
@@ -68,6 +69,12 @@
             },
             saveTargetHtmlAnchor: {
                 type: 'string'
+            },
+            sortColumnOrder: {
+                type: 'string',
+                source: 'attribute',
+                selector: 'input[type="hidden"][name="sortColumnOrder"]',
+                attribute: 'value'
             }
         },
         /**
@@ -98,6 +105,11 @@
             var originDeviceId = props.attributes.originDeviceId !== undefined ? props.attributes.originDeviceId : defOriginDeviceId;
             var displayTargetHtmlAnchor = props.attributes.displayTargetHtmlAnchor;
             var saveTargetHtmlAnchor = props.attributes.saveTargetHtmlAnchor;
+            var sortColumnOrder = props.attributes.sortColumnOrder !== undefined ? props.attributes.sortColumnOrder : defSortColumnOrder;
+
+            var sortParts = sortColumnOrder.split('-');
+            var sortColumn = sortParts[0];
+            var sortOrder = sortParts[1];
 
             function onChangeUnreadOnly(newState) {
                 props.setAttributes({
@@ -225,36 +237,58 @@
                 });
             }
 
-            function onChangeMessageIdColumn(newState) {
-                columns.messageId = newState;
-
-                props.setAttributes({
-                    columns: JSON.stringify(columns)
-                });
-            }
-
             function onChangeDateColumn(newState) {
                 columns.date = newState;
 
-                props.setAttributes({
+                var attrToSet = {
                     columns: JSON.stringify(columns)
-                });
+                };
+
+                if (!columns.date && sortColumn === 'date') {
+                    // Reset sorting column/order
+                    sortColumn = 'messageId';
+                    sortOrder = 'up';
+
+                    attrToSet.sortColumnOrder = sortColumn + '-' + sortOrder;
+                }
+
+                props.setAttributes(attrToSet);
             }
 
             function onChangeOriginDeviceColumn(newState) {
                 columns.originDevice = newState;
 
-                props.setAttributes({
+                var attrToSet = {
                     columns: JSON.stringify(columns)
-                });
+                };
+
+                if (!columns.originDevice && sortColumn === 'originDevice') {
+                    // Reset sorting column/order
+                    sortColumn = 'messageId';
+                    sortOrder = 'up';
+
+                    attrToSet.sortColumnOrder = sortColumn + '-' + sortOrder;
+                }
+
+                props.setAttributes(attrToSet);
             }
 
             function onChangeMsgReadColumn(newState) {
                 columns.msgRead = newState;
 
-                props.setAttributes({
+                var attrToSet = {
                     columns: JSON.stringify(columns)
-                });
+                };
+
+                if (!columns.msgRead && sortColumn === 'msgRead') {
+                    // Reset sorting column/order
+                    sortColumn = 'messageId';
+                    sortOrder = 'up';
+
+                    attrToSet.sortColumnOrder = sortColumn + '-' + sortOrder;
+                }
+
+                props.setAttributes(attrToSet);
             }
 
             function onChangeActionLinks(newValue) {
@@ -278,6 +312,22 @@
             function onChangeSaveTargetHtmlAnchor(newValue) {
                 props.setAttributes({
                     saveTargetHtmlAnchor: newValue
+                });
+            }
+
+            function onClickSortColumnOrder(event) {
+                var column = $(event.target).parent()[0].className;
+
+                if (sortColumn === column) {
+                    sortOrder = sortOrder === 'up' ? 'down' : 'up';
+                }
+                else {
+                    sortColumn = column;
+                    sortOrder = 'up';
+                }
+
+                props.setAttributes({
+                    sortColumnOrder: sortColumn + '-' + sortOrder
                 });
             }
 
@@ -384,7 +434,6 @@
                             el(cmp.CheckboxControl, {
                                 label: __('Message ID', 'catenis-blocks'),
                                 checked: columns.messageId,
-                                onChange: onChangeMessageIdColumn,
                                 className: 'msgListColumnEntry',
                                 disabled: true
                             }),
@@ -489,19 +538,131 @@
                                         }
 
                                         if (columns.messageId) {
-                                            columnsToShow.push(el('th', {}, __('Message ID', 'catenis-blocks')));
+                                            columnsToShow.push(
+                                                el('th', {
+                                                    className: 'messageId'
+                                                },
+                                                    el('span', {
+                                                        className: 'order-icon up' + (sortColumn !== 'messageId' || sortOrder !== 'up' ? ' hidden' : '')
+                                                    },
+                                                        el(wp.element.RawHTML, {
+                                                            className: 'rawDiv'
+                                                        },
+                                                            '<svg height="1em" width="1em" fill="#000000" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" x="0px" y="0px"><g><path d="M12,8a1.99426,1.99426,0,0,0-1.49677.67212L6.9523,12.66693A2.00261,2.00261,0,0,0,8.44907,16h7.10186a2.00261,2.00261,0,0,0,1.49677-3.33307L13.49677,8.67212A1.99426,1.99426,0,0,0,12,8Z"></path></g></svg>'
+                                                        )
+                                                    ),
+                                                    el('span', {
+                                                        className: 'order-icon down' + (sortColumn !== 'messageId' || sortOrder !== 'down' ? ' hidden' : '')
+                                                    },
+                                                        el(wp.element.RawHTML, {
+                                                            className: 'rawDiv'
+                                                        },
+                                                            '<svg height="1em" width="1em" fill="#000000" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" x="0px" y="0px"><g><path d="M15.55093,8H8.44907A2.00261,2.00261,0,0,0,6.9523,11.33307l3.55093,3.99481a2.00267,2.00267,0,0,0,2.99354,0l3.55093-3.99481A2.00261,2.00261,0,0,0,15.55093,8Z"></path></g></svg>'
+                                                        )
+                                                    ),
+                                                    el('span', {
+                                                        className: 'headerName',
+                                                        title: __('Sort by', 'catenis-blocks'),
+                                                        onClick: onClickSortColumnOrder
+                                                    }, __('Message ID', 'catenis-blocks'))
+                                                )
+                                            );
                                         }
 
                                         if (columns.date) {
-                                            columnsToShow.push(el('th', {}, __('Date', 'catenis-blocks')));
+                                            columnsToShow.push(
+                                                el('th', {
+                                                    className: 'date'
+                                                },
+                                                    el('span', {
+                                                        className: 'order-icon up' + (sortColumn !== 'date' || sortOrder !== 'up' ? ' hidden' : '')
+                                                    },
+                                                        el(wp.element.RawHTML, {
+                                                            className: 'rawDiv'
+                                                        },
+                                                            '<svg height="1em" width="1em" fill="#000000" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" x="0px" y="0px"><g><path d="M12,8a1.99426,1.99426,0,0,0-1.49677.67212L6.9523,12.66693A2.00261,2.00261,0,0,0,8.44907,16h7.10186a2.00261,2.00261,0,0,0,1.49677-3.33307L13.49677,8.67212A1.99426,1.99426,0,0,0,12,8Z"></path></g></svg>'
+                                                        )
+                                                    ),
+                                                    el('span', {
+                                                        className: 'order-icon down' + (sortColumn !== 'date' || sortOrder !== 'down' ? ' hidden' : '')
+                                                    },
+                                                        el(wp.element.RawHTML, {
+                                                            className: 'rawDiv'
+                                                        },
+                                                            '<svg height="1em" width="1em" fill="#000000" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" x="0px" y="0px"><g><path d="M15.55093,8H8.44907A2.00261,2.00261,0,0,0,6.9523,11.33307l3.55093,3.99481a2.00267,2.00267,0,0,0,2.99354,0l3.55093-3.99481A2.00261,2.00261,0,0,0,15.55093,8Z"></path></g></svg>'
+                                                        )
+                                                    ),
+                                                    el('span', {
+                                                        className: 'headerName',
+                                                        title: __('Sort by', 'catenis-blocks'),
+                                                        onClick: onClickSortColumnOrder
+                                                    }, __('Date', 'catenis-blocks'))
+                                                )
+                                            );
                                         }
 
                                         if (columns.originDevice) {
-                                            columnsToShow.push(el('th', {}, __('From', 'catenis-blocks')));
+                                            columnsToShow.push(
+                                                el('th', {
+                                                    className: 'originDevice'
+                                                },
+                                                    el('span', {
+                                                        className: 'order-icon up' + (sortColumn !== 'originDevice' || sortOrder !== 'up' ? ' hidden' : '')
+                                                    },
+                                                        el(wp.element.RawHTML, {
+                                                            className: 'rawDiv'
+                                                        },
+                                                            '<svg height="1em" width="1em" fill="#000000" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" x="0px" y="0px"><g><path d="M12,8a1.99426,1.99426,0,0,0-1.49677.67212L6.9523,12.66693A2.00261,2.00261,0,0,0,8.44907,16h7.10186a2.00261,2.00261,0,0,0,1.49677-3.33307L13.49677,8.67212A1.99426,1.99426,0,0,0,12,8Z"></path></g></svg>'
+                                                        )
+                                                    ),
+                                                    el('span', {
+                                                        className: 'order-icon down' + (sortColumn !== 'originDevice' || sortOrder !== 'down' ? ' hidden' : '')
+                                                    },
+                                                        el(wp.element.RawHTML, {
+                                                            className: 'rawDiv'
+                                                        },
+                                                            '<svg height="1em" width="1em" fill="#000000" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" x="0px" y="0px"><g><path d="M15.55093,8H8.44907A2.00261,2.00261,0,0,0,6.9523,11.33307l3.55093,3.99481a2.00267,2.00267,0,0,0,2.99354,0l3.55093-3.99481A2.00261,2.00261,0,0,0,15.55093,8Z"></path></g></svg>'
+                                                        )
+                                                    ),
+                                                    el('span', {
+                                                        className: 'headerName',
+                                                        title: __('Sort by', 'catenis-blocks'),
+                                                        onClick: onClickSortColumnOrder
+                                                    }, __('From', 'catenis-blocks'))
+                                                )
+                                            );
                                         }
 
                                         if (columns.msgRead) {
-                                            columnsToShow.push(el('th', {}, __('Read', 'catenis-blocks')));
+                                            columnsToShow.push(
+                                                el('th', {
+                                                    className: 'msgRead'
+                                                },
+                                                    el('span', {
+                                                        className: 'order-icon up' + (sortColumn !== 'msgRead' || sortOrder !== 'up' ? ' hidden' : '')
+                                                    },
+                                                        el(wp.element.RawHTML, {
+                                                            className: 'rawDiv'
+                                                        },
+                                                            '<svg height="1em" width="1em" fill="#000000" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" x="0px" y="0px"><g><path d="M12,8a1.99426,1.99426,0,0,0-1.49677.67212L6.9523,12.66693A2.00261,2.00261,0,0,0,8.44907,16h7.10186a2.00261,2.00261,0,0,0,1.49677-3.33307L13.49677,8.67212A1.99426,1.99426,0,0,0,12,8Z"></path></g></svg>'
+                                                        )
+                                                    ),
+                                                    el('span', {
+                                                        className: 'order-icon down' + (sortColumn !== 'msgRead' || sortOrder !== 'down' ? ' hidden' : '')
+                                                    },
+                                                        el(wp.element.RawHTML, {
+                                                            className: 'rawDiv'
+                                                        },
+                                                            '<svg height="1em" width="1em" fill="#000000" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" x="0px" y="0px"><g><path d="M15.55093,8H8.44907A2.00261,2.00261,0,0,0,6.9523,11.33307l3.55093,3.99481a2.00267,2.00267,0,0,0,2.99354,0l3.55093-3.99481A2.00261,2.00261,0,0,0,15.55093,8Z"></path></g></svg>'
+                                                        )
+                                                    ),
+                                                    el('span', {
+                                                        className: 'headerName',
+                                                        title: __('Sort by', 'catenis-blocks'),
+                                                        onClick: onClickSortColumnOrder
+                                                    }, __('Read', 'catenis-blocks'))
+                                                )
+                                            );
                                         }
 
                                         return columnsToShow;
@@ -532,6 +693,11 @@
             var originDeviceId = props.attributes.originDeviceId !== undefined ? props.attributes.originDeviceId : defActionLinks;
             var displayTargetHtmlAnchor = props.attributes.displayTargetHtmlAnchor;
             var saveTargetHtmlAnchor = props.attributes.saveTargetHtmlAnchor;
+            var sortColumnOrder = props.attributes.sortColumnOrder !== undefined ? props.attributes.sortColumnOrder : defSortColumnOrder;
+
+            var sortParts = sortColumnOrder.split('-');
+            var sortColumn = sortParts[0];
+            var sortOrder = sortParts[1];
 
             return (
                 el('div', {},
@@ -602,6 +768,11 @@
                                 )
                             )
                         ),
+                        el('input', {
+                            type: 'hidden',
+                            name: 'sortColumnOrder',
+                            value: sortColumnOrder
+                        }),
                         el('table', {},
                             el('thead', {},
                                 el('tr', {},
@@ -613,19 +784,111 @@
                                         }
 
                                         if (columns.messageId) {
-                                            columnsToShow.push(el('th', {}, __('Message ID', 'catenis-blocks')));
+                                            columnsToShow.push(
+                                                el('th', {
+                                                    className: 'messageId'
+                                                },
+                                                    el('span', {
+                                                        className: 'order-icon up' + (sortColumn !== 'messageId' || sortOrder !== 'up' ? ' hidden' : '')
+                                                    },
+                                                        el(wp.element.RawHTML, {},
+                                                            '<svg height="1em" width="1em" fill="#000000" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" x="0px" y="0px"><g><path d="M12,8a1.99426,1.99426,0,0,0-1.49677.67212L6.9523,12.66693A2.00261,2.00261,0,0,0,8.44907,16h7.10186a2.00261,2.00261,0,0,0,1.49677-3.33307L13.49677,8.67212A1.99426,1.99426,0,0,0,12,8Z"></path></g></svg>'
+                                                        )
+                                                    ),
+                                                    el('span', {
+                                                        className: 'order-icon down' + (sortColumn !== 'messageId' || sortOrder !== 'down' ? ' hidden' : '')
+                                                    },
+                                                        el(wp.element.RawHTML, {},
+                                                            '<svg height="1em" width="1em" fill="#000000" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" x="0px" y="0px"><g><path d="M15.55093,8H8.44907A2.00261,2.00261,0,0,0,6.9523,11.33307l3.55093,3.99481a2.00267,2.00267,0,0,0,2.99354,0l3.55093-3.99481A2.00261,2.00261,0,0,0,15.55093,8Z"></path></g></svg>'
+                                                        )
+                                                    ),
+                                                    el('span', {
+                                                        className: 'headerName',
+                                                        title: __('Sort by', 'catenis-blocks')
+                                                    }, __('Message ID', 'catenis-blocks'))
+                                                )
+                                            );
                                         }
 
                                         if (columns.date) {
-                                            columnsToShow.push(el('th', {}, __('Date', 'catenis-blocks')));
+                                            columnsToShow.push(
+                                                el('th', {
+                                                    className: 'date'
+                                                },
+                                                    el('span', {
+                                                        className: 'order-icon up' + (sortColumn !== 'date' || sortOrder !== 'up' ? ' hidden' : '')
+                                                    },
+                                                        el(wp.element.RawHTML, {},
+                                                            '<svg height="1em" width="1em" fill="#000000" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" x="0px" y="0px"><g><path d="M12,8a1.99426,1.99426,0,0,0-1.49677.67212L6.9523,12.66693A2.00261,2.00261,0,0,0,8.44907,16h7.10186a2.00261,2.00261,0,0,0,1.49677-3.33307L13.49677,8.67212A1.99426,1.99426,0,0,0,12,8Z"></path></g></svg>'
+                                                        )
+                                                    ),
+                                                    el('span', {
+                                                        className: 'order-icon down' + (sortColumn !== 'date' || sortOrder !== 'down' ? ' hidden' : '')
+                                                    },
+                                                        el(wp.element.RawHTML, {},
+                                                            '<svg height="1em" width="1em" fill="#000000" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" x="0px" y="0px"><g><path d="M15.55093,8H8.44907A2.00261,2.00261,0,0,0,6.9523,11.33307l3.55093,3.99481a2.00267,2.00267,0,0,0,2.99354,0l3.55093-3.99481A2.00261,2.00261,0,0,0,15.55093,8Z"></path></g></svg>'
+                                                        )
+                                                    ),
+                                                    el('span', {
+                                                        className: 'headerName',
+                                                        title: __('Sort by', 'catenis-blocks')
+                                                    }, __('Date', 'catenis-blocks'))
+                                                )
+                                            );
                                         }
 
                                         if (columns.originDevice) {
-                                            columnsToShow.push(el('th', {}, __('From', 'catenis-blocks')));
+                                            columnsToShow.push(
+                                                el('th', {
+                                                    className: 'originDevice'
+                                                },
+                                                    el('span', {
+                                                        className: 'order-icon up' + (sortColumn !== 'originDevice' || sortOrder !== 'up' ? ' hidden' : '')
+                                                    },
+                                                        el(wp.element.RawHTML, {},
+                                                            '<svg height="1em" width="1em" fill="#000000" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" x="0px" y="0px"><g><path d="M12,8a1.99426,1.99426,0,0,0-1.49677.67212L6.9523,12.66693A2.00261,2.00261,0,0,0,8.44907,16h7.10186a2.00261,2.00261,0,0,0,1.49677-3.33307L13.49677,8.67212A1.99426,1.99426,0,0,0,12,8Z"></path></g></svg>'
+                                                        )
+                                                    ),
+                                                    el('span', {
+                                                        className: 'order-icon down' + (sortColumn !== 'originDevice' || sortOrder !== 'down' ? ' hidden' : '')
+                                                    },
+                                                        el(wp.element.RawHTML, {},
+                                                            '<svg height="1em" width="1em" fill="#000000" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" x="0px" y="0px"><g><path d="M15.55093,8H8.44907A2.00261,2.00261,0,0,0,6.9523,11.33307l3.55093,3.99481a2.00267,2.00267,0,0,0,2.99354,0l3.55093-3.99481A2.00261,2.00261,0,0,0,15.55093,8Z"></path></g></svg>'
+                                                        )
+                                                    ),
+                                                    el('span', {
+                                                        className: 'headerName',
+                                                        title: __('Sort by', 'catenis-blocks')
+                                                    }, __('From', 'catenis-blocks'))
+                                                )
+                                            );
                                         }
 
                                         if (columns.msgRead) {
-                                            columnsToShow.push(el('th', {}, __('Read', 'catenis-blocks')));
+                                            columnsToShow.push(
+                                                el('th', {
+                                                    className: 'msgRead'
+                                                },
+                                                    el('span', {
+                                                        className: 'order-icon up' + (sortColumn !== 'msgRead' || sortOrder !== 'up' ? ' hidden' : '')
+                                                    },
+                                                        el(wp.element.RawHTML, {},
+                                                            '<svg height="1em" width="1em" fill="#000000" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" x="0px" y="0px"><g><path d="M12,8a1.99426,1.99426,0,0,0-1.49677.67212L6.9523,12.66693A2.00261,2.00261,0,0,0,8.44907,16h7.10186a2.00261,2.00261,0,0,0,1.49677-3.33307L13.49677,8.67212A1.99426,1.99426,0,0,0,12,8Z"></path></g></svg>'
+                                                        )
+                                                    ),
+                                                    el('span', {
+                                                        className: 'order-icon down' + (sortColumn !== 'msgRead' || sortOrder !== 'down' ? ' hidden' : '')
+                                                    },
+                                                        el(wp.element.RawHTML, {},
+                                                            '<svg height="1em" width="1em" fill="#000000" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" x="0px" y="0px"><g><path d="M15.55093,8H8.44907A2.00261,2.00261,0,0,0,6.9523,11.33307l3.55093,3.99481a2.00267,2.00267,0,0,0,2.99354,0l3.55093-3.99481A2.00261,2.00261,0,0,0,15.55093,8Z"></path></g></svg>'
+                                                        )
+                                                    ),
+                                                    el('span', {
+                                                        className: 'headerName',
+                                                        title: __('Sort by', 'catenis-blocks')
+                                                    }, __('Read', 'catenis-blocks'))
+                                                )
+                                            );
                                         }
 
                                         return columnsToShow;
