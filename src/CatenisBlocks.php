@@ -40,6 +40,7 @@ class CatenisBlocks {
         $this->blockInstances['message-input'] = new MessageInputBlock($pluginPath);
         $this->blockInstances['save-message'] = new SaveMessageBlock($pluginPath);
         $this->blockInstances['message-history'] = new MessageHistoryBlock($pluginPath);
+        $this->blockInstances['message-inbox'] = new MessageInboxBlock($pluginPath);
     }
 
     function initialize() {
