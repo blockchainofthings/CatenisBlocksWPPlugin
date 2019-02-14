@@ -8,6 +8,7 @@
 
     var dateFormat = 'YYYY-MM-DD';
     var defMsgAction = 'any';
+    var defUnreadOnly = false;
     var defPeriod = 'last_7_days';
     var defMsgsPerPage = 10;
     var defColumns = {
@@ -36,6 +37,9 @@
         attributes: {
             msgAction: {
                 type: 'string'
+            },
+            unreadOnly: {
+                type: 'boolean'
             },
             period: {
                 type: 'string'
@@ -81,6 +85,7 @@
          */
         edit: function(props) {
             var msgAction = props.attributes.msgAction !== undefined ? props.attributes.msgAction : defMsgAction;
+            var unreadOnly = props.attributes.unreadOnly !== undefined ? props.attributes.unreadOnly : defUnreadOnly;
             var period = props.attributes.period !== undefined ? props.attributes.period : defPeriod;
 
             if (props.attributes.customStartDate === undefined) {
@@ -103,6 +108,12 @@
             function onChangeMsgAction(newValue) {
                 props.setAttributes({
                     msgAction: newValue
+                });
+            }
+
+            function onChangeUnreadOnly(newState) {
+                props.setAttributes({
+                    unreadOnly: newState
                 });
             }
 
@@ -311,6 +322,12 @@
                                 }],
                                 value: msgAction,
                                 onChange: onChangeMsgAction
+                            }),
+                            el(cmp.ToggleControl, {
+                                label: __('Unread Only', 'catenis-blocks'),
+                                help: unreadOnly ? __('List only unread messages', 'catenis-blocks') : __('List all messages', 'catenis-blocks'),
+                                checked: unreadOnly,
+                                onChange: onChangeUnreadOnly
                             }),
                             el(cmp.SelectControl, {
                                 label: __('Period', 'catenis-blocks'),
@@ -588,6 +605,7 @@
          */
         save: function(props) {
             var msgAction = props.attributes.msgAction !== undefined ? props.attributes.msgAction : defMsgAction;
+            var unreadOnly = props.attributes.unreadOnly !== undefined ? props.attributes.unreadOnly : defUnreadOnly;
             var period = props.attributes.period !== undefined ? props.attributes.period : defPeriod;
             var customEndDate = props.attributes.customEndDate;
             var customStartDate = props.attributes.customStartDate;
@@ -711,7 +729,7 @@
                     el('div', {
                         className: 'noctnapiproxy'
                     }, __('Catenis API client not loaded on page', 'catenis-blocks')),
-                    el(wp.element.RawHTML, {}, '<script type="text/javascript">(function(){var elems=jQuery(\'script[type="text/javascript"]\');if(elems.length > 0){var uiContainer=jQuery(\'div.uicontainer\', elems[elems.length-1].parentElement)[0];if(!uiContainer.ctnBlkMessageHistory && typeof CtnBlkMessageHistory===\'function\'){uiContainer.ctnBlkMessageHistory=new CtnBlkMessageHistory(uiContainer, {msgAction:' + toStringLiteral(msgAction) + ',period:' + toStringLiteral(period) + ',customStartDate:' + toStringLiteral(customStartDate) + ',customEndDate:' + toStringLiteral(customEndDate) + ',msgsPerPage:' + toStringLiteral(msgsPerPage) + ',columns:' + toStringLiteral(JSON.stringify(columns)) + ',targetDeviceId:' + toStringLiteral(targetDeviceId) + ',actionLinks:' + toStringLiteral(actionLinks) + ',displayTargetHtmlAnchor:' + toStringLiteral(displayTargetHtmlAnchor) + ',saveTargetHtmlAnchor:' + toStringLiteral(saveTargetHtmlAnchor) + '});}uiContainer.ctnBlkMessageHistory.listMessages()}})()</script>')
+                    el(wp.element.RawHTML, {}, '<script type="text/javascript">(function(){var elems=jQuery(\'script[type="text/javascript"]\');if(elems.length > 0){var uiContainer=jQuery(\'div.uicontainer\', elems[elems.length-1].parentElement)[0];if(!uiContainer.ctnBlkMessageHistory && typeof CtnBlkMessageHistory===\'function\'){uiContainer.ctnBlkMessageHistory=new CtnBlkMessageHistory(uiContainer, {msgAction:' + toStringLiteral(msgAction) + ',unreadOnly:' + toStringLiteral(unreadOnly) + ',period:' + toStringLiteral(period) + ',customStartDate:' + toStringLiteral(customStartDate) + ',customEndDate:' + toStringLiteral(customEndDate) + ',msgsPerPage:' + toStringLiteral(msgsPerPage) + ',columns:' + toStringLiteral(JSON.stringify(columns)) + ',targetDeviceId:' + toStringLiteral(targetDeviceId) + ',actionLinks:' + toStringLiteral(actionLinks) + ',displayTargetHtmlAnchor:' + toStringLiteral(displayTargetHtmlAnchor) + ',saveTargetHtmlAnchor:' + toStringLiteral(saveTargetHtmlAnchor) + '});}uiContainer.ctnBlkMessageHistory.listMessages()}})()</script>')
                 )
             );
         }

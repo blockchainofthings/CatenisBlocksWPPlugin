@@ -8,6 +8,7 @@
 
         if (this.checkCtnApiProxyAvailable(this.uiContainer)) {
             this.msgAction = props.msgAction;
+            this.unreadOnly = props.unreadOnly;
             this.period = props.period;
             this.customStartDate = props.customStartDate;
             this.customEndDate = props.customEndDate;
@@ -116,8 +117,14 @@
     };
 
     CtnBlkMessageHistory.prototype.processCtnMsgReadNotify = function (event, messageId) {
-        // Update message's read state
-        this.updateMessageEntry(messageId, {read: true}, true, true);
+        if (this.unreadOnly) {
+            // Remove already read message
+            this.removeMessage(messageId);
+        }
+        else {
+            // Update message's read state
+            this.updateMessageEntry(messageId, {read: true}, true, true);
+        }
     };
 
     CtnBlkMessageHistory.prototype.checkCtnApiProxyAvailable = function (uiContainer) {
@@ -201,6 +208,10 @@
             direction: 'outbound'
         };
 
+        if (this.unreadOnly) {
+            options.readState = 'unread';
+        }
+
         if (this.period !== 'custom') {
             options.startDate = getPeriodStartDate(this.period);
         }
@@ -258,6 +269,26 @@
         }
 
         return reversedMessages;
+    };
+
+    CtnBlkMessageHistory.prototype.removeMessage = function (messageId) {
+        var msgIdx = this.mapIdMsgIdx[messageId];
+
+        if (msgIdx !== undefined) {
+            this.messages.splice(msgIdx, 1);
+            delete this.mapIdMsgIdx[messageId];
+
+            for (var idx = msgIdx, limit = this.messages.length; idx < limit; idx++) {
+                this.mapIdMsgIdx[this.messages[idx].messageId] = idx;
+            }
+
+            this.totalPages = Math.ceil(this.messages.length / this.msgsPerPage);
+
+            var currentPageNumber = this.currentPageNumber;
+            this.currentPageNumber = undefined;
+
+            this.resetPageNumber(currentPageNumber);
+        }
     };
 
     CtnBlkMessageHistory.prototype.resetPageNumber = function (newPageNumber) {
