@@ -1,2 +1,3 @@
-.wp-block-catenis-blocks-display-message {
+div.wp-block-catenis-blocks-display-message pre.ctn-spinner {
+    display: none;
 }

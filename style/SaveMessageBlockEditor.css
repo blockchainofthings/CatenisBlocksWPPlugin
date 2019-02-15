@@ -1,3 +1,7 @@
+div.wp-block-catenis-blocks-save-message .ctn-save-msg-text.ctn-spinner {
+    display: none;
+}
+
 div.wp-block-catenis-blocks-save-message span {
     color: lightgray;
 }

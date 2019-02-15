@@ -24,6 +24,7 @@ class DisplayMessageBlock {
         // Register local lib dependent scripts
         wp_register_script('buffer', plugins_url('/js/lib/buffer.min.js', $this->pluginPath), [], '5.2.1');
         wp_register_script('sjcl', plugins_url('/js/lib/sjcl-sha1.min.js', $this->pluginPath), [], '1.0.8-sha1');
+        wp_register_script('spin', plugins_url('/js/lib/spin.umd.js', $this->pluginPath), [], '4.0.0');
 
         // Register other dependent scripts
         $ctnFileHeaderScriptFile = '/js/CtnFileHeader.js';
@@ -46,8 +47,14 @@ class DisplayMessageBlock {
             'wp-i18n',
             'jquery',
             'buffer',
-            'CtnFileHeader'
+            'CtnFileHeader',
+            'spin'
         ], filemtime("$pluginDir/$blockScriptFile"));
+
+        // Register local lib dependent styles
+        wp_register_style('spin', plugins_url('/style/lib/spin.css', $this->pluginPath), [],
+            filemtime("$pluginDir/style/lib/spin.css")
+        );
 
         $blockEditorStyleFile = '/style/DisplayMessageBlockEditor.css';
         wp_register_style('display-message-block-editor', plugins_url($blockEditorStyleFile, $this->pluginPath), [],
@@ -55,9 +62,9 @@ class DisplayMessageBlock {
         );
 
         $blockStyleFile = '/style/DisplayMessageBlock.css';
-        wp_register_style('display-message-block', plugins_url($blockStyleFile, $this->pluginPath), [],
-            filemtime("$pluginDir/$blockStyleFile")
-        );
+        wp_register_style('display-message-block', plugins_url($blockStyleFile, $this->pluginPath), [
+            'spin'
+        ], filemtime("$pluginDir/$blockStyleFile"));
 
         register_block_type( 'catenis-blocks/ctnblk-display-message', [
             'editor_script' => 'display-message-block-editor',

@@ -4,9 +4,15 @@
     var el = wp.element.createElement;
     var __ = wp.i18n.__;
     var cmp = wp.components;
+    var $ = context.jQuery;
 
+    var defShowSpinner = false;
     var defAutoSave = false;
     var defSaveMessageLink = __('Save retrieved message', 'catenis-blocks');
+    var defSpinnerColor = 'black';
+
+    var spinner;
+    var spinnerTimeout;
 
     registerBlockType('catenis-blocks/save-message', {
         title: __('Save Message', 'catenis-blocks'),
@@ -28,6 +34,9 @@
                 selector: 'input[name="messageId"]',
                 attribute: 'value'
             },
+            showSpinner: {
+                type: 'boolean'
+            },
             autoSave: {
                 type: 'boolean'
             },
@@ -35,6 +44,9 @@
                 type: 'string',
                 source: 'text',
                 selector: 'a'
+            },
+            spinnerColor: {
+                type: 'string'
             }
         },
         /**
@@ -47,12 +59,24 @@
          */
         edit: function(props) {
             var messageId = props.attributes.messageId;
+            var showSpinner = props.attributes.showSpinner !== undefined ? props.attributes.showSpinner : defShowSpinner;
             var autoSave = props.attributes.autoSave !== undefined ? props.attributes.autoSave : defAutoSave;
             var saveMessageLink = props.attributes.saveMessageLink !== undefined ? props.attributes.saveMessageLink : defSaveMessageLink;
+            var spinnerColor = props.attributes.spinnerColor !== undefined ? props.attributes.spinnerColor : defSpinnerColor;
 
             function onChangeMessageId(newValue) {
                 props.setAttributes({
                     messageId: newValue
+                });
+            }
+
+            function onChangeShowSpinner(newState) {
+                if (newState) {
+                    displaySpinner();
+                }
+
+                props.setAttributes({
+                    showSpinner: newState
                 });
             }
 
@@ -69,9 +93,58 @@
             }
 
             function onClickReset() {
-                props.setAttributes({
+                var attrToSet = {
                     saveMessageLink: defSaveMessageLink
+                };
+
+                if (showSpinner) {
+                    attrToSet.spinnerColor = defSpinnerColor;
+                }
+
+                props.setAttributes(attrToSet);
+            }
+
+            function onChangeSpinnerColor(newValue) {
+                spinnerColor = newValue || defSpinnerColor;
+
+                props.setAttributes({
+                    spinnerColor: spinnerColor
                 });
+
+                displaySpinner();
+            }
+
+            function displaySpinner() {
+                hideSpinner();
+
+                if (!spinner || spinner.opts.color !== spinnerColor) {
+                    spinner = new context.Spin.Spinner({
+                        className: 'msg-spinner',
+                        color: spinnerColor
+                    });
+                }
+
+                var uiContainer = $('div.' + props.className + ' div.uicontainer')[0];
+
+                $('.ctn-save-msg-text', uiContainer).addClass('ctn-spinner');
+                spinner.spin(uiContainer);
+
+                spinnerTimeout = setTimeout(function () {
+                    hideSpinner();
+                }, 2000);
+            }
+
+            function hideSpinner() {
+                if (spinnerTimeout) {
+                    clearTimeout(spinnerTimeout);
+                    spinnerTimeout = undefined;
+                }
+
+                if (spinner) {
+                    spinner.stop();
+
+                    $('.ctn-save-msg-text', $('div.' + props.className + ' div.uicontainer')[0]).removeClass('ctn-spinner');
+                }
             }
 
             return (
@@ -89,6 +162,17 @@
                             })
                         ),
                         el(cmp.PanelBody, {
+                            title: __('Display', 'catenis-blocks'),
+                            initialOpen: false
+                        },
+                            el(cmp.ToggleControl, {
+                                label: __('Show Spinner', 'catenis-blocks'),
+                                help: showSpinner ? __('Show animated icon while loading message', 'catenis-blocks') : '',
+                                checked: showSpinner,
+                                onChange: onChangeShowSpinner
+                            })
+                        ),
+                        el(cmp.PanelBody, {
                             title: __('Action', 'catenis-blocks'),
                             initialOpen: false
                         },
@@ -100,22 +184,57 @@
                             })
                         ),
                         (function () {
-                            if (!autoSave) {
+                            if (!autoSave || showSpinner) {
+                                var compsToShow = [];
+
+                                if (!autoSave) {
+                                    compsToShow.push(
+                                        el(cmp.TextControl, {
+                                            label: __('Save Message Link', 'catenis-blocks'),
+                                            value: saveMessageLink,
+                                            onChange: onChangeSaveMessageLink
+                                        })
+                                    );
+                                }
+
+                                if (showSpinner) {
+                                    compsToShow.push(
+                                        el(cmp.BaseControl, {
+                                            id: 'ctn-save-msg-block-spinner-color',
+                                            label: __('Spinner Color', 'catenis-blocks')
+                                        },
+                                            el(cmp.ColorPalette, {
+                                                colors: [{
+                                                    name: 'black',
+                                                    color: 'black'
+                                                }, {
+                                                    name: 'gray',
+                                                    color: 'gray'
+                                                }, {
+                                                    name: 'light-gray',
+                                                    color: 'lightgray'
+                                                }],
+                                                value: spinnerColor,
+                                                onChange: onChangeSpinnerColor
+                                            })
+                                        )
+                                    );
+                                }
+
+                                if (!autoSave) {
+                                    compsToShow.push(
+                                        el(cmp.Button, {
+                                            isSmall: true,
+                                            isDefault: true,
+                                            onClick: onClickReset
+                                        }, __('Reset Settings'))
+                                    );
+                                }
+
                                 return el(cmp.PanelBody, {
                                     title: __('Advanced UI Settings', 'catenis-blocks'),
                                     initialOpen: false
-                                },
-                                    el(cmp.TextControl, {
-                                        label: __('Save Message Link', 'catenis-blocks'),
-                                        value: saveMessageLink,
-                                        onChange: onChangeSaveMessageLink
-                                    }),
-                                    el(cmp.Button, {
-                                        isSmall: true,
-                                        isDefault: true,
-                                        onClick: onClickReset
-                                    }, __('Reset Settings'))
-                                );
+                                }, compsToShow);
                             }
                         })()
                     ),
@@ -123,22 +242,29 @@
                     el('div', {
                         className: props.className
                     },
-                        el('input', {
-                            type: 'hidden',
-                            name: 'messageId',
-                            value: messageId
-                        }),
-                        (function () {
-                            if (autoSave) {
-                                return el('span', {}, 'Auto save message');
-                            }
-                            else {
-                                return el('a', {
-                                    href: '#',
-                                    onClick: function () {return false}
-                                }, saveMessageLink);
-                            }
-                        })()
+                        el('div', {
+                            className: 'uicontainer ctn-spinner'
+                        },
+                            el('input', {
+                                type: 'hidden',
+                                name: 'messageId',
+                                value: messageId
+                            }),
+                            (function () {
+                                if (autoSave) {
+                                    return el('span', {
+                                        className: 'ctn-save-msg-text'
+                                    }, 'Auto save message');
+                                }
+                                else {
+                                    return el('a', {
+                                        className: 'ctn-save-msg-text',
+                                        href: '#',
+                                        onClick: function () {return false}
+                                    }, saveMessageLink);
+                                }
+                            })()
+                        )
                     )
                 )
             );
@@ -153,8 +279,10 @@
          */
         save: function(props) {
             var messageId = props.attributes.messageId;
+            var showSpinner = props.attributes.showSpinner !== undefined ? props.attributes.showSpinner : defShowSpinner;
             var autoSave = props.attributes.autoSave !== undefined ? props.attributes.autoSave : defAutoSave;
             var saveMessageLink = props.attributes.saveMessageLink !== undefined ? props.attributes.saveMessageLink : defSaveMessageLink;
+            var spinnerColor = props.attributes.spinnerColor !== undefined ? props.attributes.spinnerColor : defSpinnerColor;
 
             return (
                 el('div', {},
@@ -165,7 +293,7 @@
                             type: 'hidden',
                             name: 'messageId',
                             value: messageId,
-                            onChange: '(function(){try{var parent=this.parentElement;if(!parent.ctnBlkSaveMessage && typeof CtnBlkSaveMessage===\'function\'){parent.ctnBlkSaveMessage=new CtnBlkSaveMessage(parent,{autoSave:' + toStringLiteral(autoSave) + '})}parent.ctnBlkSaveMessage.checkRetrieveMessage()}finally{return false}}).call(this)'
+                            onChange: '(function(){try{var parent=this.parentElement;if(!parent.ctnBlkSaveMessage && typeof CtnBlkSaveMessage===\'function\'){parent.ctnBlkSaveMessage=new CtnBlkSaveMessage(parent,{showSpinner:' + toStringLiteral(showSpinner) + ',spinnerColor:' + toStringLiteral(spinnerColor) + ',autoSave:' + toStringLiteral(autoSave) + '})}parent.ctnBlkSaveMessage.checkRetrieveMessage()}finally{return false}}).call(this)'
                         }),
                         el('a', {
                             href: '#'
@@ -181,7 +309,7 @@
                     el('div', {
                         className: 'noctnapiproxy'
                     }, __('Catenis API client not loaded on page', 'catenis-blocks')),
-                    el(wp.element.RawHTML, {}, '<script type="text/javascript">(function(){var elems=jQuery(\'script[type="text/javascript"]\');if(elems.length > 0){var uiContainer=jQuery(\'div.uicontainer\', elems[elems.length-1].parentElement)[0];if(!uiContainer.ctnBlkSaveMessage && typeof CtnBlkSaveMessage===\'function\'){uiContainer.ctnBlkSaveMessage=new CtnBlkSaveMessage(uiContainer,{autoSave:' + toStringLiteral(autoSave) + '});}uiContainer.ctnBlkSaveMessage.checkRetrieveMessage()}})()</script>')
+                    el(wp.element.RawHTML, {}, '<script type="text/javascript">(function(){var elems=jQuery(\'script[type="text/javascript"]\');if(elems.length > 0){var uiContainer=jQuery(\'div.uicontainer\', elems[elems.length-1].parentElement)[0];if(!uiContainer.ctnBlkSaveMessage && typeof CtnBlkSaveMessage===\'function\'){uiContainer.ctnBlkSaveMessage=new CtnBlkSaveMessage(uiContainer,{showSpinner:' + toStringLiteral(showSpinner) + ',spinnerColor:' + toStringLiteral(spinnerColor) + ',autoSave:' + toStringLiteral(autoSave) + '});}uiContainer.ctnBlkSaveMessage.checkRetrieveMessage()}})()</script>')
                 )
             );
         }

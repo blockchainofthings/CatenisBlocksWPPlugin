@@ -4,10 +4,16 @@
     var el = wp.element.createElement;
     var __ = wp.i18n.__;
     var cmp = wp.components;
+    var $ = context.jQuery;
 
+    var defShowSpinner = false;
     var defStripFileHeader = true;
     var defLimitMsg = true;
     var defMaxMsgLength = 1024;
+    var defSpinnerColor = 'black';
+
+    var spinner;
+    var spinnerTimeout;
 
     registerBlockType('catenis-blocks/display-message', {
         title: __('Display Message', 'catenis-blocks'),
@@ -29,6 +35,9 @@
                 selector: 'input[name="messageId"]',
                 attribute: 'value'
             },
+            showSpinner: {
+                type: 'boolean'
+            },
             stripFileHeader: {
                 type: 'boolean'
             },
@@ -37,6 +46,9 @@
             },
             maxMsgLength: {
                 type: 'number'
+            },
+            spinnerColor: {
+                type: 'string'
             }
         },
         /**
@@ -49,13 +61,25 @@
          */
         edit: function(props) {
             var messageId = props.attributes.messageId;
+            var showSpinner = props.attributes.showSpinner !== undefined ? props.attributes.showSpinner : defShowSpinner;
             var stripFileHeader = props.attributes.stripFileHeader !== undefined ? props.attributes.stripFileHeader : defStripFileHeader;
             var limitMsg = props.attributes.limitMsg !== undefined ? props.attributes.limitMsg : defLimitMsg;
             var maxMsgLength = props.attributes.maxMsgLength !== undefined ? props.attributes.maxMsgLength : defMaxMsgLength;
+            var spinnerColor = props.attributes.spinnerColor !== undefined ? props.attributes.spinnerColor : defSpinnerColor;
 
             function onChangeMessageId(newValue) {
                 props.setAttributes({
                     messageId: newValue
+                });
+            }
+
+            function onChangeShowSpinner(newState) {
+                if (newState) {
+                    displaySpinner();
+                }
+
+                props.setAttributes({
+                    showSpinner: newState
                 });
             }
 
@@ -79,6 +103,49 @@
                 });
             }
 
+            function onChangeSpinnerColor(newValue) {
+                spinnerColor = newValue || defSpinnerColor;
+
+                props.setAttributes({
+                    spinnerColor: spinnerColor
+                });
+
+                displaySpinner();
+            }
+
+            function displaySpinner() {
+                hideSpinner();
+
+                if (!spinner || spinner.opts.color !== spinnerColor) {
+                    spinner = new context.Spin.Spinner({
+                        className: 'msg-spinner',
+                        color: spinnerColor
+                    });
+                }
+
+                var uiContainer = $('div.' + props.className + ' div.uicontainer')[0];
+
+                $('pre', uiContainer).addClass('ctn-spinner');
+                spinner.spin(uiContainer);
+
+                spinnerTimeout = setTimeout(function () {
+                    hideSpinner();
+                }, 2000);
+            }
+
+            function hideSpinner() {
+                if (spinnerTimeout) {
+                    clearTimeout(spinnerTimeout);
+                    spinnerTimeout = undefined;
+                }
+
+                if (spinner) {
+                    spinner.stop();
+
+                    $('pre', $('div.' + props.className + ' div.uicontainer')[0]).removeClass('ctn-spinner');
+                }
+            }
+
             return (
                 el(wp.element.Fragment, {},
                     // Inspector sidebar controls
@@ -97,6 +164,12 @@
                                 title: __('Display', 'catenis-blocks'),
                                 initialOpen: false
                             },
+                            el(cmp.ToggleControl, {
+                                label: __('Show Spinner', 'catenis-blocks'),
+                                help: showSpinner ? __('Show animated icon while loading message', 'catenis-blocks') : '',
+                                checked: showSpinner,
+                                onChange: onChangeShowSpinner
+                            }),
                             el(cmp.ToggleControl, {
                                 label: __('Strip File Header', 'catenis-blocks'),
                                 help: stripFileHeader ? __('Do not display file header if present', 'catenis-blocks') : __('Display message as it is', 'catenis-blocks'),
@@ -119,18 +192,50 @@
                                     });
                                 }
                             })()
-                        )
+                        ),
+                        (function (){
+                            if (showSpinner) {
+                                return  el(cmp.PanelBody, {
+                                    title: __('Advanced UI Settings', 'catenis-blocks'),
+                                    initialOpen: false
+                                },
+                                    el(cmp.BaseControl, {
+                                            id: 'ctn-display-msg-block-spinner-color',
+                                            label: __('Spinner Color', 'catenis-blocks')
+                                        },
+                                        el(cmp.ColorPalette, {
+                                            colors: [{
+                                                name: 'black',
+                                                color: 'black'
+                                            }, {
+                                                name: 'gray',
+                                                color: 'gray'
+                                            }, {
+                                                name: 'light-gray',
+                                                color: 'lightgray'
+                                            }],
+                                            value: spinnerColor,
+                                            onChange: onChangeSpinnerColor
+                                        })
+                                    )
+                                );
+                            }
+                        })()
                     ),
                     // Block controls
                     el('div', {
                         className: props.className
                     },
-                        el('input', {
-                            type: 'hidden',
-                            name: 'messageId',
-                            value: messageId
-                        }),
-                        el('pre', {}, __('Sample retrieved message', 'catenis-blocks'))
+                        el('div', {
+                            className: 'uicontainer ctn-spinner'
+                        },
+                            el('input', {
+                                type: 'hidden',
+                                name: 'messageId',
+                                value: messageId
+                            }),
+                            el('pre', {}, __('Sample retrieved message', 'catenis-blocks'))
+                        )
                     )
                 )
             );
@@ -145,9 +250,11 @@
          */
         save: function(props) {
             var messageId = props.attributes.messageId;
+            var showSpinner = props.attributes.showSpinner !== undefined ? props.attributes.showSpinner : defShowSpinner;
             var stripFileHeader = props.attributes.stripFileHeader !== undefined ? props.attributes.stripFileHeader : defStripFileHeader;
             var limitMsg = props.attributes.limitMsg !== undefined ? props.attributes.limitMsg : defLimitMsg;
             var maxMsgLength = props.attributes.maxMsgLength !== undefined ? props.attributes.maxMsgLength : defMaxMsgLength;
+            var spinnerColor = props.attributes.spinnerColor !== undefined ? props.attributes.spinnerColor : defSpinnerColor;
 
             return (
                 el('div', {},
@@ -158,7 +265,7 @@
                             type: 'hidden',
                             name: 'messageId',
                             value: messageId,
-                            onChange: '(function(){try{var parent=this.parentElement;if(!parent.ctnBlkDisplayMessage && typeof CtnBlkDisplayMessage===\'function\'){parent.ctnBlkDisplayMessage=new CtnBlkDisplayMessage(parent, {stripFileHeader:' + toStringLiteral(stripFileHeader) + ',limitMsg:' + toStringLiteral(limitMsg) + ',maxMsgLength:' + toStringLiteral(maxMsgLength) + '})}parent.ctnBlkDisplayMessage.checkRetrieveMessage()}finally{return false}}).call(this)'
+                            onChange: '(function(){try{var parent=this.parentElement;if(!parent.ctnBlkDisplayMessage && typeof CtnBlkDisplayMessage===\'function\'){parent.ctnBlkDisplayMessage=new CtnBlkDisplayMessage(parent, {showSpinner:' + toStringLiteral(showSpinner) + ',spinnerColor:' + toStringLiteral(spinnerColor) + ',stripFileHeader:' + toStringLiteral(stripFileHeader) + ',limitMsg:' + toStringLiteral(limitMsg) + ',maxMsgLength:' + toStringLiteral(maxMsgLength) + '})}parent.ctnBlkDisplayMessage.checkRetrieveMessage()}finally{return false}}).call(this)'
                         }),
                         el('pre', {}),
                         el('div', {
@@ -172,7 +279,7 @@
                     el('div', {
                         className: 'noctnapiproxy'
                     }, __('Catenis API client not loaded on page', 'catenis-blocks')),
-                    el(wp.element.RawHTML, {}, '<script type="text/javascript">(function(){var elems=jQuery(\'script[type="text/javascript"]\');if(elems.length > 0){var uiContainer=jQuery(\'div.uicontainer\', elems[elems.length-1].parentElement)[0];if(!uiContainer.ctnBlkDisplayMessage && typeof CtnBlkDisplayMessage===\'function\'){uiContainer.ctnBlkDisplayMessage=new CtnBlkDisplayMessage(uiContainer, {stripFileHeader:' + toStringLiteral(stripFileHeader) + ',limitMsg:' + toStringLiteral(limitMsg) + ',maxMsgLength:' + toStringLiteral(maxMsgLength) + '});}uiContainer.ctnBlkDisplayMessage.checkRetrieveMessage()}})()</script>')
+                    el(wp.element.RawHTML, {}, '<script type="text/javascript">(function(){var elems=jQuery(\'script[type="text/javascript"]\');if(elems.length > 0){var uiContainer=jQuery(\'div.uicontainer\', elems[elems.length-1].parentElement)[0];if(!uiContainer.ctnBlkDisplayMessage && typeof CtnBlkDisplayMessage===\'function\'){uiContainer.ctnBlkDisplayMessage=new CtnBlkDisplayMessage(uiContainer, {showSpinner:' + toStringLiteral(showSpinner) + ',spinnerColor:' + toStringLiteral(spinnerColor) + ',stripFileHeader:' + toStringLiteral(stripFileHeader) + ',limitMsg:' + toStringLiteral(limitMsg) + ',maxMsgLength:' + toStringLiteral(maxMsgLength) + '});}uiContainer.ctnBlkDisplayMessage.checkRetrieveMessage()}})()</script>')
                 )
             );
         }

@@ -8,6 +8,8 @@
         this.uiContainer = uiContainer;
 
         if (this.checkCtnApiProxyAvailable(this.uiContainer)) {
+            this.showSpinner = props.showSpinner;
+            this.spinnerColor = props.spinnerColor;
             this.stripFileHeader = props.stripFileHeader;
             this.limitMsg = props.limitMsg;
             this.maxMsgLength = props.maxMsgLength;
@@ -15,6 +17,7 @@
             this.msgContainer = undefined;
             this.divError = undefined;
             this.txtError = undefined;
+            this.spinner = undefined;
 
             this.setMessageElements();
             this.setErrorPanel();
@@ -69,9 +72,15 @@
         if (this.messageId && (messageId = this.messageId.value.trim())) {
             this.clearResults();
 
+            if (this.showSpinner) {
+                this.displaySpinner();
+            }
+
             var _self = this;
 
             context.ctnApiProxy.readMessage(messageId, function (error, result) {
+                _self.hideSpinner();
+
                 if (error) {
                     _self.displayError(error.toString());
                 }
@@ -130,6 +139,25 @@
         }
     };
 
+    CtnBlkDisplayMessage.prototype.displaySpinner = function () {
+        if (!this.spinner) {
+            this.spinner = new context.Spin.Spinner({
+                className: 'msg-spinner',
+                color: this.spinnerColor
+            });
+        }
+
+        $(this.uiContainer).addClass('ctn-spinner');
+        this.spinner.spin(this.uiContainer);
+    };
+
+    CtnBlkDisplayMessage.prototype.hideSpinner = function () {
+        if (this.spinner) {
+            this.spinner.stop();
+            $(this.uiContainer).removeClass('ctn-spinner');
+        }
+    };
+
     CtnBlkDisplayMessage.prototype.hideMessage = function () {
         if (this.msgContainer) {
             var $msgContainer = $(this.msgContainer);
@@ -156,6 +184,7 @@
     };
 
     CtnBlkDisplayMessage.prototype.clearResults = function () {
+        this.hideSpinner();
         this.hideMessage();
         this.hideError();
     };

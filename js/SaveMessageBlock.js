@@ -8,11 +8,14 @@
         this.uiContainer = uiContainer;
 
         if (this.checkCtnApiProxyAvailable(this.uiContainer)) {
+            this.showSpinner = props.showSpinner;
+            this.spinnerColor = props.spinnerColor;
             this.messageId = undefined;
             this.autoSave = props.autoSave;
             this.saveMsgAnchor = undefined;
             this.divError = undefined;
             this.txtError = undefined;
+            this.spinner = undefined;
 
             this.setMessageElements();
             this.setErrorPanel();
@@ -67,9 +70,15 @@
         if (this.messageId && (messageId = this.messageId.value.trim())) {
             this.clearResults();
 
+            if (this.showSpinner) {
+                this.displaySpinner();
+            }
+
             var _self = this;
 
             context.ctnApiProxy.readMessage(messageId, 'base64', function (error, result) {
+                _self.hideSpinner();
+
                 if (error) {
                     _self.displayError(error.toString());
                 }
@@ -143,6 +152,25 @@
             else {
                 this.saveMsgAnchor.style.display = 'inline'
             }
+        }
+    };
+
+    CtnBlkSaveMessage.prototype.displaySpinner = function () {
+        if (!this.spinner) {
+            this.spinner = new context.Spin.Spinner({
+                className: 'msg-spinner',
+                color: this.spinnerColor
+            });
+        }
+
+        $(this.uiContainer).addClass('ctn-spinner');
+        this.spinner.spin(this.uiContainer);
+    };
+
+    CtnBlkSaveMessage.prototype.hideSpinner = function () {
+        if (this.spinner) {
+            this.spinner.stop();
+            $(this.uiContainer).removeClass('ctn-spinner');
         }
     };
 

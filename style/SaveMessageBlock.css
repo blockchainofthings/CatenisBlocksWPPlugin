@@ -1,3 +1,11 @@
+div.wp-block-catenis-blocks-save-message div.uicontainer {
+    position: relative;
+}
+
+div.wp-block-catenis-blocks-save-message div.uicontainer.ctn-spinner {
+    min-height: 2em;
+}
+
 div.wp-block-catenis-blocks-save-message div.error {
     display: none;
     margin-top: 2em
