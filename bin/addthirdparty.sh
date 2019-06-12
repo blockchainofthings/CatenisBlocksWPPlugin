@@ -12,40 +12,48 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null && pwd)"
 THIRDPARTY_DIR="$SCRIPT_DIR/../thirdparty"
 PLUGIN_SLUG="catenis-blocks"
 
-if [[ -d $THIRDPARTY_DIR ]]; then
+if [[ -d "$THIRDPARTY_DIR" ]]; then
     echo "Third party directory already exists. Emptying it"
-    rm -r $THIRDPARTY_DIR/*
+    rm -rf "$THIRDPARTY_DIR"/*
 else
     echo "Third party directory does NOT exist yet. Creating it"
-    mkdir $THIRDPARTY_DIR
+    mkdir "$THIRDPARTY_DIR"
 fi
 
-cp -R $SCRIPT_DIR/../vendor/* $THIRDPARTY_DIR/
+cp -R "$SCRIPT_DIR"/../vendor/* "$THIRDPARTY_DIR"/
+
+# Change Internal Field Separator special environment variable so `for` loops can correctly
+#  iterate over file paths containing spaces
+IFS=$(echo -en "\n\b")
+
 # Make sure that .git directories are removed
-rm -rf $(find $THIRDPARTY_DIR -name .git -type d -print)
+for d in $(find "$THIRDPARTY_DIR" -name .git -type d -print); do
+    rm -rf "$d"
+done
 
 echo -n "Fixing namespace of third party packages... "
 
 # Change namespace of third-party components moving them under our own plugin namespace
-for f in $(find $THIRDPARTY_DIR -name "*.php" -print); do
-   sed -i "" -E "s/^namespace +([A-Za-z][A-Za-z0-9_\\]*);/namespace Catenis\\\WP\\\Blocks\\\\\1;/g" $f
-   sed -i "" -E "s/^use +([A-Za-z][A-Za-z0-9_]*\\\)/use Catenis\\\WP\\\Blocks\\\\\1/g" $f
+for f in $(find "$THIRDPARTY_DIR" -name "*.php" -print); do
+   sed -i "" -E "s/^namespace +([A-Za-z][A-Za-z0-9_\\]*);/namespace Catenis\\\WP\\\Blocks\\\\\1;/g" "$f"
+   sed -i "" -E "s/^use +([A-Za-z][A-Za-z0-9_]*\\\)/use Catenis\\\WP\\\Blocks\\\\\1/g" "$f"
 done
 
-sed -i "" -E "s/( +')(([A-Za-z][A-Za-z0-9_]*\\\\\\\)+')/\1Catenis\\\\\\\WP\\\\\\\Blocks\\\\\\\\\2/g" $THIRDPARTY_DIR/composer/autoload_{psr4,static}.php
+sed -i "" -E "s/( +')(([A-Za-z][A-Za-z0-9_]*\\\\\\\)+')/\1Catenis\\\\\\\WP\\\\\\\Blocks\\\\\\\\\2/g" "$THIRDPARTY_DIR"/composer/autoload_{psr4,static}.php
 
-sed -i "" -E "s/( +')Catenis\\\\\\\WP\\\\\\\Blocks\\\\\\\Catenis\\\\\\\WP\\\\\\\Blocks\\\\\\\'/\1Catenis\\\\\\\WP\\\\\\\Blocks\\\\\\\'/g" $THIRDPARTY_DIR/composer/autoload_{psr4,static}.php
+sed -i "" -E "s/( +')Catenis\\\\\\\WP\\\\\\\Blocks\\\\\\\Catenis\\\\\\\WP\\\\\\\Blocks\\\\\\\'/\1Catenis\\\\\\\WP\\\\\\\Blocks\\\\\\\'/g" "$THIRDPARTY_DIR"/composer/autoload_{psr4,static}.php
 
-sed -i "" -E "s/('| | \\\\|\(\\\\)Composer\\\\Autoload/\1Catenis\\\\WP\\\\Blocks\\\\Composer\\\\Autoload/g" $THIRDPARTY_DIR/composer/autoload_real.php
+sed -i "" -E "s/('| | \\\\|\(\\\\)Composer\\\\Autoload/\1Catenis\\\\WP\\\\Blocks\\\\Composer\\\\Autoload/g" "$THIRDPARTY_DIR"/composer/autoload_real.php
 
 # Properly reindex PSR0 and PSR4 components (used by Composer autoloader) to match the changed namespace
-sed -i "" -e ':a' -e 'N' -e '$!ba' -e "s/\(\n\) \{1,\}),\n \{1,\}'[A-Z]' => \n \{1,\}array (\n/\1/g" $THIRDPARTY_DIR/composer/autoload_static.php
-sed -i "" -e "s/^\( \{1,\}'\)[A-Z]\(' => \)$/\1C\2/g" $THIRDPARTY_DIR/composer/autoload_static.php
-sed -i "" -e "s/ => \([0-9]\{1,\}\),$/ => \1+11,/g" $THIRDPARTY_DIR/composer/autoload_static.php
-sed -i "" -e "s/\('Catenis\\\\\\\\WP\\\\\\\\Blocks\\\\\\\\' => 18\)+11/\1/" $THIRDPARTY_DIR/composer/autoload_static.php
+sed -i "" -e ':a' -e 'N' -e '$!ba' -e "s/\(\n\) \{1,\}),\n \{1,\}'[A-Z]' => \n \{1,\}array (\n/\1/g" "$THIRDPARTY_DIR"/composer/autoload_static.php
+sed -i "" -e "s/^\( \{1,\}'\)[A-Z]\(' => \)$/\1C\2/g" "$THIRDPARTY_DIR"/composer/autoload_static.php
+sed -i "" -e "s/ => \([0-9]\{1,\}\),$/ => \1+11,/g" "$THIRDPARTY_DIR"/composer/autoload_static.php
+sed -i "" -e "s/\('Catenis\\\\\\\\WP\\\\\\\\Blocks\\\\\\\\' => 18\)+11/\1/" "$THIRDPARTY_DIR"/composer/autoload_static.php
 
 # Change (localize) IDs of functions files loaded by Composer autoloader
-sed -i "" -E "s/^(( |\t)+)'([a-f0-9]{32})' =>/\1'${PLUGIN_SLUG}_\3' =>/" $THIRDPARTY_DIR/composer/autoload_{files,static}.php
+# (no such packages available)
+#sed -i "" -E "s/^(( |\t)+)'([a-f0-9]{32})' =>/\1'${PLUGIN_SLUG}_\3' =>/" "$THIRDPARTY_DIR"/composer/autoload_{files,static}.php
 
 # Redefine directory paths of PSR0 components
 # (no such packages available)

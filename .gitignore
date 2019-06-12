@@ -1,3 +1,9 @@
-.idea/
-vendor/
-thirdparty/
+.vscode/
+/vendor/
+/build/
+/thirdparty/
+.svn/
+/svn/trunk/
+/svn/tags/
+/svn/branches/
+*.code-workspace
