@@ -87,7 +87,7 @@
                 }
                 else {
                     _self.checkNotifyMsgRead(messageId);
-                    _self.displayMessage(result.message);
+                    _self.displayMessage(result.msgData);
                 }
             })
         }

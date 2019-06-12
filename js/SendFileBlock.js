@@ -189,7 +189,7 @@
 
         var _self = this;
 
-        context.ctnApiProxy.sendMessage(this.targetDevice, fileContents.toString('base64'), this.options, function (error, result) {
+        context.ctnApiProxy.sendMessage(fileContents.toString('base64'), this.targetDevice, this.options, function (error, result) {
             if (error) {
                 _self.displayError(error.toString());
             }

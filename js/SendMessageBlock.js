@@ -114,7 +114,7 @@
 
         var _self = this;
 
-        context.ctnApiProxy.sendMessage(this.targetDevice, msg, this.options, function(error, result) {
+        context.ctnApiProxy.sendMessage(msg, this.targetDevice, this.options, function(error, result) {
             if (error) {
                 _self.displayError(error.toString());
             }

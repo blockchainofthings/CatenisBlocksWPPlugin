@@ -80,37 +80,37 @@
             console.error('Catenis notification process error:', error);
         });
 
-        context.ctnApiProxy.on('notify_channel_opened', function (eventName, success, error) {
-            if (success) {
-                // Underlying WebSocket connection successfully established
-                console.log('[' + eventName + '] - Catenis notification channel successfully opened');
+        // Prepare to open notification channel to monitor sent message read events
+        var wsNotifyChannel = context.ctnApiProxy.createWsNotifyChannel('sent-msg-read');
+
+        wsNotifyChannel.on('open', function (error) {
+            if (error) {
+                // Error establishing underlying WebSocket connection
+                console.error('[' + wsNotifyChannel.eventName + '] - Error establishing underlying WebSocket connection:', error);
             }
             else {
-                // Error establishing underlying WebSocket connection
-                console.error('[' + eventName + '] - Error establishing Catenis notification channel:', error);
+                // Catenis notification channel successfully open
+                console.log('[' + wsNotifyChannel.eventName + '] - Catenis notification channel successfully open');
             }
         });
 
-        context.ctnApiProxy.on('notify_channel_error', function (eventName, error) {
+        wsNotifyChannel.on('error', function (error) {
             // Error in the underlying WebSocket connection
-            console.error('[' + eventName + '] - Catenis notification WebSocket connection error:', error);
+            console.error('[' + wsNotifyChannel.eventName + '] - Error in the underlying WebSocket connection:', error);
         });
 
-        context.ctnApiProxy.on('notify_channel_closed', function (eventName, code, reason) {
+        wsNotifyChannel.on('close', function (code, reason) {
             // Underlying WebSocket connection has been closed
-            console.error('[' + eventName + '] - Catenis notification channel closed; code: ' + code + ', reason: ' + reason);
+            console.error('[' + wsNotifyChannel.eventName + '] - Underlying WebSocket connection has been closed; code: ' + code + ', reason: ' + reason);
         });
 
-        context.ctnApiProxy.on('notification', function (eventName, eventData) {
-            switch (eventName) {
-                case 'sent-msg-read':
-                    _self.processSentMessageRead(eventData);
-            }
+        wsNotifyChannel.on('notify', function (eventData) {
+            _self.processSentMessageRead(eventData);
         });
 
-        context.ctnApiProxy.openNotifyChannel('sent-msg-read', function (error) {
+        wsNotifyChannel.open(function (error) {
             if (error) {
-                // Error from calling method
+                // Error sending command to open notification channel
                 console.error('Error opening Catenis notification channel:', error);
             }
         });
