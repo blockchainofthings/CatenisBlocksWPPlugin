@@ -5,15 +5,18 @@
 
 namespace Catenis\WP\Blocks;
 
-class CatenisBlocks {
+class CatenisBlocks
+{
     private $pluginPath;
     private $blockInstances = [];
 
-    private static function isGutenbergActive() {
+    private static function isGutenbergActive()
+    {
         return function_exists('register_block_type');
     }
 
-    function __construct($pluginPath) {
+    public function __construct($pluginPath)
+    {
         $this->pluginPath = $pluginPath;
 
         // Make sure that Gutenberg editor is in use
@@ -24,12 +27,12 @@ class CatenisBlocks {
         add_action('init', [$this, 'initialize']);
 
         // Add custom block category
-        add_filter('block_categories', function($categories, $post) {
+        add_filter('block_categories', function ($categories, $post) {
             return array_merge($categories, [[
                 'slug' => 'catenis',
                 'title' => __('Catenis', 'catenis-blocks')
             ]]);
-        }, 10, 2 );
+        }, 10, 2);
 
         // Instantiate blocks
         $this->blockInstances['store-message'] = new StoreMessageBlock($pluginPath);
@@ -43,7 +46,8 @@ class CatenisBlocks {
         $this->blockInstances['message-inbox'] = new MessageInboxBlock($pluginPath);
     }
 
-    function initialize() {
+    public function initialize()
+    {
         load_plugin_textdomain('catenis-blocks', false, __DIR__ . '/languages');
     }
 }

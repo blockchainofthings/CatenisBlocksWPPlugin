@@ -26,5 +26,4 @@ require_once __DIR__ . '/thirdparty/autoload.php';
 
 use Catenis\WP\Blocks\CatenisBlocks;
 
-
 new CatenisBlocks(__FILE__);

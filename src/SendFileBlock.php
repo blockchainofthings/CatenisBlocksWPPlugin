@@ -8,17 +8,19 @@
 
 namespace Catenis\WP\Blocks;
 
-
-class SendFileBlock {
+class SendFileBlock
+{
     private $pluginPath;
 
-    function __construct($pluginPath) {
+    public function __construct($pluginPath)
+    {
         $this->pluginPath = $pluginPath;
 
         add_action('init', [$this, 'initialize']);
     }
 
-    function initialize() {
+    public function initialize()
+    {
         $pluginDir = dirname($this->pluginPath);
 
         // Register local lib dependent scripts
@@ -50,16 +52,22 @@ class SendFileBlock {
         ], filemtime("$pluginDir/$blockScriptFile"));
 
         $blockEditorStyleFile = '/style/SendFileBlockEditor.css';
-        wp_register_style('send-file-block-editor', plugins_url($blockEditorStyleFile, $this->pluginPath), [],
+        wp_register_style(
+            'send-file-block-editor',
+            plugins_url($blockEditorStyleFile, $this->pluginPath),
+            [],
             filemtime("$pluginDir/$blockEditorStyleFile")
         );
 
         $blockStyleFile = '/style/SendFileBlock.css';
-        wp_register_style('send-file-block', plugins_url($blockStyleFile, $this->pluginPath), [],
+        wp_register_style(
+            'send-file-block',
+            plugins_url($blockStyleFile, $this->pluginPath),
+            [],
             filemtime("$pluginDir/$blockStyleFile")
         );
 
-        register_block_type( 'catenis-blocks/ctnblk-send-file', [
+        register_block_type('catenis-blocks/ctnblk-send-file', [
             'editor_script' => 'send-file-block-editor',
             'editor_style'  => 'send-file-block-editor',
             'script'        => 'send-file-block',

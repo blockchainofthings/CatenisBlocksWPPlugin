@@ -8,17 +8,19 @@
 
 namespace Catenis\WP\Blocks;
 
-
-class SaveMessageBlock {
+class SaveMessageBlock
+{
     private $pluginPath;
 
-    function __construct($pluginPath) {
+    public function __construct($pluginPath)
+    {
         $this->pluginPath = $pluginPath;
 
         add_action('init', [$this, 'initialize']);
     }
 
-    function initialize() {
+    public function initialize()
+    {
         $pluginDir = dirname($this->pluginPath);
 
         // Register local lib dependent scripts
@@ -52,12 +54,18 @@ class SaveMessageBlock {
         ], filemtime("$pluginDir/$blockScriptFile"));
 
         // Register local lib dependent styles
-        wp_register_style('spin', plugins_url('/style/lib/spin.css', $this->pluginPath), [],
+        wp_register_style(
+            'spin',
+            plugins_url('/style/lib/spin.css', $this->pluginPath),
+            [],
             filemtime("$pluginDir/style/lib/spin.css")
         );
 
         $blockEditorStyleFile = '/style/SaveMessageBlockEditor.css';
-        wp_register_style('save-message-block-editor', plugins_url($blockEditorStyleFile, $this->pluginPath), [],
+        wp_register_style(
+            'save-message-block-editor',
+            plugins_url($blockEditorStyleFile, $this->pluginPath),
+            [],
             filemtime("$pluginDir/$blockEditorStyleFile")
         );
 
@@ -66,7 +74,7 @@ class SaveMessageBlock {
             'spin'
         ], filemtime("$pluginDir/$blockStyleFile"));
 
-        register_block_type( 'catenis-blocks/ctnblk-save-message', [
+        register_block_type('catenis-blocks/ctnblk-save-message', [
             'editor_script' => 'save-message-block-editor',
             'editor_style'  => 'save-message-block-editor',
             'script'        => 'save-message-block',

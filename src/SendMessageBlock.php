@@ -8,17 +8,19 @@
 
 namespace Catenis\WP\Blocks;
 
-
-class SendMessageBlock {
+class SendMessageBlock
+{
     private $pluginPath;
 
-    function __construct($pluginPath) {
+    public function __construct($pluginPath)
+    {
         $this->pluginPath = $pluginPath;
 
         add_action('init', [$this, 'initialize']);
     }
 
-    function initialize() {
+    public function initialize()
+    {
         $pluginDir = dirname($this->pluginPath);
 
         $blockEditorScriptFile = '/js/SendMessageBlockEditor.js';
@@ -37,16 +39,22 @@ class SendMessageBlock {
         ], filemtime("$pluginDir/$blockScriptFile"));
 
         $blockEditorStyleFile = '/style/SendMessageBlockEditor.css';
-        wp_register_style('send-message-block-editor', plugins_url($blockEditorStyleFile, $this->pluginPath), [],
+        wp_register_style(
+            'send-message-block-editor',
+            plugins_url($blockEditorStyleFile, $this->pluginPath),
+            [],
             filemtime("$pluginDir/$blockEditorStyleFile")
         );
 
         $blockStyleFile = '/style/SendMessageBlock.css';
-        wp_register_style('send-message-block', plugins_url($blockStyleFile, $this->pluginPath), [],
+        wp_register_style(
+            'send-message-block',
+            plugins_url($blockStyleFile, $this->pluginPath),
+            [],
             filemtime("$pluginDir/$blockStyleFile")
         );
 
-        register_block_type( 'catenis-blocks/ctnblk-send-message', [
+        register_block_type('catenis-blocks/ctnblk-send-message', [
             'editor_script' => 'send-message-block-editor',
             'editor_style'  => 'send-message-block-editor',
             'script'        => 'send-message-block',

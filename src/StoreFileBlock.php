@@ -8,17 +8,19 @@
 
 namespace Catenis\WP\Blocks;
 
-
-class StoreFileBlock {
+class StoreFileBlock
+{
     private $pluginPath;
 
-    function __construct($pluginPath) {
+    public function __construct($pluginPath)
+    {
         $this->pluginPath = $pluginPath;
 
         add_action('init', [$this, 'initialize']);
     }
 
-    function initialize() {
+    public function initialize()
+    {
         $pluginDir = dirname($this->pluginPath);
 
         // Register local lib dependent scripts
@@ -50,16 +52,22 @@ class StoreFileBlock {
         ], filemtime("$pluginDir/$blockScriptFile"));
 
         $blockEditorStyleFile = '/style/StoreFileBlockEditor.css';
-        wp_register_style('store-file-block-editor', plugins_url($blockEditorStyleFile, $this->pluginPath), [],
+        wp_register_style(
+            'store-file-block-editor',
+            plugins_url($blockEditorStyleFile, $this->pluginPath),
+            [],
             filemtime("$pluginDir/$blockEditorStyleFile")
         );
 
         $blockStyleFile = '/style/StoreFileBlock.css';
-        wp_register_style('store-file-block', plugins_url($blockStyleFile, $this->pluginPath), [],
+        wp_register_style(
+            'store-file-block',
+            plugins_url($blockStyleFile, $this->pluginPath),
+            [],
             filemtime("$pluginDir/$blockStyleFile")
         );
 
-        register_block_type( 'catenis-blocks/ctnblk-store-file', [
+        register_block_type('catenis-blocks/ctnblk-store-file', [
             'editor_script' => 'store-file-block-editor',
             'editor_style'  => 'store-file-block-editor',
             'script'        => 'store-file-block',

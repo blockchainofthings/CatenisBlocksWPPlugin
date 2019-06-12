@@ -8,17 +8,19 @@
 
 namespace Catenis\WP\Blocks;
 
-
-class MessageHistoryBlock {
+class MessageHistoryBlock
+{
     private $pluginPath;
 
-    function __construct($pluginPath) {
+    public function __construct($pluginPath)
+    {
         $this->pluginPath = $pluginPath;
 
         add_action('init', [$this, 'initialize']);
     }
 
-    function initialize() {
+    public function initialize()
+    {
         $pluginDir = dirname($this->pluginPath);
 
         $blockEditorScriptFile = '/js/MessageHistoryBlockEditor.js';
@@ -39,16 +41,22 @@ class MessageHistoryBlock {
         ], filemtime("$pluginDir/$blockScriptFile"));
 
         $blockEditorStyleFile = '/style/MessageHistoryBlockEditor.css';
-        wp_register_style('message-history-block-editor', plugins_url($blockEditorStyleFile, $this->pluginPath), [],
+        wp_register_style(
+            'message-history-block-editor',
+            plugins_url($blockEditorStyleFile, $this->pluginPath),
+            [],
             filemtime("$pluginDir/$blockEditorStyleFile")
         );
 
         $blockStyleFile = '/style/MessageHistoryBlock.css';
-        wp_register_style('message-history-block', plugins_url($blockStyleFile, $this->pluginPath), [],
+        wp_register_style(
+            'message-history-block',
+            plugins_url($blockStyleFile, $this->pluginPath),
+            [],
             filemtime("$pluginDir/$blockStyleFile")
         );
 
-        register_block_type( 'catenis-blocks/ctnblk-message-history', [
+        register_block_type('catenis-blocks/ctnblk-message-history', [
             'editor_script' => 'message-history-block-editor',
             'editor_style'  => 'message-history-block-editor',
             'script'        => 'message-history-block',

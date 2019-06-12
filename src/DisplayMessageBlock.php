@@ -8,17 +8,19 @@
 
 namespace Catenis\WP\Blocks;
 
-
-class DisplayMessageBlock {
+class DisplayMessageBlock
+{
     private $pluginPath;
 
-    function __construct($pluginPath) {
+    public function __construct($pluginPath)
+    {
         $this->pluginPath = $pluginPath;
 
         add_action('init', [$this, 'initialize']);
     }
 
-    function initialize() {
+    public function initialize()
+    {
         $pluginDir = dirname($this->pluginPath);
 
         // Register local lib dependent scripts
@@ -52,21 +54,30 @@ class DisplayMessageBlock {
         ], filemtime("$pluginDir/$blockScriptFile"));
 
         // Register local lib dependent styles
-        wp_register_style('spin', plugins_url('/style/lib/spin.css', $this->pluginPath), [],
+        wp_register_style(
+            'spin',
+            plugins_url('/style/lib/spin.css', $this->pluginPath),
+            [],
             filemtime("$pluginDir/style/lib/spin.css")
         );
 
         $blockEditorStyleFile = '/style/DisplayMessageBlockEditor.css';
-        wp_register_style('display-message-block-editor', plugins_url($blockEditorStyleFile, $this->pluginPath), [],
+        wp_register_style(
+            'display-message-block-editor',
+            plugins_url($blockEditorStyleFile, $this->pluginPath),
+            [],
             filemtime("$pluginDir/$blockEditorStyleFile")
         );
 
         $blockStyleFile = '/style/DisplayMessageBlock.css';
-        wp_register_style('display-message-block', plugins_url($blockStyleFile, $this->pluginPath), [
-            'spin'
-        ], filemtime("$pluginDir/$blockStyleFile"));
+        wp_register_style(
+            'display-message-block',
+            plugins_url($blockStyleFile, $this->pluginPath),
+            ['spin'],
+            filemtime("$pluginDir/$blockStyleFile")
+        );
 
-        register_block_type( 'catenis-blocks/ctnblk-display-message', [
+        register_block_type('catenis-blocks/ctnblk-display-message', [
             'editor_script' => 'display-message-block-editor',
             'editor_style'  => 'display-message-block-editor',
             'script'        => 'display-message-block',

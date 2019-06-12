@@ -8,17 +8,19 @@
 
 namespace Catenis\WP\Blocks;
 
-
-class StoreMessageBlock {
+class StoreMessageBlock
+{
     private $pluginPath;
 
-    function __construct($pluginPath) {
+    public function __construct($pluginPath)
+    {
         $this->pluginPath = $pluginPath;
 
         add_action('init', [$this, 'initialize']);
     }
 
-    function initialize() {
+    public function initialize()
+    {
         $pluginDir = dirname($this->pluginPath);
 
         $blockEditorScriptFile = '/js/StoreMessageBlockEditor.js';
@@ -37,16 +39,22 @@ class StoreMessageBlock {
         ], filemtime("$pluginDir/$blockScriptFile"));
 
         $blockEditorStyleFile = '/style/StoreMessageBlockEditor.css';
-        wp_register_style('store-message-block-editor', plugins_url($blockEditorStyleFile, $this->pluginPath), [],
+        wp_register_style(
+            'store-message-block-editor',
+            plugins_url($blockEditorStyleFile, $this->pluginPath),
+            [],
             filemtime("$pluginDir/$blockEditorStyleFile")
         );
 
         $blockStyleFile = '/style/StoreMessageBlock.css';
-        wp_register_style('store-message-block', plugins_url($blockStyleFile, $this->pluginPath), [],
+        wp_register_style(
+            'store-message-block',
+            plugins_url($blockStyleFile, $this->pluginPath),
+            [],
             filemtime("$pluginDir/$blockStyleFile")
         );
 
-        register_block_type( 'catenis-blocks/ctnblk-store-message', [
+        register_block_type('catenis-blocks/ctnblk-store-message', [
             'editor_script' => 'store-message-block-editor',
             'editor_style'  => 'store-message-block-editor',
             'script'        => 'store-message-block',
