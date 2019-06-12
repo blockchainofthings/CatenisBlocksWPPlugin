@@ -1,4 +1,5 @@
 (function (context) {
+    var $ = context.jQuery;
     var wp = context.wp;
     var registerBlockType = wp.blocks.registerBlockType;
     var el = wp.element.createElement;
@@ -148,12 +149,14 @@
                 });
             }
 
+            // eslint-disable-next-line no-unused-vars
             function onClickCustomStartDateButton(event) {
                 props.setAttributes({
                     selectCustomStartDate: !selectCustomStartDate
                 });
             }
 
+            // eslint-disable-next-line no-unused-vars
             function onCloseCustomStartDatePopover(event) {
                 props.setAttributes({
                     selectCustomStartDate: false
@@ -174,6 +177,7 @@
                 $('.ctn-date-picker.custom-start-date .components-text-control__input').focus();
             }
 
+            // eslint-disable-next-line no-unused-vars
             function onChangeCustomEndDate(newValue) {
                 // Filter out spurious characters
                 newValue = newValue.replace(/[^0-9-]/, '');
@@ -187,6 +191,7 @@
                 });
             }
 
+            // eslint-disable-next-line no-unused-vars
             function onBlurCustomEndDate(event) {
                 var mt = moment(event.target.value, dateFormat);
                 var mtCustomStartDate = moment(customStartDate, dateFormat);
@@ -197,18 +202,21 @@
                 });
             }
 
+            // eslint-disable-next-line no-unused-vars
             function onClickCustomEndDateButton(event) {
                 props.setAttributes({
                     selectCustomEndDate: !selectCustomEndDate
                 });
             }
 
+            // eslint-disable-next-line no-unused-vars
             function onCloseCustomEndDatePopover(event) {
                 props.setAttributes({
                     selectCustomEndDate: false
                 });
             }
 
+            // eslint-disable-next-line no-unused-vars
             function onChangeCustomEndDatePicker(newDate) {
                 var mt = moment(newDate);
                 var mtCustomStartDate = moment(customStartDate, dateFormat);

@@ -35,6 +35,7 @@
                 // Exclude trailing new line character
                 fileMeta = JSON.parse(header.substring(0, header.length - 1));
             }
+            // eslint-disable-next-line no-empty
             catch (err) {}
 
             if (isValidFileMeta(fileMeta) && checksum === computeChecksum(header)) {

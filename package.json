@@ -1,0 +1,15 @@
+{
+  "name": "catenis-blocks-wp",
+  "version": "1.0.0",
+  "description": "Catenis Blocks plugin for WordPress",
+  "main": "index.js",
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-plugin-react": "^7.13.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Cláudio de Castro",
+  "license": "MIT"
+}

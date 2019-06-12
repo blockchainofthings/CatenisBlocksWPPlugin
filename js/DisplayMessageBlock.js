@@ -1,5 +1,6 @@
 (function (context) {
     var $ = context.jQuery;
+    // eslint-disable-next-line no-unused-vars
     var __ = context.wp.i18n.__;
     var Buffer = context.buffer.Buffer;
     var CtnFileHeader = context.CtnFileHeader;

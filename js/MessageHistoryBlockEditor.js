@@ -1,4 +1,5 @@
 (function (context) {
+    var $ = context.jQuery;
     var wp = context.wp;
     var registerBlockType = wp.blocks.registerBlockType;
     var el = wp.element.createElement;
@@ -160,12 +161,14 @@
                 });
             }
 
+            // eslint-disable-next-line no-unused-vars
             function onClickCustomStartDateButton(event) {
                 props.setAttributes({
                     selectCustomStartDate: !selectCustomStartDate
                 });
             }
 
+            // eslint-disable-next-line no-unused-vars
             function onCloseCustomStartDatePopover(event) {
                 props.setAttributes({
                     selectCustomStartDate: false
@@ -209,12 +212,14 @@
                 });
             }
 
+            // eslint-disable-next-line no-unused-vars
             function onClickCustomEndDateButton(event) {
                 props.setAttributes({
                     selectCustomEndDate: !selectCustomEndDate
                 });
             }
 
+            // eslint-disable-next-line no-unused-vars
             function onCloseCustomEndDatePopover(event) {
                 props.setAttributes({
                     selectCustomEndDate: false

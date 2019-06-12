@@ -224,13 +224,14 @@
 
         fileReader.onerror = function (event) {
             var error = event.target.error;
-            var errMsg = typeof FileError === 'function' && (error instanceof FileError) ?
+            var errMsg = typeof FileError === 'function' && (error instanceof context.FileError) ?
                 'FileError [code: ' + error.code + ']' :
                 error.message;
 
             _self.displayError(__('Error reading file: ', 'catenis-blocks') + errMsg);
         };
 
+        // eslint-disable-next-line no-unused-vars
         fileReader.onabort = function (event) {
             _self.displayError(__('Reading of file has been aborted', 'catenis-blocks'));
         };

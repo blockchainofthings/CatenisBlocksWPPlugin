@@ -195,10 +195,12 @@
         this.hideError();
     };
 
+    // eslint-disable-next-line no-unused-vars
     function onMessageKeyDown(event) {
         this.lastMessageValue = this.form.message.value;
     }
 
+    // eslint-disable-next-line no-unused-vars
     function onMessageKeyUp(event) {
         var currentMessageValue = this.form.message.value;
 
@@ -208,6 +210,7 @@
         }
     }
 
+    // eslint-disable-next-line no-unused-vars
     function onMessageChange(event) {
         this.messageSent();
     }

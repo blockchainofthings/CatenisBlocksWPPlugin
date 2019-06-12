@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 (function (context) {
     var $ = context.jQuery;
     var __ = context.wp.i18n.__;
@@ -655,7 +656,7 @@
     };
 
     CtnBlkMessageHistory.prototype.highlightMessageEntry = function ($trElem, messageId, columns) {
-        if ($trElem instanceof jQuery || typeof $trElem === 'string') {
+        if ($trElem instanceof context.jQuery || typeof $trElem === 'string') {
             if (typeof $trElem === 'string') {
                 columns = messageId;
                 messageId = $trElem;

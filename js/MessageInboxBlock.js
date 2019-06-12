@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 (function (context) {
     var $ = context.jQuery;
     var __ = context.wp.i18n.__;
@@ -115,6 +116,7 @@
         });
     };
 
+    // eslint-disable-next-line no-unused-vars
     CtnBlkMessageInbox.prototype.processNewMessageReceived = function (eventData) {
         this.setNewMessageAlertOn();
     };
@@ -646,7 +648,7 @@
     };
 
     CtnBlkMessageInbox.prototype.highlightMessageEntry = function ($trElem, messageId, columns) {
-        if ($trElem instanceof jQuery || typeof $trElem === 'string') {
+        if ($trElem instanceof context.jQuery || typeof $trElem === 'string') {
             if (typeof $trElem === 'string') {
                 columns = messageId;
                 messageId = $trElem;
@@ -842,6 +844,10 @@
         }
 
         return date;
+    }
+
+    function mapMsgAction(action) {
+        return action === 'log' ? 'stored' : 'sent';
     }
 
     function formatDate(isoDate) {
