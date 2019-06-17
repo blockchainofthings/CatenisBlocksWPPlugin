@@ -161,9 +161,9 @@
                             })
                         ),
                         el(cmp.PanelBody, {
-                                title: __('Display', 'catenis-blocks'),
-                                initialOpen: false
-                            },
+                            title: __('Display', 'catenis-blocks'),
+                            initialOpen: false
+                        },
                             el(cmp.ToggleControl, {
                                 label: __('Show Spinner', 'catenis-blocks'),
                                 help: showSpinner ? __('Show animated icon while loading message', 'catenis-blocks') : '',
