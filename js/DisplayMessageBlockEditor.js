@@ -6,7 +6,7 @@
     var cmp = wp.components;
     var $ = context.jQuery;
 
-    var defShowSpinner = false;
+    var defShowSpinner = true;
     var defStripFileHeader = true;
     var defLimitMsg = true;
     var defMaxMsgLength = 1024;

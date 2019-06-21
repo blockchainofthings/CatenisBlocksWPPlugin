@@ -4,10 +4,13 @@
     var el = wp.element.createElement;
     var __ = wp.i18n.__;
     var cmp = wp.components;
+    var $ = context.jQuery;
 
     var defDynamicTargetDevice = false;
     var defUseProdUniqueId = false;
     var defNumLines = 3;
+    var defShowSpinner = true;
+    var defSpinnerColor = 'black';
     var defTargetDevIdPlaceholder = __('Target device ID', 'catenis-blocks');
     var defTargetDevProdUniqueIdPlaceholder = __('Target device prod unique ID', 'catenis-blocks');
     var defMsgPlaceholder = __('Write your message', 'catenis-blocks');
@@ -16,6 +19,9 @@
     var defReadConfirmation = false;
     var defEncrypt = true;
     var defStorage = 'auto';
+
+    var spinner;
+    var spinnerTimeout;
 
     registerBlockType('catenis-blocks/send-message', {
         title: __('Send Message', 'catenis-blocks'),
@@ -44,6 +50,12 @@
                 source: 'attribute',
                 selector: 'textarea',
                 attribute: 'rows'
+            },
+            showSpinner: {
+                type: 'boolean'
+            },
+            spinnerColor: {
+                type: 'string'
             },
             targetDevIdPlaceholder: {
                 type: 'string'
@@ -95,6 +107,8 @@
             var useProdUniqueId = props.attributes.useProdUniqueId !== undefined ? props.attributes.useProdUniqueId : defUseProdUniqueId;
             var targetDeviceId = props.attributes.targetDeviceId || '';
             var numLines = parseInt(props.attributes.numLines) || defNumLines;
+            var showSpinner = props.attributes.showSpinner !== undefined ? props.attributes.showSpinner : defShowSpinner;
+            var spinnerColor = props.attributes.spinnerColor !== undefined ? props.attributes.spinnerColor : defSpinnerColor;
             var targetDevIdPlaceholder = props.attributes.targetDevIdPlaceholder ? props.attributes.targetDevIdPlaceholder : defTargetDevIdPlaceholder;
             var targetDevProdUniqueIdPlaceholder = props.attributes.targetDevProdUniqueIdPlaceholder ? props.attributes.targetDevProdUniqueIdPlaceholder : defTargetDevProdUniqueIdPlaceholder;
             var msgPlaceholder = props.attributes.msgPlaceholder !== undefined ? props.attributes.msgPlaceholder : defMsgPlaceholder;
@@ -128,6 +142,26 @@
                 props.setAttributes({
                     numLines: newValue
                 });
+            }
+
+            function onChangeShowSpinner(newState) {
+                if (newState) {
+                    displaySpinner();
+                }
+
+                props.setAttributes({
+                    showSpinner: newState
+                });
+            }
+
+            function onChangeSpinnerColor(newValue) {
+                spinnerColor = newValue || defSpinnerColor;
+
+                props.setAttributes({
+                    spinnerColor: spinnerColor
+                });
+
+                displaySpinner();
             }
 
             function onChangeTargetDevIdPlaceholder(newValue) {
@@ -200,6 +234,42 @@
                 });
             }
 
+            function displaySpinner() {
+                hideSpinner();
+
+                if (!spinner || spinner.opts.color !== spinnerColor) {
+                    spinner = new context.Spin.Spinner({
+                        className: 'msg-spinner',
+                        color: spinnerColor
+                    });
+                }
+
+                var divMessagePanel = $('div.' + props.className + ' div.messagePanel')[0];
+                var divDisabledPanel = $('div.disabledPanel', divMessagePanel)[0];
+
+                divDisabledPanel.style.display = 'block';
+                spinner.spin(divMessagePanel);
+
+                spinnerTimeout = setTimeout(function () {
+                    hideSpinner();
+                }, 2000);
+            }
+
+            function hideSpinner() {
+                if (spinnerTimeout) {
+                    clearTimeout(spinnerTimeout);
+                    spinnerTimeout = undefined;
+                }
+
+                if (spinner) {
+                    spinner.stop();
+
+                    var divDisabledPanel = $('div.' + props.className + ' div.messagePanel div.disabledPanel')[0];
+    
+                    divDisabledPanel.style.display = 'none';
+                }
+            }
+
             return (
                 el(wp.element.Fragment, {},
                     // Inspector sidebar controls
@@ -244,9 +314,43 @@
                             })
                         ),
                         el(cmp.PanelBody, {
-                                title: __('Advanced UI Settings', 'catenis-blocks'),
-                                initialOpen: false
-                            },
+                            title: __('Display', 'catenis-blocks'),
+                            initialOpen: false
+                        },
+                            el(cmp.ToggleControl, {
+                                label: __('Show Spinner', 'catenis-blocks'),
+                                help: showSpinner ? __('Show animated icon while sending message', 'catenis-blocks') : '',
+                                checked: showSpinner,
+                                onChange: onChangeShowSpinner
+                            })
+                        ),
+                        el(cmp.PanelBody, {
+                            title: __('Advanced UI Settings', 'catenis-blocks'),
+                            initialOpen: false
+                        },
+                            (function (){
+                                if (showSpinner) {
+                                    return  el(cmp.BaseControl, {
+                                            id: 'ctn-send-message-block-spinner-color',
+                                            label: __('Spinner Color', 'catenis-blocks')
+                                        },
+                                        el(cmp.ColorPalette, {
+                                            colors: [{
+                                                name: 'black',
+                                                color: 'black'
+                                            }, {
+                                                name: 'gray',
+                                                color: 'gray'
+                                            }, {
+                                                name: 'light-gray',
+                                                color: 'lightgray'
+                                            }],
+                                            value: spinnerColor,
+                                            onChange: onChangeSpinnerColor
+                                        })
+                                    );
+                                }
+                            })(),
                             el(cmp.TextControl, {
                                 label: __('Target Device ID Placeholder', 'catenis-blocks'),
                                 value: targetDevIdPlaceholder,
@@ -344,11 +448,18 @@
                                 );
                             }
                         })(),
-                        el('textarea', {
-                            name: 'message',
-                            rows: numLines,
-                            placeholder: msgPlaceholder
-                        }),
+                        el('div', {
+                            className: 'messagePanel'
+                        },
+                            el('textarea', {
+                                name: 'message',
+                                rows: numLines,
+                                placeholder: msgPlaceholder
+                            }),
+                            el('div', {
+                                className: 'disabledPanel'
+                            })
+                        ),
                         el('input', {
                             type: 'submit',
                             value: submitButtonLabel
@@ -370,6 +481,8 @@
             var useProdUniqueId = props.attributes.useProdUniqueId !== undefined ? props.attributes.useProdUniqueId : defUseProdUniqueId;
             var targetDeviceId = props.attributes.targetDeviceId || '';
             var numLines = parseInt(props.attributes.numLines) || defNumLines;
+            var showSpinner = props.attributes.showSpinner !== undefined ? props.attributes.showSpinner : defShowSpinner;
+            var spinnerColor = props.attributes.spinnerColor !== undefined ? props.attributes.spinnerColor : defSpinnerColor;
             var targetDevIdPlaceholder = props.attributes.targetDevIdPlaceholder ? props.attributes.targetDevIdPlaceholder : defTargetDevIdPlaceholder;
             var targetDevProdUniqueIdPlaceholder = props.attributes.targetDevProdUniqueIdPlaceholder ? props.attributes.targetDevProdUniqueIdPlaceholder : defTargetDevProdUniqueIdPlaceholder;
             var msgPlaceholder = props.attributes.msgPlaceholder !== undefined ? props.attributes.msgPlaceholder : defMsgPlaceholder;
@@ -388,7 +501,7 @@
                     },
                         el('form', {
                             action: '',
-                            onSubmit: 'try{if(!this.ctnBlkSendMessage && typeof CtnBlkSendMessage === \'function\'){this.ctnBlkSendMessage = new CtnBlkSendMessage(this,{id:' + toStringLiteral(targetDeviceId) + ',isProdUniqueId:' + toStringLiteral(useProdUniqueId) + '},{readConfirmation:' + toStringLiteral(readConfirmation) + ',encrypt:' + toStringLiteral(encrypt) + ',storage:' + toStringLiteral(storage) + '},{successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}this.ctnBlkSendMessage.sendMessage()}finally{return false}'
+                            onSubmit: 'try{if(!this.ctnBlkSendMessage && typeof CtnBlkSendMessage === \'function\'){this.ctnBlkSendMessage = new CtnBlkSendMessage(this,{id:' + toStringLiteral(targetDeviceId) + ',isProdUniqueId:' + toStringLiteral(useProdUniqueId) + '},{readConfirmation:' + toStringLiteral(readConfirmation) + ',encrypt:' + toStringLiteral(encrypt) + ',storage:' + toStringLiteral(storage) + '},{showSpinner:' + toStringLiteral(showSpinner) + ',spinnerColor:' + toStringLiteral(spinnerColor) + ',successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}this.ctnBlkSendMessage.sendMessage()}finally{return false}'
                         },
                             (function () {
                                 if (dynamicTargetDevice) {
@@ -408,11 +521,18 @@
                                     );
                                 }
                             })(),
-                            el('textarea', {
-                                name: 'message',
-                                rows: numLines,
-                                placeholder: msgPlaceholder
-                            }),
+                            el('div', {
+                                className: 'messagePanel'
+                            },
+                                el('textarea', {
+                                    name: 'message',
+                                    rows: numLines,
+                                    placeholder: msgPlaceholder
+                                }),
+                                el('div', {
+                                    className: 'disabledPanel'
+                                })
+                            ),
                             el('input', {
                                 type: 'submit',
                                 name: 'submitButton',

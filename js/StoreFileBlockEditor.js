@@ -4,12 +4,18 @@
     var el = wp.element.createElement;
     var __ = wp.i18n.__;
     var cmp = wp.components;
+    var $ = context.jQuery;
 
+    var defShowSpinner = true;
+    var defSpinnerColor = 'black';
     var defFileDropBoxMessage = __('Drop a file or click to select', 'catenis-blocks');
     var defSubmitButtonLabel = __('Store File', 'catenis-blocks');
     var defSuccessMsgTemplate = __('File successfully stored.\nMessage Id: {!messageId}', 'catenis-blocks');
     var defAddFileHeader = true;
     var defEncrypt = true;
+
+    var spinner;
+    var spinnerTimeout;
 
     registerBlockType('catenis-blocks/store-file', {
         title: __('Store File', 'catenis-blocks'),
@@ -24,6 +30,12 @@
             html: false     // Removes support for an HTML mode
         },
         attributes: {
+            showSpinner: {
+                type: 'boolean'
+            },
+            spinnerColor: {
+                type: 'string'
+            },
             fileDropBoxMessage: {
                 type: 'string',
                 source: 'text',
@@ -63,6 +75,8 @@
          * @return {Element}       Element to render.
          */
         edit: function(props) {
+            var showSpinner = props.attributes.showSpinner !== undefined ? props.attributes.showSpinner : defShowSpinner;
+            var spinnerColor = props.attributes.spinnerColor !== undefined ? props.attributes.spinnerColor : defSpinnerColor;
             var fileDropBoxMessage = props.attributes.fileDropBoxMessage !== undefined ? props.attributes.fileDropBoxMessage : defFileDropBoxMessage;
             var submitButtonLabel = props.attributes.submitButtonLabel !== undefined ? props.attributes.submitButtonLabel : defSubmitButtonLabel;
             var successMsgTemplate = props.attributes.successMsgTemplate !== undefined ? props.attributes.successMsgTemplate : defSuccessMsgTemplate;
@@ -70,6 +84,26 @@
             var encrypt = props.attributes.encrypt !== undefined ? props.attributes.encrypt : defEncrypt;
             var successPanelId = props.attributes.successPanelId;
             var errorPanelId = props.attributes.errorPanelId;
+
+            function onChangeShowSpinner(newState) {
+                if (newState) {
+                    displaySpinner();
+                }
+
+                props.setAttributes({
+                    showSpinner: newState
+                });
+            }
+
+            function onChangeSpinnerColor(newValue) {
+                spinnerColor = newValue || defSpinnerColor;
+
+                props.setAttributes({
+                    spinnerColor: spinnerColor
+                });
+
+                displaySpinner();
+            }
 
             function onChangeFileDropBoxMessage(newValue) {
                 props.setAttributes({
@@ -121,14 +155,84 @@
                 });
             }
 
+            function displaySpinner() {
+                hideSpinner();
+
+                if (!spinner || spinner.opts.color !== spinnerColor) {
+                    spinner = new context.Spin.Spinner({
+                        className: 'msg-spinner',
+                        color: spinnerColor
+                    });
+                }
+
+                var divDropZone = $('div.' + props.className + ' div.dropzone')[0];
+                var divDisabledPanel = $('div.disabledPanel', divDropZone)[0];
+
+                divDisabledPanel.style.display = 'block';
+                spinner.spin(divDropZone);
+
+                spinnerTimeout = setTimeout(function () {
+                    hideSpinner();
+                }, 2000);
+            }
+
+            function hideSpinner() {
+                if (spinnerTimeout) {
+                    clearTimeout(spinnerTimeout);
+                    spinnerTimeout = undefined;
+                }
+
+                if (spinner) {
+                    spinner.stop();
+
+                    var divDisabledPanel = $('div.' + props.className + ' div.dropzone div.disabledPanel')[0];
+    
+                    divDisabledPanel.style.display = 'none';
+                }
+            }
+
             return (
                 el(wp.element.Fragment, {},
                     // Inspector sidebar controls
                     el(wp.editor.InspectorControls, {},
                         el(cmp.PanelBody, {
-                                title: __('Advanced UI Settings', 'catenis-blocks'),
-                                initialOpen: false
-                            },
+                            title: __('Display', 'catenis-blocks'),
+                            initialOpen: false
+                        },
+                            el(cmp.ToggleControl, {
+                                label: __('Show Spinner', 'catenis-blocks'),
+                                help: showSpinner ? __('Show animated icon while storing file', 'catenis-blocks') : '',
+                                checked: showSpinner,
+                                onChange: onChangeShowSpinner
+                            })
+                        ),
+                        el(cmp.PanelBody, {
+                            title: __('Advanced UI Settings', 'catenis-blocks'),
+                            initialOpen: false
+                        },
+                            (function (){
+                                if (showSpinner) {
+                                    return  el(cmp.BaseControl, {
+                                            id: 'ctn-store-file-block-spinner-color',
+                                            label: __('Spinner Color', 'catenis-blocks')
+                                        },
+                                        el(cmp.ColorPalette, {
+                                            colors: [{
+                                                name: 'black',
+                                                color: 'black'
+                                            }, {
+                                                name: 'gray',
+                                                color: 'gray'
+                                            }, {
+                                                name: 'light-gray',
+                                                color: 'lightgray'
+                                            }],
+                                            value: spinnerColor,
+                                            onChange: onChangeSpinnerColor
+                                        })
+                                    );
+                                }
+                            })(),
                             el(cmp.TextControl, {
                                 label: __('File Drop Box Message', 'catenis-blocks'),
                                 value: fileDropBoxMessage,
@@ -198,6 +302,9 @@
                             }, fileDropBoxMessage),
                             el('p', {
                                 className: 'selected'
+                            }),
+                            el('div', {
+                                className: 'disabledPanel'
                             })
                         ),
                         el('input', {
@@ -217,6 +324,8 @@
          * @return {Element}       Element to render.
          */
         save: function(props) {
+            var showSpinner = props.attributes.showSpinner !== undefined ? props.attributes.showSpinner : defShowSpinner;
+            var spinnerColor = props.attributes.spinnerColor !== undefined ? props.attributes.spinnerColor : defSpinnerColor;
             var fileDropBoxMessage = props.attributes.fileDropBoxMessage !== undefined ? props.attributes.fileDropBoxMessage : defFileDropBoxMessage;
             var submitButtonLabel = props.attributes.submitButtonLabel !== undefined ? props.attributes.submitButtonLabel : defSubmitButtonLabel;
             var successMsgTemplate = props.attributes.successMsgTemplate !== undefined ? props.attributes.successMsgTemplate : defSuccessMsgTemplate;
@@ -232,21 +341,24 @@
                     },
                         el('form', {
                             action: '',
-                            onSubmit: 'try{if(!this.ctnBlkStoreFile && typeof CtnBlkStoreFile === \'function\'){this.ctnBlkStoreFile = new CtnBlkStoreFile(this,{encrypt:' + toStringLiteral(encrypt) + '},{addFileHeader:' + toStringLiteral(addFileHeader) + ',successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}this.ctnBlkStoreFile.storeFile()}finally{return false}'
+                            onSubmit: 'try{if(!this.ctnBlkStoreFile && typeof CtnBlkStoreFile === \'function\'){this.ctnBlkStoreFile = new CtnBlkStoreFile(this,{encrypt:' + toStringLiteral(encrypt) + '},{showSpinner:' + toStringLiteral(showSpinner) + ',spinnerColor:' + toStringLiteral(spinnerColor) + ',addFileHeader:' + toStringLiteral(addFileHeader) + ',successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}this.ctnBlkStoreFile.storeFile()}finally{return false}'
                         },
                             el('div', {
                                 className: 'dropzone',
-                                onClick: '(function(){try{var parent=this.parentElement;if(!parent.ctnBlkStoreFile && typeof CtnBlkStoreFile===\'function\'){parent.ctnBlkStoreFile=new CtnBlkStoreFile(parent,{encrypt:' + toStringLiteral(encrypt) + '},{addFileHeader:' + toStringLiteral(addFileHeader) + ',successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}parent.ctnBlkStoreFile.selectFile()}finally{return false}}).call(this)',
-                                onDrop: '(function(){try{var parent=this.parentElement;if(!parent.ctnBlkStoreFile && typeof CtnBlkStoreFile===\'function\'){parent.ctnBlkStoreFile=new CtnBlkStoreFile(parent,{encrypt:' + toStringLiteral(encrypt) + '},{addFileHeader:' + toStringLiteral(addFileHeader) + ',successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}parent.ctnBlkStoreFile.dropEventHandler(event)}finally{return false}}).call(this)',
-                                onDragOver: '(function(){try{var parent=this.parentElement;if(!parent.ctnBlkStoreFile && typeof CtnBlkStoreFile===\'function\'){parent.ctnBlkStoreFile=new CtnBlkStoreFile(parent,{encrypt:' + toStringLiteral(encrypt) + '},{addFileHeader:' + toStringLiteral(addFileHeader) + ',successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}parent.ctnBlkStoreFile.dragOverHandler(event)}finally{return false}}).call(this)',
-                                onDragEnter: '(function(){try{var parent=this.parentElement;if(!parent.ctnBlkStoreFile && typeof CtnBlkStoreFile===\'function\'){parent.ctnBlkStoreFile=new CtnBlkStoreFile(parent,{encrypt:' + toStringLiteral(encrypt) + '},{addFileHeader:' + toStringLiteral(addFileHeader) + ',successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}parent.ctnBlkStoreFile.dragEnterHandler(event)}finally{return false}}).call(this)',
-                                onDragLeave: '(function(){try{var parent=this.parentElement;if(!parent.ctnBlkStoreFile && typeof CtnBlkStoreFile===\'function\'){parent.ctnBlkStoreFile=new CtnBlkStoreFile(parent,{encrypt:' + toStringLiteral(encrypt) + '},{addFileHeader:' + toStringLiteral(addFileHeader) + ',successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}parent.ctnBlkStoreFile.dragLeaveHandler(event)}finally{return false}}).call(this)'
+                                onClick: '(function(){try{var parent=this.parentElement;if(!parent.ctnBlkStoreFile && typeof CtnBlkStoreFile===\'function\'){parent.ctnBlkStoreFile=new CtnBlkStoreFile(parent,{encrypt:' + toStringLiteral(encrypt) + '},{showSpinner:' + toStringLiteral(showSpinner) + ',spinnerColor:' + toStringLiteral(spinnerColor) + ',addFileHeader:' + toStringLiteral(addFileHeader) + ',successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}parent.ctnBlkStoreFile.selectFile()}finally{return false}}).call(this)',
+                                onDrop: '(function(){try{var parent=this.parentElement;if(!parent.ctnBlkStoreFile && typeof CtnBlkStoreFile===\'function\'){parent.ctnBlkStoreFile=new CtnBlkStoreFile(parent,{encrypt:' + toStringLiteral(encrypt) + '},{showSpinner:' + toStringLiteral(showSpinner) + ',spinnerColor:' + toStringLiteral(spinnerColor) + ',addFileHeader:' + toStringLiteral(addFileHeader) + ',successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}parent.ctnBlkStoreFile.dropEventHandler(event)}finally{return false}}).call(this)',
+                                onDragOver: '(function(){try{var parent=this.parentElement;if(!parent.ctnBlkStoreFile && typeof CtnBlkStoreFile===\'function\'){parent.ctnBlkStoreFile=new CtnBlkStoreFile(parent,{encrypt:' + toStringLiteral(encrypt) + '},{showSpinner:' + toStringLiteral(showSpinner) + ',spinnerColor:' + toStringLiteral(spinnerColor) + ',addFileHeader:' + toStringLiteral(addFileHeader) + ',successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}parent.ctnBlkStoreFile.dragOverHandler(event)}finally{return false}}).call(this)',
+                                onDragEnter: '(function(){try{var parent=this.parentElement;if(!parent.ctnBlkStoreFile && typeof CtnBlkStoreFile===\'function\'){parent.ctnBlkStoreFile=new CtnBlkStoreFile(parent,{encrypt:' + toStringLiteral(encrypt) + '},{showSpinner:' + toStringLiteral(showSpinner) + ',spinnerColor:' + toStringLiteral(spinnerColor) + ',addFileHeader:' + toStringLiteral(addFileHeader) + ',successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}parent.ctnBlkStoreFile.dragEnterHandler(event)}finally{return false}}).call(this)',
+                                onDragLeave: '(function(){try{var parent=this.parentElement;if(!parent.ctnBlkStoreFile && typeof CtnBlkStoreFile===\'function\'){parent.ctnBlkStoreFile=new CtnBlkStoreFile(parent,{encrypt:' + toStringLiteral(encrypt) + '},{showSpinner:' + toStringLiteral(showSpinner) + ',spinnerColor:' + toStringLiteral(spinnerColor) + ',addFileHeader:' + toStringLiteral(addFileHeader) + ',successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}parent.ctnBlkStoreFile.dragLeaveHandler(event)}finally{return false}}).call(this)'
                             },
                                 el('p', {
                                     className: 'instruction'
                                 }, fileDropBoxMessage),
                                 el('p', {
                                     className: 'selected'
+                                }),
+                                el('div', {
+                                    className: 'disabledPanel'
                                 })
                             ),
                             el('input', {

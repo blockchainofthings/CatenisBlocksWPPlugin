@@ -4,7 +4,10 @@
     var el = wp.element.createElement;
     var __ = wp.i18n.__;
     var cmp = wp.components;
+    var $ = context.jQuery;
 
+    var defShowSpinner = true;
+    var defSpinnerColor = 'black';
     var defTargetDevIdPlaceholder = __('Target device ID', 'catenis-blocks');
     var defTargetDevProdUniqueIdPlaceholder = __('Target device prod unique ID', 'catenis-blocks');
     var defFileDropBoxMessage = __('Drop a file or click to select', 'catenis-blocks');
@@ -13,6 +16,9 @@
     var defAddFileHeader = true;
     var defReadConfirmation = false;
     var defEncrypt = true;
+
+    var spinner;
+    var spinnerTimeout;
 
     registerBlockType('catenis-blocks/send-file', {
         title: __('Send File', 'catenis-blocks'),
@@ -34,6 +40,12 @@
                 type: 'boolean'
             },
             targetDeviceId: {
+                type: 'string'
+            },
+            showSpinner: {
+                type: 'boolean'
+            },
+            spinnerColor: {
                 type: 'string'
             },
             targetDevIdPlaceholder: {
@@ -87,6 +99,8 @@
             var dynamicTargetDevice = props.attributes.dynamicTargetDevice !== undefined ? props.attributes.dynamicTargetDevice : false;
             var useProdUniqueId = props.attributes.useProdUniqueId !== undefined ? props.attributes.useProdUniqueId : false;
             var targetDeviceId = props.attributes.targetDeviceId || '';
+            var showSpinner = props.attributes.showSpinner !== undefined ? props.attributes.showSpinner : defShowSpinner;
+            var spinnerColor = props.attributes.spinnerColor !== undefined ? props.attributes.spinnerColor : defSpinnerColor;
             var targetDevIdPlaceholder = props.attributes.targetDevIdPlaceholder ? props.attributes.targetDevIdPlaceholder : defTargetDevIdPlaceholder;
             var targetDevProdUniqueIdPlaceholder = props.attributes.targetDevProdUniqueIdPlaceholder ? props.attributes.targetDevProdUniqueIdPlaceholder : defTargetDevProdUniqueIdPlaceholder;
             var fileDropBoxMessage = props.attributes.fileDropBoxMessage !== undefined ? props.attributes.fileDropBoxMessage : defFileDropBoxMessage;
@@ -114,6 +128,26 @@
                 props.setAttributes({
                     targetDeviceId: newValue.trim()
                 });
+            }
+
+            function onChangeShowSpinner(newState) {
+                if (newState) {
+                    displaySpinner();
+                }
+
+                props.setAttributes({
+                    showSpinner: newState
+                });
+            }
+
+            function onChangeSpinnerColor(newValue) {
+                spinnerColor = newValue || defSpinnerColor;
+
+                props.setAttributes({
+                    spinnerColor: spinnerColor
+                });
+
+                displaySpinner();
             }
 
             function onChangeTargetDevIdPlaceholder(newValue) {
@@ -186,6 +220,42 @@
                 });
             }
 
+            function displaySpinner() {
+                hideSpinner();
+
+                if (!spinner || spinner.opts.color !== spinnerColor) {
+                    spinner = new context.Spin.Spinner({
+                        className: 'msg-spinner',
+                        color: spinnerColor
+                    });
+                }
+
+                var divDropZone = $('div.' + props.className + ' div.dropzone')[0];
+                var divDisabledPanel = $('div.disabledPanel', divDropZone)[0];
+
+                divDisabledPanel.style.display = 'block';
+                spinner.spin(divDropZone);
+
+                spinnerTimeout = setTimeout(function () {
+                    hideSpinner();
+                }, 2000);
+            }
+
+            function hideSpinner() {
+                if (spinnerTimeout) {
+                    clearTimeout(spinnerTimeout);
+                    spinnerTimeout = undefined;
+                }
+
+                if (spinner) {
+                    spinner.stop();
+
+                    var divDisabledPanel = $('div.' + props.className + ' div.dropzone div.disabledPanel')[0];
+    
+                    divDisabledPanel.style.display = 'none';
+                }
+            }
+
             return (
                 el(wp.element.Fragment, {},
                     // Inspector sidebar controls
@@ -219,9 +289,43 @@
                             })()
                         ),
                         el(cmp.PanelBody, {
-                                title: __('Advanced UI Settings', 'catenis-blocks'),
-                                initialOpen: false
-                            },
+                            title: __('Display', 'catenis-blocks'),
+                            initialOpen: false
+                        },
+                            el(cmp.ToggleControl, {
+                                label: __('Show Spinner', 'catenis-blocks'),
+                                help: showSpinner ? __('Show animated icon while sending file', 'catenis-blocks') : '',
+                                checked: showSpinner,
+                                onChange: onChangeShowSpinner
+                            })
+                        ),
+                        el(cmp.PanelBody, {
+                            title: __('Advanced UI Settings', 'catenis-blocks'),
+                            initialOpen: false
+                        },
+                            (function (){
+                                if (showSpinner) {
+                                    return  el(cmp.BaseControl, {
+                                            id: 'ctn-send-file-block-spinner-color',
+                                            label: __('Spinner Color', 'catenis-blocks')
+                                        },
+                                        el(cmp.ColorPalette, {
+                                            colors: [{
+                                                name: 'black',
+                                                color: 'black'
+                                            }, {
+                                                name: 'gray',
+                                                color: 'gray'
+                                            }, {
+                                                name: 'light-gray',
+                                                color: 'lightgray'
+                                            }],
+                                            value: spinnerColor,
+                                            onChange: onChangeSpinnerColor
+                                        })
+                                    );
+                                }
+                            })(),
                             el(cmp.TextControl, {
                                 label: __('Target Device ID Placeholder', 'catenis-blocks'),
                                 value: targetDevIdPlaceholder,
@@ -318,6 +422,9 @@
                             }, fileDropBoxMessage),
                             el('p', {
                                 className: 'selected'
+                            }),
+                            el('div', {
+                                className: 'disabledPanel'
                             })
                         ),
                         el('input', {
@@ -340,6 +447,8 @@
             var dynamicTargetDevice = props.attributes.dynamicTargetDevice !== undefined ? props.attributes.dynamicTargetDevice : false;
             var useProdUniqueId = props.attributes.useProdUniqueId !== undefined ? props.attributes.useProdUniqueId : false;
             var targetDeviceId = props.attributes.targetDeviceId || '';
+            var showSpinner = props.attributes.showSpinner !== undefined ? props.attributes.showSpinner : defShowSpinner;
+            var spinnerColor = props.attributes.spinnerColor !== undefined ? props.attributes.spinnerColor : defSpinnerColor;
             var targetDevIdPlaceholder = props.attributes.targetDevIdPlaceholder ? props.attributes.targetDevIdPlaceholder : defTargetDevIdPlaceholder;
             var targetDevProdUniqueIdPlaceholder = props.attributes.targetDevProdUniqueIdPlaceholder ? props.attributes.targetDevProdUniqueIdPlaceholder : defTargetDevProdUniqueIdPlaceholder;
             var fileDropBoxMessage = props.attributes.fileDropBoxMessage !== undefined ? props.attributes.fileDropBoxMessage : defFileDropBoxMessage;
@@ -358,7 +467,7 @@
                     },
                         el('form', {
                             action: '',
-                            onSubmit: 'try{if(!this.ctnBlkSendFile && typeof CtnBlkSendFile === \'function\'){this.ctnBlkSendFile = new CtnBlkSendFile(this,{id:' + toStringLiteral(targetDeviceId) + ',isProdUniqueId:' + toStringLiteral(useProdUniqueId) + '},{readConfirmation:' + toStringLiteral(readConfirmation) + ',encrypt:' + toStringLiteral(encrypt) + '},{addFileHeader:' + toStringLiteral(addFileHeader) + ',successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}this.ctnBlkSendFile.sendFile()}finally{return false}'
+                            onSubmit: 'try{if(!this.ctnBlkSendFile && typeof CtnBlkSendFile === \'function\'){this.ctnBlkSendFile = new CtnBlkSendFile(this,{id:' + toStringLiteral(targetDeviceId) + ',isProdUniqueId:' + toStringLiteral(useProdUniqueId) + '},{readConfirmation:' + toStringLiteral(readConfirmation) + ',encrypt:' + toStringLiteral(encrypt) + '},{showSpinner:' + toStringLiteral(showSpinner) + ',spinnerColor:' + toStringLiteral(spinnerColor) + ',addFileHeader:' + toStringLiteral(addFileHeader) + ',successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}this.ctnBlkSendFile.sendFile()}finally{return false}'
                         },
                             (function () {
                                 if (dynamicTargetDevice) {
@@ -380,17 +489,20 @@
                             })(),
                             el('div', {
                                 className: 'dropzone',
-                                onClick: '(function(){try{var parent=this.parentElement;if(!parent.ctnBlkSendFile && typeof CtnBlkSendFile===\'function\'){parent.ctnBlkSendFile=new CtnBlkSendFile(parent,{id:' + toStringLiteral(targetDeviceId) + ',isProdUniqueId:' + toStringLiteral(useProdUniqueId) + '},{readConfirmation:' + toStringLiteral(readConfirmation) + ',encrypt:' + toStringLiteral(encrypt) + '},{addFileHeader:' + toStringLiteral(addFileHeader) + ',successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}parent.ctnBlkSendFile.selectFile()}finally{return false}}).call(this)',
-                                onDrop: '(function(){try{var parent=this.parentElement;if(!parent.ctnBlkSendFile && typeof CtnBlkSendFile===\'function\'){parent.ctnBlkSendFile=new CtnBlkSendFile(parent,{id:' + toStringLiteral(targetDeviceId) + ',isProdUniqueId:' + toStringLiteral(useProdUniqueId) + '},{readConfirmation:' + toStringLiteral(readConfirmation) + ',encrypt:' + toStringLiteral(encrypt) + '},{addFileHeader:' + toStringLiteral(addFileHeader) + ',successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}parent.ctnBlkSendFile.dropEventHandler(event)}finally{return false}}).call(this)',
-                                onDragOver: '(function(){try{var parent=this.parentElement;if(!parent.ctnBlkSendFile && typeof CtnBlkSendFile===\'function\'){parent.ctnBlkSendFile=new CtnBlkSendFile(parent,{id:' + toStringLiteral(targetDeviceId) + ',isProdUniqueId:' + toStringLiteral(useProdUniqueId) + '},{readConfirmation:' + toStringLiteral(readConfirmation) + ',encrypt:' + toStringLiteral(encrypt) + '},{addFileHeader:' + toStringLiteral(addFileHeader) + ',successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}parent.ctnBlkSendFile.dragOverHandler(event)}finally{return false}}).call(this)',
-                                onDragEnter: '(function(){try{var parent=this.parentElement;if(!parent.ctnBlkSendFile && typeof CtnBlkSendFile===\'function\'){parent.ctnBlkSendFile=new CtnBlkSendFile(parent,{id:' + toStringLiteral(targetDeviceId) + ',isProdUniqueId:' + toStringLiteral(useProdUniqueId) + '},{readConfirmation:' + toStringLiteral(readConfirmation) + ',encrypt:' + toStringLiteral(encrypt) + '},{addFileHeader:' + toStringLiteral(addFileHeader) + ',successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}parent.ctnBlkSendFile.dragEnterHandler(event)}finally{return false}}).call(this)',
-                                onDragLeave: '(function(){try{var parent=this.parentElement;if(!parent.ctnBlkSendFile && typeof CtnBlkSendFile===\'function\'){parent.ctnBlkSendFile=new CtnBlkSendFile(parent,{id:' + toStringLiteral(targetDeviceId) + ',isProdUniqueId:' + toStringLiteral(useProdUniqueId) + '},{readConfirmation:' + toStringLiteral(readConfirmation) + ',encrypt:' + toStringLiteral(encrypt) + '},{addFileHeader:' + toStringLiteral(addFileHeader) + ',successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}parent.ctnBlkSendFile.dragLeaveHandler(event)}finally{return false}}).call(this)'
+                                onClick: '(function(){try{var parent=this.parentElement;if(!parent.ctnBlkSendFile && typeof CtnBlkSendFile===\'function\'){parent.ctnBlkSendFile=new CtnBlkSendFile(parent,{id:' + toStringLiteral(targetDeviceId) + ',isProdUniqueId:' + toStringLiteral(useProdUniqueId) + '},{readConfirmation:' + toStringLiteral(readConfirmation) + ',encrypt:' + toStringLiteral(encrypt) + '},{showSpinner:' + toStringLiteral(showSpinner) + ',spinnerColor:' + toStringLiteral(spinnerColor) + ',addFileHeader:' + toStringLiteral(addFileHeader) + ',successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}parent.ctnBlkSendFile.selectFile()}finally{return false}}).call(this)',
+                                onDrop: '(function(){try{var parent=this.parentElement;if(!parent.ctnBlkSendFile && typeof CtnBlkSendFile===\'function\'){parent.ctnBlkSendFile=new CtnBlkSendFile(parent,{id:' + toStringLiteral(targetDeviceId) + ',isProdUniqueId:' + toStringLiteral(useProdUniqueId) + '},{readConfirmation:' + toStringLiteral(readConfirmation) + ',encrypt:' + toStringLiteral(encrypt) + '},{showSpinner:' + toStringLiteral(showSpinner) + ',spinnerColor:' + toStringLiteral(spinnerColor) + ',addFileHeader:' + toStringLiteral(addFileHeader) + ',successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}parent.ctnBlkSendFile.dropEventHandler(event)}finally{return false}}).call(this)',
+                                onDragOver: '(function(){try{var parent=this.parentElement;if(!parent.ctnBlkSendFile && typeof CtnBlkSendFile===\'function\'){parent.ctnBlkSendFile=new CtnBlkSendFile(parent,{id:' + toStringLiteral(targetDeviceId) + ',isProdUniqueId:' + toStringLiteral(useProdUniqueId) + '},{readConfirmation:' + toStringLiteral(readConfirmation) + ',encrypt:' + toStringLiteral(encrypt) + '},{showSpinner:' + toStringLiteral(showSpinner) + ',spinnerColor:' + toStringLiteral(spinnerColor) + ',addFileHeader:' + toStringLiteral(addFileHeader) + ',successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}parent.ctnBlkSendFile.dragOverHandler(event)}finally{return false}}).call(this)',
+                                onDragEnter: '(function(){try{var parent=this.parentElement;if(!parent.ctnBlkSendFile && typeof CtnBlkSendFile===\'function\'){parent.ctnBlkSendFile=new CtnBlkSendFile(parent,{id:' + toStringLiteral(targetDeviceId) + ',isProdUniqueId:' + toStringLiteral(useProdUniqueId) + '},{readConfirmation:' + toStringLiteral(readConfirmation) + ',encrypt:' + toStringLiteral(encrypt) + '},{showSpinner:' + toStringLiteral(showSpinner) + ',spinnerColor:' + toStringLiteral(spinnerColor) + ',addFileHeader:' + toStringLiteral(addFileHeader) + ',successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}parent.ctnBlkSendFile.dragEnterHandler(event)}finally{return false}}).call(this)',
+                                onDragLeave: '(function(){try{var parent=this.parentElement;if(!parent.ctnBlkSendFile && typeof CtnBlkSendFile===\'function\'){parent.ctnBlkSendFile=new CtnBlkSendFile(parent,{id:' + toStringLiteral(targetDeviceId) + ',isProdUniqueId:' + toStringLiteral(useProdUniqueId) + '},{readConfirmation:' + toStringLiteral(readConfirmation) + ',encrypt:' + toStringLiteral(encrypt) + '},{showSpinner:' + toStringLiteral(showSpinner) + ',spinnerColor:' + toStringLiteral(spinnerColor) + ',addFileHeader:' + toStringLiteral(addFileHeader) + ',successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}parent.ctnBlkSendFile.dragLeaveHandler(event)}finally{return false}}).call(this)'
                             },
                                 el('p', {
                                     className: 'instruction'
                                 }, fileDropBoxMessage),
                                 el('p', {
                                     className: 'selected'
+                                }),
+                                el('div', {
+                                    className: 'disabledPanel'
                                 })
                             ),
                             el('input', {

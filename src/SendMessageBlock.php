@@ -23,20 +23,34 @@ class SendMessageBlock
     {
         $pluginDir = dirname($this->pluginPath);
 
+        // Register local lib dependent scripts
+        wp_register_script('spin', plugins_url('/js/lib/spin.umd.js', $this->pluginPath), [], '4.0.0');
+
         $blockEditorScriptFile = '/js/SendMessageBlockEditor.js';
         wp_register_script('send-message-block-editor', plugins_url($blockEditorScriptFile, $this->pluginPath), [
             'wp-blocks',
             'wp-editor',
             'wp-i18n',
             'wp-element',
-            'wp-components'
+            'wp-components',
+            'jquery',
+            'spin'
         ], filemtime("$pluginDir/$blockEditorScriptFile"));
 
         $blockScriptFile = '/js/SendMessageBlock.js';
         wp_register_script('send-message-block', plugins_url($blockScriptFile, $this->pluginPath), [
             'wp-i18n',
-            'jquery'
+            'jquery',
+            'spin'
         ], filemtime("$pluginDir/$blockScriptFile"));
+
+        // Register local lib dependent styles
+        wp_register_style(
+            'spin',
+            plugins_url('/style/lib/spin.css', $this->pluginPath),
+            [],
+            filemtime("$pluginDir/style/lib/spin.css")
+        );
 
         $blockEditorStyleFile = '/style/SendMessageBlockEditor.css';
         wp_register_style(

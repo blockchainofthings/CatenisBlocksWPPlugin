@@ -63,6 +63,10 @@
             this.sortOrder = undefined;
             this.$tableHeaders = undefined;
 
+            this.notifyChannelOpen = false;
+            this.lastOpenNtfyChnlRetryTime = undefined;
+            this.minOpenNtfyChnlRetryInterval = 1000;   // 1 sec. (in milliseconds)
+
             this.setHeaderElements();
             this.setTableElements();
             this.setErrorPanel();
@@ -75,9 +79,19 @@
 
         var _self = this;
 
-        context.ctnApiProxy.on('comm_error', function (error) {
+        context.ctnApiProxy.on('comm-error', function (error) {
             // Error communicating with Catenis notification process
             console.error('Catenis notification process error:', error);
+
+            if (_self.notifyChannelOpen) {
+                var shouldRetryOpen = !_self.lastOpenNtfyChnlRetryTime || (Date.now() - _self.lastOpenNtfyChnlRetryTime >= _self.minOpenNtfyChnlRetryInterval);
+
+                if (shouldRetryOpen) {
+                    // Make sure that notification channel is open
+                    _self.lastOpenNtfyChnlRetryTime = Date.now();
+                    context.setImmediate(openNotifyChannel);
+                }
+            }
         });
 
         // Prepare to open notification channel to monitor sent message read events
@@ -91,6 +105,7 @@
             else {
                 // Catenis notification channel successfully open
                 console.log('[' + wsNotifyChannel.eventName + '] - Catenis notification channel successfully open');
+                _self.notifyChannelOpen = true;
             }
         });
 
@@ -102,18 +117,31 @@
         wsNotifyChannel.on('close', function (code, reason) {
             // Underlying WebSocket connection has been closed
             console.error('[' + wsNotifyChannel.eventName + '] - Underlying WebSocket connection has been closed; code: ' + code + ', reason: ' + reason);
+            _self.notifyChannelOpen = false;
+
+            var shouldRetry = !_self.lastOpenNtfyChnlRetryTime || (Date.now() - _self.lastOpenNtfyChnlRetryTime >= _self.minOpenNtfyChnlRetryInterval);
+
+            if (shouldRetry) {
+                // Reopen notification channel
+                _self.lastOpenNtfyChnlRetryTime = Date.now();
+                context.setImmediate(openNotifyChannel);
+            }
         });
 
         wsNotifyChannel.on('notify', function (eventData) {
             _self.processSentMessageRead(eventData);
         });
 
-        wsNotifyChannel.open(function (error) {
-            if (error) {
-                // Error sending command to open notification channel
-                console.error('Error opening Catenis notification channel:', error);
-            }
-        });
+        function openNotifyChannel() {
+            wsNotifyChannel.open(function (error) {
+                if (error) {
+                    // Error sending command to open notification channel
+                    console.error('Error opening Catenis notification channel:', error);
+                }
+            });
+        }
+
+        openNotifyChannel();
     };
 
     // eslint-disable-next-line no-unused-vars

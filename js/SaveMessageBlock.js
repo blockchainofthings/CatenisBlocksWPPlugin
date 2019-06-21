@@ -1,8 +1,16 @@
+/* eslint-disable no-console */
 (function (context) {
     var $ = context.jQuery;
     var __ = context.wp.i18n.__;
     var Buffer = context.buffer.Buffer;
     var CtnFileHeader = context.CtnFileHeader;
+    var MessageChunker = context.MessageChunker;
+    var dataChunkSize = 10485760;   // (10 MB) Size of binary data before any encoding. The actual number of bytes
+                                    //  received depends on the encoding used. For base64, it will be 13,981,014
+    var initPollMsgProgressTime = 5000;    // 5 sec.
+    var defPollMsgProgressTime = 30000;    // 30 sec.
+    var backPollMsgProgressTime = 90000;   // 1.5 min.
+                                     
 
     function CtnBlkSaveMessage(uiContainer, props) {
         this.uiContainer = uiContainer;
@@ -16,11 +24,91 @@
             this.divError = undefined;
             this.txtError = undefined;
             this.spinner = undefined;
+            this.readMessageChunk = readMessageChunk.bind(this);
+
+            this.cachedMessageId = undefined;
+            this.pollMsgProgressTimeout = undefined;
+            this.pollMsgProgressInterval = undefined;
+            this.pollMsgProgressTime = defPollMsgProgressTime;
+            this.pollMsgProgressHandler = processMessageProgress.bind(this);
+
+            this.notifyChannelOpen = false;
+            this.lastOpenNtfyChnlRetryTime = undefined;
+            this.minOpenNtfyChnlRetryInterval = 1000;   // 1 sec. (in milliseconds)
 
             this.setMessageElements();
             this.setErrorPanel();
+            this.setUpNotification();
         }
     }
+
+    CtnBlkSaveMessage.prototype.setUpNotification = function () {
+        var _self = this;
+
+        context.ctnApiProxy.on('comm-error', function (error) {
+            // Error communicating with Catenis notification process
+            console.error('Catenis notification process error:', error);
+
+            if (_self.notifyChannelOpen) {
+                var shouldRetryOpen = !_self.lastOpenNtfyChnlRetryTime || (Date.now() - _self.lastOpenNtfyChnlRetryTime >= _self.minOpenNtfyChnlRetryInterval);
+
+                if (shouldRetryOpen) {
+                    // Make sure that notification channel is open
+                    _self.lastOpenNtfyChnlRetryTime = Date.now();
+                    context.setImmediate(openNotifyChannel);
+                }
+            }
+        });
+
+        // Prepare to open notification channel to monitor final message progress event.
+        var wsNotifyChannel = context.ctnApiProxy.createWsNotifyChannel('final-msg-progress');
+
+        wsNotifyChannel.on('open', function (error) {
+            if (error) {
+                // Error establishing underlying WebSocket connection
+                console.error('[' + wsNotifyChannel.eventName + '] - Error establishing underlying WebSocket connection:', error);
+            }
+            else {
+                // Catenis notification channel successfully open
+                console.log('[' + wsNotifyChannel.eventName + '] - Catenis notification channel successfully open');
+                _self.notifyChannelOpen = true;
+            }
+        });
+
+        wsNotifyChannel.on('error', function (error) {
+            // Error in the underlying WebSocket connection
+            console.error('[' + wsNotifyChannel.eventName + '] - Error in the underlying WebSocket connection:', error);
+        });
+
+        wsNotifyChannel.on('close', function (code, reason) {
+            // Underlying WebSocket connection has been closed
+            console.error('[' + wsNotifyChannel.eventName + '] - Underlying WebSocket connection has been closed; code: ' + code + ', reason: ' + reason);
+            _self.notifyChannelOpen = false;
+
+            var shouldRetry = !_self.lastOpenNtfyChnlRetryTime || (Date.now() - _self.lastOpenNtfyChnlRetryTime >= _self.minOpenNtfyChnlRetryInterval);
+
+            if (shouldRetry) {
+                // Reopen notification channel
+                _self.lastOpenNtfyChnlRetryTime = Date.now();
+                context.setImmediate(openNotifyChannel);
+            }
+        });
+
+        wsNotifyChannel.on('notify', function (eventData) {
+            _self.processFinalMessageProgress(eventData);
+        });
+
+        function openNotifyChannel() {
+            wsNotifyChannel.open(function (error) {
+                if (error) {
+                    // Error sending command to open notification channel
+                    console.error('Error opening Catenis notification channel:', error);
+                }
+            });
+        }
+
+        openNotifyChannel();
+    };
 
     CtnBlkSaveMessage.prototype.checkCtnApiProxyAvailable = function (uiContainer) {
         var result = true;
@@ -74,19 +162,8 @@
                 this.displaySpinner();
             }
 
-            var _self = this;
-
-            context.ctnApiProxy.readMessage(messageId, 'base64', function (error, result) {
-                _self.hideSpinner();
-
-                if (error) {
-                    _self.displayError(error.toString());
-                }
-                else {
-                    _self.checkNotifyMsgRead(messageId);
-                    _self.prepareMsgToSave(result.msgData);
-                }
-            })
+            // Start reading message
+            this.readMessageChunk(messageId);
         }
     };
 
@@ -99,6 +176,10 @@
     };
 
     CtnBlkSaveMessage.prototype.prepareMsgToSave = function (message) {
+        if (this.showSpinner) {
+            this.hideSpinner();
+        }
+
         var fileName;
         var fileType;
         var fileContents = Buffer.from(message, 'base64');
@@ -191,6 +272,10 @@
     };
 
     CtnBlkSaveMessage.prototype.displayError = function (text) {
+        if (this.showSpinner) {
+            this.hideSpinner();
+        }
+
         if (this.txtError) {
             $(this.txtError).html(convertLineBreak(text));
 
@@ -210,6 +295,123 @@
         this.hideSaveMsgLink();
         this.hideError();
     };
+
+    CtnBlkSaveMessage.prototype.processFinalMessageProgress = function (eventData) {
+        if (this.cachedMessageId && eventData.ephemeralMessageId === this.cachedMessageId) {
+            // Message processing has been finalized. Clear pending message and stop polling
+            this.cachedMessageId = undefined;
+            this.stopPollingMessageProgress();
+
+            if (eventData.progress.success) {
+                // Message ready to be read. Start reading it
+                this.readMessageChunk(eventData.result.messageId, eventData.result.continuationToken, new MessageChunker('utf8'));
+            }
+            else {
+                // Report error reading message
+                this.displayError('Error reading message: [' + eventData.progress.error.code + '] - ' + eventData.progress.error.message);
+            }
+        }
+    };
+
+    CtnBlkSaveMessage.prototype.startPollingMessageProgress = function () {
+        if (!this.pollMsgProgressTimeout) {
+            // Set up initial timeout
+            this.pollMsgProgressTimeout = context.setTimeout(this.pollMsgProgressHandler, initPollMsgProgressTime);
+        }
+
+        if (!this.pollMsgProgressInterval) {
+            this.pollMsgProgressInterval = context.setInterval(this.pollMsgProgressHandler, this.pollMsgProgressTime);
+        }
+    }
+
+    CtnBlkSaveMessage.prototype.stopPollingMessageProgress = function () {
+        if (this.pollMsgProgressInterval) {
+            context.clearInterval(this.pollMsgProgressInterval);
+            this.pollMsgProgressInterval = undefined;
+        }
+
+        if (this.pollMsgProgressTimeout) {
+            context.clearTimeout(this.pollMsgProgressTimeout);
+            this.pollMsgProgressTimeout = undefined;
+        }
+    }
+
+    function readMessageChunk(messageId, continuationToken, msgChunker) {
+        var options = continuationToken ? {
+            encoding: 'base64',
+            continuationToken: continuationToken
+        } : {
+            dataChunkSize: dataChunkSize,
+            async: true
+        };
+
+        var _self = this;
+
+        context.ctnApiProxy.readMessage(messageId, options, function (error, result) {
+            if (error) {
+                _self.displayError(error.toString());
+            }
+            else {
+                if (result.cachedMessageId) {
+                    // Message processed asynchrnously. Save message reference
+                    _self.cachedMessageId = result.cachedMessageId;
+
+                    // Start polling for message progress
+                    _self.pollMsgProgressTime = _self.notifyChannelOpen ? backPollMsgProgressTime : defPollMsgProgressTime;
+                    _self.startPollingMessageProgress();
+                }
+                else {
+                    // Accummulate message chunk
+                    msgChunker.newMessageChunk(result.msgData);
+
+                    if (result.continuationToken) {
+                        // The whole message has not been received yet. Go get next chunk
+                        context.setImmediate(_self.readMessageChunk, messageId, result.continuationToken, msgChunker);
+                    }
+                    else {
+                        // Display complete message
+                        _self.checkNotifyMsgRead(messageId);
+                        _self.prepareMsgToSave(msgChunker.getMessage());
+                    }
+                }
+            }
+        })
+    }
+
+    function processMessageProgress() {
+        if (this.cachedMessageId) {
+            var _self = this;
+
+            context.ctnApiProxy.retrieveMessageProgress(this.cachedMessageId, function (error, result) {
+                if (error) {
+                    // Error retrieving message progress. Clear pending message and stop polling
+                    console.error('Error retrieving message progress:', error.toSring());
+                    _self.cachedMessageId = undefined;
+                    _self.stopPollingMessageProgress();
+                }
+                else {
+                    if (result.progress.done) {
+                        // Message processing has been finalized. Clear pending message and stop polling
+                        _self.cachedMessageId = undefined;
+                        _self.stopPollingMessageProgress();
+
+                        if (result.progress.success) {
+                            // Message ready to be read. Start reading it
+                            _self.readMessageChunk(result.result.messageId, result.result.continuationToken, new MessageChunker('utf8'));
+                        }
+                        else {
+                            // Report error reading message
+                            _self.displayError('Error reading message: [' + result.progress.error.code + '] - ' + result.progress.error.message);
+                        }
+                    }
+                }
+            });
+        }
+        else {
+            // No cached message awaiting process. Stop polling
+            this.stopPollingMessageProgress();
+        }
+    }
 
     function convertLineBreak(text) {
         return text.replace(/\n/g, '<br>');

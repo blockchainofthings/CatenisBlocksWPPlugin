@@ -7,10 +7,14 @@
 
         if (this.checkCtnApiProxyAvailable(form.parentElement)) {
             this.targetDevice = targetDevice;
+            this.showSpinner = props.showSpinner;
+            this.spinnerColor = props.spinnerColor;
             this.options = options;
             this.successMsgTemplate = props.successMsgTemplate;
             this.successPanelId = props.successPanelId;
             this.errorPanelId = props.errorPanelId;
+            this.divMessagePanel = undefined;
+            this.divDisabledPanel = undefined;
             this.divMsgSuccess = undefined;
             this.divMsgError = undefined;
             this.txtSuccess = undefined;
@@ -20,6 +24,7 @@
             this.messageChangeHandler = onMessageChange.bind(this);
             this.lastMessageValue = undefined;
 
+            this.setUpMessagePanel();
             this.setResultPanels();
         }
     }
@@ -40,6 +45,32 @@
         }
 
         return result;
+    };
+
+    CtnBlkSendMessage.prototype.setUpMessagePanel = function () {
+        this.divMessagePanel = this.form.message.parentElement;
+
+        var elems = $('div.disabledPanel', this.divMessagePanel);
+        if (elems.length > 0) {
+            this.divDisabledPanel = elems[0];
+        }
+    }
+
+    CtnBlkSendMessage.prototype.displaySpinner = function () {
+        if (!this.spinner) {
+            this.spinner = new context.Spin.Spinner({
+                className: 'msg-spinner',
+                color: this.spinnerColor
+            });
+        }
+
+        this.spinner.spin(this.divMessagePanel);
+    };
+
+    CtnBlkSendMessage.prototype.hideSpinner = function () {
+        if (this.spinner) {
+            this.spinner.stop();
+        }
     };
 
     CtnBlkSendMessage.prototype.setResultPanels = function () {
@@ -89,8 +120,35 @@
         }
     };
 
+    CtnBlkSendMessage.prototype.disableMessagePanel = function () {
+        $(this.divMessagePanel).addClass('disabled');
+        this.form.message.disabled = true;
+        this.divDisabledPanel.style.display = 'block';
+    };
+
+    CtnBlkSendMessage.prototype.enableMessagePanel = function () {
+        $(this.divMessagePanel).removeClass('disabled');
+        this.form.message.disabled = false;
+        this.divDisabledPanel.style.display = 'none';
+    };
+
+    CtnBlkSendMessage.prototype.disableSubmitButton = function () {
+        this.form.submitButton.disabled = true;
+    }
+
+    CtnBlkSendMessage.prototype.enableSubmitButton = function () {
+        this.form.submitButton.disabled = false;
+    }
+
     CtnBlkSendMessage.prototype.sendMessage = function () {
         this.clearResultPanels();
+
+        this.disableMessagePanel();
+        this.disableSubmitButton();
+
+        if (this.showSpinner) {
+            this.displaySpinner();
+        }
 
         var msg = this.form.message.value;
 
@@ -140,17 +198,20 @@
     };
 
     CtnBlkSendMessage.prototype.messageChanged = function () {
-        // Re-enable submit button
-        this.form.submitButton.disabled = false;
+        this.enableSubmitButton();
     };
 
     CtnBlkSendMessage.prototype.messageSent = function () {
-        // Disable submit button
-        this.form.submitButton.disabled = true;
         this.startMonitoringMessageChange();
     };
 
     CtnBlkSendMessage.prototype.displaySuccess = function (text) {
+        this.enableMessagePanel();
+
+        if (this.showSpinner) {
+            this.hideSpinner();
+        }
+
         if (this.txtSuccess) {
             $(this.txtSuccess).html(convertLineBreak(text));
 
@@ -171,6 +232,13 @@
     };
 
     CtnBlkSendMessage.prototype.displayError = function (text) {
+        this.enableMessagePanel();
+        this.enableSubmitButton();
+
+        if (this.showSpinner) {
+            this.hideSpinner();
+        }
+
         if (this.txtError) {
             $(this.txtError).html(convertLineBreak(text));
 

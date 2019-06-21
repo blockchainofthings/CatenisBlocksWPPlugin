@@ -4,13 +4,19 @@
     var el = wp.element.createElement;
     var __ = wp.i18n.__;
     var cmp = wp.components;
+    var $ = context.jQuery;
 
     var defNumLines = 3;
+    var defShowSpinner = true;
+    var defSpinnerColor = 'black';
     var defMsgPlaceholder = __('Write your message', 'catenis-blocks');
     var defSubmitButtonLabel = __('Store Message', 'catenis-blocks');
     var defSuccessMsgTemplate = __('Message successfully stored.\nMessage Id: {!messageId}', 'catenis-blocks');
     var defEncrypt = true;
     var defStorage = 'auto';
+
+    var spinner;
+    var spinnerTimeout;
 
     registerBlockType('catenis-blocks/store-message', {
         title: __('Store Message', 'catenis-blocks'),
@@ -30,6 +36,12 @@
                 source: 'attribute',
                 selector: 'textarea',
                 attribute: 'rows'
+            },
+            showSpinner: {
+                type: 'boolean'
+            },
+            spinnerColor: {
+                type: 'string'
             },
             msgPlaceholder: {
                 type: 'string',
@@ -69,6 +81,8 @@
          */
         edit: function(props) {
             var numLines = parseInt(props.attributes.numLines) || defNumLines;
+            var showSpinner = props.attributes.showSpinner !== undefined ? props.attributes.showSpinner : defShowSpinner;
+            var spinnerColor = props.attributes.spinnerColor !== undefined ? props.attributes.spinnerColor : defSpinnerColor;
             var msgPlaceholder = props.attributes.msgPlaceholder !== undefined ? props.attributes.msgPlaceholder : defMsgPlaceholder;
             var submitButtonLabel = props.attributes.submitButtonLabel !== undefined ? props.attributes.submitButtonLabel : defSubmitButtonLabel;
             var successMsgTemplate = props.attributes.successMsgTemplate !== undefined ? props.attributes.successMsgTemplate : defSuccessMsgTemplate;
@@ -81,6 +95,26 @@
                 props.setAttributes({
                     numLines: newValue
                 });
+            }
+
+            function onChangeShowSpinner(newState) {
+                if (newState) {
+                    displaySpinner();
+                }
+
+                props.setAttributes({
+                    showSpinner: newState
+                });
+            }
+
+            function onChangeSpinnerColor(newValue) {
+                spinnerColor = newValue || defSpinnerColor;
+
+                props.setAttributes({
+                    spinnerColor: spinnerColor
+                });
+
+                displaySpinner();
             }
 
             function onChangeMsgPlaceholder(newValue) {
@@ -133,6 +167,42 @@
                 });
             }
 
+            function displaySpinner() {
+                hideSpinner();
+
+                if (!spinner || spinner.opts.color !== spinnerColor) {
+                    spinner = new context.Spin.Spinner({
+                        className: 'msg-spinner',
+                        color: spinnerColor
+                    });
+                }
+
+                var divMessagePanel = $('div.' + props.className + ' div.messagePanel')[0];
+                var divDisabledPanel = $('div.disabledPanel', divMessagePanel)[0];
+
+                divDisabledPanel.style.display = 'block';
+                spinner.spin(divMessagePanel);
+
+                spinnerTimeout = setTimeout(function () {
+                    hideSpinner();
+                }, 2000);
+            }
+
+            function hideSpinner() {
+                if (spinnerTimeout) {
+                    clearTimeout(spinnerTimeout);
+                    spinnerTimeout = undefined;
+                }
+
+                if (spinner) {
+                    spinner.stop();
+
+                    var divDisabledPanel = $('div.' + props.className + ' div.messagePanel div.disabledPanel')[0];
+    
+                    divDisabledPanel.style.display = 'none';
+                }
+            }
+
             return (
                 el(wp.element.Fragment, {},
                     // Inspector sidebar controls
@@ -149,9 +219,43 @@
                             })
                         ),
                         el(cmp.PanelBody, {
+                            title: __('Display', 'catenis-blocks'),
+                            initialOpen: false
+                        },
+                            el(cmp.ToggleControl, {
+                                label: __('Show Spinner', 'catenis-blocks'),
+                                help: showSpinner ? __('Show animated icon while storing message', 'catenis-blocks') : '',
+                                checked: showSpinner,
+                                onChange: onChangeShowSpinner
+                            })
+                        ),
+                        el(cmp.PanelBody, {
                             title: __('Advanced UI Settings', 'catenis-blocks'),
                             initialOpen: false
                         },
+                            (function (){
+                                if (showSpinner) {
+                                    return  el(cmp.BaseControl, {
+                                            id: 'ctn-store-message-block-spinner-color',
+                                            label: __('Spinner Color', 'catenis-blocks')
+                                        },
+                                        el(cmp.ColorPalette, {
+                                            colors: [{
+                                                name: 'black',
+                                                color: 'black'
+                                            }, {
+                                                name: 'gray',
+                                                color: 'gray'
+                                            }, {
+                                                name: 'light-gray',
+                                                color: 'lightgray'
+                                            }],
+                                            value: spinnerColor,
+                                            onChange: onChangeSpinnerColor
+                                        })
+                                    );
+                                }
+                            })(),
                             el(cmp.TextControl, {
                                 label: __('Message Placeholder', 'catenis-blocks'),
                                 value: msgPlaceholder,
@@ -222,11 +326,18 @@
                     el('div', {
                         className: props.className
                     },
-                        el('textarea', {
-                            name: 'message',
-                            rows: numLines,
-                            placeholder: msgPlaceholder
-                        }),
+                        el('div', {
+                            className: 'messagePanel'
+                        },
+                            el('textarea', {
+                                name: 'message',
+                                rows: numLines,
+                                placeholder: msgPlaceholder
+                            }),
+                            el('div', {
+                                className: 'disabledPanel'
+                            })
+                        ),
                         el('input', {
                             type: 'submit',
                             value: submitButtonLabel
@@ -245,6 +356,8 @@
          */
         save: function(props) {
             var numLines = parseInt(props.attributes.numLines) || defNumLines;
+            var showSpinner = props.attributes.showSpinner !== undefined ? props.attributes.showSpinner : defShowSpinner;
+            var spinnerColor = props.attributes.spinnerColor !== undefined ? props.attributes.spinnerColor : defSpinnerColor;
             var msgPlaceholder = props.attributes.msgPlaceholder !== undefined ? props.attributes.msgPlaceholder : defMsgPlaceholder;
             var submitButtonLabel = props.attributes.submitButtonLabel !== undefined ? props.attributes.submitButtonLabel : defSubmitButtonLabel;
             var successMsgTemplate = props.attributes.successMsgTemplate !== undefined ? props.attributes.successMsgTemplate : defSuccessMsgTemplate;
@@ -260,13 +373,20 @@
                     },
                         el('form', {
                             action: '',
-                            onSubmit: 'try{if(!this.ctnBlkStoreMessage && typeof CtnBlkStoreMessage === \'function\'){this.ctnBlkStoreMessage = new CtnBlkStoreMessage(this,{encrypt:' + toStringLiteral(encrypt) + ',storage:' + toStringLiteral(storage) + '},{successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}this.ctnBlkStoreMessage.storeMessage()}finally{return false}'
+                            onSubmit: 'try{if(!this.ctnBlkStoreMessage && typeof CtnBlkStoreMessage === \'function\'){this.ctnBlkStoreMessage = new CtnBlkStoreMessage(this,{encrypt:' + toStringLiteral(encrypt) + ',storage:' + toStringLiteral(storage) + '},{showSpinner:' + toStringLiteral(showSpinner) + ',spinnerColor:' + toStringLiteral(spinnerColor) + ',successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}this.ctnBlkStoreMessage.storeMessage()}finally{return false}'
                         },
-                            el('textarea', {
-                                name: 'message',
-                                rows: numLines,
-                                placeholder: msgPlaceholder
-                            }),
+                            el('div', {
+                                className: 'messagePanel'
+                            },
+                                el('textarea', {
+                                    name: 'message',
+                                    rows: numLines,
+                                    placeholder: msgPlaceholder
+                                }),
+                                el('div', {
+                                    className: 'disabledPanel'
+                                })
+                            ),
                             el('input', {
                                 type: 'submit',
                                 name: 'submitButton',

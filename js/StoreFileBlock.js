@@ -1,14 +1,24 @@
+/* eslint-disable no-console */
 (function (context) {
     var $ = context.jQuery;
     var __ = context.wp.i18n.__;
     var Buffer = context.buffer.Buffer;
     var CtnFileHeader = context.CtnFileHeader;
+    var MessageChunker = context.MessageChunker;
+    var maxChunkSize = 15727616;    // (15 MB - 1 KB) Size after base64 encoding
+    var maxRawChunkSize = Math.floor(maxChunkSize / 4) * 3;  // Size before base64 encoding
+    var initPollMsgProgressTime = 5000;    // 5 sec.
+    var defPollMsgProgressTime = 30000;    // 30 sec.
+    var backPollMsgProgressTime = 90000;    // 1.5 min.
 
     function CtnBlkStoreFile(form, options, props) {
         this.form = form;
 
         if (this.checkCtnApiProxyAvailable(form.parentElement)) {
+            this.showSpinner = props.showSpinner;
+            this.spinnerColor = props.spinnerColor;
             this.divDropZone = undefined;
+            this.divDisabledPanel = undefined;
             this.txtSelectedFile = undefined;
             this.inputFile = undefined;
             this.selectedFile = undefined;
@@ -25,10 +35,89 @@
             this.txtError = undefined;
             this.inputFileChangeHandler = onInputFileChange.bind(this);
 
+            this.provisionalMessageId = undefined;
+            this.pollMsgProgressTimeout = undefined;
+            this.pollMsgProgressInterval = undefined;
+            this.pollMsgProgressTime = defPollMsgProgressTime;
+            this.pollMsgProgressHandler = processMessageProgress.bind(this);
+
+            this.notifyChannelOpen = false;
+            this.lastOpenNtfyChnlRetryTime = undefined;
+            this.minOpenNtfyChnlRetryInterval = 1000;   // 1 sec. (in milliseconds)
+
             this.setUpDropZone();
             this.setResultPanels();
+            this.setUpNotification();
         }
     }
+
+    CtnBlkStoreFile.prototype.setUpNotification = function () {
+        var _self = this;
+
+        context.ctnApiProxy.on('comm-error', function (error) {
+            // Error communicating with Catenis notification process
+            console.error('Catenis notification process error:', error);
+
+            if (_self.notifyChannelOpen) {
+                var shouldRetryOpen = !_self.lastOpenNtfyChnlRetryTime || (Date.now() - _self.lastOpenNtfyChnlRetryTime >= _self.minOpenNtfyChnlRetryInterval);
+
+                if (shouldRetryOpen) {
+                    // Make sure that notification channel is open
+                    _self.lastOpenNtfyChnlRetryTime = Date.now();
+                    context.setImmediate(openNotifyChannel);
+                }
+            }
+        });
+
+        // Prepare to open notification channel to monitor final message progress event.
+        var wsNotifyChannel = context.ctnApiProxy.createWsNotifyChannel('final-msg-progress');
+
+        wsNotifyChannel.on('open', function (error) {
+            if (error) {
+                // Error establishing underlying WebSocket connection
+                console.error('[' + wsNotifyChannel.eventName + '] - Error establishing underlying WebSocket connection:', error);
+            }
+            else {
+                // Catenis notification channel successfully open
+                console.log('[' + wsNotifyChannel.eventName + '] - Catenis notification channel successfully open');
+                _self.notifyChannelOpen = true;
+            }
+        });
+
+        wsNotifyChannel.on('error', function (error) {
+            // Error in the underlying WebSocket connection
+            console.error('[' + wsNotifyChannel.eventName + '] - Error in the underlying WebSocket connection:', error);
+        });
+
+        wsNotifyChannel.on('close', function (code, reason) {
+            // Underlying WebSocket connection has been closed
+            console.error('[' + wsNotifyChannel.eventName + '] - Underlying WebSocket connection has been closed; code: ' + code + ', reason: ' + reason);
+            _self.notifyChannelOpen = false;
+
+            var shouldRetry = !_self.lastOpenNtfyChnlRetryTime || (Date.now() - _self.lastOpenNtfyChnlRetryTime >= _self.minOpenNtfyChnlRetryInterval);
+
+            if (shouldRetry) {
+                // Reopen notification channel
+                _self.lastOpenNtfyChnlRetryTime = Date.now();
+                context.setImmediate(openNotifyChannel);
+            }
+        });
+
+        wsNotifyChannel.on('notify', function (eventData) {
+            _self.processFinalMessageProgress(eventData);
+        });
+
+        function openNotifyChannel() {
+            wsNotifyChannel.open(function (error) {
+                if (error) {
+                    // Error sending command to open notification channel
+                    console.error('Error opening Catenis notification channel:', error);
+                }
+            });
+        }
+
+        openNotifyChannel();
+    };
 
     CtnBlkStoreFile.prototype.checkCtnApiProxyAvailable = function (uiContainer) {
         var result = true;
@@ -64,8 +153,31 @@
 
                 this.inputFile.addEventListener('change', this.inputFileChangeHandler);
             }
+
+            elems = $('div.dropzone > div.disabledPanel', this.divDropZone.parentElement);
+            if (elems.length > 0) {
+                this.divDisabledPanel = elems[0];
+            }
         }
     };
+
+    CtnBlkStoreFile.prototype.disableDropZone = function () {
+        $(this.divDropZone).addClass('disabled');
+        this.divDisabledPanel.style.display = 'block';
+    };
+
+    CtnBlkStoreFile.prototype.enableDropZone = function () {
+        $(this.divDropZone).removeClass('disabled');
+        this.divDisabledPanel.style.display = 'none';
+    };
+
+    CtnBlkStoreFile.prototype.disableSubmitButton = function () {
+        this.form.submitButton.disabled = true;
+    }
+
+    CtnBlkStoreFile.prototype.enableSubmitButton = function () {
+        this.form.submitButton.disabled = false;
+    }
 
     CtnBlkStoreFile.prototype.selectFile = function () {
         if (this.inputFile) {
@@ -110,6 +222,23 @@
     CtnBlkStoreFile.prototype.dragOverHandler = function (event) {
         event.stopPropagation();
         event.preventDefault();
+    };
+
+    CtnBlkStoreFile.prototype.displaySpinner = function () {
+        if (!this.spinner) {
+            this.spinner = new context.Spin.Spinner({
+                className: 'msg-spinner',
+                color: this.spinnerColor
+            });
+        }
+
+        this.spinner.spin(this.divDropZone);
+    };
+
+    CtnBlkStoreFile.prototype.hideSpinner = function () {
+        if (this.spinner) {
+            this.spinner.stop();
+        }
     };
 
     CtnBlkStoreFile.prototype.setResultPanels = function () {
@@ -162,6 +291,13 @@
     CtnBlkStoreFile.prototype.storeFile = function () {
         this.clearResultPanels();
 
+        this.disableDropZone();
+        this.disableSubmitButton();
+
+        if (this.showSpinner) {
+            this.displaySpinner();
+        }
+
         if (!this.selectedFile) {
             // No file selected. Report error
             this.displayError(__('No file selected to be stored', 'catenis-blocks'));
@@ -176,17 +312,86 @@
 
         var _self = this;
 
-        context.ctnApiProxy.logMessage(fileContents.toString('base64'), this.options, function (error, result) {
-            if (error) {
-                _self.displayError(error.toString());
+        function logMsgChunk(msgChunker, options, continuationToken) {
+            // Get next message chunk
+            var dataChunk = msgChunker.nextMessageChunk();
+            var message = dataChunk ? {
+                data: dataChunk,
+                isFinal: false
+            } : {
+                isFinal: true
+            };
+
+            if (continuationToken) {
+                message.continuationToken = continuationToken;
             }
-            else {
-                if (_self.successMsgTemplate) {
-                    _self.displaySuccess(_self.successMsgTemplate.replace(/{!messageId}/g, result.messageId));
+
+            // Pass message chunk to be logged
+            context.ctnApiProxy.logMessage(message, options, function (error, result) {
+                if (error) {
+                    _self.displayError(error.toString());
                 }
-                _self.fileStored();
-            }
-        });
+                else {
+                    if (result.continuationToken) {
+                        // Not all message chunks have been passed yet. Get continuation token
+                        //  and pass next message chunk (in the next tick)
+                        context.setImmediate(logMsgChunk, msgChunker, options, result.continuationToken);
+                    }
+                    else {
+                        // All message has been sent
+                        if (result.messageId) {
+                            // Display result
+                            if (_self.successMsgTemplate) {
+                                _self.displaySuccess(_self.successMsgTemplate.replace(/{!messageId}/g, result.messageId));
+                            }
+                        }
+                        else {
+                            // Message processed asynchrnously. Save message reference
+                            _self.provisionalMessageId = result.provisionalMessageId;
+
+                            // Start polling for message progress
+                            _self.pollMsgProgressTime = _self.notifyChannelOpen ? backPollMsgProgressTime : defPollMsgProgressTime;
+                            _self.startPollingMessageProgress();
+                        }
+                    }
+                }
+            });
+        }
+
+        if (fileContents.length > maxRawChunkSize) {
+            // Indicate that message should be processed asynchronously
+            this.options.async = true;
+
+            // Pass message to be logged in chunks
+            logMsgChunk(new MessageChunker(fileContents, maxChunkSize), this.options);
+        }
+        else {
+            // Indicate that message should be processed synchronously
+            this.options.async = false;
+
+            // Pass message to be logged at once
+            context.ctnApiProxy.logMessage(fileContents.toString('base64'), this.options, function (error, result) {
+                if (error) {
+                    _self.displayError(error.toString());
+                }
+                else {
+                    if (result.messageId) {
+                        // Display result
+                        if (_self.successMsgTemplate) {
+                            _self.displaySuccess(_self.successMsgTemplate.replace(/{!messageId}/g, result.messageId));
+                        }
+                    }
+                    else {
+                        // Message processed asynchrnously. Save message reference 
+                        _self.provisionalMessageId = result.provisionalMessageId;
+
+                        // Start polling for message progress
+                        _self.pollMsgProgressTime = _self.notifyChannelOpen ? backPollMsgProgressTime : defPollMsgProgressTime;
+                        _self.startPollingMessageProgress();
+                    }
+                }
+            });
+        }
     };
 
     CtnBlkStoreFile.prototype.readFile = function (file) {
@@ -218,8 +423,8 @@
             _self.displayError(__('Error reading file: ', 'catenis-blocks') + errMsg);
         };
 
-    // eslint-disable-next-line no-unused-vars
-    fileReader.onabort = function (event) {
+        // eslint-disable-next-line no-unused-vars
+        fileReader.onabort = function (event) {
             _self.displayError(__('Reading of file has been aborted', 'catenis-blocks'));
         };
 
@@ -227,16 +432,16 @@
     };
 
     CtnBlkStoreFile.prototype.selectedFileChanged = function () {
-        // Re-enable submit button
-        this.form.submitButton.disabled = false;
-    };
-
-    CtnBlkStoreFile.prototype.fileStored = function () {
-        // Disable submit button
-        this.form.submitButton.disabled = true;
+        this.enableSubmitButton();
     };
 
     CtnBlkStoreFile.prototype.displaySuccess = function (text) {
+        this.enableDropZone();
+
+        if (this.showSpinner) {
+            this.hideSpinner();
+        }
+
         if (this.txtSuccess) {
             $(this.txtSuccess).html(convertLineBreak(text));
 
@@ -257,6 +462,13 @@
     };
 
     CtnBlkStoreFile.prototype.displayError = function (text) {
+        this.enableDropZone();
+        this.enableSubmitButton();
+
+        if (this.showSpinner) {
+            this.hideSpinner();
+        }
+
         if (this.txtError) {
             $(this.txtError).html(convertLineBreak(text));
 
@@ -289,6 +501,85 @@
             this.selectedFileChanged();
         }
     };
+
+    CtnBlkStoreFile.prototype.processFinalMessageProgress = function (eventData) {
+        if (this.provisionalMessageId && eventData.ephemeralMessageId === this.provisionalMessageId) {
+            // Message processing has been finalized. Clear pending message and stop polling
+            this.provisionalMessageId = undefined;
+            this.stopPollingMessageProgress();
+
+            if (eventData.progress.success) {
+                // File successfully stored
+                if (this.successMsgTemplate) {
+                    this.displaySuccess(this.successMsgTemplate.replace(/{!messageId}/g, eventData.result.messageId));
+                }
+            }
+            else {
+                // Report error storing file
+                this.displayError('Error storing file: [' + eventData.progress.error.code + '] - ' + eventData.progress.error.message);
+            }
+        }
+    };
+
+    CtnBlkStoreFile.prototype.startPollingMessageProgress = function () {
+        if (!this.pollMsgProgressTimeout) {
+            // Set up initial timeout
+            this.pollMsgProgressTimeout = context.setTimeout(this.pollMsgProgressHandler, initPollMsgProgressTime);
+        }
+
+        if (!this.pollMsgProgressInterval) {
+            this.pollMsgProgressInterval = context.setInterval(this.pollMsgProgressHandler, this.pollMsgProgressTime);
+        }
+    }
+
+    CtnBlkStoreFile.prototype.stopPollingMessageProgress = function () {
+        if (this.pollMsgProgressInterval) {
+            context.clearInterval(this.pollMsgProgressInterval);
+            this.pollMsgProgressInterval = undefined;
+        }
+
+        if (this.pollMsgProgressTimeout) {
+            context.clearTimeout(this.pollMsgProgressTimeout);
+            this.pollMsgProgressTimeout = undefined;
+        }
+    }
+
+    function processMessageProgress() {
+        if (this.provisionalMessageId) {
+            var _self = this;
+
+            context.ctnApiProxy.retrieveMessageProgress(this.provisionalMessageId, function (error, result) {
+                if (error) {
+                    // Error retrieving message progress. Clear pending message and stop polling
+                    console.error('Error retrieving message progress:', error.toSring());
+                    _self.provisionalMessageId = undefined;
+                    _self.stopPollingMessageProgress();
+                }
+                else {
+                    if (result.progress.done) {
+                        // Message processing has been finalized. Clear pending message and stop polling
+                        _self.provisionalMessageId = undefined;
+                        _self.stopPollingMessageProgress();
+
+                        if (result.progress.success) {
+                            // File successfully stored
+                            if (_self.successMsgTemplate) {
+                                _self.displaySuccess(_self.successMsgTemplate.replace(/{!messageId}/g, result.result.messageId));
+                            }
+                        }
+                        else {
+                            // Report error storing file
+                            _self.displayError('Error storing file: [' + result.progress.error.code + '] - ' + result.progress.error.message);
+                        }
+                    }
+                }
+            });
+        }
+        else {
+            // No provisional message awaiting process. Stop polling
+            this.stopPollingMessageProgress();
+        }
+    }
 
     function onInputFileChange(event) {
         event.preventDefault();

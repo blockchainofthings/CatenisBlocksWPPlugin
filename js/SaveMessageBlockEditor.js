@@ -6,7 +6,7 @@
     var cmp = wp.components;
     var $ = context.jQuery;
 
-    var defShowSpinner = false;
+    var defShowSpinner = true;
     var defAutoSave = false;
     var defSaveMessageLink = __('Save retrieved message', 'catenis-blocks');
     var defSpinnerColor = 'black';
