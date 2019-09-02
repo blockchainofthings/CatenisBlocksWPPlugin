@@ -1,0 +1,70 @@
+div.wp-block-catenis-blocks-permissions {
+	line-height:1em
+}
+
+div.wp-block-catenis-blocks-permissions div.noctnapiproxy {
+    border: 1px solid red;
+    padding: 2em;
+    text-align: center;
+    color: crimson;
+    display: none
+}
+
+div.wp-block-catenis-blocks-permissions label {
+	color:gray
+}
+
+div.wp-block-catenis-blocks-permissions div.ctnInLevel {
+	margin-top:0.5em
+}
+
+div.wp-block-catenis-blocks-permissions div.ctnInEntityId {
+	margin-top:0.8em;
+	display:none
+}
+
+div.wp-block-catenis-blocks-permissions input[type="text"] {
+	padding:0.15rem 0.3rem
+}
+
+div.wp-block-catenis-blocks-permissions div.ctnInProdUniqueId {
+	margin-top:0.2em;
+	margin-left:0.2em;
+	display:none
+}
+
+div.wp-block-catenis-blocks-permissions div.ctnResult {
+	margin-top:1em;
+	display:none
+}
+
+div.wp-block-catenis-blocks-permissions label.ctnPermRight {
+	color:#454545
+}
+
+div.wp-block-catenis-blocks-permissions select.ctnPermRight {
+	display:none
+}
+
+div.wp-block-catenis-blocks-permissions a.ctnUpdtLnk {
+	display:none
+}
+
+div.wp-block-catenis-blocks-permissions a.ctnCancLnk {
+	display:none
+}
+
+div.wp-block-catenis-blocks-permissions div.ctnShowEffectRight {
+	margin-top:0.2em;
+	margin-left:0.2em;
+	display:none
+}
+
+div.wp-block-catenis-blocks-permissions div.ctnError {
+	margin-top:1em;
+	display:none
+}
+
+div.wp-block-catenis-blocks-permissions span.ctnError {
+	color:red
+}

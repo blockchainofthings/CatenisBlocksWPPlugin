@@ -1,0 +1,15 @@
+.edit-post-settings-sidebar__panel-block .components-panel__body .ctnPermListEntry {
+    margin-bottom: 0
+}
+
+div.wp-block-catenis-blocks-permissions {
+	line-height:1em
+}
+
+div.wp-block-catenis-blocks-permissions label {
+	color:gray
+}
+
+div.wp-block-catenis-blocks-permissions div.ctnInLevel {
+	margin-top:0.5em
+}
