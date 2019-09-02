@@ -23,6 +23,9 @@ class MessageHistoryBlock
     {
         $pluginDir = dirname($this->pluginPath);
 
+        // Register local lib dependent scripts
+        wp_register_script('setImmediate', plugins_url('/js/lib/setImmediate.min.js', $this->pluginPath), [], '1.0.5');
+
         $blockEditorScriptFile = '/js/MessageHistoryBlockEditor.js';
         wp_register_script('message-history-block-editor', plugins_url($blockEditorScriptFile, $this->pluginPath), [
             'wp-blocks',
@@ -37,7 +40,8 @@ class MessageHistoryBlock
         wp_register_script('message-history-block', plugins_url($blockScriptFile, $this->pluginPath), [
             'wp-i18n',
             'jquery',
-            'moment'
+            'moment',
+            'setImmediate'
         ], filemtime("$pluginDir/$blockScriptFile"));
 
         $blockEditorStyleFile = '/style/MessageHistoryBlockEditor.css';

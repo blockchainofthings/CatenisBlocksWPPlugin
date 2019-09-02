@@ -67,6 +67,8 @@
             this.lastOpenNtfyChnlRetryTime = undefined;
             this.minOpenNtfyChnlRetryInterval = 1000;   // 1 sec. (in milliseconds)
 
+            this.messageBatchSize = undefined;  // Use the largest possible batch size (500)
+
             this.setHeaderElements();
             this.setTableElements();
             this.setErrorPanel();
@@ -312,19 +314,27 @@
         }
 
         var _self = this;
+        var messages = [];
 
-        context.ctnApiProxy.listMessages(options, function (error, result) {
-            if (error) {
-                _self.displayError(error.toString());
-            }
-            else {
-                if (result.countExceeded) {
-                    _self.displayError(__('Maximum number of allowed returned messages has been exceeded; not all messages have been retrieved', 'catenis-block'));
+        function retrieveNextMessageBatch(skip) {
+            context.ctnApiProxy.listMessages(options, _self.messageBatchSize, skip, function (error, result) {
+                if (error) {
+                    _self.displayError(error.toString());
                 }
+                else {
+                    messages = messages.concat(result.messages);
 
-                _self.processRetrievedMessages(result.messages);
-            }
-        })
+                    if (result.hasMore) {
+                        context.setImmediate(retrieveNextMessageBatch, skip + result.msgCount);
+                    }
+                    else {
+                        _self.processRetrievedMessages(messages);
+                    }
+                }
+            });
+        }
+
+        retrieveNextMessageBatch(0);
     };
 
     CtnBlkMessageHistory.prototype.processRetrievedMessages = function (messages) {
