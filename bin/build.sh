@@ -14,4 +14,4 @@ if [ ! -d "$BUILD_DIR" ]; then
 fi
 
 cd "$SCRIPT_DIR"/..
-zip -r "$BUILD_DIR"/catenis-blocks.zip ./* -x ./.\* \*.DS_Store ./\*.code-workspace ./composer.\* ./svn/\* ./vendor/\* ./build/\* ./bin/\* ./node_modules/\*
+zip -r "$BUILD_DIR"/catenis-blocks.zip ./* -x ./.\* \*.DS_Store ./\*.code-workspace ./composer.\* ./package\*.json ./svn/\* ./vendor/\* ./build/\* ./bin/\* ./node_modules/\* ./CHANGELOG.md ./README.md
