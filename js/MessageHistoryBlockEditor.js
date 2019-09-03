@@ -425,6 +425,7 @@
                                 if (period === 'custom') {
                                     var startDateComps = [
                                         el(cmp.TextControl, {
+                                            key: 'label',
                                             label: __('Start Date', 'catenis-blocks'),
                                             value: customStartDate,
                                             className: 'ctn-date-picker custom-start-date',
@@ -433,6 +434,7 @@
                                             onBlur: onBlurCustomStartDate
                                         }),
                                         el('span', {
+                                            key: 'buttion',
                                             onClick: onClickCustomStartDateButton
                                         },
                                             el(cmp.Dashicon, {
@@ -444,6 +446,7 @@
 
                                     if (selectCustomStartDate) {
                                         startDateComps.push(el(cmp.Popover, {
+                                            key: 'popover',
                                             position: 'bottom center',
                                             focusOnMount: 'container',
                                             expandOnMobile: true,
@@ -459,6 +462,7 @@
 
                                     var endDateComps = [
                                         el(cmp.TextControl, {
+                                            key: 'label',
                                             label: __('End Date', 'catenis-blocks'),
                                             value: customEndDate,
                                             className: 'ctn-date-picker custom-end-date',
@@ -467,8 +471,9 @@
                                             onBlur: onBlurCustomEndDate
                                         }),
                                         el('span', {
-                                                onClick: onClickCustomEndDateButton
-                                            },
+                                            key: 'button',
+                                            onClick: onClickCustomEndDateButton
+                                        },
                                             el(cmp.Dashicon, {
                                                 icon:'calendar-alt',
                                                 className: 'ctn-date-picker'
@@ -478,12 +483,13 @@
 
                                     if (selectCustomEndDate) {
                                         endDateComps.push(el(cmp.Popover, {
-                                                position: 'bottom center',
-                                                focusOnMount: 'container',
-                                                expandOnMobile: true,
-                                                headerTitle: __('End Date', 'catenis-blocks'),
-                                                onClose: onCloseCustomEndDatePopover
-                                            },
+                                            key: 'popover',
+                                            position: 'bottom center',
+                                            focusOnMount: 'container',
+                                            expandOnMobile: true,
+                                            headerTitle: __('End Date', 'catenis-blocks'),
+                                            onClose: onCloseCustomEndDatePopover
+                                        },
                                             el(cmp.DatePicker, {
                                                 currentDate: customEndDate,
                                                 onChange: onChangeCustomEndDatePicker
@@ -594,6 +600,7 @@
 
                                 if (actionLinks === 'both' || actionLinks === 'display') {
                                     htmlAnchorsToShow.push(el(cmp.TextControl, {
+                                        key: 'display',
                                         label: __('Display HTML Anchor', 'catenis-blocks'),
                                         help: __('Reference to block used to display the message contents', 'catenis-blocks'),
                                         value: displayTargetHtmlAnchor,
@@ -603,6 +610,7 @@
 
                                 if (actionLinks === 'both' || actionLinks === 'save') {
                                     htmlAnchorsToShow.push(el(cmp.TextControl, {
+                                        key: 'save',
                                         label: __('Save HTML Anchor', 'catenis-blocks'),
                                         help: __('Reference to block used to save the message contents', 'catenis-blocks'),
                                         value: saveTargetHtmlAnchor,
@@ -627,12 +635,15 @@
                                         var columnsToShow = [];
 
                                         if (columns.action) {
-                                            columnsToShow.push(el('th', {}, __('Action', 'catenis-blocks')));
+                                            columnsToShow.push(el('th', {
+                                                key: 'action'
+                                            }, __('Action', 'catenis-blocks')));
                                         }
 
                                         if (columns.messageId) {
                                             columnsToShow.push(
                                                 el('th', {
+                                                    key: 'message-id',
                                                     className: 'messageId'
                                                 },
                                                     el('span', {
@@ -665,6 +676,7 @@
                                         if (columns.type) {
                                             columnsToShow.push(
                                                 el('th', {
+                                                    key: 'type',
                                                     className: 'type'
                                                 },
                                                     el('span', {
@@ -697,6 +709,7 @@
                                         if (columns.date) {
                                             columnsToShow.push(
                                                 el('th', {
+                                                    key: 'date',
                                                     className: 'date'
                                                 },
                                                     el('span', {
@@ -729,6 +742,7 @@
                                         if (columns.targetDevice) {
                                             columnsToShow.push(
                                                 el('th', {
+                                                    key: 'target-device',
                                                     className: 'targetDevice'
                                                 },
                                                     el('span', {
@@ -761,6 +775,7 @@
                                         if (columns.msgRead) {
                                             columnsToShow.push(
                                                 el('th', {
+                                                    key: 'msg-read',
                                                     className: 'msgRead'
                                                 },
                                                     el('span', {
@@ -903,12 +918,15 @@
                                         var columnsToShow = [];
 
                                         if (columns.action) {
-                                            columnsToShow.push(el('th', {}, __('Action', 'catenis-blocks')));
+                                            columnsToShow.push(el('th', {
+                                                key: 'action'
+                                            }, __('Action', 'catenis-blocks')));
                                         }
 
                                         if (columns.messageId) {
                                             columnsToShow.push(
                                                 el('th', {
+                                                    key: 'message-id',
                                                     className: 'messageId'
                                                 },
                                                     el('span', {
@@ -936,6 +954,7 @@
                                         if (columns.type) {
                                             columnsToShow.push(
                                                 el('th', {
+                                                    key: 'type',
                                                     className: 'type'
                                                 },
                                                     el('span', {
@@ -963,6 +982,7 @@
                                         if (columns.date) {
                                             columnsToShow.push(
                                                 el('th', {
+                                                    key: 'date',
                                                     className: 'date'
                                                 },
                                                     el('span', {
@@ -990,6 +1010,7 @@
                                         if (columns.targetDevice) {
                                             columnsToShow.push(
                                                 el('th', {
+                                                    key: 'target-device',
                                                     className: 'targetDevice'
                                                 },
                                                     el('span', {
@@ -1017,8 +1038,9 @@
                                         if (columns.msgRead) {
                                             columnsToShow.push(
                                                 el('th', {
-                                                        className: 'msgRead'
-                                                    },
+                                                    key: 'msg-read',
+                                                    className: 'msgRead'
+                                                },
                                                     el('span', {
                                                             className: 'order-icon up' + (sortColumn !== 'msgRead' || sortOrder !== 'up' ? ' hidden' : '')
                                                         },

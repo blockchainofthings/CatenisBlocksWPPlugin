@@ -190,6 +190,7 @@
                                 if (!autoSave) {
                                     compsToShow.push(
                                         el(cmp.TextControl, {
+                                            key: 'save-msg-link',
                                             label: __('Save Message Link', 'catenis-blocks'),
                                             value: saveMessageLink,
                                             onChange: onChangeSaveMessageLink
@@ -200,6 +201,7 @@
                                 if (showSpinner) {
                                     compsToShow.push(
                                         el(cmp.BaseControl, {
+                                            key: 'spinner-color',
                                             id: 'ctn-save-msg-block-spinner-color',
                                             label: __('Spinner Color', 'catenis-blocks')
                                         },
@@ -224,6 +226,7 @@
                                 if (!autoSave) {
                                     compsToShow.push(
                                         el(cmp.Button, {
+                                            key: 'reset-button',
                                             isSmall: true,
                                             isDefault: true,
                                             onClick: onClickReset

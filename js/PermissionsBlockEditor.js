@@ -237,6 +237,7 @@
                                     if (events['receive-notify-new-msg']) {
                                         eventOpts.push(
                                             el('option', {
+                                                key: 'receive-notify-new-msg',
                                                 value: 'receive-notify-new-msg'
                                             }, __('Receive notification of new message from a device', 'catenis-blocks'))
                                         );
@@ -245,6 +246,7 @@
                                     if (events['receive-notify-msg-read']) {
                                         eventOpts.push(
                                             el('option', {
+                                                key: 'receive-notify-msg-read',
                                                 value: 'receive-notify-msg-read'
                                             }, __('Receive notification of message read by a device', 'catenis-blocks'))
                                         );
@@ -253,6 +255,7 @@
                                     if (events['receive-msg']) {
                                         eventOpts.push(
                                             el('option', {
+                                                key: 'receive-msg',
                                                 value: 'receive-msg'
                                             }, __('Receive message from a device', 'catenis-blocks'))
                                         );
@@ -261,6 +264,7 @@
                                     if (events['send-read-msg-confirm']) {
                                         eventOpts.push(
                                             el('option', {
+                                                key: 'send-read-msg-confirm',
                                                 value: 'send-read-msg-confirm'
                                             }, __('Send read message confirmation to a device', 'catenis-blocks'))
                                         );
@@ -269,6 +273,7 @@
                                     if (events['disclose-main-props']) {
                                         eventOpts.push(
                                             el('option', {
+                                                key: 'disclose-main-props',
                                                 value: 'disclose-main-props'
                                             }, __('Disclose device\'s main properties (name, product unique ID) to a device', 'catenis-blocks'))
                                         );
@@ -277,6 +282,7 @@
                                     if (events['disclose-identity-info']) {
                                         eventOpts.push(
                                             el('option', {
+                                                key: 'disclose-identity-info',
                                                 value: 'disclose-identity-info'
                                             }, __('Disclose device\'s basic identification information to a device', 'catenis-blocks'))
                                         );
@@ -298,6 +304,7 @@
                                     if (levels['system']) {
                                         levelOpts.push(
                                             el('option', {
+                                                key: 'system',
                                                 value: 'system'
                                             }, __('System', 'catenis-blocks'))
                                         );
@@ -306,6 +313,7 @@
                                     if (levels['ctnNode']) {
                                         levelOpts.push(
                                             el('option', {
+                                                key: 'ctn-node',
                                                 value: 'ctnNode'
                                             }, __('Catenis Node', 'catenis-blocks'))
                                         );
@@ -314,6 +322,7 @@
                                     if (levels['client']) {
                                         levelOpts.push(
                                             el('option', {
+                                                key: 'client',
                                                 value: 'client'
                                             }, __('Client', 'catenis-blocks'))
                                         );
@@ -322,6 +331,7 @@
                                     if (levels['device']) {
                                         levelOpts.push(
                                             el('option', {
+                                                key: 'device',
                                                 value: 'device'
                                             }, __('Device', 'catenis-blocks'))
                                         );
@@ -364,6 +374,7 @@
                                     if (events['receive-notify-new-msg']) {
                                         eventOpts.push(
                                             el('option', {
+                                                key: 'receive-notify-new-msg',
                                                 value: 'receive-notify-new-msg'
                                             }, __('Receive notification of new message from a device', 'catenis-blocks'))
                                         );
@@ -372,6 +383,7 @@
                                     if (events['receive-notify-msg-read']) {
                                         eventOpts.push(
                                             el('option', {
+                                                key: 'receive-notify-msg-read',
                                                 value: 'receive-notify-msg-read'
                                             }, __('Receive notification of message read by a device', 'catenis-blocks'))
                                         );
@@ -380,6 +392,7 @@
                                     if (events['receive-msg']) {
                                         eventOpts.push(
                                             el('option', {
+                                                key: 'receive-msg',
                                                 value: 'receive-msg'
                                             }, __('Receive message from a device', 'catenis-blocks'))
                                         );
@@ -388,6 +401,7 @@
                                     if (events['send-read-msg-confirm']) {
                                         eventOpts.push(
                                             el('option', {
+                                                key: 'send-read-msg-confirm',
                                                 value: 'send-read-msg-confirm'
                                             }, __('Send read message confirmation to a device', 'catenis-blocks'))
                                         );
@@ -409,6 +423,7 @@
                                     if (levels['system']) {
                                         levelOpts.push(
                                             el('option', {
+                                                key: 'system',
                                                 value: 'system'
                                             }, __('System', 'catenis-blocks'))
                                         );
@@ -417,6 +432,7 @@
                                     if (levels['ctnNode']) {
                                         levelOpts.push(
                                             el('option', {
+                                                key: 'ctn-node',
                                                 value: 'ctnNode'
                                             }, __('Catenis Node', 'catenis-blocks'))
                                         );
@@ -425,6 +441,7 @@
                                     if (levels['client']) {
                                         levelOpts.push(
                                             el('option', {
+                                                key: 'client',
                                                 value: 'client'
                                             }, __('Client', 'catenis-blocks'))
                                         );
@@ -433,6 +450,7 @@
                                     if (levels['device']) {
                                         levelOpts.push(
                                             el('option', {
+                                                key: 'device',
                                                 value: 'device'
                                             }, __('Device', 'catenis-blocks'))
                                         );
