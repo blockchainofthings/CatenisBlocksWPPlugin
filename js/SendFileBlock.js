@@ -11,13 +11,14 @@
     var defPollMsgProgressTime = 30000;    // 30 sec.
     var backPollMsgProgressTime = 90000;    // 1.5 min.
 
-    function CtnBlkSendFile(form, targetDevice, options, props) {
-        this.form = form;
+    function CtnBlkSendFile(uiContainer, targetDevice, options, props) {
+        this.uiContainer = uiContainer;
 
-        if (this.checkCtnApiProxyAvailable(form.parentElement)) {
+        if (this.checkCtnApiProxyAvailable(this.uiContainer)) {
             this.targetDevice = targetDevice;
             this.showSpinner = props.showSpinner;
             this.spinnerColor = props.spinnerColor;
+            this.form = undefined;
             this.divDropZone = undefined;
             this.divDisabledPanel = undefined;
             this.txtSelectedFile = undefined;
@@ -139,25 +140,32 @@
     };
 
     CtnBlkSendFile.prototype.setUpDropZone = function () {
-        var elems = $('div.dropzone', this.form.parentElement);
+        this.uiContainer.style.display = 'block';
+        
+        var elems = $('form', this.uiContainer);
         if (elems.length > 0) {
-            this.divDropZone = elems[0];
+            this.form = elems[0];
 
-            elems = $('div.dropzone > p.selected', this.divDropZone.parentElement);
+            elems = $('div.dropzone', this.uiContainer);
             if (elems.length > 0) {
-                this.txtSelectedFile = elems[0];
-            }
-
-            elems = $('input[type="file"]', this.divDropZone.parentElement);
-            if (elems.length > 0) {
-                this.inputFile = elems[0];
-
-                this.inputFile.addEventListener('change', this.inputFileChangeHandler);
-            }
-
-            elems = $('div.dropzone > div.disabledPanel', this.divDropZone.parentElement);
-            if (elems.length > 0) {
-                this.divDisabledPanel = elems[0];
+                this.divDropZone = elems[0];
+    
+                elems = $('div.dropzone > p.selected', this.divDropZone.parentElement);
+                if (elems.length > 0) {
+                    this.txtSelectedFile = elems[0];
+                }
+    
+                elems = $('input[type="file"]', this.divDropZone.parentElement);
+                if (elems.length > 0) {
+                    this.inputFile = elems[0];
+    
+                    this.inputFile.addEventListener('change', this.inputFileChangeHandler);
+                }
+    
+                elems = $('div.dropzone > div.disabledPanel', this.divDropZone.parentElement);
+                if (elems.length > 0) {
+                    this.divDisabledPanel = elems[0];
+                }
             }
         }
     };
@@ -265,7 +273,7 @@
 
     CtnBlkSendFile.prototype.setDefaultResultPanels = function () {
         if (!this.txtSuccess) {
-            var elems = $('div.success', this.form.parentElement);
+            var elems = $('div.success', this.uiContainer);
             if (elems.length > 0) {
                 this.divMsgSuccess = elems[0];
 
@@ -277,7 +285,7 @@
         }
 
         if (!this.txtError) {
-            elems = $('div.error', this.form.parentElement);
+            elems = $('div.error', this.uiContainer);
             if (elems.length > 0) {
                 this.divMsgError = elems[0];
 

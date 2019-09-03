@@ -2,10 +2,10 @@
     var $ = context.jQuery;
     var __ = context.wp.i18n.__;
 
-    function CtnBlkSendMessage(form, targetDevice, options, props) {
-        this.form = form;
+    function CtnBlkSendMessage(uiContainer, targetDevice, options, props) {
+        this.uiContainer = uiContainer;
 
-        if (this.checkCtnApiProxyAvailable(form.parentElement)) {
+        if (this.checkCtnApiProxyAvailable(this.uiContainer)) {
             this.targetDevice = targetDevice;
             this.showSpinner = props.showSpinner;
             this.spinnerColor = props.spinnerColor;
@@ -13,6 +13,7 @@
             this.successMsgTemplate = props.successMsgTemplate;
             this.successPanelId = props.successPanelId;
             this.errorPanelId = props.errorPanelId;
+            this.form = undefined;
             this.divMessagePanel = undefined;
             this.divDisabledPanel = undefined;
             this.divMsgSuccess = undefined;
@@ -48,12 +49,19 @@
     };
 
     CtnBlkSendMessage.prototype.setUpMessagePanel = function () {
-        this.divMessagePanel = this.form.message.parentElement;
+        this.uiContainer.style.display = 'block';
 
-        var elems = $('div.disabledPanel', this.divMessagePanel);
+        var elems = $('form', this.uiContainer);
         if (elems.length > 0) {
-            this.divDisabledPanel = elems[0];
-        }
+            this.form = elems[0];
+
+            this.divMessagePanel = this.form.message.parentElement;
+
+            elems = $('div.disabledPanel', this.divMessagePanel);
+            if (elems.length > 0) {
+                this.divDisabledPanel = elems[0];
+            }
+        }        
     }
 
     CtnBlkSendMessage.prototype.displaySpinner = function () {
@@ -96,7 +104,7 @@
 
     CtnBlkSendMessage.prototype.setDefaultResultPanels = function () {
         if (!this.txtSuccess) {
-            var elems = $('div.success', this.form.parentElement);
+            var elems = $('div.success', this.uiContainer);
             if (elems.length > 0) {
                 this.divMsgSuccess = elems[0];
 
@@ -108,7 +116,7 @@
         }
 
         if (!this.txtError) {
-            elems = $('div.error', this.form.parentElement);
+            elems = $('div.error', this.uiContainer);
             if (elems.length > 0) {
                 this.divMsgError = elems[0];
 
