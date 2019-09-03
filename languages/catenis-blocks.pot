@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2019-01-23T21:02:33-02:00\n"
+"POT-Creation-Date: 2019-09-03T14:52:33-03:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.1.0\n"
 "X-Domain: catenis-blocks\n"
@@ -30,181 +30,579 @@ msgstr ""
 msgid "https://blockchainofthings.com"
 msgstr ""
 
-#: src/CatenisBlocks.php:30
+#: src/CatenisBlocks.php:33
 msgid "Catenis"
 msgstr ""
 
-#: js/SaveMessageBlock.js:83
+#: js/SaveMessageBlock.js:195
 msgid "unnamed"
 msgstr ""
 
-#: js/StoreMessageBlockEditor.js:9
-#: js/SendMessageBlockEditor.js:11
+#: js/StoreMessageBlockEditor.js:12
+#: js/SendMessageBlockEditor.js:16
 msgid "Write your message"
 msgstr ""
 
-#: js/StoreMessageBlockEditor.js:10
-#: js/StoreMessageBlockEditor.js:14
-#: js/SendMessageBlockEditor.js:12
+#: js/StoreMessageBlockEditor.js:13
+#: js/StoreMessageBlockEditor.js:22
 msgid "Store Message"
 msgstr ""
 
-#: js/StoreMessageBlockEditor.js:11
-#: js/SendMessageBlockEditor.js:13
+#: js/StoreMessageBlockEditor.js:14
 msgid ""
 "Message successfully stored.\n"
 "Message Id: {!messageId}"
 msgstr ""
 
-#: js/StoreMessageBlockEditor.js:15
+#: js/StoreMessageBlockEditor.js:23
 msgid "Store a text message onto the Bitcoin blockchain"
 msgstr ""
 
-#: js/StoreMessageBlockEditor.js:139
-#: js/SendMessageBlockEditor.js:221
+#: js/StoreMessageBlockEditor.js:211
+#: js/SendMessageBlockEditor.js:306
 msgid "Message Box"
 msgstr ""
 
-#: js/StoreMessageBlockEditor.js:142
-#: js/SendMessageBlockEditor.js:224
+#: js/StoreMessageBlockEditor.js:214
+#: js/SendMessageBlockEditor.js:309
 msgid "Number of Lines"
 msgstr ""
 
-#: js/StoreMessageBlockEditor.js:150
-#: js/SaveMessageBlockEditor.js:81
+#: js/StoreMessageBlockEditor.js:222
+#: js/SaveMessageBlockEditor.js:165
+#: js/SendFileBlockEditor.js:292
+#: js/SendMessageBlockEditor.js:317
+#: js/StoreFileBlockEditor.js:199
+#: js/DisplayMessageBlockEditor.js:164
+msgid "Display"
+msgstr ""
+
+#: js/StoreMessageBlockEditor.js:226
+#: js/SaveMessageBlockEditor.js:169
+#: js/SendFileBlockEditor.js:296
+#: js/SendMessageBlockEditor.js:321
+#: js/StoreFileBlockEditor.js:203
+#: js/DisplayMessageBlockEditor.js:168
+msgid "Show Spinner"
+msgstr ""
+
+#: js/StoreMessageBlockEditor.js:227
+msgid "Show animated icon while storing message"
+msgstr ""
+
+#: js/StoreMessageBlockEditor.js:233
+#: js/SaveMessageBlockEditor.js:235
 #: js/MessageInputBlockEditor.js:93
-#: js/SendFileBlockEditor.js:211
-#: js/SendMessageBlockEditor.js:232
-#: js/StoreFileBlockEditor.js:129
+#: js/SendFileBlockEditor.js:303
+#: js/SendMessageBlockEditor.js:328
+#: js/StoreFileBlockEditor.js:210
+#: js/DisplayMessageBlockEditor.js:199
 msgid "Advanced UI Settings"
 msgstr ""
 
-#: js/StoreMessageBlockEditor.js:154
-#: js/SendMessageBlockEditor.js:246
+#: js/StoreMessageBlockEditor.js:240
+#: js/SaveMessageBlockEditor.js:204
+#: js/SendFileBlockEditor.js:310
+#: js/SendMessageBlockEditor.js:335
+#: js/StoreFileBlockEditor.js:217
+#: js/DisplayMessageBlockEditor.js:204
+msgid "Spinner Color"
+msgstr ""
+
+#: js/StoreMessageBlockEditor.js:260
+#: js/SendMessageBlockEditor.js:365
 msgid "Message Placeholder"
 msgstr ""
 
-#: js/StoreMessageBlockEditor.js:159
+#: js/StoreMessageBlockEditor.js:265
 #: js/MessageInputBlockEditor.js:102
-#: js/SendFileBlockEditor.js:230
-#: js/SendMessageBlockEditor.js:251
-#: js/StoreFileBlockEditor.js:138
+#: js/SendFileBlockEditor.js:345
+#: js/SendMessageBlockEditor.js:370
+#: js/StoreFileBlockEditor.js:242
 msgid "Button Label"
 msgstr ""
 
-#: js/StoreMessageBlockEditor.js:164
-#: js/SendFileBlockEditor.js:235
-#: js/SendMessageBlockEditor.js:256
-#: js/StoreFileBlockEditor.js:143
+#: js/StoreMessageBlockEditor.js:270
+#: js/SendFileBlockEditor.js:350
+#: js/SendMessageBlockEditor.js:375
+#: js/StoreFileBlockEditor.js:247
 msgid "Success Message Template"
 msgstr ""
 
-#: js/StoreMessageBlockEditor.js:165
-#: js/SendFileBlockEditor.js:236
-#: js/SendMessageBlockEditor.js:257
-#: js/StoreFileBlockEditor.js:144
+#: js/StoreMessageBlockEditor.js:271
+#: js/SendFileBlockEditor.js:351
+#: js/SendMessageBlockEditor.js:376
+#: js/StoreFileBlockEditor.js:248
 msgid "Use the term {!messageId} as a placeholder for the returned message ID"
 msgstr ""
 
-#: js/StoreMessageBlockEditor.js:176
-#: js/SendFileBlockEditor.js:247
-#: js/SendMessageBlockEditor.js:268
-#: js/StoreFileBlockEditor.js:155
+#: js/StoreMessageBlockEditor.js:282
+#: js/SendFileBlockEditor.js:362
+#: js/SendMessageBlockEditor.js:387
+#: js/StoreFileBlockEditor.js:259
 msgid "Store Options"
 msgstr ""
 
-#: js/StoreMessageBlockEditor.js:180
-#: js/SendFileBlockEditor.js:257
-#: js/SendMessageBlockEditor.js:272
-#: js/StoreFileBlockEditor.js:165
+#: js/StoreMessageBlockEditor.js:286
+#: js/SendFileBlockEditor.js:378
+#: js/SendMessageBlockEditor.js:397
+#: js/StoreFileBlockEditor.js:269
 msgid "Encrypt"
 msgstr ""
 
-#: js/StoreMessageBlockEditor.js:181
-#: js/SendMessageBlockEditor.js:273
+#: js/StoreMessageBlockEditor.js:287
+#: js/SendMessageBlockEditor.js:398
 msgid "Encrypt message before storing it"
 msgstr ""
 
-#: js/StoreMessageBlockEditor.js:181
-#: js/SendMessageBlockEditor.js:273
+#: js/StoreMessageBlockEditor.js:287
+#: js/SendMessageBlockEditor.js:398
 msgid "Store message as it is"
 msgstr ""
 
-#: js/StoreMessageBlockEditor.js:186
-#: js/SendMessageBlockEditor.js:278
+#: js/StoreMessageBlockEditor.js:292
+#: js/SendMessageBlockEditor.js:403
 msgid "Storage"
 msgstr ""
 
-#: js/StoreMessageBlockEditor.js:202
-#: js/SendFileBlockEditor.js:264
-#: js/SendMessageBlockEditor.js:294
-#: js/StoreFileBlockEditor.js:172
+#: js/StoreMessageBlockEditor.js:308
+#: js/SendFileBlockEditor.js:385
+#: js/SendMessageBlockEditor.js:419
+#: js/StoreFileBlockEditor.js:276
 msgid "Result"
 msgstr ""
 
-#: js/StoreMessageBlockEditor.js:206
-#: js/SendFileBlockEditor.js:268
-#: js/SendMessageBlockEditor.js:298
-#: js/StoreFileBlockEditor.js:176
+#: js/StoreMessageBlockEditor.js:312
+#: js/SendFileBlockEditor.js:389
+#: js/SendMessageBlockEditor.js:423
+#: js/StoreFileBlockEditor.js:280
 msgid "Success Panel ID"
 msgstr ""
 
-#: js/StoreMessageBlockEditor.js:207
-#: js/StoreMessageBlockEditor.js:213
-#: js/SendFileBlockEditor.js:269
-#: js/SendFileBlockEditor.js:275
-#: js/SendMessageBlockEditor.js:299
-#: js/SendMessageBlockEditor.js:305
-#: js/StoreFileBlockEditor.js:177
-#: js/StoreFileBlockEditor.js:183
+#: js/StoreMessageBlockEditor.js:313
+#: js/StoreMessageBlockEditor.js:319
+#: js/SendFileBlockEditor.js:390
+#: js/SendFileBlockEditor.js:396
+#: js/SendMessageBlockEditor.js:424
+#: js/SendMessageBlockEditor.js:430
+#: js/StoreFileBlockEditor.js:281
+#: js/StoreFileBlockEditor.js:287
 msgid "Enter ID of an HTML element on the page"
 msgstr ""
 
-#: js/StoreMessageBlockEditor.js:212
-#: js/SendFileBlockEditor.js:274
-#: js/SendMessageBlockEditor.js:304
-#: js/StoreFileBlockEditor.js:182
+#: js/StoreMessageBlockEditor.js:318
+#: js/SendFileBlockEditor.js:395
+#: js/SendMessageBlockEditor.js:429
+#: js/StoreFileBlockEditor.js:286
 msgid "Error Panel ID"
 msgstr ""
 
-#: js/StoreMessageBlockEditor.js:291
-#: js/SaveMessageBlockEditor.js:149
-#: js/SendFileBlockEditor.js:425
-#: js/SendMessageBlockEditor.js:417
-#: js/StoreFileBlockEditor.js:299
-#: js/DisplayMessageBlockEditor.js:108
+#: js/StoreMessageBlockEditor.js:413
+#: js/PermissionsBlockEditor.js:515
+#: js/MessageInboxBlockEditor.js:918
+#: js/SaveMessageBlockEditor.js:311
+#: js/SendFileBlockEditor.js:534
+#: js/SendMessageBlockEditor.js:559
+#: js/StoreFileBlockEditor.js:390
+#: js/MessageHistoryBlockEditor.js:1060
+#: js/DisplayMessageBlockEditor.js:281
 msgid "Catenis API client not loaded on page"
 msgstr ""
 
-#: js/SaveMessageBlockEditor.js:8
-msgid "Save retrieved message"
+#: js/PermissionsBlockEditor.js:25
+msgid "Permissions"
 msgstr ""
 
-#: js/SaveMessageBlockEditor.js:11
-msgid "Save Message"
+#: js/PermissionsBlockEditor.js:26
+msgid "Manage Catenis permissions"
 msgstr ""
 
-#: js/SaveMessageBlockEditor.js:12
-msgid "Save message retrieved from the Bitcoin blockchain as a file"
+#: js/PermissionsBlockEditor.js:155
+msgid "Permission Selection"
 msgstr ""
 
-#: js/SaveMessageBlockEditor.js:71
-#: js/DisplayMessageBlockEditor.js:51
-msgid "Message"
+#: js/PermissionsBlockEditor.js:159
+msgid "Permission Events"
 msgstr ""
 
-#: js/SaveMessageBlockEditor.js:74
+#: js/PermissionsBlockEditor.js:160
+msgid "receive-notify-new-msg"
+msgstr ""
+
+#: js/PermissionsBlockEditor.js:166
+msgid "receive-notify-msg-read"
+msgstr ""
+
+#: js/PermissionsBlockEditor.js:172
+msgid "receive-msg"
+msgstr ""
+
+#: js/PermissionsBlockEditor.js:178
+msgid "send-read-msg-confirm"
+msgstr ""
+
+#: js/PermissionsBlockEditor.js:184
+msgid "disclose-main-props"
+msgstr ""
+
+#: js/PermissionsBlockEditor.js:190
+msgid "disclose-identity-info"
+msgstr ""
+
+#: js/PermissionsBlockEditor.js:191
+msgid "Select the permission rights to choose"
+msgstr ""
+
+#: js/PermissionsBlockEditor.js:197
+msgid "Levels"
+msgstr ""
+
+#: js/PermissionsBlockEditor.js:198
+#: js/PermissionsBlockEditor.js:302
+#: js/PermissionsBlockEditor.js:413
+msgid "System"
+msgstr ""
+
+#: js/PermissionsBlockEditor.js:204
+#: js/PermissionsBlockEditor.js:310
+#: js/PermissionsBlockEditor.js:421
+msgid "Catenis Node"
+msgstr ""
+
+#: js/PermissionsBlockEditor.js:210
+#: js/PermissionsBlockEditor.js:318
+#: js/PermissionsBlockEditor.js:429
+msgid "Client"
+msgstr ""
+
+#: js/PermissionsBlockEditor.js:216
+#: js/PermissionsBlockEditor.js:326
+#: js/PermissionsBlockEditor.js:437
+msgid "Device"
+msgstr ""
+
+#: js/PermissionsBlockEditor.js:217
+msgid "Select the levels to choose"
+msgstr ""
+
+#: js/PermissionsBlockEditor.js:241
+#: js/PermissionsBlockEditor.js:368
+msgid "Receive notification of new message from a device"
+msgstr ""
+
+#: js/PermissionsBlockEditor.js:249
+#: js/PermissionsBlockEditor.js:376
+msgid "Receive notification of message read by a device"
+msgstr ""
+
+#: js/PermissionsBlockEditor.js:257
+#: js/PermissionsBlockEditor.js:384
+msgid "Receive message from a device"
+msgstr ""
+
+#: js/PermissionsBlockEditor.js:265
+#: js/PermissionsBlockEditor.js:392
+msgid "Send read message confirmation to a device"
+msgstr ""
+
+#: js/PermissionsBlockEditor.js:273
+msgid "Disclose device's main properties (name, product unique ID) to a device"
+msgstr ""
+
+#: js/PermissionsBlockEditor.js:281
+msgid "Disclose device's basic identification information to a device"
+msgstr ""
+
+#: js/PermissionsBlockEditor.js:478
+#: js/PermissionsBlock.js:616
+msgid "allow"
+msgstr ""
+
+#: js/PermissionsBlockEditor.js:481
+#: js/PermissionsBlock.js:617
+msgid "deny"
+msgstr ""
+
+#: js/PermissionsBlockEditor.js:484
+#: js/PermissionsBlock.js:618
+msgid "none"
+msgstr ""
+
+#: js/MessageInboxBlockEditor.js:26
+msgid "Message Inbox"
+msgstr ""
+
+#: js/MessageInboxBlockEditor.js:27
+msgid "Display list with latest received messages"
+msgstr ""
+
+#: js/MessageInboxBlockEditor.js:347
+#: js/MessageHistoryBlockEditor.js:374
+msgid "Message Filtering"
+msgstr ""
+
+#: js/MessageInboxBlockEditor.js:350
+#: js/MessageHistoryBlockEditor.js:392
+msgid "Unread Only"
+msgstr ""
+
+#: js/MessageInboxBlockEditor.js:351
+#: js/MessageHistoryBlockEditor.js:393
+msgid "List only unread messages"
+msgstr ""
+
+#: js/MessageInboxBlockEditor.js:351
+#: js/MessageHistoryBlockEditor.js:393
+msgid "List all messages"
+msgstr ""
+
+#: js/MessageInboxBlockEditor.js:356
+#: js/MessageHistoryBlockEditor.js:398
+msgid "Period"
+msgstr ""
+
+#: js/MessageInboxBlockEditor.js:359
+#: js/MessageHistoryBlockEditor.js:401
+msgid "Today"
+msgstr ""
+
+#: js/MessageInboxBlockEditor.js:362
+#: js/MessageHistoryBlockEditor.js:404
+msgid "Last 7 days"
+msgstr ""
+
+#: js/MessageInboxBlockEditor.js:365
+#: js/MessageHistoryBlockEditor.js:407
+msgid "Last 30 days"
+msgstr ""
+
+#: js/MessageInboxBlockEditor.js:368
+#: js/MessageHistoryBlockEditor.js:410
+msgid "Current month"
+msgstr ""
+
+#: js/MessageInboxBlockEditor.js:371
+#: js/MessageHistoryBlockEditor.js:413
+msgid "Last 3 months"
+msgstr ""
+
+#: js/MessageInboxBlockEditor.js:374
+#: js/MessageHistoryBlockEditor.js:416
+msgid "Last 6 months"
+msgstr ""
+
+#: js/MessageInboxBlockEditor.js:377
+#: js/MessageHistoryBlockEditor.js:419
+msgid "Custom"
+msgstr ""
+
+#: js/MessageInboxBlockEditor.js:386
+#: js/MessageInboxBlockEditor.js:408
+#: js/MessageHistoryBlockEditor.js:428
+#: js/MessageHistoryBlockEditor.js:450
+msgid "Start Date"
+msgstr ""
+
+#: js/MessageInboxBlockEditor.js:427
+#: js/MessageHistoryBlockEditor.js:506
+msgid "Message List"
+msgstr ""
+
+#: js/MessageInboxBlockEditor.js:431
+#: js/MessageHistoryBlockEditor.js:510
+msgid "Messages Per Page"
+msgstr ""
+
+#: js/MessageInboxBlockEditor.js:436
+#: js/MessageHistoryBlockEditor.js:515
+msgid "Columns"
+msgstr ""
+
+#: js/MessageInboxBlockEditor.js:437
+#: js/MessageInboxBlockEditor.js:545
+#: js/MessageInboxBlockEditor.js:791
+#: js/SaveMessageBlockEditor.js:176
+#: js/MessageHistoryBlockEditor.js:516
+#: js/MessageHistoryBlockEditor.js:630
+#: js/MessageHistoryBlockEditor.js:906
+msgid "Action"
+msgstr ""
+
+#: js/MessageInboxBlockEditor.js:443
+#: js/MessageInboxBlockEditor.js:575
+#: js/MessageInboxBlockEditor.js:816
+#: js/SaveMessageBlockEditor.js:158
 #: js/MessageInputBlockEditor.js:8
-#: js/DisplayMessageBlockEditor.js:54
+#: js/MessageHistoryBlockEditor.js:522
+#: js/MessageHistoryBlockEditor.js:660
+#: js/MessageHistoryBlockEditor.js:931
+#: js/DisplayMessageBlockEditor.js:157
 msgid "Message ID"
 msgstr ""
 
-#: js/SaveMessageBlockEditor.js:75
-#: js/DisplayMessageBlockEditor.js:55
+#: js/MessageInboxBlockEditor.js:449
+#: js/MessageInboxBlockEditor.js:607
+#: js/MessageInboxBlockEditor.js:843
+#: js/MessageHistoryBlockEditor.js:534
+#: js/MessageHistoryBlockEditor.js:724
+#: js/MessageHistoryBlockEditor.js:985
+msgid "Date"
+msgstr ""
+
+#: js/MessageInboxBlockEditor.js:455
+#: js/MessageInboxBlockEditor.js:639
+#: js/MessageInboxBlockEditor.js:870
+msgid "From"
+msgstr ""
+
+#: js/MessageInboxBlockEditor.js:461
+#: js/MessageInboxBlockEditor.js:671
+#: js/MessageInboxBlockEditor.js:897
+#: js/MessageHistoryBlockEditor.js:546
+#: js/MessageHistoryBlockEditor.js:788
+#: js/MessageHistoryBlockEditor.js:1039
+msgid "Read"
+msgstr ""
+
+#: js/MessageInboxBlockEditor.js:462
+#: js/MessageHistoryBlockEditor.js:547
+msgid "Select the columns to be displayed"
+msgstr ""
+
+#: js/MessageInboxBlockEditor.js:469
+#: js/MessageHistoryBlockEditor.js:554
+msgid "Action Links"
+msgstr ""
+
+#: js/MessageInboxBlockEditor.js:491
+msgid "Origin Device ID ('From' Column)"
+msgstr ""
+
+#: js/MessageInboxBlockEditor.js:492
+#: js/MessageHistoryBlockEditor.js:577
+msgid "Always show device ID"
+msgstr ""
+
+#: js/MessageInboxBlockEditor.js:492
+#: js/MessageHistoryBlockEditor.js:577
+msgid "Show product unique ID instead if present"
+msgstr ""
+
+#: js/MessageInboxBlockEditor.js:512
+#: js/MessageHistoryBlockEditor.js:597
+msgid "Display HTML Anchor"
+msgstr ""
+
+#: js/MessageInboxBlockEditor.js:513
+#: js/MessageHistoryBlockEditor.js:598
+msgid "Reference to block used to display the message contents"
+msgstr ""
+
+#: js/MessageInboxBlockEditor.js:521
+#: js/MessageHistoryBlockEditor.js:606
+msgid "Save HTML Anchor"
+msgstr ""
+
+#: js/MessageInboxBlockEditor.js:522
+#: js/MessageHistoryBlockEditor.js:607
+msgid "Reference to block used to save the message contents"
+msgstr ""
+
+#: js/MessageInboxBlockEditor.js:529
+#: js/MessageHistoryBlockEditor.js:614
+msgid "Action Target"
+msgstr ""
+
+#: js/MessageInboxBlockEditor.js:573
+#: js/MessageInboxBlockEditor.js:605
+#: js/MessageInboxBlockEditor.js:637
+#: js/MessageInboxBlockEditor.js:669
+#: js/MessageInboxBlockEditor.js:815
+#: js/MessageInboxBlockEditor.js:842
+#: js/MessageInboxBlockEditor.js:869
+#: js/MessageInboxBlockEditor.js:896
+#: js/MessageHistoryBlockEditor.js:658
+#: js/MessageHistoryBlockEditor.js:690
+#: js/MessageHistoryBlockEditor.js:722
+#: js/MessageHistoryBlockEditor.js:754
+#: js/MessageHistoryBlockEditor.js:786
+#: js/MessageHistoryBlockEditor.js:930
+#: js/MessageHistoryBlockEditor.js:957
+#: js/MessageHistoryBlockEditor.js:984
+#: js/MessageHistoryBlockEditor.js:1011
+#: js/MessageHistoryBlockEditor.js:1038
+msgid "Sort by"
+msgstr ""
+
+#: js/MessageInboxBlockEditor.js:723
+#: js/MessageHistoryBlockEditor.js:841
+msgid "Reload"
+msgstr ""
+
+#: js/MessageInboxBlockEditor.js:731
+msgid "New Message"
+msgstr ""
+
+#: js/MessageInboxBlockEditor.js:735
+#: js/MessageHistoryBlockEditor.js:850
+msgid "First page"
+msgstr ""
+
+#: js/MessageInboxBlockEditor.js:743
+#: js/MessageHistoryBlockEditor.js:858
+msgid "Previous page"
+msgstr ""
+
+#: js/MessageInboxBlockEditor.js:764
+#: js/MessageHistoryBlockEditor.js:879
+msgid "Next page"
+msgstr ""
+
+#: js/MessageInboxBlockEditor.js:772
+#: js/MessageHistoryBlockEditor.js:887
+msgid "Last page"
+msgstr ""
+
+#: js/SaveMessageBlockEditor.js:11
+msgid "Save retrieved message"
+msgstr ""
+
+#: js/SaveMessageBlockEditor.js:18
+msgid "Save Message"
+msgstr ""
+
+#: js/SaveMessageBlockEditor.js:19
+msgid "Save message retrieved from the Bitcoin blockchain as a file"
+msgstr ""
+
+#: js/SaveMessageBlockEditor.js:155
+#: js/DisplayMessageBlockEditor.js:154
+msgid "Message"
+msgstr ""
+
+#: js/SaveMessageBlockEditor.js:159
+#: js/DisplayMessageBlockEditor.js:158
 msgid "ID of message to be retrieved"
 msgstr ""
 
-#: js/SaveMessageBlockEditor.js:85
+#: js/SaveMessageBlockEditor.js:170
+#: js/DisplayMessageBlockEditor.js:169
+msgid "Show animated icon while loading message"
+msgstr ""
+
+#: js/SaveMessageBlockEditor.js:180
+msgid "Auto Save"
+msgstr ""
+
+#: js/SaveMessageBlockEditor.js:181
+msgid "Automatically save message after it is retrieved"
+msgstr ""
+
+#: js/SaveMessageBlockEditor.js:181
+msgid "Show link to save retrieved message"
+msgstr ""
+
+#: js/SaveMessageBlockEditor.js:193
 msgid "Save Message Link"
 msgstr ""
 
@@ -236,201 +634,318 @@ msgstr ""
 msgid "Message ID Placeholder"
 msgstr ""
 
-#: js/SendFileBlockEditor.js:8
-#: js/SendMessageBlockEditor.js:9
+#: js/SendFileBlockEditor.js:11
+#: js/SendMessageBlockEditor.js:14
 msgid "Target device ID"
 msgstr ""
 
-#: js/SendFileBlockEditor.js:9
-#: js/SendMessageBlockEditor.js:10
+#: js/SendFileBlockEditor.js:12
+#: js/SendMessageBlockEditor.js:15
 msgid "Target device prod unique ID"
 msgstr ""
 
-#: js/SendFileBlockEditor.js:10
-#: js/StoreFileBlockEditor.js:8
+#: js/SendFileBlockEditor.js:13
+#: js/StoreFileBlockEditor.js:11
 msgid "Drop a file or click to select"
 msgstr ""
 
-#: js/SendFileBlockEditor.js:11
-#: js/StoreFileBlockEditor.js:9
-#: js/StoreFileBlockEditor.js:15
+#: js/SendFileBlockEditor.js:14
+#: js/SendFileBlockEditor.js:24
+msgid "Send File"
+msgstr ""
+
+#: js/SendFileBlockEditor.js:15
+msgid ""
+"File successfully sent.\n"
+"Message Id: {!messageId}"
+msgstr ""
+
+#: js/SendFileBlockEditor.js:25
+msgid "Store a file onto the Bitcoin blockchain addressing it to another Catenis virtual device"
+msgstr ""
+
+#: js/SendFileBlockEditor.js:264
+#: js/SendMessageBlockEditor.js:278
+msgid "Target Device"
+msgstr ""
+
+#: js/SendFileBlockEditor.js:267
+#: js/SendMessageBlockEditor.js:281
+msgid "Dynamic Target Device"
+msgstr ""
+
+#: js/SendFileBlockEditor.js:268
+#: js/SendMessageBlockEditor.js:282
+msgid "Select a different target device for each message"
+msgstr ""
+
+#: js/SendFileBlockEditor.js:268
+#: js/SendMessageBlockEditor.js:282
+msgid "Use a single predefined target device"
+msgstr ""
+
+#: js/SendFileBlockEditor.js:273
+#: js/SendMessageBlockEditor.js:287
+msgid "Use Product Unique ID"
+msgstr ""
+
+#: js/SendFileBlockEditor.js:274
+#: js/SendMessageBlockEditor.js:288
+msgid "Enter product unique ID for target device"
+msgstr ""
+
+#: js/SendFileBlockEditor.js:274
+#: js/SendMessageBlockEditor.js:288
+msgid "Enter Catenis device ID for target device"
+msgstr ""
+
+#: js/SendFileBlockEditor.js:282
+#: js/SendMessageBlockEditor.js:296
+msgid "Target Device Product Unique ID"
+msgstr ""
+
+#: js/SendFileBlockEditor.js:282
+#: js/SendMessageBlockEditor.js:296
+msgid "Target Device ID"
+msgstr ""
+
+#: js/SendFileBlockEditor.js:283
+#: js/SendMessageBlockEditor.js:297
+msgid "ID of Catenis virtual device to which the message is sent"
+msgstr ""
+
+#: js/SendFileBlockEditor.js:297
+msgid "Show animated icon while sending file"
+msgstr ""
+
+#: js/SendFileBlockEditor.js:330
+#: js/SendMessageBlockEditor.js:355
+msgid "Target Device ID Placeholder"
+msgstr ""
+
+#: js/SendFileBlockEditor.js:335
+#: js/SendMessageBlockEditor.js:360
+msgid "Target Device Prod Unique ID Placeholder"
+msgstr ""
+
+#: js/SendFileBlockEditor.js:340
+#: js/StoreFileBlockEditor.js:237
+msgid "File Drop Box Message"
+msgstr ""
+
+#: js/SendFileBlockEditor.js:366
+#: js/StoreFileBlockEditor.js:263
+msgid "File Header"
+msgstr ""
+
+#: js/SendFileBlockEditor.js:367
+#: js/StoreFileBlockEditor.js:264
+msgid "Add header describing file properties"
+msgstr ""
+
+#: js/SendFileBlockEditor.js:367
+#: js/StoreFileBlockEditor.js:264
+msgid "Only the original file contents are stored"
+msgstr ""
+
+#: js/SendFileBlockEditor.js:372
+#: js/SendMessageBlockEditor.js:391
+msgid "Read Confirmation"
+msgstr ""
+
+#: js/SendFileBlockEditor.js:373
+msgid "Send file with read confirmation"
+msgstr ""
+
+#: js/SendFileBlockEditor.js:373
+#: js/SendMessageBlockEditor.js:392
+msgid "No read confirmation requested"
+msgstr ""
+
+#: js/SendFileBlockEditor.js:379
+#: js/StoreFileBlockEditor.js:270
+msgid "Encrypt file contents before storing them"
+msgstr ""
+
+#: js/SendFileBlockEditor.js:379
+#: js/StoreFileBlockEditor.js:270
+msgid "Store file contents as they are"
+msgstr ""
+
+#: js/StoreMessageBlock.js:164
+msgid "No message to be stored"
+msgstr ""
+
+#: js/MessageHistoryBlock.js:512
+#: js/MessageInboxBlock.js:519
+msgid "No messages"
+msgstr ""
+
+#: js/MessageHistoryBlock.js:908
+#: js/MessageInboxBlock.js:908
+msgid "true"
+msgstr ""
+
+#: js/MessageHistoryBlock.js:908
+#: js/MessageInboxBlock.js:908
+msgid "false"
+msgstr ""
+
+#: js/SendFileBlock.js:312
+msgid "No file selected to be sent"
+msgstr ""
+
+#: js/SendFileBlock.js:321
+#: js/SendMessageBlock.js:174
+msgid "No target device product unique ID"
+msgstr ""
+
+#: js/SendFileBlock.js:321
+#: js/SendMessageBlock.js:174
+msgid "No target device ID"
+msgstr ""
+
+#: js/SendFileBlock.js:427
+msgid "Empty file; nothing to send"
+msgstr ""
+
+#: js/SendFileBlock.js:444
+#: js/StoreFileBlock.js:431
+msgid "Error reading file: "
+msgstr ""
+
+#: js/SendFileBlock.js:449
+#: js/StoreFileBlock.js:436
+msgid "Reading of file has been aborted"
+msgstr ""
+
+#: js/StoreFileBlock.js:311
+msgid "No file selected to be stored"
+msgstr ""
+
+#: js/StoreFileBlock.js:414
+msgid "Empty file; nothing to store"
+msgstr ""
+
+#: js/SendMessageBlockEditor.js:17
+#: js/SendMessageBlockEditor.js:27
+msgid "Send Message"
+msgstr ""
+
+#: js/SendMessageBlockEditor.js:18
+msgid ""
+"Message successfully sent.\n"
+"Message Id: {!messageId}"
+msgstr ""
+
+#: js/SendMessageBlockEditor.js:28
+msgid "Store a text message onto the Bitcoin blockchain addressing it to another Catenis virtual device"
+msgstr ""
+
+#: js/SendMessageBlockEditor.js:322
+msgid "Show animated icon while sending message"
+msgstr ""
+
+#: js/SendMessageBlockEditor.js:392
+msgid "Send message with read confirmation"
+msgstr ""
+
+#: js/StoreFileBlockEditor.js:12
+#: js/StoreFileBlockEditor.js:21
 msgid "Store File"
 msgstr ""
 
-#: js/SendFileBlockEditor.js:12
-#: js/StoreFileBlockEditor.js:10
+#: js/StoreFileBlockEditor.js:13
 msgid ""
 "File successfully stored.\n"
 "Message Id: {!messageId}"
 msgstr ""
 
-#: js/SendFileBlockEditor.js:17
-msgid "Send File"
-msgstr ""
-
-#: js/SendFileBlockEditor.js:18
-msgid "Store a file onto the Bitcoin blockchain addessing it to another Catenis virtual device"
-msgstr ""
-
-#: js/SendFileBlockEditor.js:183
-#: js/SendMessageBlockEditor.js:193
-msgid "Target Device"
-msgstr ""
-
-#: js/SendFileBlockEditor.js:186
-#: js/SendMessageBlockEditor.js:196
-msgid "Dynamic Target Device"
-msgstr ""
-
-#: js/SendFileBlockEditor.js:187
-#: js/SendMessageBlockEditor.js:197
-msgid "Select a different target device for each message"
-msgstr ""
-
-#: js/SendFileBlockEditor.js:187
-#: js/SendMessageBlockEditor.js:197
-msgid "Use a single predefined target device"
-msgstr ""
-
-#: js/SendFileBlockEditor.js:192
-#: js/SendMessageBlockEditor.js:202
-msgid "Use Product Unique ID"
-msgstr ""
-
-#: js/SendFileBlockEditor.js:193
-#: js/SendMessageBlockEditor.js:203
-msgid "Enter product unique ID for target device"
-msgstr ""
-
-#: js/SendFileBlockEditor.js:193
-#: js/SendMessageBlockEditor.js:203
-msgid "Enter Catenis device ID for target device"
-msgstr ""
-
-#: js/SendFileBlockEditor.js:201
-#: js/SendMessageBlockEditor.js:211
-msgid "Target Device Product Unique ID"
-msgstr ""
-
-#: js/SendFileBlockEditor.js:201
-#: js/SendMessageBlockEditor.js:211
-msgid "Target Device ID"
-msgstr ""
-
-#: js/SendFileBlockEditor.js:202
-#: js/SendMessageBlockEditor.js:212
-msgid "ID of Catenis virtual device to which the message is sent"
-msgstr ""
-
-#: js/SendFileBlockEditor.js:215
-#: js/SendMessageBlockEditor.js:236
-msgid "Target Device ID Placeholder"
-msgstr ""
-
-#: js/SendFileBlockEditor.js:220
-#: js/SendMessageBlockEditor.js:241
-msgid "Target Device Prod Unique ID Placeholder"
-msgstr ""
-
-#: js/SendFileBlockEditor.js:225
-#: js/StoreFileBlockEditor.js:133
-msgid "File Drop Box Message"
-msgstr ""
-
-#: js/SendFileBlockEditor.js:251
-#: js/StoreFileBlockEditor.js:159
-msgid "File Header"
-msgstr ""
-
-#: js/SendFileBlockEditor.js:252
-#: js/StoreFileBlockEditor.js:160
-msgid "Add header describing file properties"
-msgstr ""
-
-#: js/SendFileBlockEditor.js:252
-#: js/StoreFileBlockEditor.js:160
-msgid "Only the original file contents are stored"
-msgstr ""
-
-#: js/SendFileBlockEditor.js:258
-#: js/StoreFileBlockEditor.js:166
-msgid "Encrypt file contents before storing them"
-msgstr ""
-
-#: js/SendFileBlockEditor.js:258
-#: js/StoreFileBlockEditor.js:166
-msgid "Store file contents as they are"
-msgstr ""
-
-#: js/StoreMessageBlock.js:98
-msgid "No message to be stored"
-msgstr ""
-
-#: js/SendFileBlock.js:172
-msgid "No file selected to be sent"
-msgstr ""
-
-#: js/SendFileBlock.js:181
-#: js/SendMessageBlock.js:108
-msgid "No target device product unique ID"
-msgstr ""
-
-#: js/SendFileBlock.js:181
-#: js/SendMessageBlock.js:108
-msgid "No target device ID"
-msgstr ""
-
-#: js/SendFileBlock.js:226
-#: js/StoreFileBlock.js:213
-msgid "Error reading file: inconsistent data"
-msgstr ""
-
-#: js/SendFileBlock.js:234
-msgid "Empty file; nothing to send"
-msgstr ""
-
-#: js/SendFileBlock.js:250
-#: js/StoreFileBlock.js:237
-msgid "Error reading file: "
-msgstr ""
-
-#: js/SendFileBlock.js:254
-#: js/StoreFileBlock.js:241
-msgid "Reading of file has been aborted"
-msgstr ""
-
-#: js/StoreFileBlock.js:171
-msgid "No file selected to be stored"
-msgstr ""
-
-#: js/StoreFileBlock.js:221
-msgid "Empty file; nothing to store"
-msgstr ""
-
-#: js/SendMessageBlockEditor.js:16
-msgid "Send Message"
-msgstr ""
-
-#: js/SendMessageBlockEditor.js:17
-msgid "Store a text message onto the Bitcoin blockchain addessing it to another Catenis virtual device"
-msgstr ""
-
-#: js/StoreFileBlockEditor.js:16
+#: js/StoreFileBlockEditor.js:22
 msgid "Store a file onto the Bitcoin blockchain"
 msgstr ""
 
-#: js/SendMessageBlock.js:99
+#: js/StoreFileBlockEditor.js:204
+msgid "Show animated icon while storing file"
+msgstr ""
+
+#: js/SendMessageBlock.js:165
 msgid "No message to be sent"
 msgstr ""
 
-#: js/DisplayMessageBlockEditor.js:9
+#: js/MessageHistoryBlockEditor.js:28
+msgid "Message History"
+msgstr ""
+
+#: js/MessageHistoryBlockEditor.js:29
+msgid "Display list with latest stored/sent messages"
+msgstr ""
+
+#: js/MessageHistoryBlockEditor.js:377
+msgid "Message Type"
+msgstr ""
+
+#: js/MessageHistoryBlockEditor.js:462
+#: js/MessageHistoryBlockEditor.js:484
+msgid "End Date"
+msgstr ""
+
+#: js/MessageHistoryBlockEditor.js:528
+#: js/MessageHistoryBlockEditor.js:692
+#: js/MessageHistoryBlockEditor.js:958
+msgid "Type"
+msgstr ""
+
+#: js/MessageHistoryBlockEditor.js:540
+#: js/MessageHistoryBlockEditor.js:756
+#: js/MessageHistoryBlockEditor.js:1012
+msgid "To"
+msgstr ""
+
+#: js/MessageHistoryBlockEditor.js:576
+msgid "Target Device ID ('To' Column)"
+msgstr ""
+
+#: js/DisplayMessageBlockEditor.js:19
 msgid "Display Message"
 msgstr ""
 
-#: js/DisplayMessageBlockEditor.js:10
+#: js/DisplayMessageBlockEditor.js:20
 msgid "Display a text message retrieved from the Bitcoin blockchain"
 msgstr ""
 
-#: js/DisplayMessageBlockEditor.js:70
+#: js/DisplayMessageBlockEditor.js:174
+msgid "Strip File Header"
+msgstr ""
+
+#: js/DisplayMessageBlockEditor.js:175
+msgid "Do not display file header if present"
+msgstr ""
+
+#: js/DisplayMessageBlockEditor.js:175
+msgid "Display message as it is"
+msgstr ""
+
+#: js/DisplayMessageBlockEditor.js:180
+msgid "Limit Message"
+msgstr ""
+
+#: js/DisplayMessageBlockEditor.js:181
+msgid "Truncate message if it is too large"
+msgstr ""
+
+#: js/DisplayMessageBlockEditor.js:181
+msgid "Always display the whole message"
+msgstr ""
+
+#: js/DisplayMessageBlockEditor.js:188
+msgid "Max Message Length"
+msgstr ""
+
+#: js/DisplayMessageBlockEditor.js:189
+msgid "Maximum number of characters that can be displayed"
+msgstr ""
+
+#: js/DisplayMessageBlockEditor.js:237
 msgid "Sample retrieved message"
 msgstr ""
