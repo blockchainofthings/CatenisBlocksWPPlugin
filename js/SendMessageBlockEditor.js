@@ -25,7 +25,7 @@
 
     registerBlockType('catenis-blocks/send-message', {
         title: __('Send Message', 'catenis-blocks'),
-        description: __('Store a text message onto the Bitcoin blockchain addessing it to another Catenis virtual device', 'catenis-blocks'),
+        description: __('Store a text message onto the Bitcoin blockchain addressing it to another Catenis virtual device', 'catenis-blocks'),
         category: 'catenis',
         keywords: [
             'Catenis',

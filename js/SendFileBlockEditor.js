@@ -22,7 +22,7 @@
 
     registerBlockType('catenis-blocks/send-file', {
         title: __('Send File', 'catenis-blocks'),
-        description: __('Store a file onto the Bitcoin blockchain addessing it to another Catenis virtual device', 'catenis-blocks'),
+        description: __('Store a file onto the Bitcoin blockchain addressing it to another Catenis virtual device', 'catenis-blocks'),
         category: 'catenis',
         keywords: [
             'Catenis',
