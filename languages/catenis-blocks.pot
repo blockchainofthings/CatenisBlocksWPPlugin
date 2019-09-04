@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2019-09-03T14:52:33-03:00\n"
+"POT-Creation-Date: 2019-09-04T14:06:32-03:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.1.0\n"
 "X-Domain: catenis-blocks\n"
@@ -91,7 +91,7 @@ msgid "Show animated icon while storing message"
 msgstr ""
 
 #: js/StoreMessageBlockEditor.js:233
-#: js/SaveMessageBlockEditor.js:235
+#: js/SaveMessageBlockEditor.js:238
 #: js/MessageInputBlockEditor.js:93
 #: js/SendFileBlockEditor.js:303
 #: js/SendMessageBlockEditor.js:328
@@ -101,7 +101,7 @@ msgid "Advanced UI Settings"
 msgstr ""
 
 #: js/StoreMessageBlockEditor.js:240
-#: js/SaveMessageBlockEditor.js:204
+#: js/SaveMessageBlockEditor.js:206
 #: js/SendFileBlockEditor.js:310
 #: js/SendMessageBlockEditor.js:335
 #: js/StoreFileBlockEditor.js:217
@@ -198,13 +198,13 @@ msgid "Error Panel ID"
 msgstr ""
 
 #: js/StoreMessageBlockEditor.js:413
-#: js/PermissionsBlockEditor.js:515
-#: js/MessageInboxBlockEditor.js:918
-#: js/SaveMessageBlockEditor.js:311
+#: js/PermissionsBlockEditor.js:533
+#: js/MessageInboxBlockEditor.js:935
+#: js/SaveMessageBlockEditor.js:314
 #: js/SendFileBlockEditor.js:534
 #: js/SendMessageBlockEditor.js:559
 #: js/StoreFileBlockEditor.js:390
-#: js/MessageHistoryBlockEditor.js:1060
+#: js/MessageHistoryBlockEditor.js:1082
 #: js/DisplayMessageBlockEditor.js:281
 msgid "Catenis API client not loaded on page"
 msgstr ""
@@ -258,26 +258,26 @@ msgid "Levels"
 msgstr ""
 
 #: js/PermissionsBlockEditor.js:198
-#: js/PermissionsBlockEditor.js:302
-#: js/PermissionsBlockEditor.js:413
+#: js/PermissionsBlockEditor.js:309
+#: js/PermissionsBlockEditor.js:428
 msgid "System"
 msgstr ""
 
 #: js/PermissionsBlockEditor.js:204
-#: js/PermissionsBlockEditor.js:310
-#: js/PermissionsBlockEditor.js:421
+#: js/PermissionsBlockEditor.js:318
+#: js/PermissionsBlockEditor.js:437
 msgid "Catenis Node"
 msgstr ""
 
 #: js/PermissionsBlockEditor.js:210
-#: js/PermissionsBlockEditor.js:318
-#: js/PermissionsBlockEditor.js:429
+#: js/PermissionsBlockEditor.js:327
+#: js/PermissionsBlockEditor.js:446
 msgid "Client"
 msgstr ""
 
 #: js/PermissionsBlockEditor.js:216
-#: js/PermissionsBlockEditor.js:326
-#: js/PermissionsBlockEditor.js:437
+#: js/PermissionsBlockEditor.js:336
+#: js/PermissionsBlockEditor.js:455
 msgid "Device"
 msgstr ""
 
@@ -285,45 +285,45 @@ msgstr ""
 msgid "Select the levels to choose"
 msgstr ""
 
-#: js/PermissionsBlockEditor.js:241
-#: js/PermissionsBlockEditor.js:368
+#: js/PermissionsBlockEditor.js:242
+#: js/PermissionsBlockEditor.js:379
 msgid "Receive notification of new message from a device"
 msgstr ""
 
-#: js/PermissionsBlockEditor.js:249
-#: js/PermissionsBlockEditor.js:376
+#: js/PermissionsBlockEditor.js:251
+#: js/PermissionsBlockEditor.js:388
 msgid "Receive notification of message read by a device"
 msgstr ""
 
-#: js/PermissionsBlockEditor.js:257
-#: js/PermissionsBlockEditor.js:384
+#: js/PermissionsBlockEditor.js:260
+#: js/PermissionsBlockEditor.js:397
 msgid "Receive message from a device"
 msgstr ""
 
-#: js/PermissionsBlockEditor.js:265
-#: js/PermissionsBlockEditor.js:392
+#: js/PermissionsBlockEditor.js:269
+#: js/PermissionsBlockEditor.js:406
 msgid "Send read message confirmation to a device"
 msgstr ""
 
-#: js/PermissionsBlockEditor.js:273
+#: js/PermissionsBlockEditor.js:278
 msgid "Disclose device's main properties (name, product unique ID) to a device"
 msgstr ""
 
-#: js/PermissionsBlockEditor.js:281
+#: js/PermissionsBlockEditor.js:287
 msgid "Disclose device's basic identification information to a device"
 msgstr ""
 
-#: js/PermissionsBlockEditor.js:478
+#: js/PermissionsBlockEditor.js:496
 #: js/PermissionsBlock.js:616
 msgid "allow"
 msgstr ""
 
-#: js/PermissionsBlockEditor.js:481
+#: js/PermissionsBlockEditor.js:499
 #: js/PermissionsBlock.js:617
 msgid "deny"
 msgstr ""
 
-#: js/PermissionsBlockEditor.js:484
+#: js/PermissionsBlockEditor.js:502
 #: js/PermissionsBlock.js:618
 msgid "none"
 msgstr ""
@@ -396,170 +396,170 @@ msgstr ""
 msgid "Custom"
 msgstr ""
 
-#: js/MessageInboxBlockEditor.js:386
-#: js/MessageInboxBlockEditor.js:408
-#: js/MessageHistoryBlockEditor.js:428
-#: js/MessageHistoryBlockEditor.js:450
+#: js/MessageInboxBlockEditor.js:387
+#: js/MessageInboxBlockEditor.js:411
+#: js/MessageHistoryBlockEditor.js:429
+#: js/MessageHistoryBlockEditor.js:453
 msgid "Start Date"
 msgstr ""
 
-#: js/MessageInboxBlockEditor.js:427
-#: js/MessageHistoryBlockEditor.js:506
+#: js/MessageInboxBlockEditor.js:430
+#: js/MessageHistoryBlockEditor.js:512
 msgid "Message List"
 msgstr ""
 
-#: js/MessageInboxBlockEditor.js:431
-#: js/MessageHistoryBlockEditor.js:510
+#: js/MessageInboxBlockEditor.js:434
+#: js/MessageHistoryBlockEditor.js:516
 msgid "Messages Per Page"
 msgstr ""
 
-#: js/MessageInboxBlockEditor.js:436
-#: js/MessageHistoryBlockEditor.js:515
+#: js/MessageInboxBlockEditor.js:439
+#: js/MessageHistoryBlockEditor.js:521
 msgid "Columns"
 msgstr ""
 
-#: js/MessageInboxBlockEditor.js:437
-#: js/MessageInboxBlockEditor.js:545
-#: js/MessageInboxBlockEditor.js:791
+#: js/MessageInboxBlockEditor.js:440
+#: js/MessageInboxBlockEditor.js:552
+#: js/MessageInboxBlockEditor.js:804
 #: js/SaveMessageBlockEditor.js:176
-#: js/MessageHistoryBlockEditor.js:516
-#: js/MessageHistoryBlockEditor.js:630
-#: js/MessageHistoryBlockEditor.js:906
+#: js/MessageHistoryBlockEditor.js:522
+#: js/MessageHistoryBlockEditor.js:640
+#: js/MessageHistoryBlockEditor.js:923
 msgid "Action"
 msgstr ""
 
-#: js/MessageInboxBlockEditor.js:443
-#: js/MessageInboxBlockEditor.js:575
-#: js/MessageInboxBlockEditor.js:816
+#: js/MessageInboxBlockEditor.js:446
+#: js/MessageInboxBlockEditor.js:583
+#: js/MessageInboxBlockEditor.js:830
 #: js/SaveMessageBlockEditor.js:158
 #: js/MessageInputBlockEditor.js:8
-#: js/MessageHistoryBlockEditor.js:522
-#: js/MessageHistoryBlockEditor.js:660
-#: js/MessageHistoryBlockEditor.js:931
+#: js/MessageHistoryBlockEditor.js:528
+#: js/MessageHistoryBlockEditor.js:671
+#: js/MessageHistoryBlockEditor.js:949
 #: js/DisplayMessageBlockEditor.js:157
 msgid "Message ID"
 msgstr ""
 
-#: js/MessageInboxBlockEditor.js:449
-#: js/MessageInboxBlockEditor.js:607
-#: js/MessageInboxBlockEditor.js:843
-#: js/MessageHistoryBlockEditor.js:534
-#: js/MessageHistoryBlockEditor.js:724
-#: js/MessageHistoryBlockEditor.js:985
+#: js/MessageInboxBlockEditor.js:452
+#: js/MessageInboxBlockEditor.js:616
+#: js/MessageInboxBlockEditor.js:858
+#: js/MessageHistoryBlockEditor.js:540
+#: js/MessageHistoryBlockEditor.js:737
+#: js/MessageHistoryBlockEditor.js:1005
 msgid "Date"
 msgstr ""
 
-#: js/MessageInboxBlockEditor.js:455
-#: js/MessageInboxBlockEditor.js:639
-#: js/MessageInboxBlockEditor.js:870
+#: js/MessageInboxBlockEditor.js:458
+#: js/MessageInboxBlockEditor.js:649
+#: js/MessageInboxBlockEditor.js:886
 msgid "From"
 msgstr ""
 
-#: js/MessageInboxBlockEditor.js:461
-#: js/MessageInboxBlockEditor.js:671
-#: js/MessageInboxBlockEditor.js:897
-#: js/MessageHistoryBlockEditor.js:546
-#: js/MessageHistoryBlockEditor.js:788
-#: js/MessageHistoryBlockEditor.js:1039
+#: js/MessageInboxBlockEditor.js:464
+#: js/MessageInboxBlockEditor.js:682
+#: js/MessageInboxBlockEditor.js:914
+#: js/MessageHistoryBlockEditor.js:552
+#: js/MessageHistoryBlockEditor.js:803
+#: js/MessageHistoryBlockEditor.js:1061
 msgid "Read"
 msgstr ""
 
-#: js/MessageInboxBlockEditor.js:462
-#: js/MessageHistoryBlockEditor.js:547
+#: js/MessageInboxBlockEditor.js:465
+#: js/MessageHistoryBlockEditor.js:553
 msgid "Select the columns to be displayed"
 msgstr ""
 
-#: js/MessageInboxBlockEditor.js:469
-#: js/MessageHistoryBlockEditor.js:554
+#: js/MessageInboxBlockEditor.js:472
+#: js/MessageHistoryBlockEditor.js:560
 msgid "Action Links"
 msgstr ""
 
-#: js/MessageInboxBlockEditor.js:491
+#: js/MessageInboxBlockEditor.js:494
 msgid "Origin Device ID ('From' Column)"
 msgstr ""
 
-#: js/MessageInboxBlockEditor.js:492
-#: js/MessageHistoryBlockEditor.js:577
+#: js/MessageInboxBlockEditor.js:495
+#: js/MessageHistoryBlockEditor.js:583
 msgid "Always show device ID"
 msgstr ""
 
-#: js/MessageInboxBlockEditor.js:492
-#: js/MessageHistoryBlockEditor.js:577
+#: js/MessageInboxBlockEditor.js:495
+#: js/MessageHistoryBlockEditor.js:583
 msgid "Show product unique ID instead if present"
 msgstr ""
 
-#: js/MessageInboxBlockEditor.js:512
-#: js/MessageHistoryBlockEditor.js:597
+#: js/MessageInboxBlockEditor.js:516
+#: js/MessageHistoryBlockEditor.js:604
 msgid "Display HTML Anchor"
 msgstr ""
 
-#: js/MessageInboxBlockEditor.js:513
-#: js/MessageHistoryBlockEditor.js:598
+#: js/MessageInboxBlockEditor.js:517
+#: js/MessageHistoryBlockEditor.js:605
 msgid "Reference to block used to display the message contents"
 msgstr ""
 
-#: js/MessageInboxBlockEditor.js:521
-#: js/MessageHistoryBlockEditor.js:606
+#: js/MessageInboxBlockEditor.js:526
+#: js/MessageHistoryBlockEditor.js:614
 msgid "Save HTML Anchor"
 msgstr ""
 
-#: js/MessageInboxBlockEditor.js:522
-#: js/MessageHistoryBlockEditor.js:607
+#: js/MessageInboxBlockEditor.js:527
+#: js/MessageHistoryBlockEditor.js:615
 msgid "Reference to block used to save the message contents"
 msgstr ""
 
-#: js/MessageInboxBlockEditor.js:529
-#: js/MessageHistoryBlockEditor.js:614
+#: js/MessageInboxBlockEditor.js:534
+#: js/MessageHistoryBlockEditor.js:622
 msgid "Action Target"
 msgstr ""
 
-#: js/MessageInboxBlockEditor.js:573
-#: js/MessageInboxBlockEditor.js:605
-#: js/MessageInboxBlockEditor.js:637
-#: js/MessageInboxBlockEditor.js:669
-#: js/MessageInboxBlockEditor.js:815
-#: js/MessageInboxBlockEditor.js:842
-#: js/MessageInboxBlockEditor.js:869
-#: js/MessageInboxBlockEditor.js:896
-#: js/MessageHistoryBlockEditor.js:658
-#: js/MessageHistoryBlockEditor.js:690
-#: js/MessageHistoryBlockEditor.js:722
-#: js/MessageHistoryBlockEditor.js:754
-#: js/MessageHistoryBlockEditor.js:786
-#: js/MessageHistoryBlockEditor.js:930
-#: js/MessageHistoryBlockEditor.js:957
-#: js/MessageHistoryBlockEditor.js:984
-#: js/MessageHistoryBlockEditor.js:1011
-#: js/MessageHistoryBlockEditor.js:1038
+#: js/MessageInboxBlockEditor.js:581
+#: js/MessageInboxBlockEditor.js:614
+#: js/MessageInboxBlockEditor.js:647
+#: js/MessageInboxBlockEditor.js:680
+#: js/MessageInboxBlockEditor.js:829
+#: js/MessageInboxBlockEditor.js:857
+#: js/MessageInboxBlockEditor.js:885
+#: js/MessageInboxBlockEditor.js:913
+#: js/MessageHistoryBlockEditor.js:669
+#: js/MessageHistoryBlockEditor.js:702
+#: js/MessageHistoryBlockEditor.js:735
+#: js/MessageHistoryBlockEditor.js:768
+#: js/MessageHistoryBlockEditor.js:801
+#: js/MessageHistoryBlockEditor.js:948
+#: js/MessageHistoryBlockEditor.js:976
+#: js/MessageHistoryBlockEditor.js:1004
+#: js/MessageHistoryBlockEditor.js:1032
+#: js/MessageHistoryBlockEditor.js:1060
 msgid "Sort by"
 msgstr ""
 
-#: js/MessageInboxBlockEditor.js:723
-#: js/MessageHistoryBlockEditor.js:841
+#: js/MessageInboxBlockEditor.js:734
+#: js/MessageHistoryBlockEditor.js:856
 msgid "Reload"
 msgstr ""
 
-#: js/MessageInboxBlockEditor.js:731
+#: js/MessageInboxBlockEditor.js:742
 msgid "New Message"
 msgstr ""
 
-#: js/MessageInboxBlockEditor.js:735
-#: js/MessageHistoryBlockEditor.js:850
+#: js/MessageInboxBlockEditor.js:746
+#: js/MessageHistoryBlockEditor.js:865
 msgid "First page"
 msgstr ""
 
-#: js/MessageInboxBlockEditor.js:743
-#: js/MessageHistoryBlockEditor.js:858
+#: js/MessageInboxBlockEditor.js:754
+#: js/MessageHistoryBlockEditor.js:873
 msgid "Previous page"
 msgstr ""
 
-#: js/MessageInboxBlockEditor.js:764
-#: js/MessageHistoryBlockEditor.js:879
+#: js/MessageInboxBlockEditor.js:775
+#: js/MessageHistoryBlockEditor.js:894
 msgid "Next page"
 msgstr ""
 
-#: js/MessageInboxBlockEditor.js:772
-#: js/MessageHistoryBlockEditor.js:887
+#: js/MessageInboxBlockEditor.js:783
+#: js/MessageHistoryBlockEditor.js:902
 msgid "Last page"
 msgstr ""
 
@@ -602,7 +602,7 @@ msgstr ""
 msgid "Show link to save retrieved message"
 msgstr ""
 
-#: js/SaveMessageBlockEditor.js:193
+#: js/SaveMessageBlockEditor.js:194
 msgid "Save Message Link"
 msgstr ""
 
@@ -885,24 +885,24 @@ msgstr ""
 msgid "Message Type"
 msgstr ""
 
-#: js/MessageHistoryBlockEditor.js:462
-#: js/MessageHistoryBlockEditor.js:484
+#: js/MessageHistoryBlockEditor.js:466
+#: js/MessageHistoryBlockEditor.js:490
 msgid "End Date"
 msgstr ""
 
-#: js/MessageHistoryBlockEditor.js:528
-#: js/MessageHistoryBlockEditor.js:692
-#: js/MessageHistoryBlockEditor.js:958
+#: js/MessageHistoryBlockEditor.js:534
+#: js/MessageHistoryBlockEditor.js:704
+#: js/MessageHistoryBlockEditor.js:977
 msgid "Type"
 msgstr ""
 
-#: js/MessageHistoryBlockEditor.js:540
-#: js/MessageHistoryBlockEditor.js:756
-#: js/MessageHistoryBlockEditor.js:1012
+#: js/MessageHistoryBlockEditor.js:546
+#: js/MessageHistoryBlockEditor.js:770
+#: js/MessageHistoryBlockEditor.js:1033
 msgid "To"
 msgstr ""
 
-#: js/MessageHistoryBlockEditor.js:576
+#: js/MessageHistoryBlockEditor.js:582
 msgid "Target Device ID ('To' Column)"
 msgstr ""
 
