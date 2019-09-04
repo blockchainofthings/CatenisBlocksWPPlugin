@@ -96,8 +96,8 @@
             }
         });
 
-        // Prepare to open notification channel to monitor sent message read events
-        var wsNotifyChannel = context.ctnApiProxy.createWsNotifyChannel('sent-msg-read');
+        // Prepare to open notification channel to monitor new message received events
+        var wsNotifyChannel = context.ctnApiProxy.createWsNotifyChannel('new-msg-received');
 
         wsNotifyChannel.on('open', function (error) {
             if (error) {
@@ -131,7 +131,7 @@
         });
 
         wsNotifyChannel.on('notify', function (eventData) {
-            _self.processSentMessageRead(eventData);
+            _self.processNewMessageReceived(eventData);
         });
 
         function openNotifyChannel() {
