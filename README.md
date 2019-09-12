@@ -1,4 +1,4 @@
-# Catenis Block
+# Catenis Blocks
 
 A set of Gutenberg blocks that make use of Catenis Enterprise services.
 
