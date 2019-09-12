@@ -30,8 +30,7 @@ The following blocks are currently available:
 
 Make sure that the Catenis API Client for Wordpress plugin is installed, properly configured and enabled on the WordPress page where Catenis Blocks shall be used.
 
-Select the appropriate block from under the Catenis category, place it on the page, and use the settings sidebar to
- configure it.
+Select the appropriate block from under the Catenis category, place it on the page, and use the settings sidebar to configure it.
 
 == Installation ==
 
