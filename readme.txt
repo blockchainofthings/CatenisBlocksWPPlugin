@@ -53,5 +53,13 @@ Catenis Blocks require that the Catenis API Client for WordPress plugin, version
 
 == Changelog ==
 
+= 1.1.0 =
+* Added support for Catenis off-chain messages.
+
 = 1.0.0 =
 * Initial release, including functionality to work with messages.
+
+== Upgrade Notice ==
+
+= 1.1.0 =
+Upgrade to this version to advantage of Catenis off-chain messages.
