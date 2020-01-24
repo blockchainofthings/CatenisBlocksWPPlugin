@@ -1,7 +1,6 @@
 {
   "name": "blockchainofthings/catenis-blocks-wp",
   "description": "Catenis Blocks plugin for WordPress",
-  "version": "1.0.0",
   "type": "wordpress-plugin",
   "keywords": [
     "Wordpress",
