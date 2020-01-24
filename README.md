@@ -2,7 +2,7 @@
 
 A set of Gutenberg blocks that make use of Catenis Enterprise services.
 
-This release (1.0.0) uses version 2.0 of the Catenis API Client for WordPress plugin, which targets version 0.8 of the Catenis Enterprise API.
+This release (1.1.0) uses version 2.1 of the Catenis API Client for WordPress plugin, which targets version 0.9 of the Catenis Enterprise API.
 
 ## Description
 

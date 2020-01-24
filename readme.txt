@@ -4,7 +4,7 @@ Tags: Catenis, Catenis Enterprise API, Blockchain of Things, blockchain, Gutenbe
 Requires at least: 5.0
 Tested up to: 5.3.2
 Requires PHP: 5.6
-Stable tag: 1.0.0
+Stable tag: 1.1.0
 License: MIT
 
 A set of Gutenberg blocks that make use of Catenis Enterprise services.
