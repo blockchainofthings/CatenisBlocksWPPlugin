@@ -13,6 +13,7 @@
     var defSuccessMsgTemplate = __('File successfully stored.\nMessage Id: {!messageId}', 'catenis-blocks');
     var defAddFileHeader = true;
     var defEncrypt = true;
+    var defOffChain = true;
 
     var spinner;
     var spinnerTimeout;
@@ -56,6 +57,9 @@
             encrypt: {
                 type: 'boolean'
             },
+            offChain: {
+                type: 'boolean'
+            },
             storage: {
                 type: 'string'
             },
@@ -82,6 +86,7 @@
             var successMsgTemplate = props.attributes.successMsgTemplate !== undefined ? props.attributes.successMsgTemplate : defSuccessMsgTemplate;
             var addFileHeader = props.attributes.addFileHeader !== undefined ? props.attributes.addFileHeader : defAddFileHeader;
             var encrypt = props.attributes.encrypt !== undefined ? props.attributes.encrypt : defEncrypt;
+            var offChain = props.attributes.offChain !== undefined ? props.attributes.offChain : defOffChain;
             var successPanelId = props.attributes.successPanelId;
             var errorPanelId = props.attributes.errorPanelId;
 
@@ -140,6 +145,12 @@
             function onChangeEncrypt(newState) {
                 props.setAttributes({
                     encrypt: newState
+                });
+            }
+
+            function onChangeOffChain(newState) {
+                props.setAttributes({
+                    offChain: newState
                 });
             }
 
@@ -270,6 +281,12 @@
                                 help: encrypt ? __('Encrypt file contents before storing them', 'catenis-blocks') : __('Store file contents as they are', 'catenis-blocks'),
                                 checked: encrypt,
                                 onChange: onChangeEncrypt
+                            }),
+                            el(cmp.ToggleControl, {
+                                label: __('Off-Chain', 'catenis-blocks'),
+                                help: offChain ? __('Store it as a Catenis off-chain message', 'catenis-blocks') : __('Store it as a regular Catenis message', 'catenis-blocks'),
+                                checked: offChain,
+                                onChange: onChangeOffChain
                             })
                         ),
                         el(cmp.PanelBody, {
@@ -331,6 +348,7 @@
             var successMsgTemplate = props.attributes.successMsgTemplate !== undefined ? props.attributes.successMsgTemplate : defSuccessMsgTemplate;
             var addFileHeader = props.attributes.addFileHeader !== undefined ? props.attributes.addFileHeader : defAddFileHeader;
             var encrypt = props.attributes.encrypt !== undefined ? props.attributes.encrypt : defEncrypt;
+            var offChain = props.attributes.offChain !== undefined ? props.attributes.offChain : defOffChain;
             var successPanelId = props.attributes.successPanelId || '';
             var errorPanelId = props.attributes.errorPanelId || '';
 
@@ -388,7 +406,7 @@
                     el('div', {
                         className: 'noctnapiproxy'
                     }, __('Catenis API client not loaded on page', 'catenis-blocks')),
-                    el(wp.element.RawHTML, {}, '<script type="text/javascript">(function(){var elems=jQuery(\'script[type="text/javascript"]\');if(elems.length > 0){var uiContainer=jQuery(\'div.uicontainer\', elems[elems.length-1].parentElement)[0];if(!uiContainer.ctnBlkStoreFile && typeof CtnBlkStoreFile === \'function\'){uiContainer.ctnBlkStoreFile = new CtnBlkStoreFile(uiContainer,{encrypt:' + toStringLiteral(encrypt) + '},{showSpinner:' + toStringLiteral(showSpinner) + ',spinnerColor:' + toStringLiteral(spinnerColor) + ',addFileHeader:' + toStringLiteral(addFileHeader) + ',successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}}})()</script>')
+                    el(wp.element.RawHTML, {}, '<script type="text/javascript">(function(){var elems=jQuery(\'script[type="text/javascript"]\');if(elems.length > 0){var uiContainer=jQuery(\'div.uicontainer\', elems[elems.length-1].parentElement)[0];if(!uiContainer.ctnBlkStoreFile && typeof CtnBlkStoreFile === \'function\'){uiContainer.ctnBlkStoreFile = new CtnBlkStoreFile(uiContainer,{encrypt:' + toStringLiteral(encrypt) + ',offChain:' + toStringLiteral(offChain) + '},{showSpinner:' + toStringLiteral(showSpinner) + ',spinnerColor:' + toStringLiteral(spinnerColor) + ',addFileHeader:' + toStringLiteral(addFileHeader) + ',successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}}})()</script>')
                 )
             );
         }

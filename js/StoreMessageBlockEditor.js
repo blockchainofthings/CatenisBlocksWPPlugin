@@ -13,6 +13,7 @@
     var defSubmitButtonLabel = __('Store Message', 'catenis-blocks');
     var defSuccessMsgTemplate = __('Message successfully stored.\nMessage Id: {!messageId}', 'catenis-blocks');
     var defEncrypt = true;
+    var defOffChain = true;
     var defStorage = 'auto';
 
     var spinner;
@@ -61,6 +62,9 @@
             encrypt: {
                 type: 'boolean'
             },
+            offChain: {
+                type: 'boolean'
+            },
             storage: {
                 type: 'string'
             },
@@ -87,6 +91,7 @@
             var submitButtonLabel = props.attributes.submitButtonLabel !== undefined ? props.attributes.submitButtonLabel : defSubmitButtonLabel;
             var successMsgTemplate = props.attributes.successMsgTemplate !== undefined ? props.attributes.successMsgTemplate : defSuccessMsgTemplate;
             var encrypt = props.attributes.encrypt !== undefined ? props.attributes.encrypt : defEncrypt;
+            var offChain = props.attributes.offChain !== undefined ? props.attributes.offChain : defOffChain;
             var storage = props.attributes.storage || defStorage;
             var successPanelId = props.attributes.successPanelId;
             var errorPanelId = props.attributes.errorPanelId;
@@ -146,6 +151,12 @@
             function onChangeEncrypt(newState) {
                 props.setAttributes({
                     encrypt: newState
+                });
+            }
+
+            function onChangeOffChain(newState) {
+                props.setAttributes({
+                    offChain: newState
                 });
             }
 
@@ -288,21 +299,31 @@
                                 checked: encrypt,
                                 onChange: onChangeEncrypt
                             }),
-                            el(cmp.SelectControl, {
-                                label: __('Storage', 'catenis-blocks'),
-                                options: [{
-                                    value: 'auto',
-                                    label: 'Auto'
-                                }, {
-                                    value: 'embedded',
-                                    label: 'Embedded'
-                                }, {
-                                    value: 'external',
-                                    label: 'External'
-                                }],
-                                value: storage,
-                                onChange: onChangeStorage
-                            })
+                            el(cmp.ToggleControl, {
+                                label: __('Off-Chain', 'catenis-blocks'),
+                                help: offChain ? __('Store it as a Catenis off-chain message', 'catenis-blocks') : __('Store it as a regular Catenis message', 'catenis-blocks'),
+                                checked: offChain,
+                                onChange: onChangeOffChain
+                            }),
+                            (function () {
+                                if (!offChain) {
+                                    return el(cmp.SelectControl, {
+                                        label: __('Storage', 'catenis-blocks'),
+                                        options: [{
+                                            value: 'auto',
+                                            label: 'Auto'
+                                        }, {
+                                            value: 'embedded',
+                                            label: 'Embedded'
+                                        }, {
+                                            value: 'external',
+                                            label: 'External'
+                                        }],
+                                        value: storage,
+                                        onChange: onChangeStorage
+                                    });
+                                }
+                            })()
                         ),
                         el(cmp.PanelBody, {
                             title: __('Result', 'catenis-blocks'),
@@ -362,6 +383,7 @@
             var submitButtonLabel = props.attributes.submitButtonLabel !== undefined ? props.attributes.submitButtonLabel : defSubmitButtonLabel;
             var successMsgTemplate = props.attributes.successMsgTemplate !== undefined ? props.attributes.successMsgTemplate : defSuccessMsgTemplate;
             var encrypt = props.attributes.encrypt !== undefined ? props.attributes.encrypt : defEncrypt;
+            var offChain = props.attributes.offChain !== undefined ? props.attributes.offChain : defOffChain;
             var storage = props.attributes.storage || defStorage;
             var successPanelId = props.attributes.successPanelId || '';
             var errorPanelId = props.attributes.errorPanelId || '';
@@ -411,7 +433,7 @@
                     el('div', {
                         className: 'noctnapiproxy'
                     }, __('Catenis API client not loaded on page', 'catenis-blocks')),
-                    el(wp.element.RawHTML, {}, '<script type="text/javascript">(function(){var elems=jQuery(\'script[type="text/javascript"]\');if(elems.length > 0){var uiContainer=jQuery(\'div.uicontainer\', elems[elems.length-1].parentElement)[0];if(!uiContainer.ctnBlkStoreMessage && typeof CtnBlkStoreMessage === \'function\'){uiContainer.ctnBlkStoreMessage = new CtnBlkStoreMessage(uiContainer,{encrypt:' + toStringLiteral(encrypt) + ',storage:' + toStringLiteral(storage) + '},{showSpinner:' + toStringLiteral(showSpinner) + ',spinnerColor:' + toStringLiteral(spinnerColor) + ',successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}}})()</script>')
+                    el(wp.element.RawHTML, {}, '<script type="text/javascript">(function(){var elems=jQuery(\'script[type="text/javascript"]\');if(elems.length > 0){var uiContainer=jQuery(\'div.uicontainer\', elems[elems.length-1].parentElement)[0];if(!uiContainer.ctnBlkStoreMessage && typeof CtnBlkStoreMessage === \'function\'){uiContainer.ctnBlkStoreMessage = new CtnBlkStoreMessage(uiContainer,{encrypt:' + toStringLiteral(encrypt) + ',offChain:' + toStringLiteral(offChain) + ',storage:' + toStringLiteral(storage) + '},{showSpinner:' + toStringLiteral(showSpinner) + ',spinnerColor:' + toStringLiteral(spinnerColor) + ',successMsgTemplate:' + toStringLiteral(successMsgTemplate) + ',successPanelId:' + toStringLiteral(successPanelId) + ',errorPanelId:' + toStringLiteral(errorPanelId) + '})}}})()</script>')
                 )
             );
         }
