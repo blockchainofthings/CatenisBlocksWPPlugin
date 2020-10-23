@@ -559,7 +559,7 @@
             context.ctnApiProxy.retrieveMessageProgress(this.provisionalMessageId, function (error, result) {
                 if (error) {
                     // Error retrieving message progress. Clear pending message and stop polling
-                    console.error('Error retrieving message progress:', error.toSring());
+                    console.error('Error retrieving message progress:', error.toString());
                     _self.provisionalMessageId = undefined;
                     _self.stopPollingMessageProgress();
                 }
