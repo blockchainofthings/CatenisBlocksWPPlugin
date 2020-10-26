@@ -1,6 +1,6 @@
 {
   "name": "catenis-blocks-wp",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Catenis Blocks plugin for WordPress",
   "main": "index.js",
   "devDependencies": {
