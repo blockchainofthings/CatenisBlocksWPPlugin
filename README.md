@@ -32,7 +32,7 @@ Select the appropriate block from under the Catenis category, place it on the pa
 
 # System requirements
 
-Catenis Blocks require that the Catenis API Client for WordPress plugin, version 2.0, be installed.
+Catenis Blocks require that the Catenis API Client for WordPress plugin, version 2.1, be installed.
 
 ### Installation procedure
 
