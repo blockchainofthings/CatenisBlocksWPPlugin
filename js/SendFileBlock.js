@@ -384,14 +384,14 @@
             this.options.async = true;
 
             // Pass message to be sent in chunks
-            sendMsgChunk(new MessageChunker(fileContents, maxChunkSize), this.targetDevice, this.options);
+            sendMsgChunk(new MessageChunker(fileContents, this.options.encoding, maxChunkSize), this.targetDevice, this.options);
         }
         else {
             // Indicate that message should be processed synchronously
             this.options.async = false;
 
             // Pass message to be sent at once
-            context.ctnApiProxy.sendMessage(fileContents.toString('base64'), this.targetDevice, this.options, function (error, result) {
+            context.ctnApiProxy.sendMessage(fileContents.toString(this.options.encoding), this.targetDevice, this.options, function (error, result) {
                 if (error) {
                     _self.displayError(error.toString());
                 }

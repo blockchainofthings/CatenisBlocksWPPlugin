@@ -371,14 +371,14 @@
             this.options.async = true;
 
             // Pass message to be logged in chunks
-            logMsgChunk(new MessageChunker(fileContents, maxChunkSize), this.options);
+            logMsgChunk(new MessageChunker(fileContents, this.options.encoding, maxChunkSize), this.options);
         }
         else {
             // Indicate that message should be processed synchronously
             this.options.async = false;
 
             // Pass message to be logged at once
-            context.ctnApiProxy.logMessage(fileContents.toString('base64'), this.options, function (error, result) {
+            context.ctnApiProxy.logMessage(fileContents.toString(this.options.encoding), this.options, function (error, result) {
                 if (error) {
                     _self.displayError(error.toString());
                 }

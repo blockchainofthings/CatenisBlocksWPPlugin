@@ -282,7 +282,7 @@
 
             if (eventData.progress.success) {
                 // Message ready to be read. Start reading it
-                this.readMessageChunk(eventData.result.messageId, eventData.result.continuationToken, new MessageChunker('utf8'));
+                this.readMessageChunk(eventData.result.messageId, eventData.result.continuationToken);
             }
             else {
                 // Report error reading message
@@ -316,6 +316,7 @@
 
     function readMessageChunk(messageId, continuationToken, msgChunker) {
         var options = continuationToken ? {
+            encoding: 'base64',
             continuationToken: continuationToken
         } : {
             dataChunkSize: dataChunkSize,
@@ -339,6 +340,10 @@
                 }
                 else {
                     // Accummulate message chunk
+                    if (!msgChunker) {
+                        msgChunker = new MessageChunker(options.encoding);
+                    }
+
                     msgChunker.newMessageChunk(result.msgData);
 
                     if (result.continuationToken) {
@@ -348,7 +353,7 @@
                     else {
                         // Display complete message
                         _self.checkNotifyMsgRead(messageId);
-                        _self.displayMessage(msgChunker.getMessage());
+                        _self.displayMessage(msgChunker.getMessage('utf8'));
                     }
                 }
             }
@@ -374,7 +379,7 @@
 
                         if (result.progress.success) {
                             // Message ready to be read. Start reading it
-                            _self.readMessageChunk(result.result.messageId, result.result.continuationToken, new MessageChunker('utf8'));
+                            _self.readMessageChunk(result.result.messageId, result.result.continuationToken);
                         }
                         else {
                             // Report error reading message
