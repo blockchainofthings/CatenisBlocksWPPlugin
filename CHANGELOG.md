@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.1.1] - 2020-10-26
+
+#### Fixes
+- Fix an issue when saving large files the contents of which is broken in more than one data chunk.
+
 ## [1.1.0] - 2020-01-24
 
 ### New features
