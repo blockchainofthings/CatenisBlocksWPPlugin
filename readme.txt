@@ -53,6 +53,9 @@ Catenis Blocks require that the Catenis API Client for WordPress plugin, version
 
 == Changelog ==
 
+= 1.1.2 =
+* This release includes only documentation related changes.
+
 = 1.1.1 =
 * Maintenance release that fixes an issue saving large files.
 
@@ -63,6 +66,9 @@ Catenis Blocks require that the Catenis API Client for WordPress plugin, version
 * Initial release, including functionality to work with messages.
 
 == Upgrade Notice ==
+
+= 1.1.2 =
+All users are advised to upgrade to this latest version.
 
 = 1.1.1 =
 All users are advised to upgrade to this latest version.

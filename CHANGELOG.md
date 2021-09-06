@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.1.2] - 2021-09-06
+
+### Changes
+- Minor changes to plugin documentation.
+
 ## [1.1.1] - 2020-10-26
 
 #### Fixes
