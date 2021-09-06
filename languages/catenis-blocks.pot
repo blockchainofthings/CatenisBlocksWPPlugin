@@ -19,7 +19,7 @@ msgid "Catenis Blocks"
 msgstr ""
 
 #. Description of the plugin
-msgid "A set of Gutenberg blocks for interfacing with the Bitcoin blockchain via Catenis Enterprise services"
+msgid "A set of Gutenberg blocks for interfacing with the Bitcoin blockchain via Catenis services"
 msgstr ""
 
 #. Author of the plugin

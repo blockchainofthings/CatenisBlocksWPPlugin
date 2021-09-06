@@ -1,17 +1,17 @@
 === Catenis Blocks ===
 Contributors: catenisadmin
-Tags: Catenis, Catenis Enterprise API, Blockchain of Things, blockchain, Gutenberg
+Tags: Catenis, Catenis API, Blockchain of Things, blockchain, Gutenberg
 Requires at least: 5.0
 Tested up to: 5.3.2
 Requires PHP: 5.6
 Stable tag: 1.1.1
 License: MIT
 
-A set of Gutenberg blocks that make use of Catenis Enterprise services.
+A set of Gutenberg blocks that make use of Catenis services.
 
 == Description ==
 
-Catenis Blocks include a set of Gutenberg blocks that can be used to integrate with the Bitcoin blockchain by means of the Catenis Enterprise services.
+Catenis Blocks include a set of Gutenberg blocks that can be used to integrate with the Bitcoin blockchain by means of the Catenis services.
 
 The following blocks are currently available:
 

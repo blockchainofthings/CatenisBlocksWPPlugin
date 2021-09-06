@@ -1,12 +1,12 @@
 # Catenis Blocks
 
-A set of Gutenberg blocks that make use of Catenis Enterprise services.
+A set of Gutenberg blocks that make use of Catenis services.
 
-This release (1.1.1) uses version 2.1 of the Catenis API Client for WordPress plugin, which targets version 0.9 of the Catenis Enterprise API.
+This release (1.1.1) uses version 2.1 of the Catenis API Client for WordPress plugin, which targets version 0.9 of the Catenis API.
 
 ## Description
 
-Catenis Blocks include a set of Gutenberg blocks that can be used to integrate with the Bitcoin blockchain by means of the Catenis Enterprise services.
+Catenis Blocks include a set of Gutenberg blocks that can be used to integrate with the Bitcoin blockchain by means of the Catenis services.
 
 The following blocks are currently available:
 
