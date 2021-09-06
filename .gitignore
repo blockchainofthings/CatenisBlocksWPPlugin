@@ -7,6 +7,5 @@
 /svn/tags/
 /svn/branches/
 *.code-workspace
-.nvmrc
 node_modules/
 .eslintrc*
