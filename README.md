@@ -2,7 +2,7 @@
 
 A set of Gutenberg blocks that make use of Catenis services.
 
-This release (1.1.2) uses version 2.1 of the Catenis API Client for WordPress plugin, which targets version 0.9 of the Catenis API.
+This release (1.1.2) is compatible with version 2.1 of the Catenis API Client for WordPress plugin, which targets version 0.9 of the Catenis API.
 
 ## Description
 
@@ -32,7 +32,7 @@ Select the appropriate block from under the Catenis category, place it on the pa
 
 # System requirements
 
-Catenis Blocks require that the Catenis API Client for WordPress plugin, version 2.1, be installed.
+Catenis Blocks require that the Catenis API Client for WordPress plugin, version 2.1 or greater, be installed.
 
 ### Installation procedure
 
