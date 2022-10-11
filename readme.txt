@@ -2,7 +2,7 @@
 Contributors: catenisadmin
 Tags: Catenis, Catenis API, Blockchain of Things, blockchain, Gutenberg
 Requires at least: 5.0
-Tested up to: 5.3.2
+Tested up to: 6.0.2
 Requires PHP: 5.6
 Stable tag: 1.1.2
 License: MIT
