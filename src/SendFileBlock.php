@@ -87,7 +87,7 @@ class SendFileBlock
             filemtime("$pluginDir/$blockStyleFile")
         );
 
-        register_block_type('catenis-blocks/ctnblk-send-file', [
+        register_block_type('catenis-blocks/send-file', [
             'editor_script' => 'send-file-block-editor',
             'editor_style'  => 'send-file-block-editor',
             'script'        => 'send-file-block',

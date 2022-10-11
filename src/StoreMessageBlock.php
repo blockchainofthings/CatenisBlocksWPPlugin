@@ -68,7 +68,7 @@ class StoreMessageBlock
             filemtime("$pluginDir/$blockStyleFile")
         );
 
-        register_block_type('catenis-blocks/ctnblk-store-message', [
+        register_block_type('catenis-blocks/store-message', [
             'editor_script' => 'store-message-block-editor',
             'editor_style'  => 'store-message-block-editor',
             'script'        => 'store-message-block',

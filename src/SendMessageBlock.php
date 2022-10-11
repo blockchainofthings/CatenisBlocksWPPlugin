@@ -68,7 +68,7 @@ class SendMessageBlock
             filemtime("$pluginDir/$blockStyleFile")
         );
 
-        register_block_type('catenis-blocks/ctnblk-send-message', [
+        register_block_type('catenis-blocks/send-message', [
             'editor_script' => 'send-message-block-editor',
             'editor_style'  => 'send-message-block-editor',
             'script'        => 'send-message-block',

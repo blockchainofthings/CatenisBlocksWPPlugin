@@ -87,7 +87,7 @@ class DisplayMessageBlock
             filemtime("$pluginDir/$blockStyleFile")
         );
 
-        register_block_type('catenis-blocks/ctnblk-display-message', [
+        register_block_type('catenis-blocks/display-message', [
             'editor_script' => 'display-message-block-editor',
             'editor_style'  => 'display-message-block-editor',
             'script'        => 'display-message-block',

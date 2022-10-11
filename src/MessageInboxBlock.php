@@ -60,7 +60,7 @@ class MessageInboxBlock
             filemtime("$pluginDir/$blockStyleFile")
         );
 
-        register_block_type('catenis-blocks/ctnblk-message-inbox', [
+        register_block_type('catenis-blocks/message-inbox', [
             'editor_script' => 'message-inbox-block-editor',
             'editor_style'  => 'message-inbox-block-editor',
             'script'        => 'message-inbox-block',

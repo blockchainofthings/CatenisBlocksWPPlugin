@@ -49,7 +49,7 @@ class PermissionsBlock
             filemtime("$pluginDir/$blockStyleFile")
         );
 
-        register_block_type('catenis-blocks/ctnblk-permissions', [
+        register_block_type('catenis-blocks/permissions', [
             'editor_script' => 'permissions-block-editor',
             'editor_style'  => 'permissions-block-editor',
             'script'        => 'permissions-block',

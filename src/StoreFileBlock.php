@@ -87,7 +87,7 @@ class StoreFileBlock
             filemtime("$pluginDir/$blockStyleFile")
         );
 
-        register_block_type('catenis-blocks/ctnblk-store-file', [
+        register_block_type('catenis-blocks/store-file', [
             'editor_script' => 'store-file-block-editor',
             'editor_style'  => 'store-file-block-editor',
             'script'        => 'store-file-block',

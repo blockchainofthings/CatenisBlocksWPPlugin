@@ -84,7 +84,7 @@ class SaveMessageBlock
             'spin'
         ], filemtime("$pluginDir/$blockStyleFile"));
 
-        register_block_type('catenis-blocks/ctnblk-save-message', [
+        register_block_type('catenis-blocks/save-message', [
             'editor_script' => 'save-message-block-editor',
             'editor_style'  => 'save-message-block-editor',
             'script'        => 'save-message-block',

@@ -60,7 +60,7 @@ class MessageHistoryBlock
             filemtime("$pluginDir/$blockStyleFile")
         );
 
-        register_block_type('catenis-blocks/ctnblk-message-history', [
+        register_block_type('catenis-blocks/message-history', [
             'editor_script' => 'message-history-block-editor',
             'editor_style'  => 'message-history-block-editor',
             'script'        => 'message-history-block',

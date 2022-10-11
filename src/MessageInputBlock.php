@@ -48,7 +48,7 @@ class MessageInputBlock
             filemtime("$pluginDir/$blockStyleFile")
         );
 
-        register_block_type('catenis-blocks/ctnblk-message-input', [
+        register_block_type('catenis-blocks/message-input', [
             'editor_script' => 'message-input-block-editor',
             'editor_style'  => 'message-input-block-editor',
             'style'         => 'message-input-block'
