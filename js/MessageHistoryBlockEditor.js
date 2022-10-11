@@ -366,10 +366,12 @@
                 });
             }
 
+            var blockEditor = wp.blockEditor || wp.editor;
+
             return (
                 el(wp.element.Fragment, {},
                     // Inspector sidebar controls
-                    el(wp.editor.InspectorControls, {},
+                    el(blockEditor.InspectorControls, {},
                         el(cmp.PanelBody, {
                             title: __('Message Filtering', 'catenis-blocks')
                         },

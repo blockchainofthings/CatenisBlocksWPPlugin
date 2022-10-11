@@ -15,6 +15,16 @@ class CatenisBlocks
         return function_exists('register_block_type');
     }
 
+    public static function registerCatenisCategory($categories)
+    {
+        $categories[] = [
+            'slug' => 'catenis',
+            'title' => __('Catenis', 'catenis-blocks')
+        ];
+
+        return $categories;
+    }
+
     public function __construct($pluginPath)
     {
         $this->pluginPath = $pluginPath;
@@ -27,12 +37,13 @@ class CatenisBlocks
         add_action('init', [$this, 'initialize']);
 
         // Add custom block category
-        add_filter('block_categories', function ($categories, $post) {
-            return array_merge($categories, [[
-                'slug' => 'catenis',
-                'title' => __('Catenis', 'catenis-blocks')
-            ]]);
-        }, 10, 2);
+        if (version_compare(get_bloginfo('version'), '5.8', '>=')) {
+            // For WordPress ver. 5.8 or greater, use 'block_categories_all' in place
+            //  or the deprecated 'block_categories'
+            add_filter('block_categories_all', [__CLASS__, 'registerCatenisCategory']);
+        } else {
+            add_filter('block_categories', [__CLASS__, 'registerCatenisCategory']);
+        }
 
         // Instantiate blocks
         $this->blockInstances['store-message'] = new StoreMessageBlock($pluginPath);

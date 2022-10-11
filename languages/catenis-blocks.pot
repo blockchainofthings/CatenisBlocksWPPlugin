@@ -1,17 +1,17 @@
-# Copyright (C) 2019-2021 Blockchain of Things
-# This file is distributed under the same license as the Catenis Blocks plugin.
+# Copyright (C) 2022 Blockchain of Things
+# This file is distributed under the MIT.
 msgid ""
 msgstr ""
-"Project-Id-Version: Catenis Blocks 1.1.2\n"
+"Project-Id-Version: Catenis Blocks 1.1.3\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/CatenisBlocksWPPlugin\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2020-01-24T16:20:51-02:00\n"
+"POT-Creation-Date: 2022-10-11T12:51:57+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.1.0\n"
+"X-Generator: WP-CLI 2.6.0\n"
 "X-Domain: catenis-blocks\n"
 
 #. Plugin Name of the plugin
@@ -30,943 +30,1251 @@ msgstr ""
 msgid "https://blockchainofthings.com"
 msgstr ""
 
+#: src/CatenisBlocks.php:22
 #: svn/tags/1.0.0/src/CatenisBlocks.php:33
+#: svn/tags/1.1.0/src/CatenisBlocks.php:33
+#: svn/tags/1.1.1/src/CatenisBlocks.php:33
+#: svn/tags/1.1.1/trunk/src/CatenisBlocks.php:33
+#: svn/tags/1.1.2/src/CatenisBlocks.php:33
 #: svn/trunk/src/CatenisBlocks.php:33
-#: src/CatenisBlocks.php:33
 msgid "Catenis"
 msgstr ""
 
-#: svn/tags/1.0.0/js/SaveMessageBlock.js:195
-#: svn/trunk/js/SaveMessageBlock.js:195
-#: js/SaveMessageBlock.js:195
-msgid "unnamed"
+#: js/DisplayMessageBlockEditor.js:19
+#: svn/tags/1.0.0/js/DisplayMessageBlockEditor.js:19
+#: svn/tags/1.1.0/js/DisplayMessageBlockEditor.js:19
+#: svn/tags/1.1.1/js/DisplayMessageBlockEditor.js:19
+#: svn/tags/1.1.1/trunk/js/DisplayMessageBlockEditor.js:19
+#: svn/tags/1.1.2/js/DisplayMessageBlockEditor.js:19
+#: svn/trunk/js/DisplayMessageBlockEditor.js:19
+msgid "Display Message"
 msgstr ""
 
-#: svn/tags/1.0.0/js/StoreMessageBlockEditor.js:12
-#: svn/tags/1.0.0/js/SendMessageBlockEditor.js:16
-#: svn/trunk/js/StoreMessageBlockEditor.js:12
-#: svn/trunk/js/SendMessageBlockEditor.js:16
-#: js/StoreMessageBlockEditor.js:12
-#: js/SendMessageBlockEditor.js:16
-msgid "Write your message"
+#: js/DisplayMessageBlockEditor.js:20
+#: svn/tags/1.0.0/js/DisplayMessageBlockEditor.js:20
+#: svn/tags/1.1.0/js/DisplayMessageBlockEditor.js:20
+#: svn/tags/1.1.1/js/DisplayMessageBlockEditor.js:20
+#: svn/tags/1.1.1/trunk/js/DisplayMessageBlockEditor.js:20
+#: svn/tags/1.1.2/js/DisplayMessageBlockEditor.js:20
+#: svn/trunk/js/DisplayMessageBlockEditor.js:20
+msgid "Display a text message retrieved from the Bitcoin blockchain"
 msgstr ""
 
-#: svn/tags/1.0.0/js/StoreMessageBlockEditor.js:13
-#: svn/tags/1.0.0/js/StoreMessageBlockEditor.js:22
-#: svn/trunk/js/StoreMessageBlockEditor.js:13
-#: svn/trunk/js/StoreMessageBlockEditor.js:23
-#: js/StoreMessageBlockEditor.js:13
-#: js/StoreMessageBlockEditor.js:23
-msgid "Store Message"
+#: js/DisplayMessageBlockEditor.js:156
+#: js/SaveMessageBlockEditor.js:157
+#: svn/tags/1.0.0/js/DisplayMessageBlockEditor.js:154
+#: svn/tags/1.0.0/js/SaveMessageBlockEditor.js:155
+#: svn/tags/1.1.0/js/DisplayMessageBlockEditor.js:154
+#: svn/tags/1.1.0/js/SaveMessageBlockEditor.js:155
+#: svn/tags/1.1.1/js/DisplayMessageBlockEditor.js:154
+#: svn/tags/1.1.1/js/SaveMessageBlockEditor.js:155
+#: svn/tags/1.1.1/trunk/js/DisplayMessageBlockEditor.js:154
+#: svn/tags/1.1.1/trunk/js/SaveMessageBlockEditor.js:155
+#: svn/tags/1.1.2/js/DisplayMessageBlockEditor.js:154
+#: svn/tags/1.1.2/js/SaveMessageBlockEditor.js:155
+#: svn/trunk/js/DisplayMessageBlockEditor.js:154
+#: svn/trunk/js/SaveMessageBlockEditor.js:155
+msgid "Message"
 msgstr ""
 
-#: svn/tags/1.0.0/js/StoreMessageBlockEditor.js:14
-#: svn/trunk/js/StoreMessageBlockEditor.js:14
-#: js/StoreMessageBlockEditor.js:14
-msgid ""
-"Message successfully stored.\n"
-"Message Id: {!messageId}"
+#: js/DisplayMessageBlockEditor.js:159
+#: js/MessageHistoryBlockEditor.js:530
+#: js/MessageHistoryBlockEditor.js:673
+#: js/MessageHistoryBlockEditor.js:951
+#: js/MessageInboxBlockEditor.js:448
+#: js/MessageInboxBlockEditor.js:585
+#: js/MessageInboxBlockEditor.js:832
+#: js/MessageInputBlockEditor.js:8
+#: js/SaveMessageBlockEditor.js:160
+#: svn/tags/1.0.0/js/DisplayMessageBlockEditor.js:157
+#: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:528
+#: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:671
+#: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:949
+#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:446
+#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:583
+#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:830
+#: svn/tags/1.0.0/js/MessageInputBlockEditor.js:8
+#: svn/tags/1.0.0/js/SaveMessageBlockEditor.js:158
+#: svn/tags/1.1.0/js/DisplayMessageBlockEditor.js:157
+#: svn/tags/1.1.0/js/MessageHistoryBlockEditor.js:528
+#: svn/tags/1.1.0/js/MessageHistoryBlockEditor.js:671
+#: svn/tags/1.1.0/js/MessageHistoryBlockEditor.js:949
+#: svn/tags/1.1.0/js/MessageInboxBlockEditor.js:446
+#: svn/tags/1.1.0/js/MessageInboxBlockEditor.js:583
+#: svn/tags/1.1.0/js/MessageInboxBlockEditor.js:830
+#: svn/tags/1.1.0/js/MessageInputBlockEditor.js:8
+#: svn/tags/1.1.0/js/SaveMessageBlockEditor.js:158
+#: svn/tags/1.1.1/js/DisplayMessageBlockEditor.js:157
+#: svn/tags/1.1.1/js/MessageHistoryBlockEditor.js:528
+#: svn/tags/1.1.1/js/MessageHistoryBlockEditor.js:671
+#: svn/tags/1.1.1/js/MessageHistoryBlockEditor.js:949
+#: svn/tags/1.1.1/js/MessageInboxBlockEditor.js:446
+#: svn/tags/1.1.1/js/MessageInboxBlockEditor.js:583
+#: svn/tags/1.1.1/js/MessageInboxBlockEditor.js:830
+#: svn/tags/1.1.1/js/MessageInputBlockEditor.js:8
+#: svn/tags/1.1.1/js/SaveMessageBlockEditor.js:158
+#: svn/tags/1.1.1/trunk/js/DisplayMessageBlockEditor.js:157
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlockEditor.js:528
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlockEditor.js:671
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlockEditor.js:949
+#: svn/tags/1.1.1/trunk/js/MessageInboxBlockEditor.js:446
+#: svn/tags/1.1.1/trunk/js/MessageInboxBlockEditor.js:583
+#: svn/tags/1.1.1/trunk/js/MessageInboxBlockEditor.js:830
+#: svn/tags/1.1.1/trunk/js/MessageInputBlockEditor.js:8
+#: svn/tags/1.1.1/trunk/js/SaveMessageBlockEditor.js:158
+#: svn/tags/1.1.2/js/DisplayMessageBlockEditor.js:157
+#: svn/tags/1.1.2/js/MessageHistoryBlockEditor.js:528
+#: svn/tags/1.1.2/js/MessageHistoryBlockEditor.js:671
+#: svn/tags/1.1.2/js/MessageHistoryBlockEditor.js:949
+#: svn/tags/1.1.2/js/MessageInboxBlockEditor.js:446
+#: svn/tags/1.1.2/js/MessageInboxBlockEditor.js:583
+#: svn/tags/1.1.2/js/MessageInboxBlockEditor.js:830
+#: svn/tags/1.1.2/js/MessageInputBlockEditor.js:8
+#: svn/tags/1.1.2/js/SaveMessageBlockEditor.js:158
+#: svn/trunk/js/DisplayMessageBlockEditor.js:157
+#: svn/trunk/js/MessageHistoryBlockEditor.js:528
+#: svn/trunk/js/MessageHistoryBlockEditor.js:671
+#: svn/trunk/js/MessageHistoryBlockEditor.js:949
+#: svn/trunk/js/MessageInboxBlockEditor.js:446
+#: svn/trunk/js/MessageInboxBlockEditor.js:583
+#: svn/trunk/js/MessageInboxBlockEditor.js:830
+#: svn/trunk/js/MessageInputBlockEditor.js:8
+#: svn/trunk/js/SaveMessageBlockEditor.js:158
+msgid "Message ID"
 msgstr ""
 
-#: svn/tags/1.0.0/js/StoreMessageBlockEditor.js:23
-#: svn/trunk/js/StoreMessageBlockEditor.js:24
-#: js/StoreMessageBlockEditor.js:24
-msgid "Store a text message onto the Bitcoin blockchain"
+#: js/DisplayMessageBlockEditor.js:160
+#: js/SaveMessageBlockEditor.js:161
+#: svn/tags/1.0.0/js/DisplayMessageBlockEditor.js:158
+#: svn/tags/1.0.0/js/SaveMessageBlockEditor.js:159
+#: svn/tags/1.1.0/js/DisplayMessageBlockEditor.js:158
+#: svn/tags/1.1.0/js/SaveMessageBlockEditor.js:159
+#: svn/tags/1.1.1/js/DisplayMessageBlockEditor.js:158
+#: svn/tags/1.1.1/js/SaveMessageBlockEditor.js:159
+#: svn/tags/1.1.1/trunk/js/DisplayMessageBlockEditor.js:158
+#: svn/tags/1.1.1/trunk/js/SaveMessageBlockEditor.js:159
+#: svn/tags/1.1.2/js/DisplayMessageBlockEditor.js:158
+#: svn/tags/1.1.2/js/SaveMessageBlockEditor.js:159
+#: svn/trunk/js/DisplayMessageBlockEditor.js:158
+#: svn/trunk/js/SaveMessageBlockEditor.js:159
+msgid "ID of message to be retrieved"
 msgstr ""
 
-#: svn/tags/1.0.0/js/StoreMessageBlockEditor.js:211
-#: svn/tags/1.0.0/js/SendMessageBlockEditor.js:306
-#: svn/trunk/js/StoreMessageBlockEditor.js:222
-#: svn/trunk/js/SendMessageBlockEditor.js:317
-#: js/StoreMessageBlockEditor.js:222
-#: js/SendMessageBlockEditor.js:317
-msgid "Message Box"
-msgstr ""
-
-#: svn/tags/1.0.0/js/StoreMessageBlockEditor.js:214
-#: svn/tags/1.0.0/js/SendMessageBlockEditor.js:309
-#: svn/trunk/js/StoreMessageBlockEditor.js:225
-#: svn/trunk/js/SendMessageBlockEditor.js:320
-#: js/StoreMessageBlockEditor.js:225
-#: js/SendMessageBlockEditor.js:320
-msgid "Number of Lines"
-msgstr ""
-
-#: svn/tags/1.0.0/js/StoreMessageBlockEditor.js:222
+#: js/DisplayMessageBlockEditor.js:166
+#: js/SaveMessageBlockEditor.js:167
+#: js/SendFileBlockEditor.js:305
+#: js/SendMessageBlockEditor.js:330
+#: js/StoreFileBlockEditor.js:212
+#: js/StoreMessageBlockEditor.js:235
+#: svn/tags/1.0.0/js/DisplayMessageBlockEditor.js:164
 #: svn/tags/1.0.0/js/SaveMessageBlockEditor.js:165
 #: svn/tags/1.0.0/js/SendFileBlockEditor.js:292
 #: svn/tags/1.0.0/js/SendMessageBlockEditor.js:317
 #: svn/tags/1.0.0/js/StoreFileBlockEditor.js:199
-#: svn/tags/1.0.0/js/DisplayMessageBlockEditor.js:164
-#: svn/trunk/js/StoreMessageBlockEditor.js:233
+#: svn/tags/1.0.0/js/StoreMessageBlockEditor.js:222
+#: svn/tags/1.1.0/js/DisplayMessageBlockEditor.js:164
+#: svn/tags/1.1.0/js/SaveMessageBlockEditor.js:165
+#: svn/tags/1.1.0/js/SendFileBlockEditor.js:303
+#: svn/tags/1.1.0/js/SendMessageBlockEditor.js:328
+#: svn/tags/1.1.0/js/StoreFileBlockEditor.js:210
+#: svn/tags/1.1.0/js/StoreMessageBlockEditor.js:233
+#: svn/tags/1.1.1/js/DisplayMessageBlockEditor.js:164
+#: svn/tags/1.1.1/js/SaveMessageBlockEditor.js:165
+#: svn/tags/1.1.1/js/SendFileBlockEditor.js:303
+#: svn/tags/1.1.1/js/SendMessageBlockEditor.js:328
+#: svn/tags/1.1.1/js/StoreFileBlockEditor.js:210
+#: svn/tags/1.1.1/js/StoreMessageBlockEditor.js:233
+#: svn/tags/1.1.1/trunk/js/DisplayMessageBlockEditor.js:164
+#: svn/tags/1.1.1/trunk/js/SaveMessageBlockEditor.js:165
+#: svn/tags/1.1.1/trunk/js/SendFileBlockEditor.js:303
+#: svn/tags/1.1.1/trunk/js/SendMessageBlockEditor.js:328
+#: svn/tags/1.1.1/trunk/js/StoreFileBlockEditor.js:210
+#: svn/tags/1.1.1/trunk/js/StoreMessageBlockEditor.js:233
+#: svn/tags/1.1.2/js/DisplayMessageBlockEditor.js:164
+#: svn/tags/1.1.2/js/SaveMessageBlockEditor.js:165
+#: svn/tags/1.1.2/js/SendFileBlockEditor.js:303
+#: svn/tags/1.1.2/js/SendMessageBlockEditor.js:328
+#: svn/tags/1.1.2/js/StoreFileBlockEditor.js:210
+#: svn/tags/1.1.2/js/StoreMessageBlockEditor.js:233
+#: svn/trunk/js/DisplayMessageBlockEditor.js:164
 #: svn/trunk/js/SaveMessageBlockEditor.js:165
 #: svn/trunk/js/SendFileBlockEditor.js:303
 #: svn/trunk/js/SendMessageBlockEditor.js:328
 #: svn/trunk/js/StoreFileBlockEditor.js:210
-#: svn/trunk/js/DisplayMessageBlockEditor.js:164
-#: js/StoreMessageBlockEditor.js:233
-#: js/SaveMessageBlockEditor.js:165
-#: js/SendFileBlockEditor.js:303
-#: js/SendMessageBlockEditor.js:328
-#: js/StoreFileBlockEditor.js:210
-#: js/DisplayMessageBlockEditor.js:164
+#: svn/trunk/js/StoreMessageBlockEditor.js:233
 msgid "Display"
 msgstr ""
 
-#: svn/tags/1.0.0/js/StoreMessageBlockEditor.js:226
+#: js/DisplayMessageBlockEditor.js:170
+#: js/SaveMessageBlockEditor.js:171
+#: js/SendFileBlockEditor.js:309
+#: js/SendMessageBlockEditor.js:334
+#: js/StoreFileBlockEditor.js:216
+#: js/StoreMessageBlockEditor.js:239
+#: svn/tags/1.0.0/js/DisplayMessageBlockEditor.js:168
 #: svn/tags/1.0.0/js/SaveMessageBlockEditor.js:169
 #: svn/tags/1.0.0/js/SendFileBlockEditor.js:296
 #: svn/tags/1.0.0/js/SendMessageBlockEditor.js:321
 #: svn/tags/1.0.0/js/StoreFileBlockEditor.js:203
-#: svn/tags/1.0.0/js/DisplayMessageBlockEditor.js:168
-#: svn/trunk/js/StoreMessageBlockEditor.js:237
+#: svn/tags/1.0.0/js/StoreMessageBlockEditor.js:226
+#: svn/tags/1.1.0/js/DisplayMessageBlockEditor.js:168
+#: svn/tags/1.1.0/js/SaveMessageBlockEditor.js:169
+#: svn/tags/1.1.0/js/SendFileBlockEditor.js:307
+#: svn/tags/1.1.0/js/SendMessageBlockEditor.js:332
+#: svn/tags/1.1.0/js/StoreFileBlockEditor.js:214
+#: svn/tags/1.1.0/js/StoreMessageBlockEditor.js:237
+#: svn/tags/1.1.1/js/DisplayMessageBlockEditor.js:168
+#: svn/tags/1.1.1/js/SaveMessageBlockEditor.js:169
+#: svn/tags/1.1.1/js/SendFileBlockEditor.js:307
+#: svn/tags/1.1.1/js/SendMessageBlockEditor.js:332
+#: svn/tags/1.1.1/js/StoreFileBlockEditor.js:214
+#: svn/tags/1.1.1/js/StoreMessageBlockEditor.js:237
+#: svn/tags/1.1.1/trunk/js/DisplayMessageBlockEditor.js:168
+#: svn/tags/1.1.1/trunk/js/SaveMessageBlockEditor.js:169
+#: svn/tags/1.1.1/trunk/js/SendFileBlockEditor.js:307
+#: svn/tags/1.1.1/trunk/js/SendMessageBlockEditor.js:332
+#: svn/tags/1.1.1/trunk/js/StoreFileBlockEditor.js:214
+#: svn/tags/1.1.1/trunk/js/StoreMessageBlockEditor.js:237
+#: svn/tags/1.1.2/js/DisplayMessageBlockEditor.js:168
+#: svn/tags/1.1.2/js/SaveMessageBlockEditor.js:169
+#: svn/tags/1.1.2/js/SendFileBlockEditor.js:307
+#: svn/tags/1.1.2/js/SendMessageBlockEditor.js:332
+#: svn/tags/1.1.2/js/StoreFileBlockEditor.js:214
+#: svn/tags/1.1.2/js/StoreMessageBlockEditor.js:237
+#: svn/trunk/js/DisplayMessageBlockEditor.js:168
 #: svn/trunk/js/SaveMessageBlockEditor.js:169
 #: svn/trunk/js/SendFileBlockEditor.js:307
 #: svn/trunk/js/SendMessageBlockEditor.js:332
 #: svn/trunk/js/StoreFileBlockEditor.js:214
-#: svn/trunk/js/DisplayMessageBlockEditor.js:168
-#: js/StoreMessageBlockEditor.js:237
-#: js/SaveMessageBlockEditor.js:169
-#: js/SendFileBlockEditor.js:307
-#: js/SendMessageBlockEditor.js:332
-#: js/StoreFileBlockEditor.js:214
-#: js/DisplayMessageBlockEditor.js:168
+#: svn/trunk/js/StoreMessageBlockEditor.js:237
 msgid "Show Spinner"
 msgstr ""
 
-#: svn/tags/1.0.0/js/StoreMessageBlockEditor.js:227
-#: svn/trunk/js/StoreMessageBlockEditor.js:238
-#: js/StoreMessageBlockEditor.js:238
-msgid "Show animated icon while storing message"
+#: js/DisplayMessageBlockEditor.js:171
+#: js/SaveMessageBlockEditor.js:172
+#: svn/tags/1.0.0/js/DisplayMessageBlockEditor.js:169
+#: svn/tags/1.0.0/js/SaveMessageBlockEditor.js:170
+#: svn/tags/1.1.0/js/DisplayMessageBlockEditor.js:169
+#: svn/tags/1.1.0/js/SaveMessageBlockEditor.js:170
+#: svn/tags/1.1.1/js/DisplayMessageBlockEditor.js:169
+#: svn/tags/1.1.1/js/SaveMessageBlockEditor.js:170
+#: svn/tags/1.1.1/trunk/js/DisplayMessageBlockEditor.js:169
+#: svn/tags/1.1.1/trunk/js/SaveMessageBlockEditor.js:170
+#: svn/tags/1.1.2/js/DisplayMessageBlockEditor.js:169
+#: svn/tags/1.1.2/js/SaveMessageBlockEditor.js:170
+#: svn/trunk/js/DisplayMessageBlockEditor.js:169
+#: svn/trunk/js/SaveMessageBlockEditor.js:170
+msgid "Show animated icon while loading message"
 msgstr ""
 
-#: svn/tags/1.0.0/js/StoreMessageBlockEditor.js:233
-#: svn/tags/1.0.0/js/SaveMessageBlockEditor.js:238
+#: js/DisplayMessageBlockEditor.js:176
+#: svn/tags/1.0.0/js/DisplayMessageBlockEditor.js:174
+#: svn/tags/1.1.0/js/DisplayMessageBlockEditor.js:174
+#: svn/tags/1.1.1/js/DisplayMessageBlockEditor.js:174
+#: svn/tags/1.1.1/trunk/js/DisplayMessageBlockEditor.js:174
+#: svn/tags/1.1.2/js/DisplayMessageBlockEditor.js:174
+#: svn/trunk/js/DisplayMessageBlockEditor.js:174
+msgid "Strip File Header"
+msgstr ""
+
+#: js/DisplayMessageBlockEditor.js:177
+#: svn/tags/1.0.0/js/DisplayMessageBlockEditor.js:175
+#: svn/tags/1.1.0/js/DisplayMessageBlockEditor.js:175
+#: svn/tags/1.1.1/js/DisplayMessageBlockEditor.js:175
+#: svn/tags/1.1.1/trunk/js/DisplayMessageBlockEditor.js:175
+#: svn/tags/1.1.2/js/DisplayMessageBlockEditor.js:175
+#: svn/trunk/js/DisplayMessageBlockEditor.js:175
+msgid "Do not display file header if present"
+msgstr ""
+
+#: js/DisplayMessageBlockEditor.js:177
+#: svn/tags/1.0.0/js/DisplayMessageBlockEditor.js:175
+#: svn/tags/1.1.0/js/DisplayMessageBlockEditor.js:175
+#: svn/tags/1.1.1/js/DisplayMessageBlockEditor.js:175
+#: svn/tags/1.1.1/trunk/js/DisplayMessageBlockEditor.js:175
+#: svn/tags/1.1.2/js/DisplayMessageBlockEditor.js:175
+#: svn/trunk/js/DisplayMessageBlockEditor.js:175
+msgid "Display message as it is"
+msgstr ""
+
+#: js/DisplayMessageBlockEditor.js:182
+#: svn/tags/1.0.0/js/DisplayMessageBlockEditor.js:180
+#: svn/tags/1.1.0/js/DisplayMessageBlockEditor.js:180
+#: svn/tags/1.1.1/js/DisplayMessageBlockEditor.js:180
+#: svn/tags/1.1.1/trunk/js/DisplayMessageBlockEditor.js:180
+#: svn/tags/1.1.2/js/DisplayMessageBlockEditor.js:180
+#: svn/trunk/js/DisplayMessageBlockEditor.js:180
+msgid "Limit Message"
+msgstr ""
+
+#: js/DisplayMessageBlockEditor.js:183
+#: svn/tags/1.0.0/js/DisplayMessageBlockEditor.js:181
+#: svn/tags/1.1.0/js/DisplayMessageBlockEditor.js:181
+#: svn/tags/1.1.1/js/DisplayMessageBlockEditor.js:181
+#: svn/tags/1.1.1/trunk/js/DisplayMessageBlockEditor.js:181
+#: svn/tags/1.1.2/js/DisplayMessageBlockEditor.js:181
+#: svn/trunk/js/DisplayMessageBlockEditor.js:181
+msgid "Truncate message if it is too large"
+msgstr ""
+
+#: js/DisplayMessageBlockEditor.js:183
+#: svn/tags/1.0.0/js/DisplayMessageBlockEditor.js:181
+#: svn/tags/1.1.0/js/DisplayMessageBlockEditor.js:181
+#: svn/tags/1.1.1/js/DisplayMessageBlockEditor.js:181
+#: svn/tags/1.1.1/trunk/js/DisplayMessageBlockEditor.js:181
+#: svn/tags/1.1.2/js/DisplayMessageBlockEditor.js:181
+#: svn/trunk/js/DisplayMessageBlockEditor.js:181
+msgid "Always display the whole message"
+msgstr ""
+
+#: js/DisplayMessageBlockEditor.js:190
+#: svn/tags/1.0.0/js/DisplayMessageBlockEditor.js:188
+#: svn/tags/1.1.0/js/DisplayMessageBlockEditor.js:188
+#: svn/tags/1.1.1/js/DisplayMessageBlockEditor.js:188
+#: svn/tags/1.1.1/trunk/js/DisplayMessageBlockEditor.js:188
+#: svn/tags/1.1.2/js/DisplayMessageBlockEditor.js:188
+#: svn/trunk/js/DisplayMessageBlockEditor.js:188
+msgid "Max Message Length"
+msgstr ""
+
+#: js/DisplayMessageBlockEditor.js:191
+#: svn/tags/1.0.0/js/DisplayMessageBlockEditor.js:189
+#: svn/tags/1.1.0/js/DisplayMessageBlockEditor.js:189
+#: svn/tags/1.1.1/js/DisplayMessageBlockEditor.js:189
+#: svn/tags/1.1.1/trunk/js/DisplayMessageBlockEditor.js:189
+#: svn/tags/1.1.2/js/DisplayMessageBlockEditor.js:189
+#: svn/trunk/js/DisplayMessageBlockEditor.js:189
+msgid "Maximum number of characters that can be displayed"
+msgstr ""
+
+#: js/DisplayMessageBlockEditor.js:201
+#: js/MessageInputBlockEditor.js:95
+#: js/SaveMessageBlockEditor.js:240
+#: js/SendFileBlockEditor.js:316
+#: js/SendMessageBlockEditor.js:341
+#: js/StoreFileBlockEditor.js:223
+#: js/StoreMessageBlockEditor.js:246
+#: svn/tags/1.0.0/js/DisplayMessageBlockEditor.js:199
 #: svn/tags/1.0.0/js/MessageInputBlockEditor.js:93
+#: svn/tags/1.0.0/js/SaveMessageBlockEditor.js:238
 #: svn/tags/1.0.0/js/SendFileBlockEditor.js:303
 #: svn/tags/1.0.0/js/SendMessageBlockEditor.js:328
 #: svn/tags/1.0.0/js/StoreFileBlockEditor.js:210
-#: svn/tags/1.0.0/js/DisplayMessageBlockEditor.js:199
-#: svn/trunk/js/StoreMessageBlockEditor.js:244
-#: svn/trunk/js/SaveMessageBlockEditor.js:238
+#: svn/tags/1.0.0/js/StoreMessageBlockEditor.js:233
+#: svn/tags/1.1.0/js/DisplayMessageBlockEditor.js:199
+#: svn/tags/1.1.0/js/MessageInputBlockEditor.js:93
+#: svn/tags/1.1.0/js/SaveMessageBlockEditor.js:238
+#: svn/tags/1.1.0/js/SendFileBlockEditor.js:314
+#: svn/tags/1.1.0/js/SendMessageBlockEditor.js:339
+#: svn/tags/1.1.0/js/StoreFileBlockEditor.js:221
+#: svn/tags/1.1.0/js/StoreMessageBlockEditor.js:244
+#: svn/tags/1.1.1/js/DisplayMessageBlockEditor.js:199
+#: svn/tags/1.1.1/js/MessageInputBlockEditor.js:93
+#: svn/tags/1.1.1/js/SaveMessageBlockEditor.js:238
+#: svn/tags/1.1.1/js/SendFileBlockEditor.js:314
+#: svn/tags/1.1.1/js/SendMessageBlockEditor.js:339
+#: svn/tags/1.1.1/js/StoreFileBlockEditor.js:221
+#: svn/tags/1.1.1/js/StoreMessageBlockEditor.js:244
+#: svn/tags/1.1.1/trunk/js/DisplayMessageBlockEditor.js:199
+#: svn/tags/1.1.1/trunk/js/MessageInputBlockEditor.js:93
+#: svn/tags/1.1.1/trunk/js/SaveMessageBlockEditor.js:238
+#: svn/tags/1.1.1/trunk/js/SendFileBlockEditor.js:314
+#: svn/tags/1.1.1/trunk/js/SendMessageBlockEditor.js:339
+#: svn/tags/1.1.1/trunk/js/StoreFileBlockEditor.js:221
+#: svn/tags/1.1.1/trunk/js/StoreMessageBlockEditor.js:244
+#: svn/tags/1.1.2/js/DisplayMessageBlockEditor.js:199
+#: svn/tags/1.1.2/js/MessageInputBlockEditor.js:93
+#: svn/tags/1.1.2/js/SaveMessageBlockEditor.js:238
+#: svn/tags/1.1.2/js/SendFileBlockEditor.js:314
+#: svn/tags/1.1.2/js/SendMessageBlockEditor.js:339
+#: svn/tags/1.1.2/js/StoreFileBlockEditor.js:221
+#: svn/tags/1.1.2/js/StoreMessageBlockEditor.js:244
+#: svn/trunk/js/DisplayMessageBlockEditor.js:199
 #: svn/trunk/js/MessageInputBlockEditor.js:93
+#: svn/trunk/js/SaveMessageBlockEditor.js:238
 #: svn/trunk/js/SendFileBlockEditor.js:314
 #: svn/trunk/js/SendMessageBlockEditor.js:339
 #: svn/trunk/js/StoreFileBlockEditor.js:221
-#: svn/trunk/js/DisplayMessageBlockEditor.js:199
-#: js/StoreMessageBlockEditor.js:244
-#: js/SaveMessageBlockEditor.js:238
-#: js/MessageInputBlockEditor.js:93
-#: js/SendFileBlockEditor.js:314
-#: js/SendMessageBlockEditor.js:339
-#: js/StoreFileBlockEditor.js:221
-#: js/DisplayMessageBlockEditor.js:199
+#: svn/trunk/js/StoreMessageBlockEditor.js:244
 msgid "Advanced UI Settings"
 msgstr ""
 
-#: svn/tags/1.0.0/js/StoreMessageBlockEditor.js:240
+#: js/DisplayMessageBlockEditor.js:206
+#: js/SaveMessageBlockEditor.js:208
+#: js/SendFileBlockEditor.js:323
+#: js/SendMessageBlockEditor.js:348
+#: js/StoreFileBlockEditor.js:230
+#: js/StoreMessageBlockEditor.js:253
+#: svn/tags/1.0.0/js/DisplayMessageBlockEditor.js:204
 #: svn/tags/1.0.0/js/SaveMessageBlockEditor.js:206
 #: svn/tags/1.0.0/js/SendFileBlockEditor.js:310
 #: svn/tags/1.0.0/js/SendMessageBlockEditor.js:335
 #: svn/tags/1.0.0/js/StoreFileBlockEditor.js:217
-#: svn/tags/1.0.0/js/DisplayMessageBlockEditor.js:204
-#: svn/trunk/js/StoreMessageBlockEditor.js:251
+#: svn/tags/1.0.0/js/StoreMessageBlockEditor.js:240
+#: svn/tags/1.1.0/js/DisplayMessageBlockEditor.js:204
+#: svn/tags/1.1.0/js/SaveMessageBlockEditor.js:206
+#: svn/tags/1.1.0/js/SendFileBlockEditor.js:321
+#: svn/tags/1.1.0/js/SendMessageBlockEditor.js:346
+#: svn/tags/1.1.0/js/StoreFileBlockEditor.js:228
+#: svn/tags/1.1.0/js/StoreMessageBlockEditor.js:251
+#: svn/tags/1.1.1/js/DisplayMessageBlockEditor.js:204
+#: svn/tags/1.1.1/js/SaveMessageBlockEditor.js:206
+#: svn/tags/1.1.1/js/SendFileBlockEditor.js:321
+#: svn/tags/1.1.1/js/SendMessageBlockEditor.js:346
+#: svn/tags/1.1.1/js/StoreFileBlockEditor.js:228
+#: svn/tags/1.1.1/js/StoreMessageBlockEditor.js:251
+#: svn/tags/1.1.1/trunk/js/DisplayMessageBlockEditor.js:204
+#: svn/tags/1.1.1/trunk/js/SaveMessageBlockEditor.js:206
+#: svn/tags/1.1.1/trunk/js/SendFileBlockEditor.js:321
+#: svn/tags/1.1.1/trunk/js/SendMessageBlockEditor.js:346
+#: svn/tags/1.1.1/trunk/js/StoreFileBlockEditor.js:228
+#: svn/tags/1.1.1/trunk/js/StoreMessageBlockEditor.js:251
+#: svn/tags/1.1.2/js/DisplayMessageBlockEditor.js:204
+#: svn/tags/1.1.2/js/SaveMessageBlockEditor.js:206
+#: svn/tags/1.1.2/js/SendFileBlockEditor.js:321
+#: svn/tags/1.1.2/js/SendMessageBlockEditor.js:346
+#: svn/tags/1.1.2/js/StoreFileBlockEditor.js:228
+#: svn/tags/1.1.2/js/StoreMessageBlockEditor.js:251
+#: svn/trunk/js/DisplayMessageBlockEditor.js:204
 #: svn/trunk/js/SaveMessageBlockEditor.js:206
 #: svn/trunk/js/SendFileBlockEditor.js:321
 #: svn/trunk/js/SendMessageBlockEditor.js:346
 #: svn/trunk/js/StoreFileBlockEditor.js:228
-#: svn/trunk/js/DisplayMessageBlockEditor.js:204
-#: js/StoreMessageBlockEditor.js:251
-#: js/SaveMessageBlockEditor.js:206
-#: js/SendFileBlockEditor.js:321
-#: js/SendMessageBlockEditor.js:346
-#: js/StoreFileBlockEditor.js:228
-#: js/DisplayMessageBlockEditor.js:204
+#: svn/trunk/js/StoreMessageBlockEditor.js:251
 msgid "Spinner Color"
 msgstr ""
 
-#: svn/tags/1.0.0/js/StoreMessageBlockEditor.js:260
-#: svn/tags/1.0.0/js/SendMessageBlockEditor.js:365
-#: svn/trunk/js/StoreMessageBlockEditor.js:271
-#: svn/trunk/js/SendMessageBlockEditor.js:376
-#: js/StoreMessageBlockEditor.js:271
-#: js/SendMessageBlockEditor.js:376
-msgid "Message Placeholder"
+#: js/DisplayMessageBlockEditor.js:239
+#: svn/tags/1.0.0/js/DisplayMessageBlockEditor.js:237
+#: svn/tags/1.1.0/js/DisplayMessageBlockEditor.js:237
+#: svn/tags/1.1.1/js/DisplayMessageBlockEditor.js:237
+#: svn/tags/1.1.1/trunk/js/DisplayMessageBlockEditor.js:237
+#: svn/tags/1.1.2/js/DisplayMessageBlockEditor.js:237
+#: svn/trunk/js/DisplayMessageBlockEditor.js:237
+msgid "Sample retrieved message"
 msgstr ""
 
-#: svn/tags/1.0.0/js/StoreMessageBlockEditor.js:265
-#: svn/tags/1.0.0/js/MessageInputBlockEditor.js:102
-#: svn/tags/1.0.0/js/SendFileBlockEditor.js:345
-#: svn/tags/1.0.0/js/SendMessageBlockEditor.js:370
-#: svn/tags/1.0.0/js/StoreFileBlockEditor.js:242
-#: svn/trunk/js/StoreMessageBlockEditor.js:276
-#: svn/trunk/js/MessageInputBlockEditor.js:102
-#: svn/trunk/js/SendFileBlockEditor.js:356
-#: svn/trunk/js/SendMessageBlockEditor.js:381
-#: svn/trunk/js/StoreFileBlockEditor.js:253
-#: js/StoreMessageBlockEditor.js:276
-#: js/MessageInputBlockEditor.js:102
-#: js/SendFileBlockEditor.js:356
-#: js/SendMessageBlockEditor.js:381
-#: js/StoreFileBlockEditor.js:253
-msgid "Button Label"
-msgstr ""
-
-#: svn/tags/1.0.0/js/StoreMessageBlockEditor.js:270
-#: svn/tags/1.0.0/js/SendFileBlockEditor.js:350
-#: svn/tags/1.0.0/js/SendMessageBlockEditor.js:375
-#: svn/tags/1.0.0/js/StoreFileBlockEditor.js:247
-#: svn/trunk/js/StoreMessageBlockEditor.js:281
-#: svn/trunk/js/SendFileBlockEditor.js:361
-#: svn/trunk/js/SendMessageBlockEditor.js:386
-#: svn/trunk/js/StoreFileBlockEditor.js:258
-#: js/StoreMessageBlockEditor.js:281
-#: js/SendFileBlockEditor.js:361
-#: js/SendMessageBlockEditor.js:386
-#: js/StoreFileBlockEditor.js:258
-msgid "Success Message Template"
-msgstr ""
-
-#: svn/tags/1.0.0/js/StoreMessageBlockEditor.js:271
-#: svn/tags/1.0.0/js/SendFileBlockEditor.js:351
-#: svn/tags/1.0.0/js/SendMessageBlockEditor.js:376
-#: svn/tags/1.0.0/js/StoreFileBlockEditor.js:248
-#: svn/trunk/js/StoreMessageBlockEditor.js:282
-#: svn/trunk/js/SendFileBlockEditor.js:362
-#: svn/trunk/js/SendMessageBlockEditor.js:387
-#: svn/trunk/js/StoreFileBlockEditor.js:259
-#: js/StoreMessageBlockEditor.js:282
-#: js/SendFileBlockEditor.js:362
-#: js/SendMessageBlockEditor.js:387
-#: js/StoreFileBlockEditor.js:259
-msgid "Use the term {!messageId} as a placeholder for the returned message ID"
-msgstr ""
-
-#: svn/tags/1.0.0/js/StoreMessageBlockEditor.js:282
-#: svn/tags/1.0.0/js/SendFileBlockEditor.js:362
-#: svn/tags/1.0.0/js/SendMessageBlockEditor.js:387
-#: svn/tags/1.0.0/js/StoreFileBlockEditor.js:259
-#: svn/trunk/js/StoreMessageBlockEditor.js:293
-#: svn/trunk/js/SendFileBlockEditor.js:373
-#: svn/trunk/js/SendMessageBlockEditor.js:398
-#: svn/trunk/js/StoreFileBlockEditor.js:270
-#: js/StoreMessageBlockEditor.js:293
-#: js/SendFileBlockEditor.js:373
-#: js/SendMessageBlockEditor.js:398
-#: js/StoreFileBlockEditor.js:270
-msgid "Store Options"
-msgstr ""
-
-#: svn/tags/1.0.0/js/StoreMessageBlockEditor.js:286
-#: svn/tags/1.0.0/js/SendFileBlockEditor.js:378
-#: svn/tags/1.0.0/js/SendMessageBlockEditor.js:397
-#: svn/tags/1.0.0/js/StoreFileBlockEditor.js:269
-#: svn/trunk/js/StoreMessageBlockEditor.js:297
-#: svn/trunk/js/SendFileBlockEditor.js:389
-#: svn/trunk/js/SendMessageBlockEditor.js:408
-#: svn/trunk/js/StoreFileBlockEditor.js:280
-#: js/StoreMessageBlockEditor.js:297
-#: js/SendFileBlockEditor.js:389
-#: js/SendMessageBlockEditor.js:408
-#: js/StoreFileBlockEditor.js:280
-msgid "Encrypt"
-msgstr ""
-
-#: svn/tags/1.0.0/js/StoreMessageBlockEditor.js:287
-#: svn/tags/1.0.0/js/SendMessageBlockEditor.js:398
-#: svn/trunk/js/StoreMessageBlockEditor.js:298
-#: svn/trunk/js/SendMessageBlockEditor.js:409
-#: js/StoreMessageBlockEditor.js:298
-#: js/SendMessageBlockEditor.js:409
-msgid "Encrypt message before storing it"
-msgstr ""
-
-#: svn/tags/1.0.0/js/StoreMessageBlockEditor.js:287
-#: svn/tags/1.0.0/js/SendMessageBlockEditor.js:398
-#: svn/trunk/js/StoreMessageBlockEditor.js:298
-#: svn/trunk/js/SendMessageBlockEditor.js:409
-#: js/StoreMessageBlockEditor.js:298
-#: js/SendMessageBlockEditor.js:409
-msgid "Store message as it is"
-msgstr ""
-
-#: svn/tags/1.0.0/js/StoreMessageBlockEditor.js:292
-#: svn/tags/1.0.0/js/SendMessageBlockEditor.js:403
-#: svn/trunk/js/StoreMessageBlockEditor.js:311
-#: svn/trunk/js/SendMessageBlockEditor.js:422
-#: js/StoreMessageBlockEditor.js:311
-#: js/SendMessageBlockEditor.js:422
-msgid "Storage"
-msgstr ""
-
-#: svn/tags/1.0.0/js/StoreMessageBlockEditor.js:308
-#: svn/tags/1.0.0/js/SendFileBlockEditor.js:385
-#: svn/tags/1.0.0/js/SendMessageBlockEditor.js:419
-#: svn/tags/1.0.0/js/StoreFileBlockEditor.js:276
-#: svn/trunk/js/StoreMessageBlockEditor.js:329
-#: svn/trunk/js/SendFileBlockEditor.js:402
-#: svn/trunk/js/SendMessageBlockEditor.js:440
-#: svn/trunk/js/StoreFileBlockEditor.js:293
-#: js/StoreMessageBlockEditor.js:329
-#: js/SendFileBlockEditor.js:402
-#: js/SendMessageBlockEditor.js:440
-#: js/StoreFileBlockEditor.js:293
-msgid "Result"
-msgstr ""
-
-#: svn/tags/1.0.0/js/StoreMessageBlockEditor.js:312
-#: svn/tags/1.0.0/js/SendFileBlockEditor.js:389
-#: svn/tags/1.0.0/js/SendMessageBlockEditor.js:423
-#: svn/tags/1.0.0/js/StoreFileBlockEditor.js:280
-#: svn/trunk/js/StoreMessageBlockEditor.js:333
-#: svn/trunk/js/SendFileBlockEditor.js:406
-#: svn/trunk/js/SendMessageBlockEditor.js:444
-#: svn/trunk/js/StoreFileBlockEditor.js:297
-#: js/StoreMessageBlockEditor.js:333
-#: js/SendFileBlockEditor.js:406
-#: js/SendMessageBlockEditor.js:444
-#: js/StoreFileBlockEditor.js:297
-msgid "Success Panel ID"
-msgstr ""
-
-#: svn/tags/1.0.0/js/StoreMessageBlockEditor.js:313
-#: svn/tags/1.0.0/js/StoreMessageBlockEditor.js:319
-#: svn/tags/1.0.0/js/SendFileBlockEditor.js:390
-#: svn/tags/1.0.0/js/SendFileBlockEditor.js:396
-#: svn/tags/1.0.0/js/SendMessageBlockEditor.js:424
-#: svn/tags/1.0.0/js/SendMessageBlockEditor.js:430
-#: svn/tags/1.0.0/js/StoreFileBlockEditor.js:281
-#: svn/tags/1.0.0/js/StoreFileBlockEditor.js:287
-#: svn/trunk/js/StoreMessageBlockEditor.js:334
-#: svn/trunk/js/StoreMessageBlockEditor.js:340
-#: svn/trunk/js/SendFileBlockEditor.js:407
-#: svn/trunk/js/SendFileBlockEditor.js:413
-#: svn/trunk/js/SendMessageBlockEditor.js:445
-#: svn/trunk/js/SendMessageBlockEditor.js:451
-#: svn/trunk/js/StoreFileBlockEditor.js:298
-#: svn/trunk/js/StoreFileBlockEditor.js:304
-#: js/StoreMessageBlockEditor.js:334
-#: js/StoreMessageBlockEditor.js:340
-#: js/SendFileBlockEditor.js:407
-#: js/SendFileBlockEditor.js:413
-#: js/SendMessageBlockEditor.js:445
-#: js/SendMessageBlockEditor.js:451
-#: js/StoreFileBlockEditor.js:298
-#: js/StoreFileBlockEditor.js:304
-msgid "Enter ID of an HTML element on the page"
-msgstr ""
-
-#: svn/tags/1.0.0/js/StoreMessageBlockEditor.js:318
-#: svn/tags/1.0.0/js/SendFileBlockEditor.js:395
-#: svn/tags/1.0.0/js/SendMessageBlockEditor.js:429
-#: svn/tags/1.0.0/js/StoreFileBlockEditor.js:286
-#: svn/trunk/js/StoreMessageBlockEditor.js:339
-#: svn/trunk/js/SendFileBlockEditor.js:412
-#: svn/trunk/js/SendMessageBlockEditor.js:450
-#: svn/trunk/js/StoreFileBlockEditor.js:303
-#: js/StoreMessageBlockEditor.js:339
-#: js/SendFileBlockEditor.js:412
-#: js/SendMessageBlockEditor.js:450
-#: js/StoreFileBlockEditor.js:303
-msgid "Error Panel ID"
-msgstr ""
-
-#: svn/tags/1.0.0/js/StoreMessageBlockEditor.js:413
-#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:533
+#: js/DisplayMessageBlockEditor.js:283
+#: js/MessageHistoryBlockEditor.js:1084
+#: js/MessageInboxBlockEditor.js:937
+#: js/PermissionsBlockEditor.js:535
+#: js/SaveMessageBlockEditor.js:316
+#: js/SendFileBlockEditor.js:554
+#: js/SendMessageBlockEditor.js:583
+#: js/StoreFileBlockEditor.js:410
+#: js/StoreMessageBlockEditor.js:437
+#: svn/tags/1.0.0/js/DisplayMessageBlockEditor.js:281
+#: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:1082
 #: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:935
+#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:533
 #: svn/tags/1.0.0/js/SaveMessageBlockEditor.js:314
 #: svn/tags/1.0.0/js/SendFileBlockEditor.js:534
 #: svn/tags/1.0.0/js/SendMessageBlockEditor.js:559
 #: svn/tags/1.0.0/js/StoreFileBlockEditor.js:390
-#: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:1082
-#: svn/tags/1.0.0/js/DisplayMessageBlockEditor.js:281
-#: svn/trunk/js/StoreMessageBlockEditor.js:435
-#: svn/trunk/js/PermissionsBlockEditor.js:533
+#: svn/tags/1.0.0/js/StoreMessageBlockEditor.js:413
+#: svn/tags/1.1.0/js/DisplayMessageBlockEditor.js:281
+#: svn/tags/1.1.0/js/MessageHistoryBlockEditor.js:1082
+#: svn/tags/1.1.0/js/MessageInboxBlockEditor.js:935
+#: svn/tags/1.1.0/js/PermissionsBlockEditor.js:533
+#: svn/tags/1.1.0/js/SaveMessageBlockEditor.js:314
+#: svn/tags/1.1.0/js/SendFileBlockEditor.js:552
+#: svn/tags/1.1.0/js/SendMessageBlockEditor.js:581
+#: svn/tags/1.1.0/js/StoreFileBlockEditor.js:408
+#: svn/tags/1.1.0/js/StoreMessageBlockEditor.js:435
+#: svn/tags/1.1.1/js/DisplayMessageBlockEditor.js:281
+#: svn/tags/1.1.1/js/MessageHistoryBlockEditor.js:1082
+#: svn/tags/1.1.1/js/MessageInboxBlockEditor.js:935
+#: svn/tags/1.1.1/js/PermissionsBlockEditor.js:533
+#: svn/tags/1.1.1/js/SaveMessageBlockEditor.js:314
+#: svn/tags/1.1.1/js/SendFileBlockEditor.js:552
+#: svn/tags/1.1.1/js/SendMessageBlockEditor.js:581
+#: svn/tags/1.1.1/js/StoreFileBlockEditor.js:408
+#: svn/tags/1.1.1/js/StoreMessageBlockEditor.js:435
+#: svn/tags/1.1.1/trunk/js/DisplayMessageBlockEditor.js:281
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlockEditor.js:1082
+#: svn/tags/1.1.1/trunk/js/MessageInboxBlockEditor.js:935
+#: svn/tags/1.1.1/trunk/js/PermissionsBlockEditor.js:533
+#: svn/tags/1.1.1/trunk/js/SaveMessageBlockEditor.js:314
+#: svn/tags/1.1.1/trunk/js/SendFileBlockEditor.js:552
+#: svn/tags/1.1.1/trunk/js/SendMessageBlockEditor.js:581
+#: svn/tags/1.1.1/trunk/js/StoreFileBlockEditor.js:408
+#: svn/tags/1.1.1/trunk/js/StoreMessageBlockEditor.js:435
+#: svn/tags/1.1.2/js/DisplayMessageBlockEditor.js:281
+#: svn/tags/1.1.2/js/MessageHistoryBlockEditor.js:1082
+#: svn/tags/1.1.2/js/MessageInboxBlockEditor.js:935
+#: svn/tags/1.1.2/js/PermissionsBlockEditor.js:533
+#: svn/tags/1.1.2/js/SaveMessageBlockEditor.js:314
+#: svn/tags/1.1.2/js/SendFileBlockEditor.js:552
+#: svn/tags/1.1.2/js/SendMessageBlockEditor.js:581
+#: svn/tags/1.1.2/js/StoreFileBlockEditor.js:408
+#: svn/tags/1.1.2/js/StoreMessageBlockEditor.js:435
+#: svn/trunk/js/DisplayMessageBlockEditor.js:281
+#: svn/trunk/js/MessageHistoryBlockEditor.js:1082
 #: svn/trunk/js/MessageInboxBlockEditor.js:935
+#: svn/trunk/js/PermissionsBlockEditor.js:533
 #: svn/trunk/js/SaveMessageBlockEditor.js:314
 #: svn/trunk/js/SendFileBlockEditor.js:552
 #: svn/trunk/js/SendMessageBlockEditor.js:581
 #: svn/trunk/js/StoreFileBlockEditor.js:408
-#: svn/trunk/js/MessageHistoryBlockEditor.js:1082
-#: svn/trunk/js/DisplayMessageBlockEditor.js:281
-#: js/StoreMessageBlockEditor.js:435
-#: js/PermissionsBlockEditor.js:533
-#: js/MessageInboxBlockEditor.js:935
-#: js/SaveMessageBlockEditor.js:314
-#: js/SendFileBlockEditor.js:552
-#: js/SendMessageBlockEditor.js:581
-#: js/StoreFileBlockEditor.js:408
-#: js/MessageHistoryBlockEditor.js:1082
-#: js/DisplayMessageBlockEditor.js:281
+#: svn/trunk/js/StoreMessageBlockEditor.js:435
 msgid "Catenis API client not loaded on page"
 msgstr ""
 
-#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:25
-#: svn/trunk/js/PermissionsBlockEditor.js:25
-#: js/PermissionsBlockEditor.js:25
-msgid "Permissions"
+#: js/MessageHistoryBlock.js:512
+#: js/MessageInboxBlock.js:519
+#: svn/tags/1.0.0/js/MessageHistoryBlock.js:512
+#: svn/tags/1.0.0/js/MessageInboxBlock.js:519
+#: svn/tags/1.1.0/js/MessageHistoryBlock.js:512
+#: svn/tags/1.1.0/js/MessageInboxBlock.js:519
+#: svn/tags/1.1.1/js/MessageHistoryBlock.js:512
+#: svn/tags/1.1.1/js/MessageInboxBlock.js:519
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlock.js:512
+#: svn/tags/1.1.1/trunk/js/MessageInboxBlock.js:519
+#: svn/tags/1.1.2/js/MessageHistoryBlock.js:512
+#: svn/tags/1.1.2/js/MessageInboxBlock.js:519
+#: svn/trunk/js/MessageHistoryBlock.js:512
+#: svn/trunk/js/MessageInboxBlock.js:519
+msgid "No messages"
 msgstr ""
 
-#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:26
-#: svn/trunk/js/PermissionsBlockEditor.js:26
-#: js/PermissionsBlockEditor.js:26
-msgid "Manage Catenis permissions"
+#: js/MessageHistoryBlock.js:908
+#: js/MessageInboxBlock.js:908
+#: svn/tags/1.0.0/js/MessageHistoryBlock.js:908
+#: svn/tags/1.0.0/js/MessageInboxBlock.js:908
+#: svn/tags/1.1.0/js/MessageHistoryBlock.js:908
+#: svn/tags/1.1.0/js/MessageInboxBlock.js:908
+#: svn/tags/1.1.1/js/MessageHistoryBlock.js:908
+#: svn/tags/1.1.1/js/MessageInboxBlock.js:908
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlock.js:908
+#: svn/tags/1.1.1/trunk/js/MessageInboxBlock.js:908
+#: svn/tags/1.1.2/js/MessageHistoryBlock.js:908
+#: svn/tags/1.1.2/js/MessageInboxBlock.js:908
+#: svn/trunk/js/MessageHistoryBlock.js:908
+#: svn/trunk/js/MessageInboxBlock.js:908
+msgid "true"
 msgstr ""
 
-#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:155
-#: svn/trunk/js/PermissionsBlockEditor.js:155
-#: js/PermissionsBlockEditor.js:155
-msgid "Permission Selection"
+#: js/MessageHistoryBlock.js:908
+#: js/MessageInboxBlock.js:908
+#: svn/tags/1.0.0/js/MessageHistoryBlock.js:908
+#: svn/tags/1.0.0/js/MessageInboxBlock.js:908
+#: svn/tags/1.1.0/js/MessageHistoryBlock.js:908
+#: svn/tags/1.1.0/js/MessageInboxBlock.js:908
+#: svn/tags/1.1.1/js/MessageHistoryBlock.js:908
+#: svn/tags/1.1.1/js/MessageInboxBlock.js:908
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlock.js:908
+#: svn/tags/1.1.1/trunk/js/MessageInboxBlock.js:908
+#: svn/tags/1.1.2/js/MessageHistoryBlock.js:908
+#: svn/tags/1.1.2/js/MessageInboxBlock.js:908
+#: svn/trunk/js/MessageHistoryBlock.js:908
+#: svn/trunk/js/MessageInboxBlock.js:908
+msgid "false"
 msgstr ""
 
-#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:159
-#: svn/trunk/js/PermissionsBlockEditor.js:159
-#: js/PermissionsBlockEditor.js:159
-msgid "Permission Events"
+#: js/MessageHistoryBlockEditor.js:28
+#: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:28
+#: svn/tags/1.1.0/js/MessageHistoryBlockEditor.js:28
+#: svn/tags/1.1.1/js/MessageHistoryBlockEditor.js:28
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlockEditor.js:28
+#: svn/tags/1.1.2/js/MessageHistoryBlockEditor.js:28
+#: svn/trunk/js/MessageHistoryBlockEditor.js:28
+msgid "Message History"
 msgstr ""
 
-#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:160
-#: svn/trunk/js/PermissionsBlockEditor.js:160
-#: js/PermissionsBlockEditor.js:160
-msgid "receive-notify-new-msg"
+#: js/MessageHistoryBlockEditor.js:29
+#: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:29
+#: svn/tags/1.1.0/js/MessageHistoryBlockEditor.js:29
+#: svn/tags/1.1.1/js/MessageHistoryBlockEditor.js:29
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlockEditor.js:29
+#: svn/tags/1.1.2/js/MessageHistoryBlockEditor.js:29
+#: svn/trunk/js/MessageHistoryBlockEditor.js:29
+msgid "Display list with latest stored/sent messages"
 msgstr ""
 
-#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:166
-#: svn/trunk/js/PermissionsBlockEditor.js:166
-#: js/PermissionsBlockEditor.js:166
-msgid "receive-notify-msg-read"
-msgstr ""
-
-#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:172
-#: svn/trunk/js/PermissionsBlockEditor.js:172
-#: js/PermissionsBlockEditor.js:172
-msgid "receive-msg"
-msgstr ""
-
-#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:178
-#: svn/trunk/js/PermissionsBlockEditor.js:178
-#: js/PermissionsBlockEditor.js:178
-msgid "send-read-msg-confirm"
-msgstr ""
-
-#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:184
-#: svn/trunk/js/PermissionsBlockEditor.js:184
-#: js/PermissionsBlockEditor.js:184
-msgid "disclose-main-props"
-msgstr ""
-
-#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:190
-#: svn/trunk/js/PermissionsBlockEditor.js:190
-#: js/PermissionsBlockEditor.js:190
-msgid "disclose-identity-info"
-msgstr ""
-
-#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:191
-#: svn/trunk/js/PermissionsBlockEditor.js:191
-#: js/PermissionsBlockEditor.js:191
-msgid "Select the permission rights to choose"
-msgstr ""
-
-#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:197
-#: svn/trunk/js/PermissionsBlockEditor.js:197
-#: js/PermissionsBlockEditor.js:197
-msgid "Levels"
-msgstr ""
-
-#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:198
-#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:309
-#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:428
-#: svn/trunk/js/PermissionsBlockEditor.js:198
-#: svn/trunk/js/PermissionsBlockEditor.js:309
-#: svn/trunk/js/PermissionsBlockEditor.js:428
-#: js/PermissionsBlockEditor.js:198
-#: js/PermissionsBlockEditor.js:309
-#: js/PermissionsBlockEditor.js:428
-msgid "System"
-msgstr ""
-
-#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:204
-#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:318
-#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:437
-#: svn/trunk/js/PermissionsBlockEditor.js:204
-#: svn/trunk/js/PermissionsBlockEditor.js:318
-#: svn/trunk/js/PermissionsBlockEditor.js:437
-#: js/PermissionsBlockEditor.js:204
-#: js/PermissionsBlockEditor.js:318
-#: js/PermissionsBlockEditor.js:437
-msgid "Catenis Node"
-msgstr ""
-
-#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:210
-#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:327
-#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:446
-#: svn/trunk/js/PermissionsBlockEditor.js:210
-#: svn/trunk/js/PermissionsBlockEditor.js:327
-#: svn/trunk/js/PermissionsBlockEditor.js:446
-#: js/PermissionsBlockEditor.js:210
-#: js/PermissionsBlockEditor.js:327
-#: js/PermissionsBlockEditor.js:446
-msgid "Client"
-msgstr ""
-
-#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:216
-#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:336
-#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:455
-#: svn/trunk/js/PermissionsBlockEditor.js:216
-#: svn/trunk/js/PermissionsBlockEditor.js:336
-#: svn/trunk/js/PermissionsBlockEditor.js:455
-#: js/PermissionsBlockEditor.js:216
-#: js/PermissionsBlockEditor.js:336
-#: js/PermissionsBlockEditor.js:455
-msgid "Device"
-msgstr ""
-
-#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:217
-#: svn/trunk/js/PermissionsBlockEditor.js:217
-#: js/PermissionsBlockEditor.js:217
-msgid "Select the levels to choose"
-msgstr ""
-
-#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:242
-#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:379
-#: svn/trunk/js/PermissionsBlockEditor.js:242
-#: svn/trunk/js/PermissionsBlockEditor.js:379
-#: js/PermissionsBlockEditor.js:242
-#: js/PermissionsBlockEditor.js:379
-msgid "Receive notification of new message from a device"
-msgstr ""
-
-#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:251
-#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:388
-#: svn/trunk/js/PermissionsBlockEditor.js:251
-#: svn/trunk/js/PermissionsBlockEditor.js:388
-#: js/PermissionsBlockEditor.js:251
-#: js/PermissionsBlockEditor.js:388
-msgid "Receive notification of message read by a device"
-msgstr ""
-
-#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:260
-#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:397
-#: svn/trunk/js/PermissionsBlockEditor.js:260
-#: svn/trunk/js/PermissionsBlockEditor.js:397
-#: js/PermissionsBlockEditor.js:260
-#: js/PermissionsBlockEditor.js:397
-msgid "Receive message from a device"
-msgstr ""
-
-#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:269
-#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:406
-#: svn/trunk/js/PermissionsBlockEditor.js:269
-#: svn/trunk/js/PermissionsBlockEditor.js:406
-#: js/PermissionsBlockEditor.js:269
-#: js/PermissionsBlockEditor.js:406
-msgid "Send read message confirmation to a device"
-msgstr ""
-
-#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:278
-#: svn/trunk/js/PermissionsBlockEditor.js:278
-#: js/PermissionsBlockEditor.js:278
-msgid "Disclose device's main properties (name, product unique ID) to a device"
-msgstr ""
-
-#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:287
-#: svn/trunk/js/PermissionsBlockEditor.js:287
-#: js/PermissionsBlockEditor.js:287
-msgid "Disclose device's basic identification information to a device"
-msgstr ""
-
-#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:496
-#: svn/tags/1.0.0/js/PermissionsBlock.js:616
-#: svn/trunk/js/PermissionsBlockEditor.js:496
-#: svn/trunk/js/PermissionsBlock.js:616
-#: js/PermissionsBlockEditor.js:496
-#: js/PermissionsBlock.js:616
-msgid "allow"
-msgstr ""
-
-#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:499
-#: svn/tags/1.0.0/js/PermissionsBlock.js:617
-#: svn/trunk/js/PermissionsBlockEditor.js:499
-#: svn/trunk/js/PermissionsBlock.js:617
-#: js/PermissionsBlockEditor.js:499
-#: js/PermissionsBlock.js:617
-msgid "deny"
-msgstr ""
-
-#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:502
-#: svn/tags/1.0.0/js/PermissionsBlock.js:618
-#: svn/trunk/js/PermissionsBlockEditor.js:502
-#: svn/trunk/js/PermissionsBlock.js:618
-#: js/PermissionsBlockEditor.js:502
-#: js/PermissionsBlock.js:618
-msgid "none"
-msgstr ""
-
-#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:26
-#: svn/trunk/js/MessageInboxBlockEditor.js:26
-#: js/MessageInboxBlockEditor.js:26
-msgid "Message Inbox"
-msgstr ""
-
-#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:27
-#: svn/trunk/js/MessageInboxBlockEditor.js:27
-#: js/MessageInboxBlockEditor.js:27
-msgid "Display list with latest received messages"
-msgstr ""
-
-#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:347
+#: js/MessageHistoryBlockEditor.js:376
+#: js/MessageInboxBlockEditor.js:349
 #: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:374
-#: svn/trunk/js/MessageInboxBlockEditor.js:347
+#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:347
+#: svn/tags/1.1.0/js/MessageHistoryBlockEditor.js:374
+#: svn/tags/1.1.0/js/MessageInboxBlockEditor.js:347
+#: svn/tags/1.1.1/js/MessageHistoryBlockEditor.js:374
+#: svn/tags/1.1.1/js/MessageInboxBlockEditor.js:347
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlockEditor.js:374
+#: svn/tags/1.1.1/trunk/js/MessageInboxBlockEditor.js:347
+#: svn/tags/1.1.2/js/MessageHistoryBlockEditor.js:374
+#: svn/tags/1.1.2/js/MessageInboxBlockEditor.js:347
 #: svn/trunk/js/MessageHistoryBlockEditor.js:374
-#: js/MessageInboxBlockEditor.js:347
-#: js/MessageHistoryBlockEditor.js:374
+#: svn/trunk/js/MessageInboxBlockEditor.js:347
 msgid "Message Filtering"
 msgstr ""
 
-#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:350
+#: js/MessageHistoryBlockEditor.js:379
+#: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:377
+#: svn/tags/1.1.0/js/MessageHistoryBlockEditor.js:377
+#: svn/tags/1.1.1/js/MessageHistoryBlockEditor.js:377
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlockEditor.js:377
+#: svn/tags/1.1.2/js/MessageHistoryBlockEditor.js:377
+#: svn/trunk/js/MessageHistoryBlockEditor.js:377
+msgid "Message Type"
+msgstr ""
+
+#: js/MessageHistoryBlockEditor.js:394
+#: js/MessageInboxBlockEditor.js:352
 #: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:392
-#: svn/trunk/js/MessageInboxBlockEditor.js:350
+#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:350
+#: svn/tags/1.1.0/js/MessageHistoryBlockEditor.js:392
+#: svn/tags/1.1.0/js/MessageInboxBlockEditor.js:350
+#: svn/tags/1.1.1/js/MessageHistoryBlockEditor.js:392
+#: svn/tags/1.1.1/js/MessageInboxBlockEditor.js:350
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlockEditor.js:392
+#: svn/tags/1.1.1/trunk/js/MessageInboxBlockEditor.js:350
+#: svn/tags/1.1.2/js/MessageHistoryBlockEditor.js:392
+#: svn/tags/1.1.2/js/MessageInboxBlockEditor.js:350
 #: svn/trunk/js/MessageHistoryBlockEditor.js:392
-#: js/MessageInboxBlockEditor.js:350
-#: js/MessageHistoryBlockEditor.js:392
+#: svn/trunk/js/MessageInboxBlockEditor.js:350
 msgid "Unread Only"
 msgstr ""
 
-#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:351
+#: js/MessageHistoryBlockEditor.js:395
+#: js/MessageInboxBlockEditor.js:353
 #: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:393
-#: svn/trunk/js/MessageInboxBlockEditor.js:351
+#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:351
+#: svn/tags/1.1.0/js/MessageHistoryBlockEditor.js:393
+#: svn/tags/1.1.0/js/MessageInboxBlockEditor.js:351
+#: svn/tags/1.1.1/js/MessageHistoryBlockEditor.js:393
+#: svn/tags/1.1.1/js/MessageInboxBlockEditor.js:351
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlockEditor.js:393
+#: svn/tags/1.1.1/trunk/js/MessageInboxBlockEditor.js:351
+#: svn/tags/1.1.2/js/MessageHistoryBlockEditor.js:393
+#: svn/tags/1.1.2/js/MessageInboxBlockEditor.js:351
 #: svn/trunk/js/MessageHistoryBlockEditor.js:393
-#: js/MessageInboxBlockEditor.js:351
-#: js/MessageHistoryBlockEditor.js:393
+#: svn/trunk/js/MessageInboxBlockEditor.js:351
 msgid "List only unread messages"
 msgstr ""
 
-#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:351
+#: js/MessageHistoryBlockEditor.js:395
+#: js/MessageInboxBlockEditor.js:353
 #: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:393
-#: svn/trunk/js/MessageInboxBlockEditor.js:351
+#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:351
+#: svn/tags/1.1.0/js/MessageHistoryBlockEditor.js:393
+#: svn/tags/1.1.0/js/MessageInboxBlockEditor.js:351
+#: svn/tags/1.1.1/js/MessageHistoryBlockEditor.js:393
+#: svn/tags/1.1.1/js/MessageInboxBlockEditor.js:351
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlockEditor.js:393
+#: svn/tags/1.1.1/trunk/js/MessageInboxBlockEditor.js:351
+#: svn/tags/1.1.2/js/MessageHistoryBlockEditor.js:393
+#: svn/tags/1.1.2/js/MessageInboxBlockEditor.js:351
 #: svn/trunk/js/MessageHistoryBlockEditor.js:393
-#: js/MessageInboxBlockEditor.js:351
-#: js/MessageHistoryBlockEditor.js:393
+#: svn/trunk/js/MessageInboxBlockEditor.js:351
 msgid "List all messages"
 msgstr ""
 
-#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:356
+#: js/MessageHistoryBlockEditor.js:400
+#: js/MessageInboxBlockEditor.js:358
 #: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:398
-#: svn/trunk/js/MessageInboxBlockEditor.js:356
+#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:356
+#: svn/tags/1.1.0/js/MessageHistoryBlockEditor.js:398
+#: svn/tags/1.1.0/js/MessageInboxBlockEditor.js:356
+#: svn/tags/1.1.1/js/MessageHistoryBlockEditor.js:398
+#: svn/tags/1.1.1/js/MessageInboxBlockEditor.js:356
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlockEditor.js:398
+#: svn/tags/1.1.1/trunk/js/MessageInboxBlockEditor.js:356
+#: svn/tags/1.1.2/js/MessageHistoryBlockEditor.js:398
+#: svn/tags/1.1.2/js/MessageInboxBlockEditor.js:356
 #: svn/trunk/js/MessageHistoryBlockEditor.js:398
-#: js/MessageInboxBlockEditor.js:356
-#: js/MessageHistoryBlockEditor.js:398
+#: svn/trunk/js/MessageInboxBlockEditor.js:356
 msgid "Period"
 msgstr ""
 
-#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:359
+#: js/MessageHistoryBlockEditor.js:403
+#: js/MessageInboxBlockEditor.js:361
 #: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:401
-#: svn/trunk/js/MessageInboxBlockEditor.js:359
+#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:359
+#: svn/tags/1.1.0/js/MessageHistoryBlockEditor.js:401
+#: svn/tags/1.1.0/js/MessageInboxBlockEditor.js:359
+#: svn/tags/1.1.1/js/MessageHistoryBlockEditor.js:401
+#: svn/tags/1.1.1/js/MessageInboxBlockEditor.js:359
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlockEditor.js:401
+#: svn/tags/1.1.1/trunk/js/MessageInboxBlockEditor.js:359
+#: svn/tags/1.1.2/js/MessageHistoryBlockEditor.js:401
+#: svn/tags/1.1.2/js/MessageInboxBlockEditor.js:359
 #: svn/trunk/js/MessageHistoryBlockEditor.js:401
-#: js/MessageInboxBlockEditor.js:359
-#: js/MessageHistoryBlockEditor.js:401
+#: svn/trunk/js/MessageInboxBlockEditor.js:359
 msgid "Today"
 msgstr ""
 
-#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:362
+#: js/MessageHistoryBlockEditor.js:406
+#: js/MessageInboxBlockEditor.js:364
 #: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:404
-#: svn/trunk/js/MessageInboxBlockEditor.js:362
+#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:362
+#: svn/tags/1.1.0/js/MessageHistoryBlockEditor.js:404
+#: svn/tags/1.1.0/js/MessageInboxBlockEditor.js:362
+#: svn/tags/1.1.1/js/MessageHistoryBlockEditor.js:404
+#: svn/tags/1.1.1/js/MessageInboxBlockEditor.js:362
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlockEditor.js:404
+#: svn/tags/1.1.1/trunk/js/MessageInboxBlockEditor.js:362
+#: svn/tags/1.1.2/js/MessageHistoryBlockEditor.js:404
+#: svn/tags/1.1.2/js/MessageInboxBlockEditor.js:362
 #: svn/trunk/js/MessageHistoryBlockEditor.js:404
-#: js/MessageInboxBlockEditor.js:362
-#: js/MessageHistoryBlockEditor.js:404
+#: svn/trunk/js/MessageInboxBlockEditor.js:362
 msgid "Last 7 days"
 msgstr ""
 
-#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:365
+#: js/MessageHistoryBlockEditor.js:409
+#: js/MessageInboxBlockEditor.js:367
 #: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:407
-#: svn/trunk/js/MessageInboxBlockEditor.js:365
+#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:365
+#: svn/tags/1.1.0/js/MessageHistoryBlockEditor.js:407
+#: svn/tags/1.1.0/js/MessageInboxBlockEditor.js:365
+#: svn/tags/1.1.1/js/MessageHistoryBlockEditor.js:407
+#: svn/tags/1.1.1/js/MessageInboxBlockEditor.js:365
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlockEditor.js:407
+#: svn/tags/1.1.1/trunk/js/MessageInboxBlockEditor.js:365
+#: svn/tags/1.1.2/js/MessageHistoryBlockEditor.js:407
+#: svn/tags/1.1.2/js/MessageInboxBlockEditor.js:365
 #: svn/trunk/js/MessageHistoryBlockEditor.js:407
-#: js/MessageInboxBlockEditor.js:365
-#: js/MessageHistoryBlockEditor.js:407
+#: svn/trunk/js/MessageInboxBlockEditor.js:365
 msgid "Last 30 days"
 msgstr ""
 
-#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:368
+#: js/MessageHistoryBlockEditor.js:412
+#: js/MessageInboxBlockEditor.js:370
 #: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:410
-#: svn/trunk/js/MessageInboxBlockEditor.js:368
+#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:368
+#: svn/tags/1.1.0/js/MessageHistoryBlockEditor.js:410
+#: svn/tags/1.1.0/js/MessageInboxBlockEditor.js:368
+#: svn/tags/1.1.1/js/MessageHistoryBlockEditor.js:410
+#: svn/tags/1.1.1/js/MessageInboxBlockEditor.js:368
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlockEditor.js:410
+#: svn/tags/1.1.1/trunk/js/MessageInboxBlockEditor.js:368
+#: svn/tags/1.1.2/js/MessageHistoryBlockEditor.js:410
+#: svn/tags/1.1.2/js/MessageInboxBlockEditor.js:368
 #: svn/trunk/js/MessageHistoryBlockEditor.js:410
-#: js/MessageInboxBlockEditor.js:368
-#: js/MessageHistoryBlockEditor.js:410
+#: svn/trunk/js/MessageInboxBlockEditor.js:368
 msgid "Current month"
 msgstr ""
 
-#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:371
+#: js/MessageHistoryBlockEditor.js:415
+#: js/MessageInboxBlockEditor.js:373
 #: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:413
-#: svn/trunk/js/MessageInboxBlockEditor.js:371
+#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:371
+#: svn/tags/1.1.0/js/MessageHistoryBlockEditor.js:413
+#: svn/tags/1.1.0/js/MessageInboxBlockEditor.js:371
+#: svn/tags/1.1.1/js/MessageHistoryBlockEditor.js:413
+#: svn/tags/1.1.1/js/MessageInboxBlockEditor.js:371
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlockEditor.js:413
+#: svn/tags/1.1.1/trunk/js/MessageInboxBlockEditor.js:371
+#: svn/tags/1.1.2/js/MessageHistoryBlockEditor.js:413
+#: svn/tags/1.1.2/js/MessageInboxBlockEditor.js:371
 #: svn/trunk/js/MessageHistoryBlockEditor.js:413
-#: js/MessageInboxBlockEditor.js:371
-#: js/MessageHistoryBlockEditor.js:413
+#: svn/trunk/js/MessageInboxBlockEditor.js:371
 msgid "Last 3 months"
 msgstr ""
 
-#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:374
+#: js/MessageHistoryBlockEditor.js:418
+#: js/MessageInboxBlockEditor.js:376
 #: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:416
-#: svn/trunk/js/MessageInboxBlockEditor.js:374
+#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:374
+#: svn/tags/1.1.0/js/MessageHistoryBlockEditor.js:416
+#: svn/tags/1.1.0/js/MessageInboxBlockEditor.js:374
+#: svn/tags/1.1.1/js/MessageHistoryBlockEditor.js:416
+#: svn/tags/1.1.1/js/MessageInboxBlockEditor.js:374
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlockEditor.js:416
+#: svn/tags/1.1.1/trunk/js/MessageInboxBlockEditor.js:374
+#: svn/tags/1.1.2/js/MessageHistoryBlockEditor.js:416
+#: svn/tags/1.1.2/js/MessageInboxBlockEditor.js:374
 #: svn/trunk/js/MessageHistoryBlockEditor.js:416
-#: js/MessageInboxBlockEditor.js:374
-#: js/MessageHistoryBlockEditor.js:416
+#: svn/trunk/js/MessageInboxBlockEditor.js:374
 msgid "Last 6 months"
 msgstr ""
 
-#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:377
+#: js/MessageHistoryBlockEditor.js:421
+#: js/MessageInboxBlockEditor.js:379
 #: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:419
-#: svn/trunk/js/MessageInboxBlockEditor.js:377
+#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:377
+#: svn/tags/1.1.0/js/MessageHistoryBlockEditor.js:419
+#: svn/tags/1.1.0/js/MessageInboxBlockEditor.js:377
+#: svn/tags/1.1.1/js/MessageHistoryBlockEditor.js:419
+#: svn/tags/1.1.1/js/MessageInboxBlockEditor.js:377
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlockEditor.js:419
+#: svn/tags/1.1.1/trunk/js/MessageInboxBlockEditor.js:377
+#: svn/tags/1.1.2/js/MessageHistoryBlockEditor.js:419
+#: svn/tags/1.1.2/js/MessageInboxBlockEditor.js:377
 #: svn/trunk/js/MessageHistoryBlockEditor.js:419
-#: js/MessageInboxBlockEditor.js:377
-#: js/MessageHistoryBlockEditor.js:419
+#: svn/trunk/js/MessageInboxBlockEditor.js:377
 msgid "Custom"
 msgstr ""
 
-#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:387
-#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:411
+#: js/MessageHistoryBlockEditor.js:431
+#: js/MessageHistoryBlockEditor.js:455
+#: js/MessageInboxBlockEditor.js:389
+#: js/MessageInboxBlockEditor.js:413
 #: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:429
 #: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:453
-#: svn/trunk/js/MessageInboxBlockEditor.js:387
-#: svn/trunk/js/MessageInboxBlockEditor.js:411
+#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:387
+#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:411
+#: svn/tags/1.1.0/js/MessageHistoryBlockEditor.js:429
+#: svn/tags/1.1.0/js/MessageHistoryBlockEditor.js:453
+#: svn/tags/1.1.0/js/MessageInboxBlockEditor.js:387
+#: svn/tags/1.1.0/js/MessageInboxBlockEditor.js:411
+#: svn/tags/1.1.1/js/MessageHistoryBlockEditor.js:429
+#: svn/tags/1.1.1/js/MessageHistoryBlockEditor.js:453
+#: svn/tags/1.1.1/js/MessageInboxBlockEditor.js:387
+#: svn/tags/1.1.1/js/MessageInboxBlockEditor.js:411
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlockEditor.js:429
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlockEditor.js:453
+#: svn/tags/1.1.1/trunk/js/MessageInboxBlockEditor.js:387
+#: svn/tags/1.1.1/trunk/js/MessageInboxBlockEditor.js:411
+#: svn/tags/1.1.2/js/MessageHistoryBlockEditor.js:429
+#: svn/tags/1.1.2/js/MessageHistoryBlockEditor.js:453
+#: svn/tags/1.1.2/js/MessageInboxBlockEditor.js:387
+#: svn/tags/1.1.2/js/MessageInboxBlockEditor.js:411
 #: svn/trunk/js/MessageHistoryBlockEditor.js:429
 #: svn/trunk/js/MessageHistoryBlockEditor.js:453
-#: js/MessageInboxBlockEditor.js:387
-#: js/MessageInboxBlockEditor.js:411
-#: js/MessageHistoryBlockEditor.js:429
-#: js/MessageHistoryBlockEditor.js:453
+#: svn/trunk/js/MessageInboxBlockEditor.js:387
+#: svn/trunk/js/MessageInboxBlockEditor.js:411
 msgid "Start Date"
 msgstr ""
 
-#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:430
+#: js/MessageHistoryBlockEditor.js:468
+#: js/MessageHistoryBlockEditor.js:492
+#: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:466
+#: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:490
+#: svn/tags/1.1.0/js/MessageHistoryBlockEditor.js:466
+#: svn/tags/1.1.0/js/MessageHistoryBlockEditor.js:490
+#: svn/tags/1.1.1/js/MessageHistoryBlockEditor.js:466
+#: svn/tags/1.1.1/js/MessageHistoryBlockEditor.js:490
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlockEditor.js:466
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlockEditor.js:490
+#: svn/tags/1.1.2/js/MessageHistoryBlockEditor.js:466
+#: svn/tags/1.1.2/js/MessageHistoryBlockEditor.js:490
+#: svn/trunk/js/MessageHistoryBlockEditor.js:466
+#: svn/trunk/js/MessageHistoryBlockEditor.js:490
+msgid "End Date"
+msgstr ""
+
+#: js/MessageHistoryBlockEditor.js:514
+#: js/MessageInboxBlockEditor.js:432
 #: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:512
-#: svn/trunk/js/MessageInboxBlockEditor.js:430
+#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:430
+#: svn/tags/1.1.0/js/MessageHistoryBlockEditor.js:512
+#: svn/tags/1.1.0/js/MessageInboxBlockEditor.js:430
+#: svn/tags/1.1.1/js/MessageHistoryBlockEditor.js:512
+#: svn/tags/1.1.1/js/MessageInboxBlockEditor.js:430
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlockEditor.js:512
+#: svn/tags/1.1.1/trunk/js/MessageInboxBlockEditor.js:430
+#: svn/tags/1.1.2/js/MessageHistoryBlockEditor.js:512
+#: svn/tags/1.1.2/js/MessageInboxBlockEditor.js:430
 #: svn/trunk/js/MessageHistoryBlockEditor.js:512
-#: js/MessageInboxBlockEditor.js:430
-#: js/MessageHistoryBlockEditor.js:512
+#: svn/trunk/js/MessageInboxBlockEditor.js:430
 msgid "Message List"
 msgstr ""
 
-#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:434
+#: js/MessageHistoryBlockEditor.js:518
+#: js/MessageInboxBlockEditor.js:436
 #: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:516
-#: svn/trunk/js/MessageInboxBlockEditor.js:434
+#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:434
+#: svn/tags/1.1.0/js/MessageHistoryBlockEditor.js:516
+#: svn/tags/1.1.0/js/MessageInboxBlockEditor.js:434
+#: svn/tags/1.1.1/js/MessageHistoryBlockEditor.js:516
+#: svn/tags/1.1.1/js/MessageInboxBlockEditor.js:434
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlockEditor.js:516
+#: svn/tags/1.1.1/trunk/js/MessageInboxBlockEditor.js:434
+#: svn/tags/1.1.2/js/MessageHistoryBlockEditor.js:516
+#: svn/tags/1.1.2/js/MessageInboxBlockEditor.js:434
 #: svn/trunk/js/MessageHistoryBlockEditor.js:516
-#: js/MessageInboxBlockEditor.js:434
-#: js/MessageHistoryBlockEditor.js:516
+#: svn/trunk/js/MessageInboxBlockEditor.js:434
 msgid "Messages Per Page"
 msgstr ""
 
-#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:439
+#: js/MessageHistoryBlockEditor.js:523
+#: js/MessageInboxBlockEditor.js:441
 #: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:521
-#: svn/trunk/js/MessageInboxBlockEditor.js:439
+#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:439
+#: svn/tags/1.1.0/js/MessageHistoryBlockEditor.js:521
+#: svn/tags/1.1.0/js/MessageInboxBlockEditor.js:439
+#: svn/tags/1.1.1/js/MessageHistoryBlockEditor.js:521
+#: svn/tags/1.1.1/js/MessageInboxBlockEditor.js:439
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlockEditor.js:521
+#: svn/tags/1.1.1/trunk/js/MessageInboxBlockEditor.js:439
+#: svn/tags/1.1.2/js/MessageHistoryBlockEditor.js:521
+#: svn/tags/1.1.2/js/MessageInboxBlockEditor.js:439
 #: svn/trunk/js/MessageHistoryBlockEditor.js:521
-#: js/MessageInboxBlockEditor.js:439
-#: js/MessageHistoryBlockEditor.js:521
+#: svn/trunk/js/MessageInboxBlockEditor.js:439
 msgid "Columns"
 msgstr ""
 
+#: js/MessageHistoryBlockEditor.js:524
+#: js/MessageHistoryBlockEditor.js:642
+#: js/MessageHistoryBlockEditor.js:925
+#: js/MessageInboxBlockEditor.js:442
+#: js/MessageInboxBlockEditor.js:554
+#: js/MessageInboxBlockEditor.js:806
+#: js/SaveMessageBlockEditor.js:178
+#: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:522
+#: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:640
+#: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:923
 #: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:440
 #: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:552
 #: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:804
 #: svn/tags/1.0.0/js/SaveMessageBlockEditor.js:176
-#: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:522
-#: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:640
-#: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:923
+#: svn/tags/1.1.0/js/MessageHistoryBlockEditor.js:522
+#: svn/tags/1.1.0/js/MessageHistoryBlockEditor.js:640
+#: svn/tags/1.1.0/js/MessageHistoryBlockEditor.js:923
+#: svn/tags/1.1.0/js/MessageInboxBlockEditor.js:440
+#: svn/tags/1.1.0/js/MessageInboxBlockEditor.js:552
+#: svn/tags/1.1.0/js/MessageInboxBlockEditor.js:804
+#: svn/tags/1.1.0/js/SaveMessageBlockEditor.js:176
+#: svn/tags/1.1.1/js/MessageHistoryBlockEditor.js:522
+#: svn/tags/1.1.1/js/MessageHistoryBlockEditor.js:640
+#: svn/tags/1.1.1/js/MessageHistoryBlockEditor.js:923
+#: svn/tags/1.1.1/js/MessageInboxBlockEditor.js:440
+#: svn/tags/1.1.1/js/MessageInboxBlockEditor.js:552
+#: svn/tags/1.1.1/js/MessageInboxBlockEditor.js:804
+#: svn/tags/1.1.1/js/SaveMessageBlockEditor.js:176
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlockEditor.js:522
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlockEditor.js:640
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlockEditor.js:923
+#: svn/tags/1.1.1/trunk/js/MessageInboxBlockEditor.js:440
+#: svn/tags/1.1.1/trunk/js/MessageInboxBlockEditor.js:552
+#: svn/tags/1.1.1/trunk/js/MessageInboxBlockEditor.js:804
+#: svn/tags/1.1.1/trunk/js/SaveMessageBlockEditor.js:176
+#: svn/tags/1.1.2/js/MessageHistoryBlockEditor.js:522
+#: svn/tags/1.1.2/js/MessageHistoryBlockEditor.js:640
+#: svn/tags/1.1.2/js/MessageHistoryBlockEditor.js:923
+#: svn/tags/1.1.2/js/MessageInboxBlockEditor.js:440
+#: svn/tags/1.1.2/js/MessageInboxBlockEditor.js:552
+#: svn/tags/1.1.2/js/MessageInboxBlockEditor.js:804
+#: svn/tags/1.1.2/js/SaveMessageBlockEditor.js:176
+#: svn/trunk/js/MessageHistoryBlockEditor.js:522
+#: svn/trunk/js/MessageHistoryBlockEditor.js:640
+#: svn/trunk/js/MessageHistoryBlockEditor.js:923
 #: svn/trunk/js/MessageInboxBlockEditor.js:440
 #: svn/trunk/js/MessageInboxBlockEditor.js:552
 #: svn/trunk/js/MessageInboxBlockEditor.js:804
 #: svn/trunk/js/SaveMessageBlockEditor.js:176
-#: svn/trunk/js/MessageHistoryBlockEditor.js:522
-#: svn/trunk/js/MessageHistoryBlockEditor.js:640
-#: svn/trunk/js/MessageHistoryBlockEditor.js:923
-#: js/MessageInboxBlockEditor.js:440
-#: js/MessageInboxBlockEditor.js:552
-#: js/MessageInboxBlockEditor.js:804
-#: js/SaveMessageBlockEditor.js:176
-#: js/MessageHistoryBlockEditor.js:522
-#: js/MessageHistoryBlockEditor.js:640
-#: js/MessageHistoryBlockEditor.js:923
 msgid "Action"
 msgstr ""
 
-#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:446
-#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:583
-#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:830
-#: svn/tags/1.0.0/js/SaveMessageBlockEditor.js:158
-#: svn/tags/1.0.0/js/MessageInputBlockEditor.js:8
-#: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:528
-#: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:671
-#: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:949
-#: svn/tags/1.0.0/js/DisplayMessageBlockEditor.js:157
-#: svn/trunk/js/MessageInboxBlockEditor.js:446
-#: svn/trunk/js/MessageInboxBlockEditor.js:583
-#: svn/trunk/js/MessageInboxBlockEditor.js:830
-#: svn/trunk/js/SaveMessageBlockEditor.js:158
-#: svn/trunk/js/MessageInputBlockEditor.js:8
-#: svn/trunk/js/MessageHistoryBlockEditor.js:528
-#: svn/trunk/js/MessageHistoryBlockEditor.js:671
-#: svn/trunk/js/MessageHistoryBlockEditor.js:949
-#: svn/trunk/js/DisplayMessageBlockEditor.js:157
-#: js/MessageInboxBlockEditor.js:446
-#: js/MessageInboxBlockEditor.js:583
-#: js/MessageInboxBlockEditor.js:830
-#: js/SaveMessageBlockEditor.js:158
-#: js/MessageInputBlockEditor.js:8
-#: js/MessageHistoryBlockEditor.js:528
-#: js/MessageHistoryBlockEditor.js:671
-#: js/MessageHistoryBlockEditor.js:949
-#: js/DisplayMessageBlockEditor.js:157
-msgid "Message ID"
+#: js/MessageHistoryBlockEditor.js:536
+#: js/MessageHistoryBlockEditor.js:706
+#: js/MessageHistoryBlockEditor.js:979
+#: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:534
+#: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:704
+#: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:977
+#: svn/tags/1.1.0/js/MessageHistoryBlockEditor.js:534
+#: svn/tags/1.1.0/js/MessageHistoryBlockEditor.js:704
+#: svn/tags/1.1.0/js/MessageHistoryBlockEditor.js:977
+#: svn/tags/1.1.1/js/MessageHistoryBlockEditor.js:534
+#: svn/tags/1.1.1/js/MessageHistoryBlockEditor.js:704
+#: svn/tags/1.1.1/js/MessageHistoryBlockEditor.js:977
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlockEditor.js:534
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlockEditor.js:704
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlockEditor.js:977
+#: svn/tags/1.1.2/js/MessageHistoryBlockEditor.js:534
+#: svn/tags/1.1.2/js/MessageHistoryBlockEditor.js:704
+#: svn/tags/1.1.2/js/MessageHistoryBlockEditor.js:977
+#: svn/trunk/js/MessageHistoryBlockEditor.js:534
+#: svn/trunk/js/MessageHistoryBlockEditor.js:704
+#: svn/trunk/js/MessageHistoryBlockEditor.js:977
+msgid "Type"
 msgstr ""
 
-#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:452
-#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:616
-#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:858
+#: js/MessageHistoryBlockEditor.js:542
+#: js/MessageHistoryBlockEditor.js:739
+#: js/MessageHistoryBlockEditor.js:1007
+#: js/MessageInboxBlockEditor.js:454
+#: js/MessageInboxBlockEditor.js:618
+#: js/MessageInboxBlockEditor.js:860
 #: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:540
 #: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:737
 #: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:1005
-#: svn/trunk/js/MessageInboxBlockEditor.js:452
-#: svn/trunk/js/MessageInboxBlockEditor.js:616
-#: svn/trunk/js/MessageInboxBlockEditor.js:858
+#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:452
+#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:616
+#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:858
+#: svn/tags/1.1.0/js/MessageHistoryBlockEditor.js:540
+#: svn/tags/1.1.0/js/MessageHistoryBlockEditor.js:737
+#: svn/tags/1.1.0/js/MessageHistoryBlockEditor.js:1005
+#: svn/tags/1.1.0/js/MessageInboxBlockEditor.js:452
+#: svn/tags/1.1.0/js/MessageInboxBlockEditor.js:616
+#: svn/tags/1.1.0/js/MessageInboxBlockEditor.js:858
+#: svn/tags/1.1.1/js/MessageHistoryBlockEditor.js:540
+#: svn/tags/1.1.1/js/MessageHistoryBlockEditor.js:737
+#: svn/tags/1.1.1/js/MessageHistoryBlockEditor.js:1005
+#: svn/tags/1.1.1/js/MessageInboxBlockEditor.js:452
+#: svn/tags/1.1.1/js/MessageInboxBlockEditor.js:616
+#: svn/tags/1.1.1/js/MessageInboxBlockEditor.js:858
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlockEditor.js:540
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlockEditor.js:737
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlockEditor.js:1005
+#: svn/tags/1.1.1/trunk/js/MessageInboxBlockEditor.js:452
+#: svn/tags/1.1.1/trunk/js/MessageInboxBlockEditor.js:616
+#: svn/tags/1.1.1/trunk/js/MessageInboxBlockEditor.js:858
+#: svn/tags/1.1.2/js/MessageHistoryBlockEditor.js:540
+#: svn/tags/1.1.2/js/MessageHistoryBlockEditor.js:737
+#: svn/tags/1.1.2/js/MessageHistoryBlockEditor.js:1005
+#: svn/tags/1.1.2/js/MessageInboxBlockEditor.js:452
+#: svn/tags/1.1.2/js/MessageInboxBlockEditor.js:616
+#: svn/tags/1.1.2/js/MessageInboxBlockEditor.js:858
 #: svn/trunk/js/MessageHistoryBlockEditor.js:540
 #: svn/trunk/js/MessageHistoryBlockEditor.js:737
 #: svn/trunk/js/MessageHistoryBlockEditor.js:1005
-#: js/MessageInboxBlockEditor.js:452
-#: js/MessageInboxBlockEditor.js:616
-#: js/MessageInboxBlockEditor.js:858
-#: js/MessageHistoryBlockEditor.js:540
-#: js/MessageHistoryBlockEditor.js:737
-#: js/MessageHistoryBlockEditor.js:1005
+#: svn/trunk/js/MessageInboxBlockEditor.js:452
+#: svn/trunk/js/MessageInboxBlockEditor.js:616
+#: svn/trunk/js/MessageInboxBlockEditor.js:858
 msgid "Date"
 msgstr ""
 
-#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:458
-#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:649
-#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:886
-#: svn/trunk/js/MessageInboxBlockEditor.js:458
-#: svn/trunk/js/MessageInboxBlockEditor.js:649
-#: svn/trunk/js/MessageInboxBlockEditor.js:886
-#: js/MessageInboxBlockEditor.js:458
-#: js/MessageInboxBlockEditor.js:649
-#: js/MessageInboxBlockEditor.js:886
-msgid "From"
+#: js/MessageHistoryBlockEditor.js:548
+#: js/MessageHistoryBlockEditor.js:772
+#: js/MessageHistoryBlockEditor.js:1035
+#: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:546
+#: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:770
+#: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:1033
+#: svn/tags/1.1.0/js/MessageHistoryBlockEditor.js:546
+#: svn/tags/1.1.0/js/MessageHistoryBlockEditor.js:770
+#: svn/tags/1.1.0/js/MessageHistoryBlockEditor.js:1033
+#: svn/tags/1.1.1/js/MessageHistoryBlockEditor.js:546
+#: svn/tags/1.1.1/js/MessageHistoryBlockEditor.js:770
+#: svn/tags/1.1.1/js/MessageHistoryBlockEditor.js:1033
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlockEditor.js:546
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlockEditor.js:770
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlockEditor.js:1033
+#: svn/tags/1.1.2/js/MessageHistoryBlockEditor.js:546
+#: svn/tags/1.1.2/js/MessageHistoryBlockEditor.js:770
+#: svn/tags/1.1.2/js/MessageHistoryBlockEditor.js:1033
+#: svn/trunk/js/MessageHistoryBlockEditor.js:546
+#: svn/trunk/js/MessageHistoryBlockEditor.js:770
+#: svn/trunk/js/MessageHistoryBlockEditor.js:1033
+msgid "To"
 msgstr ""
 
-#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:464
-#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:682
-#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:914
+#: js/MessageHistoryBlockEditor.js:554
+#: js/MessageHistoryBlockEditor.js:805
+#: js/MessageHistoryBlockEditor.js:1063
+#: js/MessageInboxBlockEditor.js:466
+#: js/MessageInboxBlockEditor.js:684
+#: js/MessageInboxBlockEditor.js:916
 #: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:552
 #: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:803
 #: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:1061
-#: svn/trunk/js/MessageInboxBlockEditor.js:464
-#: svn/trunk/js/MessageInboxBlockEditor.js:682
-#: svn/trunk/js/MessageInboxBlockEditor.js:914
+#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:464
+#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:682
+#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:914
+#: svn/tags/1.1.0/js/MessageHistoryBlockEditor.js:552
+#: svn/tags/1.1.0/js/MessageHistoryBlockEditor.js:803
+#: svn/tags/1.1.0/js/MessageHistoryBlockEditor.js:1061
+#: svn/tags/1.1.0/js/MessageInboxBlockEditor.js:464
+#: svn/tags/1.1.0/js/MessageInboxBlockEditor.js:682
+#: svn/tags/1.1.0/js/MessageInboxBlockEditor.js:914
+#: svn/tags/1.1.1/js/MessageHistoryBlockEditor.js:552
+#: svn/tags/1.1.1/js/MessageHistoryBlockEditor.js:803
+#: svn/tags/1.1.1/js/MessageHistoryBlockEditor.js:1061
+#: svn/tags/1.1.1/js/MessageInboxBlockEditor.js:464
+#: svn/tags/1.1.1/js/MessageInboxBlockEditor.js:682
+#: svn/tags/1.1.1/js/MessageInboxBlockEditor.js:914
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlockEditor.js:552
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlockEditor.js:803
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlockEditor.js:1061
+#: svn/tags/1.1.1/trunk/js/MessageInboxBlockEditor.js:464
+#: svn/tags/1.1.1/trunk/js/MessageInboxBlockEditor.js:682
+#: svn/tags/1.1.1/trunk/js/MessageInboxBlockEditor.js:914
+#: svn/tags/1.1.2/js/MessageHistoryBlockEditor.js:552
+#: svn/tags/1.1.2/js/MessageHistoryBlockEditor.js:803
+#: svn/tags/1.1.2/js/MessageHistoryBlockEditor.js:1061
+#: svn/tags/1.1.2/js/MessageInboxBlockEditor.js:464
+#: svn/tags/1.1.2/js/MessageInboxBlockEditor.js:682
+#: svn/tags/1.1.2/js/MessageInboxBlockEditor.js:914
 #: svn/trunk/js/MessageHistoryBlockEditor.js:552
 #: svn/trunk/js/MessageHistoryBlockEditor.js:803
 #: svn/trunk/js/MessageHistoryBlockEditor.js:1061
-#: js/MessageInboxBlockEditor.js:464
-#: js/MessageInboxBlockEditor.js:682
-#: js/MessageInboxBlockEditor.js:914
-#: js/MessageHistoryBlockEditor.js:552
-#: js/MessageHistoryBlockEditor.js:803
-#: js/MessageHistoryBlockEditor.js:1061
+#: svn/trunk/js/MessageInboxBlockEditor.js:464
+#: svn/trunk/js/MessageInboxBlockEditor.js:682
+#: svn/trunk/js/MessageInboxBlockEditor.js:914
 msgid "Read"
 msgstr ""
 
-#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:465
+#: js/MessageHistoryBlockEditor.js:555
+#: js/MessageInboxBlockEditor.js:467
 #: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:553
-#: svn/trunk/js/MessageInboxBlockEditor.js:465
+#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:465
+#: svn/tags/1.1.0/js/MessageHistoryBlockEditor.js:553
+#: svn/tags/1.1.0/js/MessageInboxBlockEditor.js:465
+#: svn/tags/1.1.1/js/MessageHistoryBlockEditor.js:553
+#: svn/tags/1.1.1/js/MessageInboxBlockEditor.js:465
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlockEditor.js:553
+#: svn/tags/1.1.1/trunk/js/MessageInboxBlockEditor.js:465
+#: svn/tags/1.1.2/js/MessageHistoryBlockEditor.js:553
+#: svn/tags/1.1.2/js/MessageInboxBlockEditor.js:465
 #: svn/trunk/js/MessageHistoryBlockEditor.js:553
-#: js/MessageInboxBlockEditor.js:465
-#: js/MessageHistoryBlockEditor.js:553
+#: svn/trunk/js/MessageInboxBlockEditor.js:465
 msgid "Select the columns to be displayed"
 msgstr ""
 
-#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:472
+#: js/MessageHistoryBlockEditor.js:562
+#: js/MessageInboxBlockEditor.js:474
 #: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:560
-#: svn/trunk/js/MessageInboxBlockEditor.js:472
+#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:472
+#: svn/tags/1.1.0/js/MessageHistoryBlockEditor.js:560
+#: svn/tags/1.1.0/js/MessageInboxBlockEditor.js:472
+#: svn/tags/1.1.1/js/MessageHistoryBlockEditor.js:560
+#: svn/tags/1.1.1/js/MessageInboxBlockEditor.js:472
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlockEditor.js:560
+#: svn/tags/1.1.1/trunk/js/MessageInboxBlockEditor.js:472
+#: svn/tags/1.1.2/js/MessageHistoryBlockEditor.js:560
+#: svn/tags/1.1.2/js/MessageInboxBlockEditor.js:472
 #: svn/trunk/js/MessageHistoryBlockEditor.js:560
-#: js/MessageInboxBlockEditor.js:472
-#: js/MessageHistoryBlockEditor.js:560
+#: svn/trunk/js/MessageInboxBlockEditor.js:472
 msgid "Action Links"
 msgstr ""
 
-#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:494
-#: svn/trunk/js/MessageInboxBlockEditor.js:494
-#: js/MessageInboxBlockEditor.js:494
-msgid "Origin Device ID ('From' Column)"
+#: js/MessageHistoryBlockEditor.js:584
+#: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:582
+#: svn/tags/1.1.0/js/MessageHistoryBlockEditor.js:582
+#: svn/tags/1.1.1/js/MessageHistoryBlockEditor.js:582
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlockEditor.js:582
+#: svn/tags/1.1.2/js/MessageHistoryBlockEditor.js:582
+#: svn/trunk/js/MessageHistoryBlockEditor.js:582
+msgid "Target Device ID ('To' Column)"
 msgstr ""
 
-#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:495
+#: js/MessageHistoryBlockEditor.js:585
+#: js/MessageInboxBlockEditor.js:497
 #: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:583
-#: svn/trunk/js/MessageInboxBlockEditor.js:495
+#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:495
+#: svn/tags/1.1.0/js/MessageHistoryBlockEditor.js:583
+#: svn/tags/1.1.0/js/MessageInboxBlockEditor.js:495
+#: svn/tags/1.1.1/js/MessageHistoryBlockEditor.js:583
+#: svn/tags/1.1.1/js/MessageInboxBlockEditor.js:495
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlockEditor.js:583
+#: svn/tags/1.1.1/trunk/js/MessageInboxBlockEditor.js:495
+#: svn/tags/1.1.2/js/MessageHistoryBlockEditor.js:583
+#: svn/tags/1.1.2/js/MessageInboxBlockEditor.js:495
 #: svn/trunk/js/MessageHistoryBlockEditor.js:583
-#: js/MessageInboxBlockEditor.js:495
-#: js/MessageHistoryBlockEditor.js:583
+#: svn/trunk/js/MessageInboxBlockEditor.js:495
 msgid "Always show device ID"
 msgstr ""
 
-#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:495
+#: js/MessageHistoryBlockEditor.js:585
+#: js/MessageInboxBlockEditor.js:497
 #: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:583
-#: svn/trunk/js/MessageInboxBlockEditor.js:495
+#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:495
+#: svn/tags/1.1.0/js/MessageHistoryBlockEditor.js:583
+#: svn/tags/1.1.0/js/MessageInboxBlockEditor.js:495
+#: svn/tags/1.1.1/js/MessageHistoryBlockEditor.js:583
+#: svn/tags/1.1.1/js/MessageInboxBlockEditor.js:495
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlockEditor.js:583
+#: svn/tags/1.1.1/trunk/js/MessageInboxBlockEditor.js:495
+#: svn/tags/1.1.2/js/MessageHistoryBlockEditor.js:583
+#: svn/tags/1.1.2/js/MessageInboxBlockEditor.js:495
 #: svn/trunk/js/MessageHistoryBlockEditor.js:583
-#: js/MessageInboxBlockEditor.js:495
-#: js/MessageHistoryBlockEditor.js:583
+#: svn/trunk/js/MessageInboxBlockEditor.js:495
 msgid "Show product unique ID instead if present"
 msgstr ""
 
-#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:516
+#: js/MessageHistoryBlockEditor.js:606
+#: js/MessageInboxBlockEditor.js:518
 #: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:604
-#: svn/trunk/js/MessageInboxBlockEditor.js:516
+#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:516
+#: svn/tags/1.1.0/js/MessageHistoryBlockEditor.js:604
+#: svn/tags/1.1.0/js/MessageInboxBlockEditor.js:516
+#: svn/tags/1.1.1/js/MessageHistoryBlockEditor.js:604
+#: svn/tags/1.1.1/js/MessageInboxBlockEditor.js:516
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlockEditor.js:604
+#: svn/tags/1.1.1/trunk/js/MessageInboxBlockEditor.js:516
+#: svn/tags/1.1.2/js/MessageHistoryBlockEditor.js:604
+#: svn/tags/1.1.2/js/MessageInboxBlockEditor.js:516
 #: svn/trunk/js/MessageHistoryBlockEditor.js:604
-#: js/MessageInboxBlockEditor.js:516
-#: js/MessageHistoryBlockEditor.js:604
+#: svn/trunk/js/MessageInboxBlockEditor.js:516
 msgid "Display HTML Anchor"
 msgstr ""
 
-#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:517
+#: js/MessageHistoryBlockEditor.js:607
+#: js/MessageInboxBlockEditor.js:519
 #: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:605
-#: svn/trunk/js/MessageInboxBlockEditor.js:517
+#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:517
+#: svn/tags/1.1.0/js/MessageHistoryBlockEditor.js:605
+#: svn/tags/1.1.0/js/MessageInboxBlockEditor.js:517
+#: svn/tags/1.1.1/js/MessageHistoryBlockEditor.js:605
+#: svn/tags/1.1.1/js/MessageInboxBlockEditor.js:517
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlockEditor.js:605
+#: svn/tags/1.1.1/trunk/js/MessageInboxBlockEditor.js:517
+#: svn/tags/1.1.2/js/MessageHistoryBlockEditor.js:605
+#: svn/tags/1.1.2/js/MessageInboxBlockEditor.js:517
 #: svn/trunk/js/MessageHistoryBlockEditor.js:605
-#: js/MessageInboxBlockEditor.js:517
-#: js/MessageHistoryBlockEditor.js:605
+#: svn/trunk/js/MessageInboxBlockEditor.js:517
 msgid "Reference to block used to display the message contents"
 msgstr ""
 
-#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:526
+#: js/MessageHistoryBlockEditor.js:616
+#: js/MessageInboxBlockEditor.js:528
 #: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:614
-#: svn/trunk/js/MessageInboxBlockEditor.js:526
+#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:526
+#: svn/tags/1.1.0/js/MessageHistoryBlockEditor.js:614
+#: svn/tags/1.1.0/js/MessageInboxBlockEditor.js:526
+#: svn/tags/1.1.1/js/MessageHistoryBlockEditor.js:614
+#: svn/tags/1.1.1/js/MessageInboxBlockEditor.js:526
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlockEditor.js:614
+#: svn/tags/1.1.1/trunk/js/MessageInboxBlockEditor.js:526
+#: svn/tags/1.1.2/js/MessageHistoryBlockEditor.js:614
+#: svn/tags/1.1.2/js/MessageInboxBlockEditor.js:526
 #: svn/trunk/js/MessageHistoryBlockEditor.js:614
-#: js/MessageInboxBlockEditor.js:526
-#: js/MessageHistoryBlockEditor.js:614
+#: svn/trunk/js/MessageInboxBlockEditor.js:526
 msgid "Save HTML Anchor"
 msgstr ""
 
-#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:527
+#: js/MessageHistoryBlockEditor.js:617
+#: js/MessageInboxBlockEditor.js:529
 #: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:615
-#: svn/trunk/js/MessageInboxBlockEditor.js:527
+#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:527
+#: svn/tags/1.1.0/js/MessageHistoryBlockEditor.js:615
+#: svn/tags/1.1.0/js/MessageInboxBlockEditor.js:527
+#: svn/tags/1.1.1/js/MessageHistoryBlockEditor.js:615
+#: svn/tags/1.1.1/js/MessageInboxBlockEditor.js:527
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlockEditor.js:615
+#: svn/tags/1.1.1/trunk/js/MessageInboxBlockEditor.js:527
+#: svn/tags/1.1.2/js/MessageHistoryBlockEditor.js:615
+#: svn/tags/1.1.2/js/MessageInboxBlockEditor.js:527
 #: svn/trunk/js/MessageHistoryBlockEditor.js:615
-#: js/MessageInboxBlockEditor.js:527
-#: js/MessageHistoryBlockEditor.js:615
+#: svn/trunk/js/MessageInboxBlockEditor.js:527
 msgid "Reference to block used to save the message contents"
 msgstr ""
 
-#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:534
+#: js/MessageHistoryBlockEditor.js:624
+#: js/MessageInboxBlockEditor.js:536
 #: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:622
-#: svn/trunk/js/MessageInboxBlockEditor.js:534
+#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:534
+#: svn/tags/1.1.0/js/MessageHistoryBlockEditor.js:622
+#: svn/tags/1.1.0/js/MessageInboxBlockEditor.js:534
+#: svn/tags/1.1.1/js/MessageHistoryBlockEditor.js:622
+#: svn/tags/1.1.1/js/MessageInboxBlockEditor.js:534
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlockEditor.js:622
+#: svn/tags/1.1.1/trunk/js/MessageInboxBlockEditor.js:534
+#: svn/tags/1.1.2/js/MessageHistoryBlockEditor.js:622
+#: svn/tags/1.1.2/js/MessageInboxBlockEditor.js:534
 #: svn/trunk/js/MessageHistoryBlockEditor.js:622
-#: js/MessageInboxBlockEditor.js:534
-#: js/MessageHistoryBlockEditor.js:622
+#: svn/trunk/js/MessageInboxBlockEditor.js:534
 msgid "Action Target"
 msgstr ""
 
-#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:581
-#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:614
-#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:647
-#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:680
-#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:829
-#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:857
-#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:885
-#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:913
+#: js/MessageHistoryBlockEditor.js:671
+#: js/MessageHistoryBlockEditor.js:704
+#: js/MessageHistoryBlockEditor.js:737
+#: js/MessageHistoryBlockEditor.js:770
+#: js/MessageHistoryBlockEditor.js:803
+#: js/MessageHistoryBlockEditor.js:950
+#: js/MessageHistoryBlockEditor.js:978
+#: js/MessageHistoryBlockEditor.js:1006
+#: js/MessageHistoryBlockEditor.js:1034
+#: js/MessageHistoryBlockEditor.js:1062
+#: js/MessageInboxBlockEditor.js:583
+#: js/MessageInboxBlockEditor.js:616
+#: js/MessageInboxBlockEditor.js:649
+#: js/MessageInboxBlockEditor.js:682
+#: js/MessageInboxBlockEditor.js:831
+#: js/MessageInboxBlockEditor.js:859
+#: js/MessageInboxBlockEditor.js:887
+#: js/MessageInboxBlockEditor.js:915
 #: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:669
 #: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:702
 #: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:735
@@ -977,14 +1285,86 @@ msgstr ""
 #: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:1004
 #: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:1032
 #: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:1060
-#: svn/trunk/js/MessageInboxBlockEditor.js:581
-#: svn/trunk/js/MessageInboxBlockEditor.js:614
-#: svn/trunk/js/MessageInboxBlockEditor.js:647
-#: svn/trunk/js/MessageInboxBlockEditor.js:680
-#: svn/trunk/js/MessageInboxBlockEditor.js:829
-#: svn/trunk/js/MessageInboxBlockEditor.js:857
-#: svn/trunk/js/MessageInboxBlockEditor.js:885
-#: svn/trunk/js/MessageInboxBlockEditor.js:913
+#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:581
+#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:614
+#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:647
+#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:680
+#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:829
+#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:857
+#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:885
+#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:913
+#: svn/tags/1.1.0/js/MessageHistoryBlockEditor.js:669
+#: svn/tags/1.1.0/js/MessageHistoryBlockEditor.js:702
+#: svn/tags/1.1.0/js/MessageHistoryBlockEditor.js:735
+#: svn/tags/1.1.0/js/MessageHistoryBlockEditor.js:768
+#: svn/tags/1.1.0/js/MessageHistoryBlockEditor.js:801
+#: svn/tags/1.1.0/js/MessageHistoryBlockEditor.js:948
+#: svn/tags/1.1.0/js/MessageHistoryBlockEditor.js:976
+#: svn/tags/1.1.0/js/MessageHistoryBlockEditor.js:1004
+#: svn/tags/1.1.0/js/MessageHistoryBlockEditor.js:1032
+#: svn/tags/1.1.0/js/MessageHistoryBlockEditor.js:1060
+#: svn/tags/1.1.0/js/MessageInboxBlockEditor.js:581
+#: svn/tags/1.1.0/js/MessageInboxBlockEditor.js:614
+#: svn/tags/1.1.0/js/MessageInboxBlockEditor.js:647
+#: svn/tags/1.1.0/js/MessageInboxBlockEditor.js:680
+#: svn/tags/1.1.0/js/MessageInboxBlockEditor.js:829
+#: svn/tags/1.1.0/js/MessageInboxBlockEditor.js:857
+#: svn/tags/1.1.0/js/MessageInboxBlockEditor.js:885
+#: svn/tags/1.1.0/js/MessageInboxBlockEditor.js:913
+#: svn/tags/1.1.1/js/MessageHistoryBlockEditor.js:669
+#: svn/tags/1.1.1/js/MessageHistoryBlockEditor.js:702
+#: svn/tags/1.1.1/js/MessageHistoryBlockEditor.js:735
+#: svn/tags/1.1.1/js/MessageHistoryBlockEditor.js:768
+#: svn/tags/1.1.1/js/MessageHistoryBlockEditor.js:801
+#: svn/tags/1.1.1/js/MessageHistoryBlockEditor.js:948
+#: svn/tags/1.1.1/js/MessageHistoryBlockEditor.js:976
+#: svn/tags/1.1.1/js/MessageHistoryBlockEditor.js:1004
+#: svn/tags/1.1.1/js/MessageHistoryBlockEditor.js:1032
+#: svn/tags/1.1.1/js/MessageHistoryBlockEditor.js:1060
+#: svn/tags/1.1.1/js/MessageInboxBlockEditor.js:581
+#: svn/tags/1.1.1/js/MessageInboxBlockEditor.js:614
+#: svn/tags/1.1.1/js/MessageInboxBlockEditor.js:647
+#: svn/tags/1.1.1/js/MessageInboxBlockEditor.js:680
+#: svn/tags/1.1.1/js/MessageInboxBlockEditor.js:829
+#: svn/tags/1.1.1/js/MessageInboxBlockEditor.js:857
+#: svn/tags/1.1.1/js/MessageInboxBlockEditor.js:885
+#: svn/tags/1.1.1/js/MessageInboxBlockEditor.js:913
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlockEditor.js:669
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlockEditor.js:702
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlockEditor.js:735
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlockEditor.js:768
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlockEditor.js:801
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlockEditor.js:948
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlockEditor.js:976
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlockEditor.js:1004
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlockEditor.js:1032
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlockEditor.js:1060
+#: svn/tags/1.1.1/trunk/js/MessageInboxBlockEditor.js:581
+#: svn/tags/1.1.1/trunk/js/MessageInboxBlockEditor.js:614
+#: svn/tags/1.1.1/trunk/js/MessageInboxBlockEditor.js:647
+#: svn/tags/1.1.1/trunk/js/MessageInboxBlockEditor.js:680
+#: svn/tags/1.1.1/trunk/js/MessageInboxBlockEditor.js:829
+#: svn/tags/1.1.1/trunk/js/MessageInboxBlockEditor.js:857
+#: svn/tags/1.1.1/trunk/js/MessageInboxBlockEditor.js:885
+#: svn/tags/1.1.1/trunk/js/MessageInboxBlockEditor.js:913
+#: svn/tags/1.1.2/js/MessageHistoryBlockEditor.js:669
+#: svn/tags/1.1.2/js/MessageHistoryBlockEditor.js:702
+#: svn/tags/1.1.2/js/MessageHistoryBlockEditor.js:735
+#: svn/tags/1.1.2/js/MessageHistoryBlockEditor.js:768
+#: svn/tags/1.1.2/js/MessageHistoryBlockEditor.js:801
+#: svn/tags/1.1.2/js/MessageHistoryBlockEditor.js:948
+#: svn/tags/1.1.2/js/MessageHistoryBlockEditor.js:976
+#: svn/tags/1.1.2/js/MessageHistoryBlockEditor.js:1004
+#: svn/tags/1.1.2/js/MessageHistoryBlockEditor.js:1032
+#: svn/tags/1.1.2/js/MessageHistoryBlockEditor.js:1060
+#: svn/tags/1.1.2/js/MessageInboxBlockEditor.js:581
+#: svn/tags/1.1.2/js/MessageInboxBlockEditor.js:614
+#: svn/tags/1.1.2/js/MessageInboxBlockEditor.js:647
+#: svn/tags/1.1.2/js/MessageInboxBlockEditor.js:680
+#: svn/tags/1.1.2/js/MessageInboxBlockEditor.js:829
+#: svn/tags/1.1.2/js/MessageInboxBlockEditor.js:857
+#: svn/tags/1.1.2/js/MessageInboxBlockEditor.js:885
+#: svn/tags/1.1.2/js/MessageInboxBlockEditor.js:913
 #: svn/trunk/js/MessageHistoryBlockEditor.js:669
 #: svn/trunk/js/MessageHistoryBlockEditor.js:702
 #: svn/trunk/js/MessageHistoryBlockEditor.js:735
@@ -995,746 +1375,1926 @@ msgstr ""
 #: svn/trunk/js/MessageHistoryBlockEditor.js:1004
 #: svn/trunk/js/MessageHistoryBlockEditor.js:1032
 #: svn/trunk/js/MessageHistoryBlockEditor.js:1060
-#: js/MessageInboxBlockEditor.js:581
-#: js/MessageInboxBlockEditor.js:614
-#: js/MessageInboxBlockEditor.js:647
-#: js/MessageInboxBlockEditor.js:680
-#: js/MessageInboxBlockEditor.js:829
-#: js/MessageInboxBlockEditor.js:857
-#: js/MessageInboxBlockEditor.js:885
-#: js/MessageInboxBlockEditor.js:913
-#: js/MessageHistoryBlockEditor.js:669
-#: js/MessageHistoryBlockEditor.js:702
-#: js/MessageHistoryBlockEditor.js:735
-#: js/MessageHistoryBlockEditor.js:768
-#: js/MessageHistoryBlockEditor.js:801
-#: js/MessageHistoryBlockEditor.js:948
-#: js/MessageHistoryBlockEditor.js:976
-#: js/MessageHistoryBlockEditor.js:1004
-#: js/MessageHistoryBlockEditor.js:1032
-#: js/MessageHistoryBlockEditor.js:1060
+#: svn/trunk/js/MessageInboxBlockEditor.js:581
+#: svn/trunk/js/MessageInboxBlockEditor.js:614
+#: svn/trunk/js/MessageInboxBlockEditor.js:647
+#: svn/trunk/js/MessageInboxBlockEditor.js:680
+#: svn/trunk/js/MessageInboxBlockEditor.js:829
+#: svn/trunk/js/MessageInboxBlockEditor.js:857
+#: svn/trunk/js/MessageInboxBlockEditor.js:885
+#: svn/trunk/js/MessageInboxBlockEditor.js:913
 msgid "Sort by"
 msgstr ""
 
-#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:734
+#: js/MessageHistoryBlockEditor.js:858
+#: js/MessageInboxBlockEditor.js:736
 #: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:856
-#: svn/trunk/js/MessageInboxBlockEditor.js:734
+#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:734
+#: svn/tags/1.1.0/js/MessageHistoryBlockEditor.js:856
+#: svn/tags/1.1.0/js/MessageInboxBlockEditor.js:734
+#: svn/tags/1.1.1/js/MessageHistoryBlockEditor.js:856
+#: svn/tags/1.1.1/js/MessageInboxBlockEditor.js:734
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlockEditor.js:856
+#: svn/tags/1.1.1/trunk/js/MessageInboxBlockEditor.js:734
+#: svn/tags/1.1.2/js/MessageHistoryBlockEditor.js:856
+#: svn/tags/1.1.2/js/MessageInboxBlockEditor.js:734
 #: svn/trunk/js/MessageHistoryBlockEditor.js:856
-#: js/MessageInboxBlockEditor.js:734
-#: js/MessageHistoryBlockEditor.js:856
+#: svn/trunk/js/MessageInboxBlockEditor.js:734
 msgid "Reload"
 msgstr ""
 
-#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:742
-#: svn/trunk/js/MessageInboxBlockEditor.js:742
-#: js/MessageInboxBlockEditor.js:742
-msgid "New Message"
-msgstr ""
-
-#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:746
+#: js/MessageHistoryBlockEditor.js:867
+#: js/MessageInboxBlockEditor.js:748
 #: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:865
-#: svn/trunk/js/MessageInboxBlockEditor.js:746
+#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:746
+#: svn/tags/1.1.0/js/MessageHistoryBlockEditor.js:865
+#: svn/tags/1.1.0/js/MessageInboxBlockEditor.js:746
+#: svn/tags/1.1.1/js/MessageHistoryBlockEditor.js:865
+#: svn/tags/1.1.1/js/MessageInboxBlockEditor.js:746
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlockEditor.js:865
+#: svn/tags/1.1.1/trunk/js/MessageInboxBlockEditor.js:746
+#: svn/tags/1.1.2/js/MessageHistoryBlockEditor.js:865
+#: svn/tags/1.1.2/js/MessageInboxBlockEditor.js:746
 #: svn/trunk/js/MessageHistoryBlockEditor.js:865
-#: js/MessageInboxBlockEditor.js:746
-#: js/MessageHistoryBlockEditor.js:865
+#: svn/trunk/js/MessageInboxBlockEditor.js:746
 msgid "First page"
 msgstr ""
 
-#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:754
+#: js/MessageHistoryBlockEditor.js:875
+#: js/MessageInboxBlockEditor.js:756
 #: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:873
-#: svn/trunk/js/MessageInboxBlockEditor.js:754
+#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:754
+#: svn/tags/1.1.0/js/MessageHistoryBlockEditor.js:873
+#: svn/tags/1.1.0/js/MessageInboxBlockEditor.js:754
+#: svn/tags/1.1.1/js/MessageHistoryBlockEditor.js:873
+#: svn/tags/1.1.1/js/MessageInboxBlockEditor.js:754
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlockEditor.js:873
+#: svn/tags/1.1.1/trunk/js/MessageInboxBlockEditor.js:754
+#: svn/tags/1.1.2/js/MessageHistoryBlockEditor.js:873
+#: svn/tags/1.1.2/js/MessageInboxBlockEditor.js:754
 #: svn/trunk/js/MessageHistoryBlockEditor.js:873
-#: js/MessageInboxBlockEditor.js:754
-#: js/MessageHistoryBlockEditor.js:873
+#: svn/trunk/js/MessageInboxBlockEditor.js:754
 msgid "Previous page"
 msgstr ""
 
-#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:775
+#: js/MessageHistoryBlockEditor.js:896
+#: js/MessageInboxBlockEditor.js:777
 #: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:894
-#: svn/trunk/js/MessageInboxBlockEditor.js:775
+#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:775
+#: svn/tags/1.1.0/js/MessageHistoryBlockEditor.js:894
+#: svn/tags/1.1.0/js/MessageInboxBlockEditor.js:775
+#: svn/tags/1.1.1/js/MessageHistoryBlockEditor.js:894
+#: svn/tags/1.1.1/js/MessageInboxBlockEditor.js:775
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlockEditor.js:894
+#: svn/tags/1.1.1/trunk/js/MessageInboxBlockEditor.js:775
+#: svn/tags/1.1.2/js/MessageHistoryBlockEditor.js:894
+#: svn/tags/1.1.2/js/MessageInboxBlockEditor.js:775
 #: svn/trunk/js/MessageHistoryBlockEditor.js:894
-#: js/MessageInboxBlockEditor.js:775
-#: js/MessageHistoryBlockEditor.js:894
+#: svn/trunk/js/MessageInboxBlockEditor.js:775
 msgid "Next page"
 msgstr ""
 
-#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:783
+#: js/MessageHistoryBlockEditor.js:904
+#: js/MessageInboxBlockEditor.js:785
 #: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:902
-#: svn/trunk/js/MessageInboxBlockEditor.js:783
+#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:783
+#: svn/tags/1.1.0/js/MessageHistoryBlockEditor.js:902
+#: svn/tags/1.1.0/js/MessageInboxBlockEditor.js:783
+#: svn/tags/1.1.1/js/MessageHistoryBlockEditor.js:902
+#: svn/tags/1.1.1/js/MessageInboxBlockEditor.js:783
+#: svn/tags/1.1.1/trunk/js/MessageHistoryBlockEditor.js:902
+#: svn/tags/1.1.1/trunk/js/MessageInboxBlockEditor.js:783
+#: svn/tags/1.1.2/js/MessageHistoryBlockEditor.js:902
+#: svn/tags/1.1.2/js/MessageInboxBlockEditor.js:783
 #: svn/trunk/js/MessageHistoryBlockEditor.js:902
-#: js/MessageInboxBlockEditor.js:783
-#: js/MessageHistoryBlockEditor.js:902
+#: svn/trunk/js/MessageInboxBlockEditor.js:783
 msgid "Last page"
 msgstr ""
 
-#: svn/tags/1.0.0/js/SaveMessageBlockEditor.js:11
-#: svn/trunk/js/SaveMessageBlockEditor.js:11
-#: js/SaveMessageBlockEditor.js:11
-msgid "Save retrieved message"
+#: js/MessageInboxBlockEditor.js:26
+#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:26
+#: svn/tags/1.1.0/js/MessageInboxBlockEditor.js:26
+#: svn/tags/1.1.1/js/MessageInboxBlockEditor.js:26
+#: svn/tags/1.1.1/trunk/js/MessageInboxBlockEditor.js:26
+#: svn/tags/1.1.2/js/MessageInboxBlockEditor.js:26
+#: svn/trunk/js/MessageInboxBlockEditor.js:26
+msgid "Message Inbox"
 msgstr ""
 
-#: svn/tags/1.0.0/js/SaveMessageBlockEditor.js:18
-#: svn/trunk/js/SaveMessageBlockEditor.js:18
-#: js/SaveMessageBlockEditor.js:18
-msgid "Save Message"
+#: js/MessageInboxBlockEditor.js:27
+#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:27
+#: svn/tags/1.1.0/js/MessageInboxBlockEditor.js:27
+#: svn/tags/1.1.1/js/MessageInboxBlockEditor.js:27
+#: svn/tags/1.1.1/trunk/js/MessageInboxBlockEditor.js:27
+#: svn/tags/1.1.2/js/MessageInboxBlockEditor.js:27
+#: svn/trunk/js/MessageInboxBlockEditor.js:27
+msgid "Display list with latest received messages"
 msgstr ""
 
-#: svn/tags/1.0.0/js/SaveMessageBlockEditor.js:19
-#: svn/trunk/js/SaveMessageBlockEditor.js:19
-#: js/SaveMessageBlockEditor.js:19
-msgid "Save message retrieved from the Bitcoin blockchain as a file"
+#: js/MessageInboxBlockEditor.js:460
+#: js/MessageInboxBlockEditor.js:651
+#: js/MessageInboxBlockEditor.js:888
+#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:458
+#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:649
+#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:886
+#: svn/tags/1.1.0/js/MessageInboxBlockEditor.js:458
+#: svn/tags/1.1.0/js/MessageInboxBlockEditor.js:649
+#: svn/tags/1.1.0/js/MessageInboxBlockEditor.js:886
+#: svn/tags/1.1.1/js/MessageInboxBlockEditor.js:458
+#: svn/tags/1.1.1/js/MessageInboxBlockEditor.js:649
+#: svn/tags/1.1.1/js/MessageInboxBlockEditor.js:886
+#: svn/tags/1.1.1/trunk/js/MessageInboxBlockEditor.js:458
+#: svn/tags/1.1.1/trunk/js/MessageInboxBlockEditor.js:649
+#: svn/tags/1.1.1/trunk/js/MessageInboxBlockEditor.js:886
+#: svn/tags/1.1.2/js/MessageInboxBlockEditor.js:458
+#: svn/tags/1.1.2/js/MessageInboxBlockEditor.js:649
+#: svn/tags/1.1.2/js/MessageInboxBlockEditor.js:886
+#: svn/trunk/js/MessageInboxBlockEditor.js:458
+#: svn/trunk/js/MessageInboxBlockEditor.js:649
+#: svn/trunk/js/MessageInboxBlockEditor.js:886
+msgid "From"
 msgstr ""
 
-#: svn/tags/1.0.0/js/SaveMessageBlockEditor.js:155
-#: svn/tags/1.0.0/js/DisplayMessageBlockEditor.js:154
-#: svn/trunk/js/SaveMessageBlockEditor.js:155
-#: svn/trunk/js/DisplayMessageBlockEditor.js:154
-#: js/SaveMessageBlockEditor.js:155
-#: js/DisplayMessageBlockEditor.js:154
-msgid "Message"
+#: js/MessageInboxBlockEditor.js:496
+#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:494
+#: svn/tags/1.1.0/js/MessageInboxBlockEditor.js:494
+#: svn/tags/1.1.1/js/MessageInboxBlockEditor.js:494
+#: svn/tags/1.1.1/trunk/js/MessageInboxBlockEditor.js:494
+#: svn/tags/1.1.2/js/MessageInboxBlockEditor.js:494
+#: svn/trunk/js/MessageInboxBlockEditor.js:494
+msgid "Origin Device ID ('From' Column)"
 msgstr ""
 
-#: svn/tags/1.0.0/js/SaveMessageBlockEditor.js:159
-#: svn/tags/1.0.0/js/DisplayMessageBlockEditor.js:158
-#: svn/trunk/js/SaveMessageBlockEditor.js:159
-#: svn/trunk/js/DisplayMessageBlockEditor.js:158
-#: js/SaveMessageBlockEditor.js:159
-#: js/DisplayMessageBlockEditor.js:158
-msgid "ID of message to be retrieved"
+#: js/MessageInboxBlockEditor.js:744
+#: svn/tags/1.0.0/js/MessageInboxBlockEditor.js:742
+#: svn/tags/1.1.0/js/MessageInboxBlockEditor.js:742
+#: svn/tags/1.1.1/js/MessageInboxBlockEditor.js:742
+#: svn/tags/1.1.1/trunk/js/MessageInboxBlockEditor.js:742
+#: svn/tags/1.1.2/js/MessageInboxBlockEditor.js:742
+#: svn/trunk/js/MessageInboxBlockEditor.js:742
+msgid "New Message"
 msgstr ""
 
-#: svn/tags/1.0.0/js/SaveMessageBlockEditor.js:170
-#: svn/tags/1.0.0/js/DisplayMessageBlockEditor.js:169
-#: svn/trunk/js/SaveMessageBlockEditor.js:170
-#: svn/trunk/js/DisplayMessageBlockEditor.js:169
-#: js/SaveMessageBlockEditor.js:170
-#: js/DisplayMessageBlockEditor.js:169
-msgid "Show animated icon while loading message"
-msgstr ""
-
-#: svn/tags/1.0.0/js/SaveMessageBlockEditor.js:180
-#: svn/trunk/js/SaveMessageBlockEditor.js:180
-#: js/SaveMessageBlockEditor.js:180
-msgid "Auto Save"
-msgstr ""
-
-#: svn/tags/1.0.0/js/SaveMessageBlockEditor.js:181
-#: svn/trunk/js/SaveMessageBlockEditor.js:181
-#: js/SaveMessageBlockEditor.js:181
-msgid "Automatically save message after it is retrieved"
-msgstr ""
-
-#: svn/tags/1.0.0/js/SaveMessageBlockEditor.js:181
-#: svn/trunk/js/SaveMessageBlockEditor.js:181
-#: js/SaveMessageBlockEditor.js:181
-msgid "Show link to save retrieved message"
-msgstr ""
-
-#: svn/tags/1.0.0/js/SaveMessageBlockEditor.js:194
-#: svn/trunk/js/SaveMessageBlockEditor.js:194
-#: js/SaveMessageBlockEditor.js:194
-msgid "Save Message Link"
-msgstr ""
-
-#: svn/tags/1.0.0/js/MessageInputBlockEditor.js:9
-#: svn/trunk/js/MessageInputBlockEditor.js:9
 #: js/MessageInputBlockEditor.js:9
+#: svn/tags/1.0.0/js/MessageInputBlockEditor.js:9
+#: svn/tags/1.1.0/js/MessageInputBlockEditor.js:9
+#: svn/tags/1.1.1/js/MessageInputBlockEditor.js:9
+#: svn/tags/1.1.1/trunk/js/MessageInputBlockEditor.js:9
+#: svn/tags/1.1.2/js/MessageInputBlockEditor.js:9
+#: svn/trunk/js/MessageInputBlockEditor.js:9
 msgid "Submit"
 msgstr ""
 
-#: svn/tags/1.0.0/js/MessageInputBlockEditor.js:12
-#: svn/trunk/js/MessageInputBlockEditor.js:12
 #: js/MessageInputBlockEditor.js:12
+#: svn/tags/1.0.0/js/MessageInputBlockEditor.js:12
+#: svn/tags/1.1.0/js/MessageInputBlockEditor.js:12
+#: svn/tags/1.1.1/js/MessageInputBlockEditor.js:12
+#: svn/tags/1.1.1/trunk/js/MessageInputBlockEditor.js:12
+#: svn/tags/1.1.2/js/MessageInputBlockEditor.js:12
+#: svn/trunk/js/MessageInputBlockEditor.js:12
 msgid "Message Input"
 msgstr ""
 
-#: svn/tags/1.0.0/js/MessageInputBlockEditor.js:13
-#: svn/trunk/js/MessageInputBlockEditor.js:13
 #: js/MessageInputBlockEditor.js:13
+#: svn/tags/1.0.0/js/MessageInputBlockEditor.js:13
+#: svn/tags/1.1.0/js/MessageInputBlockEditor.js:13
+#: svn/tags/1.1.1/js/MessageInputBlockEditor.js:13
+#: svn/tags/1.1.1/trunk/js/MessageInputBlockEditor.js:13
+#: svn/tags/1.1.2/js/MessageInputBlockEditor.js:13
+#: svn/trunk/js/MessageInputBlockEditor.js:13
 msgid "Enter ID of message for display/saving"
 msgstr ""
 
+#: js/MessageInputBlockEditor.js:85
 #: svn/tags/1.0.0/js/MessageInputBlockEditor.js:83
+#: svn/tags/1.1.0/js/MessageInputBlockEditor.js:83
+#: svn/tags/1.1.1/js/MessageInputBlockEditor.js:83
+#: svn/tags/1.1.1/trunk/js/MessageInputBlockEditor.js:83
+#: svn/tags/1.1.2/js/MessageInputBlockEditor.js:83
 #: svn/trunk/js/MessageInputBlockEditor.js:83
-#: js/MessageInputBlockEditor.js:83
 msgid "Target"
 msgstr ""
 
+#: js/MessageInputBlockEditor.js:88
 #: svn/tags/1.0.0/js/MessageInputBlockEditor.js:86
+#: svn/tags/1.1.0/js/MessageInputBlockEditor.js:86
+#: svn/tags/1.1.1/js/MessageInputBlockEditor.js:86
+#: svn/tags/1.1.1/trunk/js/MessageInputBlockEditor.js:86
+#: svn/tags/1.1.2/js/MessageInputBlockEditor.js:86
 #: svn/trunk/js/MessageInputBlockEditor.js:86
-#: js/MessageInputBlockEditor.js:86
 msgid "HTML Anchor"
 msgstr ""
 
+#: js/MessageInputBlockEditor.js:89
 #: svn/tags/1.0.0/js/MessageInputBlockEditor.js:87
+#: svn/tags/1.1.0/js/MessageInputBlockEditor.js:87
+#: svn/tags/1.1.1/js/MessageInputBlockEditor.js:87
+#: svn/tags/1.1.1/trunk/js/MessageInputBlockEditor.js:87
+#: svn/tags/1.1.2/js/MessageInputBlockEditor.js:87
 #: svn/trunk/js/MessageInputBlockEditor.js:87
-#: js/MessageInputBlockEditor.js:87
 msgid "Reference to block used to display/save the message contents"
 msgstr ""
 
+#: js/MessageInputBlockEditor.js:99
 #: svn/tags/1.0.0/js/MessageInputBlockEditor.js:97
+#: svn/tags/1.1.0/js/MessageInputBlockEditor.js:97
+#: svn/tags/1.1.1/js/MessageInputBlockEditor.js:97
+#: svn/tags/1.1.1/trunk/js/MessageInputBlockEditor.js:97
+#: svn/tags/1.1.2/js/MessageInputBlockEditor.js:97
 #: svn/trunk/js/MessageInputBlockEditor.js:97
-#: js/MessageInputBlockEditor.js:97
 msgid "Message ID Placeholder"
 msgstr ""
 
-#: svn/tags/1.0.0/js/SendFileBlockEditor.js:11
-#: svn/tags/1.0.0/js/SendMessageBlockEditor.js:14
-#: svn/trunk/js/SendFileBlockEditor.js:11
-#: svn/trunk/js/SendMessageBlockEditor.js:14
+#: js/MessageInputBlockEditor.js:104
+#: js/SendFileBlockEditor.js:358
+#: js/SendMessageBlockEditor.js:383
+#: js/StoreFileBlockEditor.js:255
+#: js/StoreMessageBlockEditor.js:278
+#: svn/tags/1.0.0/js/MessageInputBlockEditor.js:102
+#: svn/tags/1.0.0/js/SendFileBlockEditor.js:345
+#: svn/tags/1.0.0/js/SendMessageBlockEditor.js:370
+#: svn/tags/1.0.0/js/StoreFileBlockEditor.js:242
+#: svn/tags/1.0.0/js/StoreMessageBlockEditor.js:265
+#: svn/tags/1.1.0/js/MessageInputBlockEditor.js:102
+#: svn/tags/1.1.0/js/SendFileBlockEditor.js:356
+#: svn/tags/1.1.0/js/SendMessageBlockEditor.js:381
+#: svn/tags/1.1.0/js/StoreFileBlockEditor.js:253
+#: svn/tags/1.1.0/js/StoreMessageBlockEditor.js:276
+#: svn/tags/1.1.1/js/MessageInputBlockEditor.js:102
+#: svn/tags/1.1.1/js/SendFileBlockEditor.js:356
+#: svn/tags/1.1.1/js/SendMessageBlockEditor.js:381
+#: svn/tags/1.1.1/js/StoreFileBlockEditor.js:253
+#: svn/tags/1.1.1/js/StoreMessageBlockEditor.js:276
+#: svn/tags/1.1.1/trunk/js/MessageInputBlockEditor.js:102
+#: svn/tags/1.1.1/trunk/js/SendFileBlockEditor.js:356
+#: svn/tags/1.1.1/trunk/js/SendMessageBlockEditor.js:381
+#: svn/tags/1.1.1/trunk/js/StoreFileBlockEditor.js:253
+#: svn/tags/1.1.1/trunk/js/StoreMessageBlockEditor.js:276
+#: svn/tags/1.1.2/js/MessageInputBlockEditor.js:102
+#: svn/tags/1.1.2/js/SendFileBlockEditor.js:356
+#: svn/tags/1.1.2/js/SendMessageBlockEditor.js:381
+#: svn/tags/1.1.2/js/StoreFileBlockEditor.js:253
+#: svn/tags/1.1.2/js/StoreMessageBlockEditor.js:276
+#: svn/trunk/js/MessageInputBlockEditor.js:102
+#: svn/trunk/js/SendFileBlockEditor.js:356
+#: svn/trunk/js/SendMessageBlockEditor.js:381
+#: svn/trunk/js/StoreFileBlockEditor.js:253
+#: svn/trunk/js/StoreMessageBlockEditor.js:276
+msgid "Button Label"
+msgstr ""
+
+#: js/PermissionsBlock.js:616
+#: js/PermissionsBlockEditor.js:498
+#: svn/tags/1.0.0/js/PermissionsBlock.js:616
+#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:496
+#: svn/tags/1.1.0/js/PermissionsBlock.js:616
+#: svn/tags/1.1.0/js/PermissionsBlockEditor.js:496
+#: svn/tags/1.1.1/js/PermissionsBlock.js:616
+#: svn/tags/1.1.1/js/PermissionsBlockEditor.js:496
+#: svn/tags/1.1.1/trunk/js/PermissionsBlock.js:616
+#: svn/tags/1.1.1/trunk/js/PermissionsBlockEditor.js:496
+#: svn/tags/1.1.2/js/PermissionsBlock.js:616
+#: svn/tags/1.1.2/js/PermissionsBlockEditor.js:496
+#: svn/trunk/js/PermissionsBlock.js:616
+#: svn/trunk/js/PermissionsBlockEditor.js:496
+msgid "allow"
+msgstr ""
+
+#: js/PermissionsBlock.js:617
+#: js/PermissionsBlockEditor.js:501
+#: svn/tags/1.0.0/js/PermissionsBlock.js:617
+#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:499
+#: svn/tags/1.1.0/js/PermissionsBlock.js:617
+#: svn/tags/1.1.0/js/PermissionsBlockEditor.js:499
+#: svn/tags/1.1.1/js/PermissionsBlock.js:617
+#: svn/tags/1.1.1/js/PermissionsBlockEditor.js:499
+#: svn/tags/1.1.1/trunk/js/PermissionsBlock.js:617
+#: svn/tags/1.1.1/trunk/js/PermissionsBlockEditor.js:499
+#: svn/tags/1.1.2/js/PermissionsBlock.js:617
+#: svn/tags/1.1.2/js/PermissionsBlockEditor.js:499
+#: svn/trunk/js/PermissionsBlock.js:617
+#: svn/trunk/js/PermissionsBlockEditor.js:499
+msgid "deny"
+msgstr ""
+
+#: js/PermissionsBlock.js:618
+#: js/PermissionsBlockEditor.js:504
+#: svn/tags/1.0.0/js/PermissionsBlock.js:618
+#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:502
+#: svn/tags/1.1.0/js/PermissionsBlock.js:618
+#: svn/tags/1.1.0/js/PermissionsBlockEditor.js:502
+#: svn/tags/1.1.1/js/PermissionsBlock.js:618
+#: svn/tags/1.1.1/js/PermissionsBlockEditor.js:502
+#: svn/tags/1.1.1/trunk/js/PermissionsBlock.js:618
+#: svn/tags/1.1.1/trunk/js/PermissionsBlockEditor.js:502
+#: svn/tags/1.1.2/js/PermissionsBlock.js:618
+#: svn/tags/1.1.2/js/PermissionsBlockEditor.js:502
+#: svn/trunk/js/PermissionsBlock.js:618
+#: svn/trunk/js/PermissionsBlockEditor.js:502
+msgid "none"
+msgstr ""
+
+#: js/PermissionsBlockEditor.js:25
+#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:25
+#: svn/tags/1.1.0/js/PermissionsBlockEditor.js:25
+#: svn/tags/1.1.1/js/PermissionsBlockEditor.js:25
+#: svn/tags/1.1.1/trunk/js/PermissionsBlockEditor.js:25
+#: svn/tags/1.1.2/js/PermissionsBlockEditor.js:25
+#: svn/trunk/js/PermissionsBlockEditor.js:25
+msgid "Permissions"
+msgstr ""
+
+#: js/PermissionsBlockEditor.js:26
+#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:26
+#: svn/tags/1.1.0/js/PermissionsBlockEditor.js:26
+#: svn/tags/1.1.1/js/PermissionsBlockEditor.js:26
+#: svn/tags/1.1.1/trunk/js/PermissionsBlockEditor.js:26
+#: svn/tags/1.1.2/js/PermissionsBlockEditor.js:26
+#: svn/trunk/js/PermissionsBlockEditor.js:26
+msgid "Manage Catenis permissions"
+msgstr ""
+
+#: js/PermissionsBlockEditor.js:157
+#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:155
+#: svn/tags/1.1.0/js/PermissionsBlockEditor.js:155
+#: svn/tags/1.1.1/js/PermissionsBlockEditor.js:155
+#: svn/tags/1.1.1/trunk/js/PermissionsBlockEditor.js:155
+#: svn/tags/1.1.2/js/PermissionsBlockEditor.js:155
+#: svn/trunk/js/PermissionsBlockEditor.js:155
+msgid "Permission Selection"
+msgstr ""
+
+#: js/PermissionsBlockEditor.js:161
+#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:159
+#: svn/tags/1.1.0/js/PermissionsBlockEditor.js:159
+#: svn/tags/1.1.1/js/PermissionsBlockEditor.js:159
+#: svn/tags/1.1.1/trunk/js/PermissionsBlockEditor.js:159
+#: svn/tags/1.1.2/js/PermissionsBlockEditor.js:159
+#: svn/trunk/js/PermissionsBlockEditor.js:159
+msgid "Permission Events"
+msgstr ""
+
+#: js/PermissionsBlockEditor.js:162
+#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:160
+#: svn/tags/1.1.0/js/PermissionsBlockEditor.js:160
+#: svn/tags/1.1.1/js/PermissionsBlockEditor.js:160
+#: svn/tags/1.1.1/trunk/js/PermissionsBlockEditor.js:160
+#: svn/tags/1.1.2/js/PermissionsBlockEditor.js:160
+#: svn/trunk/js/PermissionsBlockEditor.js:160
+msgid "receive-notify-new-msg"
+msgstr ""
+
+#: js/PermissionsBlockEditor.js:168
+#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:166
+#: svn/tags/1.1.0/js/PermissionsBlockEditor.js:166
+#: svn/tags/1.1.1/js/PermissionsBlockEditor.js:166
+#: svn/tags/1.1.1/trunk/js/PermissionsBlockEditor.js:166
+#: svn/tags/1.1.2/js/PermissionsBlockEditor.js:166
+#: svn/trunk/js/PermissionsBlockEditor.js:166
+msgid "receive-notify-msg-read"
+msgstr ""
+
+#: js/PermissionsBlockEditor.js:174
+#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:172
+#: svn/tags/1.1.0/js/PermissionsBlockEditor.js:172
+#: svn/tags/1.1.1/js/PermissionsBlockEditor.js:172
+#: svn/tags/1.1.1/trunk/js/PermissionsBlockEditor.js:172
+#: svn/tags/1.1.2/js/PermissionsBlockEditor.js:172
+#: svn/trunk/js/PermissionsBlockEditor.js:172
+msgid "receive-msg"
+msgstr ""
+
+#: js/PermissionsBlockEditor.js:180
+#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:178
+#: svn/tags/1.1.0/js/PermissionsBlockEditor.js:178
+#: svn/tags/1.1.1/js/PermissionsBlockEditor.js:178
+#: svn/tags/1.1.1/trunk/js/PermissionsBlockEditor.js:178
+#: svn/tags/1.1.2/js/PermissionsBlockEditor.js:178
+#: svn/trunk/js/PermissionsBlockEditor.js:178
+msgid "send-read-msg-confirm"
+msgstr ""
+
+#: js/PermissionsBlockEditor.js:186
+#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:184
+#: svn/tags/1.1.0/js/PermissionsBlockEditor.js:184
+#: svn/tags/1.1.1/js/PermissionsBlockEditor.js:184
+#: svn/tags/1.1.1/trunk/js/PermissionsBlockEditor.js:184
+#: svn/tags/1.1.2/js/PermissionsBlockEditor.js:184
+#: svn/trunk/js/PermissionsBlockEditor.js:184
+msgid "disclose-main-props"
+msgstr ""
+
+#: js/PermissionsBlockEditor.js:192
+#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:190
+#: svn/tags/1.1.0/js/PermissionsBlockEditor.js:190
+#: svn/tags/1.1.1/js/PermissionsBlockEditor.js:190
+#: svn/tags/1.1.1/trunk/js/PermissionsBlockEditor.js:190
+#: svn/tags/1.1.2/js/PermissionsBlockEditor.js:190
+#: svn/trunk/js/PermissionsBlockEditor.js:190
+msgid "disclose-identity-info"
+msgstr ""
+
+#: js/PermissionsBlockEditor.js:193
+#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:191
+#: svn/tags/1.1.0/js/PermissionsBlockEditor.js:191
+#: svn/tags/1.1.1/js/PermissionsBlockEditor.js:191
+#: svn/tags/1.1.1/trunk/js/PermissionsBlockEditor.js:191
+#: svn/tags/1.1.2/js/PermissionsBlockEditor.js:191
+#: svn/trunk/js/PermissionsBlockEditor.js:191
+msgid "Select the permission rights to choose"
+msgstr ""
+
+#: js/PermissionsBlockEditor.js:199
+#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:197
+#: svn/tags/1.1.0/js/PermissionsBlockEditor.js:197
+#: svn/tags/1.1.1/js/PermissionsBlockEditor.js:197
+#: svn/tags/1.1.1/trunk/js/PermissionsBlockEditor.js:197
+#: svn/tags/1.1.2/js/PermissionsBlockEditor.js:197
+#: svn/trunk/js/PermissionsBlockEditor.js:197
+msgid "Levels"
+msgstr ""
+
+#: js/PermissionsBlockEditor.js:200
+#: js/PermissionsBlockEditor.js:311
+#: js/PermissionsBlockEditor.js:430
+#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:198
+#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:309
+#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:428
+#: svn/tags/1.1.0/js/PermissionsBlockEditor.js:198
+#: svn/tags/1.1.0/js/PermissionsBlockEditor.js:309
+#: svn/tags/1.1.0/js/PermissionsBlockEditor.js:428
+#: svn/tags/1.1.1/js/PermissionsBlockEditor.js:198
+#: svn/tags/1.1.1/js/PermissionsBlockEditor.js:309
+#: svn/tags/1.1.1/js/PermissionsBlockEditor.js:428
+#: svn/tags/1.1.1/trunk/js/PermissionsBlockEditor.js:198
+#: svn/tags/1.1.1/trunk/js/PermissionsBlockEditor.js:309
+#: svn/tags/1.1.1/trunk/js/PermissionsBlockEditor.js:428
+#: svn/tags/1.1.2/js/PermissionsBlockEditor.js:198
+#: svn/tags/1.1.2/js/PermissionsBlockEditor.js:309
+#: svn/tags/1.1.2/js/PermissionsBlockEditor.js:428
+#: svn/trunk/js/PermissionsBlockEditor.js:198
+#: svn/trunk/js/PermissionsBlockEditor.js:309
+#: svn/trunk/js/PermissionsBlockEditor.js:428
+msgid "System"
+msgstr ""
+
+#: js/PermissionsBlockEditor.js:206
+#: js/PermissionsBlockEditor.js:320
+#: js/PermissionsBlockEditor.js:439
+#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:204
+#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:318
+#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:437
+#: svn/tags/1.1.0/js/PermissionsBlockEditor.js:204
+#: svn/tags/1.1.0/js/PermissionsBlockEditor.js:318
+#: svn/tags/1.1.0/js/PermissionsBlockEditor.js:437
+#: svn/tags/1.1.1/js/PermissionsBlockEditor.js:204
+#: svn/tags/1.1.1/js/PermissionsBlockEditor.js:318
+#: svn/tags/1.1.1/js/PermissionsBlockEditor.js:437
+#: svn/tags/1.1.1/trunk/js/PermissionsBlockEditor.js:204
+#: svn/tags/1.1.1/trunk/js/PermissionsBlockEditor.js:318
+#: svn/tags/1.1.1/trunk/js/PermissionsBlockEditor.js:437
+#: svn/tags/1.1.2/js/PermissionsBlockEditor.js:204
+#: svn/tags/1.1.2/js/PermissionsBlockEditor.js:318
+#: svn/tags/1.1.2/js/PermissionsBlockEditor.js:437
+#: svn/trunk/js/PermissionsBlockEditor.js:204
+#: svn/trunk/js/PermissionsBlockEditor.js:318
+#: svn/trunk/js/PermissionsBlockEditor.js:437
+msgid "Catenis Node"
+msgstr ""
+
+#: js/PermissionsBlockEditor.js:212
+#: js/PermissionsBlockEditor.js:329
+#: js/PermissionsBlockEditor.js:448
+#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:210
+#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:327
+#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:446
+#: svn/tags/1.1.0/js/PermissionsBlockEditor.js:210
+#: svn/tags/1.1.0/js/PermissionsBlockEditor.js:327
+#: svn/tags/1.1.0/js/PermissionsBlockEditor.js:446
+#: svn/tags/1.1.1/js/PermissionsBlockEditor.js:210
+#: svn/tags/1.1.1/js/PermissionsBlockEditor.js:327
+#: svn/tags/1.1.1/js/PermissionsBlockEditor.js:446
+#: svn/tags/1.1.1/trunk/js/PermissionsBlockEditor.js:210
+#: svn/tags/1.1.1/trunk/js/PermissionsBlockEditor.js:327
+#: svn/tags/1.1.1/trunk/js/PermissionsBlockEditor.js:446
+#: svn/tags/1.1.2/js/PermissionsBlockEditor.js:210
+#: svn/tags/1.1.2/js/PermissionsBlockEditor.js:327
+#: svn/tags/1.1.2/js/PermissionsBlockEditor.js:446
+#: svn/trunk/js/PermissionsBlockEditor.js:210
+#: svn/trunk/js/PermissionsBlockEditor.js:327
+#: svn/trunk/js/PermissionsBlockEditor.js:446
+msgid "Client"
+msgstr ""
+
+#: js/PermissionsBlockEditor.js:218
+#: js/PermissionsBlockEditor.js:338
+#: js/PermissionsBlockEditor.js:457
+#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:216
+#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:336
+#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:455
+#: svn/tags/1.1.0/js/PermissionsBlockEditor.js:216
+#: svn/tags/1.1.0/js/PermissionsBlockEditor.js:336
+#: svn/tags/1.1.0/js/PermissionsBlockEditor.js:455
+#: svn/tags/1.1.1/js/PermissionsBlockEditor.js:216
+#: svn/tags/1.1.1/js/PermissionsBlockEditor.js:336
+#: svn/tags/1.1.1/js/PermissionsBlockEditor.js:455
+#: svn/tags/1.1.1/trunk/js/PermissionsBlockEditor.js:216
+#: svn/tags/1.1.1/trunk/js/PermissionsBlockEditor.js:336
+#: svn/tags/1.1.1/trunk/js/PermissionsBlockEditor.js:455
+#: svn/tags/1.1.2/js/PermissionsBlockEditor.js:216
+#: svn/tags/1.1.2/js/PermissionsBlockEditor.js:336
+#: svn/tags/1.1.2/js/PermissionsBlockEditor.js:455
+#: svn/trunk/js/PermissionsBlockEditor.js:216
+#: svn/trunk/js/PermissionsBlockEditor.js:336
+#: svn/trunk/js/PermissionsBlockEditor.js:455
+msgid "Device"
+msgstr ""
+
+#: js/PermissionsBlockEditor.js:219
+#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:217
+#: svn/tags/1.1.0/js/PermissionsBlockEditor.js:217
+#: svn/tags/1.1.1/js/PermissionsBlockEditor.js:217
+#: svn/tags/1.1.1/trunk/js/PermissionsBlockEditor.js:217
+#: svn/tags/1.1.2/js/PermissionsBlockEditor.js:217
+#: svn/trunk/js/PermissionsBlockEditor.js:217
+msgid "Select the levels to choose"
+msgstr ""
+
+#: js/PermissionsBlockEditor.js:244
+#: js/PermissionsBlockEditor.js:381
+#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:242
+#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:379
+#: svn/tags/1.1.0/js/PermissionsBlockEditor.js:242
+#: svn/tags/1.1.0/js/PermissionsBlockEditor.js:379
+#: svn/tags/1.1.1/js/PermissionsBlockEditor.js:242
+#: svn/tags/1.1.1/js/PermissionsBlockEditor.js:379
+#: svn/tags/1.1.1/trunk/js/PermissionsBlockEditor.js:242
+#: svn/tags/1.1.1/trunk/js/PermissionsBlockEditor.js:379
+#: svn/tags/1.1.2/js/PermissionsBlockEditor.js:242
+#: svn/tags/1.1.2/js/PermissionsBlockEditor.js:379
+#: svn/trunk/js/PermissionsBlockEditor.js:242
+#: svn/trunk/js/PermissionsBlockEditor.js:379
+msgid "Receive notification of new message from a device"
+msgstr ""
+
+#: js/PermissionsBlockEditor.js:253
+#: js/PermissionsBlockEditor.js:390
+#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:251
+#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:388
+#: svn/tags/1.1.0/js/PermissionsBlockEditor.js:251
+#: svn/tags/1.1.0/js/PermissionsBlockEditor.js:388
+#: svn/tags/1.1.1/js/PermissionsBlockEditor.js:251
+#: svn/tags/1.1.1/js/PermissionsBlockEditor.js:388
+#: svn/tags/1.1.1/trunk/js/PermissionsBlockEditor.js:251
+#: svn/tags/1.1.1/trunk/js/PermissionsBlockEditor.js:388
+#: svn/tags/1.1.2/js/PermissionsBlockEditor.js:251
+#: svn/tags/1.1.2/js/PermissionsBlockEditor.js:388
+#: svn/trunk/js/PermissionsBlockEditor.js:251
+#: svn/trunk/js/PermissionsBlockEditor.js:388
+msgid "Receive notification of message read by a device"
+msgstr ""
+
+#: js/PermissionsBlockEditor.js:262
+#: js/PermissionsBlockEditor.js:399
+#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:260
+#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:397
+#: svn/tags/1.1.0/js/PermissionsBlockEditor.js:260
+#: svn/tags/1.1.0/js/PermissionsBlockEditor.js:397
+#: svn/tags/1.1.1/js/PermissionsBlockEditor.js:260
+#: svn/tags/1.1.1/js/PermissionsBlockEditor.js:397
+#: svn/tags/1.1.1/trunk/js/PermissionsBlockEditor.js:260
+#: svn/tags/1.1.1/trunk/js/PermissionsBlockEditor.js:397
+#: svn/tags/1.1.2/js/PermissionsBlockEditor.js:260
+#: svn/tags/1.1.2/js/PermissionsBlockEditor.js:397
+#: svn/trunk/js/PermissionsBlockEditor.js:260
+#: svn/trunk/js/PermissionsBlockEditor.js:397
+msgid "Receive message from a device"
+msgstr ""
+
+#: js/PermissionsBlockEditor.js:271
+#: js/PermissionsBlockEditor.js:408
+#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:269
+#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:406
+#: svn/tags/1.1.0/js/PermissionsBlockEditor.js:269
+#: svn/tags/1.1.0/js/PermissionsBlockEditor.js:406
+#: svn/tags/1.1.1/js/PermissionsBlockEditor.js:269
+#: svn/tags/1.1.1/js/PermissionsBlockEditor.js:406
+#: svn/tags/1.1.1/trunk/js/PermissionsBlockEditor.js:269
+#: svn/tags/1.1.1/trunk/js/PermissionsBlockEditor.js:406
+#: svn/tags/1.1.2/js/PermissionsBlockEditor.js:269
+#: svn/tags/1.1.2/js/PermissionsBlockEditor.js:406
+#: svn/trunk/js/PermissionsBlockEditor.js:269
+#: svn/trunk/js/PermissionsBlockEditor.js:406
+msgid "Send read message confirmation to a device"
+msgstr ""
+
+#: js/PermissionsBlockEditor.js:280
+#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:278
+#: svn/tags/1.1.0/js/PermissionsBlockEditor.js:278
+#: svn/tags/1.1.1/js/PermissionsBlockEditor.js:278
+#: svn/tags/1.1.1/trunk/js/PermissionsBlockEditor.js:278
+#: svn/tags/1.1.2/js/PermissionsBlockEditor.js:278
+#: svn/trunk/js/PermissionsBlockEditor.js:278
+msgid "Disclose device's main properties (name, product unique ID) to a device"
+msgstr ""
+
+#: js/PermissionsBlockEditor.js:289
+#: svn/tags/1.0.0/js/PermissionsBlockEditor.js:287
+#: svn/tags/1.1.0/js/PermissionsBlockEditor.js:287
+#: svn/tags/1.1.1/js/PermissionsBlockEditor.js:287
+#: svn/tags/1.1.1/trunk/js/PermissionsBlockEditor.js:287
+#: svn/tags/1.1.2/js/PermissionsBlockEditor.js:287
+#: svn/trunk/js/PermissionsBlockEditor.js:287
+msgid "Disclose device's basic identification information to a device"
+msgstr ""
+
+#: js/SaveMessageBlock.js:195
+#: svn/tags/1.0.0/js/SaveMessageBlock.js:195
+#: svn/tags/1.1.0/js/SaveMessageBlock.js:195
+#: svn/tags/1.1.1/js/SaveMessageBlock.js:195
+#: svn/tags/1.1.1/trunk/js/SaveMessageBlock.js:195
+#: svn/tags/1.1.2/js/SaveMessageBlock.js:195
+#: svn/trunk/js/SaveMessageBlock.js:195
+msgid "unnamed"
+msgstr ""
+
+#: js/SaveMessageBlockEditor.js:11
+#: svn/tags/1.0.0/js/SaveMessageBlockEditor.js:11
+#: svn/tags/1.1.0/js/SaveMessageBlockEditor.js:11
+#: svn/tags/1.1.1/js/SaveMessageBlockEditor.js:11
+#: svn/tags/1.1.1/trunk/js/SaveMessageBlockEditor.js:11
+#: svn/tags/1.1.2/js/SaveMessageBlockEditor.js:11
+#: svn/trunk/js/SaveMessageBlockEditor.js:11
+msgid "Save retrieved message"
+msgstr ""
+
+#: js/SaveMessageBlockEditor.js:18
+#: svn/tags/1.0.0/js/SaveMessageBlockEditor.js:18
+#: svn/tags/1.1.0/js/SaveMessageBlockEditor.js:18
+#: svn/tags/1.1.1/js/SaveMessageBlockEditor.js:18
+#: svn/tags/1.1.1/trunk/js/SaveMessageBlockEditor.js:18
+#: svn/tags/1.1.2/js/SaveMessageBlockEditor.js:18
+#: svn/trunk/js/SaveMessageBlockEditor.js:18
+msgid "Save Message"
+msgstr ""
+
+#: js/SaveMessageBlockEditor.js:19
+#: svn/tags/1.0.0/js/SaveMessageBlockEditor.js:19
+#: svn/tags/1.1.0/js/SaveMessageBlockEditor.js:19
+#: svn/tags/1.1.1/js/SaveMessageBlockEditor.js:19
+#: svn/tags/1.1.1/trunk/js/SaveMessageBlockEditor.js:19
+#: svn/tags/1.1.2/js/SaveMessageBlockEditor.js:19
+#: svn/trunk/js/SaveMessageBlockEditor.js:19
+msgid "Save message retrieved from the Bitcoin blockchain as a file"
+msgstr ""
+
+#: js/SaveMessageBlockEditor.js:182
+#: svn/tags/1.0.0/js/SaveMessageBlockEditor.js:180
+#: svn/tags/1.1.0/js/SaveMessageBlockEditor.js:180
+#: svn/tags/1.1.1/js/SaveMessageBlockEditor.js:180
+#: svn/tags/1.1.1/trunk/js/SaveMessageBlockEditor.js:180
+#: svn/tags/1.1.2/js/SaveMessageBlockEditor.js:180
+#: svn/trunk/js/SaveMessageBlockEditor.js:180
+msgid "Auto Save"
+msgstr ""
+
+#: js/SaveMessageBlockEditor.js:183
+#: svn/tags/1.0.0/js/SaveMessageBlockEditor.js:181
+#: svn/tags/1.1.0/js/SaveMessageBlockEditor.js:181
+#: svn/tags/1.1.1/js/SaveMessageBlockEditor.js:181
+#: svn/tags/1.1.1/trunk/js/SaveMessageBlockEditor.js:181
+#: svn/tags/1.1.2/js/SaveMessageBlockEditor.js:181
+#: svn/trunk/js/SaveMessageBlockEditor.js:181
+msgid "Automatically save message after it is retrieved"
+msgstr ""
+
+#: js/SaveMessageBlockEditor.js:183
+#: svn/tags/1.0.0/js/SaveMessageBlockEditor.js:181
+#: svn/tags/1.1.0/js/SaveMessageBlockEditor.js:181
+#: svn/tags/1.1.1/js/SaveMessageBlockEditor.js:181
+#: svn/tags/1.1.1/trunk/js/SaveMessageBlockEditor.js:181
+#: svn/tags/1.1.2/js/SaveMessageBlockEditor.js:181
+#: svn/trunk/js/SaveMessageBlockEditor.js:181
+msgid "Show link to save retrieved message"
+msgstr ""
+
+#: js/SaveMessageBlockEditor.js:196
+#: svn/tags/1.0.0/js/SaveMessageBlockEditor.js:194
+#: svn/tags/1.1.0/js/SaveMessageBlockEditor.js:194
+#: svn/tags/1.1.1/js/SaveMessageBlockEditor.js:194
+#: svn/tags/1.1.1/trunk/js/SaveMessageBlockEditor.js:194
+#: svn/tags/1.1.2/js/SaveMessageBlockEditor.js:194
+#: svn/trunk/js/SaveMessageBlockEditor.js:194
+msgid "Save Message Link"
+msgstr ""
+
+#: js/SendFileBlock.js:312
+#: svn/tags/1.0.0/js/SendFileBlock.js:312
+#: svn/tags/1.1.0/js/SendFileBlock.js:312
+#: svn/tags/1.1.1/js/SendFileBlock.js:312
+#: svn/tags/1.1.1/trunk/js/SendFileBlock.js:312
+#: svn/tags/1.1.2/js/SendFileBlock.js:312
+#: svn/trunk/js/SendFileBlock.js:312
+msgid "No file selected to be sent"
+msgstr ""
+
+#: js/SendFileBlock.js:321
+#: js/SendMessageBlock.js:174
+#: svn/tags/1.0.0/js/SendFileBlock.js:321
+#: svn/tags/1.0.0/js/SendMessageBlock.js:174
+#: svn/tags/1.1.0/js/SendFileBlock.js:321
+#: svn/tags/1.1.0/js/SendMessageBlock.js:174
+#: svn/tags/1.1.1/js/SendFileBlock.js:321
+#: svn/tags/1.1.1/js/SendMessageBlock.js:174
+#: svn/tags/1.1.1/trunk/js/SendFileBlock.js:321
+#: svn/tags/1.1.1/trunk/js/SendMessageBlock.js:174
+#: svn/tags/1.1.2/js/SendFileBlock.js:321
+#: svn/tags/1.1.2/js/SendMessageBlock.js:174
+#: svn/trunk/js/SendFileBlock.js:321
+#: svn/trunk/js/SendMessageBlock.js:174
+msgid "No target device product unique ID"
+msgstr ""
+
+#: js/SendFileBlock.js:321
+#: js/SendMessageBlock.js:174
+#: svn/tags/1.0.0/js/SendFileBlock.js:321
+#: svn/tags/1.0.0/js/SendMessageBlock.js:174
+#: svn/tags/1.1.0/js/SendFileBlock.js:321
+#: svn/tags/1.1.0/js/SendMessageBlock.js:174
+#: svn/tags/1.1.1/js/SendFileBlock.js:321
+#: svn/tags/1.1.1/js/SendMessageBlock.js:174
+#: svn/tags/1.1.1/trunk/js/SendFileBlock.js:321
+#: svn/tags/1.1.1/trunk/js/SendMessageBlock.js:174
+#: svn/tags/1.1.2/js/SendFileBlock.js:321
+#: svn/tags/1.1.2/js/SendMessageBlock.js:174
+#: svn/trunk/js/SendFileBlock.js:321
+#: svn/trunk/js/SendMessageBlock.js:174
+msgid "No target device ID"
+msgstr ""
+
+#: js/SendFileBlock.js:427
+#: svn/tags/1.0.0/js/SendFileBlock.js:427
+#: svn/tags/1.1.0/js/SendFileBlock.js:427
+#: svn/tags/1.1.1/js/SendFileBlock.js:427
+#: svn/tags/1.1.1/trunk/js/SendFileBlock.js:427
+#: svn/tags/1.1.2/js/SendFileBlock.js:427
+#: svn/trunk/js/SendFileBlock.js:427
+msgid "Empty file; nothing to send"
+msgstr ""
+
+#: js/SendFileBlock.js:444
+#: js/StoreFileBlock.js:431
+#: svn/tags/1.0.0/js/SendFileBlock.js:444
+#: svn/tags/1.0.0/js/StoreFileBlock.js:431
+#: svn/tags/1.1.0/js/SendFileBlock.js:444
+#: svn/tags/1.1.0/js/StoreFileBlock.js:431
+#: svn/tags/1.1.1/js/SendFileBlock.js:444
+#: svn/tags/1.1.1/js/StoreFileBlock.js:431
+#: svn/tags/1.1.1/trunk/js/SendFileBlock.js:444
+#: svn/tags/1.1.1/trunk/js/StoreFileBlock.js:431
+#: svn/tags/1.1.2/js/SendFileBlock.js:444
+#: svn/tags/1.1.2/js/StoreFileBlock.js:431
+#: svn/trunk/js/SendFileBlock.js:444
+#: svn/trunk/js/StoreFileBlock.js:431
+msgid "Error reading file: "
+msgstr ""
+
+#: js/SendFileBlock.js:449
+#: js/StoreFileBlock.js:436
+#: svn/tags/1.0.0/js/SendFileBlock.js:449
+#: svn/tags/1.0.0/js/StoreFileBlock.js:436
+#: svn/tags/1.1.0/js/SendFileBlock.js:449
+#: svn/tags/1.1.0/js/StoreFileBlock.js:436
+#: svn/tags/1.1.1/js/SendFileBlock.js:449
+#: svn/tags/1.1.1/js/StoreFileBlock.js:436
+#: svn/tags/1.1.1/trunk/js/SendFileBlock.js:449
+#: svn/tags/1.1.1/trunk/js/StoreFileBlock.js:436
+#: svn/tags/1.1.2/js/SendFileBlock.js:449
+#: svn/tags/1.1.2/js/StoreFileBlock.js:436
+#: svn/trunk/js/SendFileBlock.js:449
+#: svn/trunk/js/StoreFileBlock.js:436
+msgid "Reading of file has been aborted"
+msgstr ""
+
 #: js/SendFileBlockEditor.js:11
 #: js/SendMessageBlockEditor.js:14
+#: svn/tags/1.0.0/js/SendFileBlockEditor.js:11
+#: svn/tags/1.0.0/js/SendMessageBlockEditor.js:14
+#: svn/tags/1.1.0/js/SendFileBlockEditor.js:11
+#: svn/tags/1.1.0/js/SendMessageBlockEditor.js:14
+#: svn/tags/1.1.1/js/SendFileBlockEditor.js:11
+#: svn/tags/1.1.1/js/SendMessageBlockEditor.js:14
+#: svn/tags/1.1.1/trunk/js/SendFileBlockEditor.js:11
+#: svn/tags/1.1.1/trunk/js/SendMessageBlockEditor.js:14
+#: svn/tags/1.1.2/js/SendFileBlockEditor.js:11
+#: svn/tags/1.1.2/js/SendMessageBlockEditor.js:14
+#: svn/trunk/js/SendFileBlockEditor.js:11
+#: svn/trunk/js/SendMessageBlockEditor.js:14
 msgid "Target device ID"
 msgstr ""
 
-#: svn/tags/1.0.0/js/SendFileBlockEditor.js:12
-#: svn/tags/1.0.0/js/SendMessageBlockEditor.js:15
-#: svn/trunk/js/SendFileBlockEditor.js:12
-#: svn/trunk/js/SendMessageBlockEditor.js:15
 #: js/SendFileBlockEditor.js:12
 #: js/SendMessageBlockEditor.js:15
+#: svn/tags/1.0.0/js/SendFileBlockEditor.js:12
+#: svn/tags/1.0.0/js/SendMessageBlockEditor.js:15
+#: svn/tags/1.1.0/js/SendFileBlockEditor.js:12
+#: svn/tags/1.1.0/js/SendMessageBlockEditor.js:15
+#: svn/tags/1.1.1/js/SendFileBlockEditor.js:12
+#: svn/tags/1.1.1/js/SendMessageBlockEditor.js:15
+#: svn/tags/1.1.1/trunk/js/SendFileBlockEditor.js:12
+#: svn/tags/1.1.1/trunk/js/SendMessageBlockEditor.js:15
+#: svn/tags/1.1.2/js/SendFileBlockEditor.js:12
+#: svn/tags/1.1.2/js/SendMessageBlockEditor.js:15
+#: svn/trunk/js/SendFileBlockEditor.js:12
+#: svn/trunk/js/SendMessageBlockEditor.js:15
 msgid "Target device prod unique ID"
 msgstr ""
 
-#: svn/tags/1.0.0/js/SendFileBlockEditor.js:13
-#: svn/tags/1.0.0/js/StoreFileBlockEditor.js:11
-#: svn/trunk/js/SendFileBlockEditor.js:13
-#: svn/trunk/js/StoreFileBlockEditor.js:11
 #: js/SendFileBlockEditor.js:13
 #: js/StoreFileBlockEditor.js:11
+#: svn/tags/1.0.0/js/SendFileBlockEditor.js:13
+#: svn/tags/1.0.0/js/StoreFileBlockEditor.js:11
+#: svn/tags/1.1.0/js/SendFileBlockEditor.js:13
+#: svn/tags/1.1.0/js/StoreFileBlockEditor.js:11
+#: svn/tags/1.1.1/js/SendFileBlockEditor.js:13
+#: svn/tags/1.1.1/js/StoreFileBlockEditor.js:11
+#: svn/tags/1.1.1/trunk/js/SendFileBlockEditor.js:13
+#: svn/tags/1.1.1/trunk/js/StoreFileBlockEditor.js:11
+#: svn/tags/1.1.2/js/SendFileBlockEditor.js:13
+#: svn/tags/1.1.2/js/StoreFileBlockEditor.js:11
+#: svn/trunk/js/SendFileBlockEditor.js:13
+#: svn/trunk/js/StoreFileBlockEditor.js:11
 msgid "Drop a file or click to select"
 msgstr ""
 
-#: svn/tags/1.0.0/js/SendFileBlockEditor.js:14
-#: svn/tags/1.0.0/js/SendFileBlockEditor.js:24
-#: svn/trunk/js/SendFileBlockEditor.js:14
-#: svn/trunk/js/SendFileBlockEditor.js:25
 #: js/SendFileBlockEditor.js:14
 #: js/SendFileBlockEditor.js:25
+#: svn/tags/1.0.0/js/SendFileBlockEditor.js:14
+#: svn/tags/1.0.0/js/SendFileBlockEditor.js:24
+#: svn/tags/1.1.0/js/SendFileBlockEditor.js:14
+#: svn/tags/1.1.0/js/SendFileBlockEditor.js:25
+#: svn/tags/1.1.1/js/SendFileBlockEditor.js:14
+#: svn/tags/1.1.1/js/SendFileBlockEditor.js:25
+#: svn/tags/1.1.1/trunk/js/SendFileBlockEditor.js:14
+#: svn/tags/1.1.1/trunk/js/SendFileBlockEditor.js:25
+#: svn/tags/1.1.2/js/SendFileBlockEditor.js:14
+#: svn/tags/1.1.2/js/SendFileBlockEditor.js:25
+#: svn/trunk/js/SendFileBlockEditor.js:14
+#: svn/trunk/js/SendFileBlockEditor.js:25
 msgid "Send File"
 msgstr ""
 
-#: svn/tags/1.0.0/js/SendFileBlockEditor.js:15
-#: svn/trunk/js/SendFileBlockEditor.js:15
 #: js/SendFileBlockEditor.js:15
+#: svn/tags/1.0.0/js/SendFileBlockEditor.js:15
+#: svn/tags/1.1.0/js/SendFileBlockEditor.js:15
+#: svn/tags/1.1.1/js/SendFileBlockEditor.js:15
+#: svn/tags/1.1.1/trunk/js/SendFileBlockEditor.js:15
+#: svn/tags/1.1.2/js/SendFileBlockEditor.js:15
+#: svn/trunk/js/SendFileBlockEditor.js:15
 msgid ""
 "File successfully sent.\n"
 "Message Id: {!messageId}"
 msgstr ""
 
-#: svn/tags/1.0.0/js/SendFileBlockEditor.js:25
-#: svn/trunk/js/SendFileBlockEditor.js:26
 #: js/SendFileBlockEditor.js:26
+#: svn/tags/1.0.0/js/SendFileBlockEditor.js:25
+#: svn/tags/1.1.0/js/SendFileBlockEditor.js:26
+#: svn/tags/1.1.1/js/SendFileBlockEditor.js:26
+#: svn/tags/1.1.1/trunk/js/SendFileBlockEditor.js:26
+#: svn/tags/1.1.2/js/SendFileBlockEditor.js:26
+#: svn/trunk/js/SendFileBlockEditor.js:26
 msgid "Store a file onto the Bitcoin blockchain addressing it to another Catenis virtual device"
 msgstr ""
 
+#: js/SendFileBlockEditor.js:277
+#: js/SendMessageBlockEditor.js:291
 #: svn/tags/1.0.0/js/SendFileBlockEditor.js:264
 #: svn/tags/1.0.0/js/SendMessageBlockEditor.js:278
+#: svn/tags/1.1.0/js/SendFileBlockEditor.js:275
+#: svn/tags/1.1.0/js/SendMessageBlockEditor.js:289
+#: svn/tags/1.1.1/js/SendFileBlockEditor.js:275
+#: svn/tags/1.1.1/js/SendMessageBlockEditor.js:289
+#: svn/tags/1.1.1/trunk/js/SendFileBlockEditor.js:275
+#: svn/tags/1.1.1/trunk/js/SendMessageBlockEditor.js:289
+#: svn/tags/1.1.2/js/SendFileBlockEditor.js:275
+#: svn/tags/1.1.2/js/SendMessageBlockEditor.js:289
 #: svn/trunk/js/SendFileBlockEditor.js:275
 #: svn/trunk/js/SendMessageBlockEditor.js:289
-#: js/SendFileBlockEditor.js:275
-#: js/SendMessageBlockEditor.js:289
 msgid "Target Device"
 msgstr ""
 
+#: js/SendFileBlockEditor.js:280
+#: js/SendMessageBlockEditor.js:294
 #: svn/tags/1.0.0/js/SendFileBlockEditor.js:267
 #: svn/tags/1.0.0/js/SendMessageBlockEditor.js:281
+#: svn/tags/1.1.0/js/SendFileBlockEditor.js:278
+#: svn/tags/1.1.0/js/SendMessageBlockEditor.js:292
+#: svn/tags/1.1.1/js/SendFileBlockEditor.js:278
+#: svn/tags/1.1.1/js/SendMessageBlockEditor.js:292
+#: svn/tags/1.1.1/trunk/js/SendFileBlockEditor.js:278
+#: svn/tags/1.1.1/trunk/js/SendMessageBlockEditor.js:292
+#: svn/tags/1.1.2/js/SendFileBlockEditor.js:278
+#: svn/tags/1.1.2/js/SendMessageBlockEditor.js:292
 #: svn/trunk/js/SendFileBlockEditor.js:278
 #: svn/trunk/js/SendMessageBlockEditor.js:292
-#: js/SendFileBlockEditor.js:278
-#: js/SendMessageBlockEditor.js:292
 msgid "Dynamic Target Device"
 msgstr ""
 
+#: js/SendFileBlockEditor.js:281
+#: js/SendMessageBlockEditor.js:295
 #: svn/tags/1.0.0/js/SendFileBlockEditor.js:268
 #: svn/tags/1.0.0/js/SendMessageBlockEditor.js:282
+#: svn/tags/1.1.0/js/SendFileBlockEditor.js:279
+#: svn/tags/1.1.0/js/SendMessageBlockEditor.js:293
+#: svn/tags/1.1.1/js/SendFileBlockEditor.js:279
+#: svn/tags/1.1.1/js/SendMessageBlockEditor.js:293
+#: svn/tags/1.1.1/trunk/js/SendFileBlockEditor.js:279
+#: svn/tags/1.1.1/trunk/js/SendMessageBlockEditor.js:293
+#: svn/tags/1.1.2/js/SendFileBlockEditor.js:279
+#: svn/tags/1.1.2/js/SendMessageBlockEditor.js:293
 #: svn/trunk/js/SendFileBlockEditor.js:279
 #: svn/trunk/js/SendMessageBlockEditor.js:293
-#: js/SendFileBlockEditor.js:279
-#: js/SendMessageBlockEditor.js:293
 msgid "Select a different target device for each message"
 msgstr ""
 
+#: js/SendFileBlockEditor.js:281
+#: js/SendMessageBlockEditor.js:295
 #: svn/tags/1.0.0/js/SendFileBlockEditor.js:268
 #: svn/tags/1.0.0/js/SendMessageBlockEditor.js:282
+#: svn/tags/1.1.0/js/SendFileBlockEditor.js:279
+#: svn/tags/1.1.0/js/SendMessageBlockEditor.js:293
+#: svn/tags/1.1.1/js/SendFileBlockEditor.js:279
+#: svn/tags/1.1.1/js/SendMessageBlockEditor.js:293
+#: svn/tags/1.1.1/trunk/js/SendFileBlockEditor.js:279
+#: svn/tags/1.1.1/trunk/js/SendMessageBlockEditor.js:293
+#: svn/tags/1.1.2/js/SendFileBlockEditor.js:279
+#: svn/tags/1.1.2/js/SendMessageBlockEditor.js:293
 #: svn/trunk/js/SendFileBlockEditor.js:279
 #: svn/trunk/js/SendMessageBlockEditor.js:293
-#: js/SendFileBlockEditor.js:279
-#: js/SendMessageBlockEditor.js:293
 msgid "Use a single predefined target device"
 msgstr ""
 
+#: js/SendFileBlockEditor.js:286
+#: js/SendMessageBlockEditor.js:300
 #: svn/tags/1.0.0/js/SendFileBlockEditor.js:273
 #: svn/tags/1.0.0/js/SendMessageBlockEditor.js:287
+#: svn/tags/1.1.0/js/SendFileBlockEditor.js:284
+#: svn/tags/1.1.0/js/SendMessageBlockEditor.js:298
+#: svn/tags/1.1.1/js/SendFileBlockEditor.js:284
+#: svn/tags/1.1.1/js/SendMessageBlockEditor.js:298
+#: svn/tags/1.1.1/trunk/js/SendFileBlockEditor.js:284
+#: svn/tags/1.1.1/trunk/js/SendMessageBlockEditor.js:298
+#: svn/tags/1.1.2/js/SendFileBlockEditor.js:284
+#: svn/tags/1.1.2/js/SendMessageBlockEditor.js:298
 #: svn/trunk/js/SendFileBlockEditor.js:284
 #: svn/trunk/js/SendMessageBlockEditor.js:298
-#: js/SendFileBlockEditor.js:284
-#: js/SendMessageBlockEditor.js:298
 msgid "Use Product Unique ID"
 msgstr ""
 
+#: js/SendFileBlockEditor.js:287
+#: js/SendMessageBlockEditor.js:301
 #: svn/tags/1.0.0/js/SendFileBlockEditor.js:274
 #: svn/tags/1.0.0/js/SendMessageBlockEditor.js:288
+#: svn/tags/1.1.0/js/SendFileBlockEditor.js:285
+#: svn/tags/1.1.0/js/SendMessageBlockEditor.js:299
+#: svn/tags/1.1.1/js/SendFileBlockEditor.js:285
+#: svn/tags/1.1.1/js/SendMessageBlockEditor.js:299
+#: svn/tags/1.1.1/trunk/js/SendFileBlockEditor.js:285
+#: svn/tags/1.1.1/trunk/js/SendMessageBlockEditor.js:299
+#: svn/tags/1.1.2/js/SendFileBlockEditor.js:285
+#: svn/tags/1.1.2/js/SendMessageBlockEditor.js:299
 #: svn/trunk/js/SendFileBlockEditor.js:285
 #: svn/trunk/js/SendMessageBlockEditor.js:299
-#: js/SendFileBlockEditor.js:285
-#: js/SendMessageBlockEditor.js:299
 msgid "Enter product unique ID for target device"
 msgstr ""
 
+#: js/SendFileBlockEditor.js:287
+#: js/SendMessageBlockEditor.js:301
 #: svn/tags/1.0.0/js/SendFileBlockEditor.js:274
 #: svn/tags/1.0.0/js/SendMessageBlockEditor.js:288
+#: svn/tags/1.1.0/js/SendFileBlockEditor.js:285
+#: svn/tags/1.1.0/js/SendMessageBlockEditor.js:299
+#: svn/tags/1.1.1/js/SendFileBlockEditor.js:285
+#: svn/tags/1.1.1/js/SendMessageBlockEditor.js:299
+#: svn/tags/1.1.1/trunk/js/SendFileBlockEditor.js:285
+#: svn/tags/1.1.1/trunk/js/SendMessageBlockEditor.js:299
+#: svn/tags/1.1.2/js/SendFileBlockEditor.js:285
+#: svn/tags/1.1.2/js/SendMessageBlockEditor.js:299
 #: svn/trunk/js/SendFileBlockEditor.js:285
 #: svn/trunk/js/SendMessageBlockEditor.js:299
-#: js/SendFileBlockEditor.js:285
-#: js/SendMessageBlockEditor.js:299
 msgid "Enter Catenis device ID for target device"
 msgstr ""
 
+#: js/SendFileBlockEditor.js:295
+#: js/SendMessageBlockEditor.js:309
 #: svn/tags/1.0.0/js/SendFileBlockEditor.js:282
 #: svn/tags/1.0.0/js/SendMessageBlockEditor.js:296
+#: svn/tags/1.1.0/js/SendFileBlockEditor.js:293
+#: svn/tags/1.1.0/js/SendMessageBlockEditor.js:307
+#: svn/tags/1.1.1/js/SendFileBlockEditor.js:293
+#: svn/tags/1.1.1/js/SendMessageBlockEditor.js:307
+#: svn/tags/1.1.1/trunk/js/SendFileBlockEditor.js:293
+#: svn/tags/1.1.1/trunk/js/SendMessageBlockEditor.js:307
+#: svn/tags/1.1.2/js/SendFileBlockEditor.js:293
+#: svn/tags/1.1.2/js/SendMessageBlockEditor.js:307
 #: svn/trunk/js/SendFileBlockEditor.js:293
 #: svn/trunk/js/SendMessageBlockEditor.js:307
-#: js/SendFileBlockEditor.js:293
-#: js/SendMessageBlockEditor.js:307
 msgid "Target Device Product Unique ID"
 msgstr ""
 
+#: js/SendFileBlockEditor.js:295
+#: js/SendMessageBlockEditor.js:309
 #: svn/tags/1.0.0/js/SendFileBlockEditor.js:282
 #: svn/tags/1.0.0/js/SendMessageBlockEditor.js:296
+#: svn/tags/1.1.0/js/SendFileBlockEditor.js:293
+#: svn/tags/1.1.0/js/SendMessageBlockEditor.js:307
+#: svn/tags/1.1.1/js/SendFileBlockEditor.js:293
+#: svn/tags/1.1.1/js/SendMessageBlockEditor.js:307
+#: svn/tags/1.1.1/trunk/js/SendFileBlockEditor.js:293
+#: svn/tags/1.1.1/trunk/js/SendMessageBlockEditor.js:307
+#: svn/tags/1.1.2/js/SendFileBlockEditor.js:293
+#: svn/tags/1.1.2/js/SendMessageBlockEditor.js:307
 #: svn/trunk/js/SendFileBlockEditor.js:293
 #: svn/trunk/js/SendMessageBlockEditor.js:307
-#: js/SendFileBlockEditor.js:293
-#: js/SendMessageBlockEditor.js:307
 msgid "Target Device ID"
 msgstr ""
 
+#: js/SendFileBlockEditor.js:296
+#: js/SendMessageBlockEditor.js:310
 #: svn/tags/1.0.0/js/SendFileBlockEditor.js:283
 #: svn/tags/1.0.0/js/SendMessageBlockEditor.js:297
+#: svn/tags/1.1.0/js/SendFileBlockEditor.js:294
+#: svn/tags/1.1.0/js/SendMessageBlockEditor.js:308
+#: svn/tags/1.1.1/js/SendFileBlockEditor.js:294
+#: svn/tags/1.1.1/js/SendMessageBlockEditor.js:308
+#: svn/tags/1.1.1/trunk/js/SendFileBlockEditor.js:294
+#: svn/tags/1.1.1/trunk/js/SendMessageBlockEditor.js:308
+#: svn/tags/1.1.2/js/SendFileBlockEditor.js:294
+#: svn/tags/1.1.2/js/SendMessageBlockEditor.js:308
 #: svn/trunk/js/SendFileBlockEditor.js:294
 #: svn/trunk/js/SendMessageBlockEditor.js:308
-#: js/SendFileBlockEditor.js:294
-#: js/SendMessageBlockEditor.js:308
 msgid "ID of Catenis virtual device to which the message is sent"
 msgstr ""
 
+#: js/SendFileBlockEditor.js:310
 #: svn/tags/1.0.0/js/SendFileBlockEditor.js:297
+#: svn/tags/1.1.0/js/SendFileBlockEditor.js:308
+#: svn/tags/1.1.1/js/SendFileBlockEditor.js:308
+#: svn/tags/1.1.1/trunk/js/SendFileBlockEditor.js:308
+#: svn/tags/1.1.2/js/SendFileBlockEditor.js:308
 #: svn/trunk/js/SendFileBlockEditor.js:308
-#: js/SendFileBlockEditor.js:308
 msgid "Show animated icon while sending file"
 msgstr ""
 
+#: js/SendFileBlockEditor.js:343
+#: js/SendMessageBlockEditor.js:368
 #: svn/tags/1.0.0/js/SendFileBlockEditor.js:330
 #: svn/tags/1.0.0/js/SendMessageBlockEditor.js:355
+#: svn/tags/1.1.0/js/SendFileBlockEditor.js:341
+#: svn/tags/1.1.0/js/SendMessageBlockEditor.js:366
+#: svn/tags/1.1.1/js/SendFileBlockEditor.js:341
+#: svn/tags/1.1.1/js/SendMessageBlockEditor.js:366
+#: svn/tags/1.1.1/trunk/js/SendFileBlockEditor.js:341
+#: svn/tags/1.1.1/trunk/js/SendMessageBlockEditor.js:366
+#: svn/tags/1.1.2/js/SendFileBlockEditor.js:341
+#: svn/tags/1.1.2/js/SendMessageBlockEditor.js:366
 #: svn/trunk/js/SendFileBlockEditor.js:341
 #: svn/trunk/js/SendMessageBlockEditor.js:366
-#: js/SendFileBlockEditor.js:341
-#: js/SendMessageBlockEditor.js:366
 msgid "Target Device ID Placeholder"
 msgstr ""
 
+#: js/SendFileBlockEditor.js:348
+#: js/SendMessageBlockEditor.js:373
 #: svn/tags/1.0.0/js/SendFileBlockEditor.js:335
 #: svn/tags/1.0.0/js/SendMessageBlockEditor.js:360
+#: svn/tags/1.1.0/js/SendFileBlockEditor.js:346
+#: svn/tags/1.1.0/js/SendMessageBlockEditor.js:371
+#: svn/tags/1.1.1/js/SendFileBlockEditor.js:346
+#: svn/tags/1.1.1/js/SendMessageBlockEditor.js:371
+#: svn/tags/1.1.1/trunk/js/SendFileBlockEditor.js:346
+#: svn/tags/1.1.1/trunk/js/SendMessageBlockEditor.js:371
+#: svn/tags/1.1.2/js/SendFileBlockEditor.js:346
+#: svn/tags/1.1.2/js/SendMessageBlockEditor.js:371
 #: svn/trunk/js/SendFileBlockEditor.js:346
 #: svn/trunk/js/SendMessageBlockEditor.js:371
-#: js/SendFileBlockEditor.js:346
-#: js/SendMessageBlockEditor.js:371
 msgid "Target Device Prod Unique ID Placeholder"
 msgstr ""
 
+#: js/SendFileBlockEditor.js:353
+#: js/StoreFileBlockEditor.js:250
 #: svn/tags/1.0.0/js/SendFileBlockEditor.js:340
 #: svn/tags/1.0.0/js/StoreFileBlockEditor.js:237
+#: svn/tags/1.1.0/js/SendFileBlockEditor.js:351
+#: svn/tags/1.1.0/js/StoreFileBlockEditor.js:248
+#: svn/tags/1.1.1/js/SendFileBlockEditor.js:351
+#: svn/tags/1.1.1/js/StoreFileBlockEditor.js:248
+#: svn/tags/1.1.1/trunk/js/SendFileBlockEditor.js:351
+#: svn/tags/1.1.1/trunk/js/StoreFileBlockEditor.js:248
+#: svn/tags/1.1.2/js/SendFileBlockEditor.js:351
+#: svn/tags/1.1.2/js/StoreFileBlockEditor.js:248
 #: svn/trunk/js/SendFileBlockEditor.js:351
 #: svn/trunk/js/StoreFileBlockEditor.js:248
-#: js/SendFileBlockEditor.js:351
-#: js/StoreFileBlockEditor.js:248
 msgid "File Drop Box Message"
 msgstr ""
 
+#: js/SendFileBlockEditor.js:363
+#: js/SendMessageBlockEditor.js:388
+#: js/StoreFileBlockEditor.js:260
+#: js/StoreMessageBlockEditor.js:283
+#: svn/tags/1.0.0/js/SendFileBlockEditor.js:350
+#: svn/tags/1.0.0/js/SendMessageBlockEditor.js:375
+#: svn/tags/1.0.0/js/StoreFileBlockEditor.js:247
+#: svn/tags/1.0.0/js/StoreMessageBlockEditor.js:270
+#: svn/tags/1.1.0/js/SendFileBlockEditor.js:361
+#: svn/tags/1.1.0/js/SendMessageBlockEditor.js:386
+#: svn/tags/1.1.0/js/StoreFileBlockEditor.js:258
+#: svn/tags/1.1.0/js/StoreMessageBlockEditor.js:281
+#: svn/tags/1.1.1/js/SendFileBlockEditor.js:361
+#: svn/tags/1.1.1/js/SendMessageBlockEditor.js:386
+#: svn/tags/1.1.1/js/StoreFileBlockEditor.js:258
+#: svn/tags/1.1.1/js/StoreMessageBlockEditor.js:281
+#: svn/tags/1.1.1/trunk/js/SendFileBlockEditor.js:361
+#: svn/tags/1.1.1/trunk/js/SendMessageBlockEditor.js:386
+#: svn/tags/1.1.1/trunk/js/StoreFileBlockEditor.js:258
+#: svn/tags/1.1.1/trunk/js/StoreMessageBlockEditor.js:281
+#: svn/tags/1.1.2/js/SendFileBlockEditor.js:361
+#: svn/tags/1.1.2/js/SendMessageBlockEditor.js:386
+#: svn/tags/1.1.2/js/StoreFileBlockEditor.js:258
+#: svn/tags/1.1.2/js/StoreMessageBlockEditor.js:281
+#: svn/trunk/js/SendFileBlockEditor.js:361
+#: svn/trunk/js/SendMessageBlockEditor.js:386
+#: svn/trunk/js/StoreFileBlockEditor.js:258
+#: svn/trunk/js/StoreMessageBlockEditor.js:281
+msgid "Success Message Template"
+msgstr ""
+
+#: js/SendFileBlockEditor.js:364
+#: js/SendMessageBlockEditor.js:389
+#: js/StoreFileBlockEditor.js:261
+#: js/StoreMessageBlockEditor.js:284
+#: svn/tags/1.0.0/js/SendFileBlockEditor.js:351
+#: svn/tags/1.0.0/js/SendMessageBlockEditor.js:376
+#: svn/tags/1.0.0/js/StoreFileBlockEditor.js:248
+#: svn/tags/1.0.0/js/StoreMessageBlockEditor.js:271
+#: svn/tags/1.1.0/js/SendFileBlockEditor.js:362
+#: svn/tags/1.1.0/js/SendMessageBlockEditor.js:387
+#: svn/tags/1.1.0/js/StoreFileBlockEditor.js:259
+#: svn/tags/1.1.0/js/StoreMessageBlockEditor.js:282
+#: svn/tags/1.1.1/js/SendFileBlockEditor.js:362
+#: svn/tags/1.1.1/js/SendMessageBlockEditor.js:387
+#: svn/tags/1.1.1/js/StoreFileBlockEditor.js:259
+#: svn/tags/1.1.1/js/StoreMessageBlockEditor.js:282
+#: svn/tags/1.1.1/trunk/js/SendFileBlockEditor.js:362
+#: svn/tags/1.1.1/trunk/js/SendMessageBlockEditor.js:387
+#: svn/tags/1.1.1/trunk/js/StoreFileBlockEditor.js:259
+#: svn/tags/1.1.1/trunk/js/StoreMessageBlockEditor.js:282
+#: svn/tags/1.1.2/js/SendFileBlockEditor.js:362
+#: svn/tags/1.1.2/js/SendMessageBlockEditor.js:387
+#: svn/tags/1.1.2/js/StoreFileBlockEditor.js:259
+#: svn/tags/1.1.2/js/StoreMessageBlockEditor.js:282
+#: svn/trunk/js/SendFileBlockEditor.js:362
+#: svn/trunk/js/SendMessageBlockEditor.js:387
+#: svn/trunk/js/StoreFileBlockEditor.js:259
+#: svn/trunk/js/StoreMessageBlockEditor.js:282
+msgid "Use the term {!messageId} as a placeholder for the returned message ID"
+msgstr ""
+
+#: js/SendFileBlockEditor.js:375
+#: js/SendMessageBlockEditor.js:400
+#: js/StoreFileBlockEditor.js:272
+#: js/StoreMessageBlockEditor.js:295
+#: svn/tags/1.0.0/js/SendFileBlockEditor.js:362
+#: svn/tags/1.0.0/js/SendMessageBlockEditor.js:387
+#: svn/tags/1.0.0/js/StoreFileBlockEditor.js:259
+#: svn/tags/1.0.0/js/StoreMessageBlockEditor.js:282
+#: svn/tags/1.1.0/js/SendFileBlockEditor.js:373
+#: svn/tags/1.1.0/js/SendMessageBlockEditor.js:398
+#: svn/tags/1.1.0/js/StoreFileBlockEditor.js:270
+#: svn/tags/1.1.0/js/StoreMessageBlockEditor.js:293
+#: svn/tags/1.1.1/js/SendFileBlockEditor.js:373
+#: svn/tags/1.1.1/js/SendMessageBlockEditor.js:398
+#: svn/tags/1.1.1/js/StoreFileBlockEditor.js:270
+#: svn/tags/1.1.1/js/StoreMessageBlockEditor.js:293
+#: svn/tags/1.1.1/trunk/js/SendFileBlockEditor.js:373
+#: svn/tags/1.1.1/trunk/js/SendMessageBlockEditor.js:398
+#: svn/tags/1.1.1/trunk/js/StoreFileBlockEditor.js:270
+#: svn/tags/1.1.1/trunk/js/StoreMessageBlockEditor.js:293
+#: svn/tags/1.1.2/js/SendFileBlockEditor.js:373
+#: svn/tags/1.1.2/js/SendMessageBlockEditor.js:398
+#: svn/tags/1.1.2/js/StoreFileBlockEditor.js:270
+#: svn/tags/1.1.2/js/StoreMessageBlockEditor.js:293
+#: svn/trunk/js/SendFileBlockEditor.js:373
+#: svn/trunk/js/SendMessageBlockEditor.js:398
+#: svn/trunk/js/StoreFileBlockEditor.js:270
+#: svn/trunk/js/StoreMessageBlockEditor.js:293
+msgid "Store Options"
+msgstr ""
+
+#: js/SendFileBlockEditor.js:379
+#: js/StoreFileBlockEditor.js:276
 #: svn/tags/1.0.0/js/SendFileBlockEditor.js:366
 #: svn/tags/1.0.0/js/StoreFileBlockEditor.js:263
+#: svn/tags/1.1.0/js/SendFileBlockEditor.js:377
+#: svn/tags/1.1.0/js/StoreFileBlockEditor.js:274
+#: svn/tags/1.1.1/js/SendFileBlockEditor.js:377
+#: svn/tags/1.1.1/js/StoreFileBlockEditor.js:274
+#: svn/tags/1.1.1/trunk/js/SendFileBlockEditor.js:377
+#: svn/tags/1.1.1/trunk/js/StoreFileBlockEditor.js:274
+#: svn/tags/1.1.2/js/SendFileBlockEditor.js:377
+#: svn/tags/1.1.2/js/StoreFileBlockEditor.js:274
 #: svn/trunk/js/SendFileBlockEditor.js:377
 #: svn/trunk/js/StoreFileBlockEditor.js:274
-#: js/SendFileBlockEditor.js:377
-#: js/StoreFileBlockEditor.js:274
 msgid "File Header"
 msgstr ""
 
+#: js/SendFileBlockEditor.js:380
+#: js/StoreFileBlockEditor.js:277
 #: svn/tags/1.0.0/js/SendFileBlockEditor.js:367
 #: svn/tags/1.0.0/js/StoreFileBlockEditor.js:264
+#: svn/tags/1.1.0/js/SendFileBlockEditor.js:378
+#: svn/tags/1.1.0/js/StoreFileBlockEditor.js:275
+#: svn/tags/1.1.1/js/SendFileBlockEditor.js:378
+#: svn/tags/1.1.1/js/StoreFileBlockEditor.js:275
+#: svn/tags/1.1.1/trunk/js/SendFileBlockEditor.js:378
+#: svn/tags/1.1.1/trunk/js/StoreFileBlockEditor.js:275
+#: svn/tags/1.1.2/js/SendFileBlockEditor.js:378
+#: svn/tags/1.1.2/js/StoreFileBlockEditor.js:275
 #: svn/trunk/js/SendFileBlockEditor.js:378
 #: svn/trunk/js/StoreFileBlockEditor.js:275
-#: js/SendFileBlockEditor.js:378
-#: js/StoreFileBlockEditor.js:275
 msgid "Add header describing file properties"
 msgstr ""
 
+#: js/SendFileBlockEditor.js:380
+#: js/StoreFileBlockEditor.js:277
 #: svn/tags/1.0.0/js/SendFileBlockEditor.js:367
 #: svn/tags/1.0.0/js/StoreFileBlockEditor.js:264
+#: svn/tags/1.1.0/js/SendFileBlockEditor.js:378
+#: svn/tags/1.1.0/js/StoreFileBlockEditor.js:275
+#: svn/tags/1.1.1/js/SendFileBlockEditor.js:378
+#: svn/tags/1.1.1/js/StoreFileBlockEditor.js:275
+#: svn/tags/1.1.1/trunk/js/SendFileBlockEditor.js:378
+#: svn/tags/1.1.1/trunk/js/StoreFileBlockEditor.js:275
+#: svn/tags/1.1.2/js/SendFileBlockEditor.js:378
+#: svn/tags/1.1.2/js/StoreFileBlockEditor.js:275
 #: svn/trunk/js/SendFileBlockEditor.js:378
 #: svn/trunk/js/StoreFileBlockEditor.js:275
-#: js/SendFileBlockEditor.js:378
-#: js/StoreFileBlockEditor.js:275
 msgid "Only the original file contents are stored"
 msgstr ""
 
+#: js/SendFileBlockEditor.js:385
+#: js/SendMessageBlockEditor.js:404
 #: svn/tags/1.0.0/js/SendFileBlockEditor.js:372
 #: svn/tags/1.0.0/js/SendMessageBlockEditor.js:391
+#: svn/tags/1.1.0/js/SendFileBlockEditor.js:383
+#: svn/tags/1.1.0/js/SendMessageBlockEditor.js:402
+#: svn/tags/1.1.1/js/SendFileBlockEditor.js:383
+#: svn/tags/1.1.1/js/SendMessageBlockEditor.js:402
+#: svn/tags/1.1.1/trunk/js/SendFileBlockEditor.js:383
+#: svn/tags/1.1.1/trunk/js/SendMessageBlockEditor.js:402
+#: svn/tags/1.1.2/js/SendFileBlockEditor.js:383
+#: svn/tags/1.1.2/js/SendMessageBlockEditor.js:402
 #: svn/trunk/js/SendFileBlockEditor.js:383
 #: svn/trunk/js/SendMessageBlockEditor.js:402
-#: js/SendFileBlockEditor.js:383
-#: js/SendMessageBlockEditor.js:402
 msgid "Read Confirmation"
 msgstr ""
 
+#: js/SendFileBlockEditor.js:386
 #: svn/tags/1.0.0/js/SendFileBlockEditor.js:373
+#: svn/tags/1.1.0/js/SendFileBlockEditor.js:384
+#: svn/tags/1.1.1/js/SendFileBlockEditor.js:384
+#: svn/tags/1.1.1/trunk/js/SendFileBlockEditor.js:384
+#: svn/tags/1.1.2/js/SendFileBlockEditor.js:384
 #: svn/trunk/js/SendFileBlockEditor.js:384
-#: js/SendFileBlockEditor.js:384
 msgid "Send file with read confirmation"
 msgstr ""
 
+#: js/SendFileBlockEditor.js:386
+#: js/SendMessageBlockEditor.js:405
 #: svn/tags/1.0.0/js/SendFileBlockEditor.js:373
 #: svn/tags/1.0.0/js/SendMessageBlockEditor.js:392
+#: svn/tags/1.1.0/js/SendFileBlockEditor.js:384
+#: svn/tags/1.1.0/js/SendMessageBlockEditor.js:403
+#: svn/tags/1.1.1/js/SendFileBlockEditor.js:384
+#: svn/tags/1.1.1/js/SendMessageBlockEditor.js:403
+#: svn/tags/1.1.1/trunk/js/SendFileBlockEditor.js:384
+#: svn/tags/1.1.1/trunk/js/SendMessageBlockEditor.js:403
+#: svn/tags/1.1.2/js/SendFileBlockEditor.js:384
+#: svn/tags/1.1.2/js/SendMessageBlockEditor.js:403
 #: svn/trunk/js/SendFileBlockEditor.js:384
 #: svn/trunk/js/SendMessageBlockEditor.js:403
-#: js/SendFileBlockEditor.js:384
-#: js/SendMessageBlockEditor.js:403
 msgid "No read confirmation requested"
 msgstr ""
 
+#: js/SendFileBlockEditor.js:391
+#: js/SendMessageBlockEditor.js:410
+#: js/StoreFileBlockEditor.js:282
+#: js/StoreMessageBlockEditor.js:299
+#: svn/tags/1.0.0/js/SendFileBlockEditor.js:378
+#: svn/tags/1.0.0/js/SendMessageBlockEditor.js:397
+#: svn/tags/1.0.0/js/StoreFileBlockEditor.js:269
+#: svn/tags/1.0.0/js/StoreMessageBlockEditor.js:286
+#: svn/tags/1.1.0/js/SendFileBlockEditor.js:389
+#: svn/tags/1.1.0/js/SendMessageBlockEditor.js:408
+#: svn/tags/1.1.0/js/StoreFileBlockEditor.js:280
+#: svn/tags/1.1.0/js/StoreMessageBlockEditor.js:297
+#: svn/tags/1.1.1/js/SendFileBlockEditor.js:389
+#: svn/tags/1.1.1/js/SendMessageBlockEditor.js:408
+#: svn/tags/1.1.1/js/StoreFileBlockEditor.js:280
+#: svn/tags/1.1.1/js/StoreMessageBlockEditor.js:297
+#: svn/tags/1.1.1/trunk/js/SendFileBlockEditor.js:389
+#: svn/tags/1.1.1/trunk/js/SendMessageBlockEditor.js:408
+#: svn/tags/1.1.1/trunk/js/StoreFileBlockEditor.js:280
+#: svn/tags/1.1.1/trunk/js/StoreMessageBlockEditor.js:297
+#: svn/tags/1.1.2/js/SendFileBlockEditor.js:389
+#: svn/tags/1.1.2/js/SendMessageBlockEditor.js:408
+#: svn/tags/1.1.2/js/StoreFileBlockEditor.js:280
+#: svn/tags/1.1.2/js/StoreMessageBlockEditor.js:297
+#: svn/trunk/js/SendFileBlockEditor.js:389
+#: svn/trunk/js/SendMessageBlockEditor.js:408
+#: svn/trunk/js/StoreFileBlockEditor.js:280
+#: svn/trunk/js/StoreMessageBlockEditor.js:297
+msgid "Encrypt"
+msgstr ""
+
+#: js/SendFileBlockEditor.js:392
+#: js/StoreFileBlockEditor.js:283
 #: svn/tags/1.0.0/js/SendFileBlockEditor.js:379
 #: svn/tags/1.0.0/js/StoreFileBlockEditor.js:270
+#: svn/tags/1.1.0/js/SendFileBlockEditor.js:390
+#: svn/tags/1.1.0/js/StoreFileBlockEditor.js:281
+#: svn/tags/1.1.1/js/SendFileBlockEditor.js:390
+#: svn/tags/1.1.1/js/StoreFileBlockEditor.js:281
+#: svn/tags/1.1.1/trunk/js/SendFileBlockEditor.js:390
+#: svn/tags/1.1.1/trunk/js/StoreFileBlockEditor.js:281
+#: svn/tags/1.1.2/js/SendFileBlockEditor.js:390
+#: svn/tags/1.1.2/js/StoreFileBlockEditor.js:281
 #: svn/trunk/js/SendFileBlockEditor.js:390
 #: svn/trunk/js/StoreFileBlockEditor.js:281
-#: js/SendFileBlockEditor.js:390
-#: js/StoreFileBlockEditor.js:281
 msgid "Encrypt file contents before storing them"
 msgstr ""
 
+#: js/SendFileBlockEditor.js:392
+#: js/StoreFileBlockEditor.js:283
 #: svn/tags/1.0.0/js/SendFileBlockEditor.js:379
 #: svn/tags/1.0.0/js/StoreFileBlockEditor.js:270
+#: svn/tags/1.1.0/js/SendFileBlockEditor.js:390
+#: svn/tags/1.1.0/js/StoreFileBlockEditor.js:281
+#: svn/tags/1.1.1/js/SendFileBlockEditor.js:390
+#: svn/tags/1.1.1/js/StoreFileBlockEditor.js:281
+#: svn/tags/1.1.1/trunk/js/SendFileBlockEditor.js:390
+#: svn/tags/1.1.1/trunk/js/StoreFileBlockEditor.js:281
+#: svn/tags/1.1.2/js/SendFileBlockEditor.js:390
+#: svn/tags/1.1.2/js/StoreFileBlockEditor.js:281
 #: svn/trunk/js/SendFileBlockEditor.js:390
 #: svn/trunk/js/StoreFileBlockEditor.js:281
-#: js/SendFileBlockEditor.js:390
-#: js/StoreFileBlockEditor.js:281
 msgid "Store file contents as they are"
 msgstr ""
 
-#: svn/tags/1.0.0/js/StoreMessageBlock.js:164
-#: svn/trunk/js/StoreMessageBlock.js:164
-#: js/StoreMessageBlock.js:164
-msgid "No message to be stored"
+#: js/SendFileBlockEditor.js:397
+#: js/SendMessageBlockEditor.js:416
+#: js/StoreFileBlockEditor.js:288
+#: js/StoreMessageBlockEditor.js:305
+#: svn/tags/1.1.0/js/SendFileBlockEditor.js:395
+#: svn/tags/1.1.0/js/SendMessageBlockEditor.js:414
+#: svn/tags/1.1.0/js/StoreFileBlockEditor.js:286
+#: svn/tags/1.1.0/js/StoreMessageBlockEditor.js:303
+#: svn/tags/1.1.1/js/SendFileBlockEditor.js:395
+#: svn/tags/1.1.1/js/SendMessageBlockEditor.js:414
+#: svn/tags/1.1.1/js/StoreFileBlockEditor.js:286
+#: svn/tags/1.1.1/js/StoreMessageBlockEditor.js:303
+#: svn/tags/1.1.1/trunk/js/SendFileBlockEditor.js:395
+#: svn/tags/1.1.1/trunk/js/SendMessageBlockEditor.js:414
+#: svn/tags/1.1.1/trunk/js/StoreFileBlockEditor.js:286
+#: svn/tags/1.1.1/trunk/js/StoreMessageBlockEditor.js:303
+#: svn/tags/1.1.2/js/SendFileBlockEditor.js:395
+#: svn/tags/1.1.2/js/SendMessageBlockEditor.js:414
+#: svn/tags/1.1.2/js/StoreFileBlockEditor.js:286
+#: svn/tags/1.1.2/js/StoreMessageBlockEditor.js:303
+#: svn/trunk/js/SendFileBlockEditor.js:395
+#: svn/trunk/js/SendMessageBlockEditor.js:414
+#: svn/trunk/js/StoreFileBlockEditor.js:286
+#: svn/trunk/js/StoreMessageBlockEditor.js:303
+msgid "Off-Chain"
 msgstr ""
 
-#: svn/tags/1.0.0/js/MessageHistoryBlock.js:512
-#: svn/tags/1.0.0/js/MessageInboxBlock.js:519
-#: svn/trunk/js/MessageHistoryBlock.js:512
-#: svn/trunk/js/MessageInboxBlock.js:519
-#: js/MessageHistoryBlock.js:512
-#: js/MessageInboxBlock.js:519
-msgid "No messages"
+#: js/SendFileBlockEditor.js:398
+#: js/SendMessageBlockEditor.js:417
+#: js/StoreFileBlockEditor.js:289
+#: js/StoreMessageBlockEditor.js:306
+#: svn/tags/1.1.0/js/SendFileBlockEditor.js:396
+#: svn/tags/1.1.0/js/SendMessageBlockEditor.js:415
+#: svn/tags/1.1.0/js/StoreFileBlockEditor.js:287
+#: svn/tags/1.1.0/js/StoreMessageBlockEditor.js:304
+#: svn/tags/1.1.1/js/SendFileBlockEditor.js:396
+#: svn/tags/1.1.1/js/SendMessageBlockEditor.js:415
+#: svn/tags/1.1.1/js/StoreFileBlockEditor.js:287
+#: svn/tags/1.1.1/js/StoreMessageBlockEditor.js:304
+#: svn/tags/1.1.1/trunk/js/SendFileBlockEditor.js:396
+#: svn/tags/1.1.1/trunk/js/SendMessageBlockEditor.js:415
+#: svn/tags/1.1.1/trunk/js/StoreFileBlockEditor.js:287
+#: svn/tags/1.1.1/trunk/js/StoreMessageBlockEditor.js:304
+#: svn/tags/1.1.2/js/SendFileBlockEditor.js:396
+#: svn/tags/1.1.2/js/SendMessageBlockEditor.js:415
+#: svn/tags/1.1.2/js/StoreFileBlockEditor.js:287
+#: svn/tags/1.1.2/js/StoreMessageBlockEditor.js:304
+#: svn/trunk/js/SendFileBlockEditor.js:396
+#: svn/trunk/js/SendMessageBlockEditor.js:415
+#: svn/trunk/js/StoreFileBlockEditor.js:287
+#: svn/trunk/js/StoreMessageBlockEditor.js:304
+msgid "Store it as a Catenis off-chain message"
 msgstr ""
 
-#: svn/tags/1.0.0/js/MessageHistoryBlock.js:908
-#: svn/tags/1.0.0/js/MessageInboxBlock.js:908
-#: svn/trunk/js/MessageHistoryBlock.js:908
-#: svn/trunk/js/MessageInboxBlock.js:908
-#: js/MessageHistoryBlock.js:908
-#: js/MessageInboxBlock.js:908
-msgid "true"
+#: js/SendFileBlockEditor.js:398
+#: js/SendMessageBlockEditor.js:417
+#: js/StoreFileBlockEditor.js:289
+#: js/StoreMessageBlockEditor.js:306
+#: svn/tags/1.1.0/js/SendFileBlockEditor.js:396
+#: svn/tags/1.1.0/js/SendMessageBlockEditor.js:415
+#: svn/tags/1.1.0/js/StoreFileBlockEditor.js:287
+#: svn/tags/1.1.0/js/StoreMessageBlockEditor.js:304
+#: svn/tags/1.1.1/js/SendFileBlockEditor.js:396
+#: svn/tags/1.1.1/js/SendMessageBlockEditor.js:415
+#: svn/tags/1.1.1/js/StoreFileBlockEditor.js:287
+#: svn/tags/1.1.1/js/StoreMessageBlockEditor.js:304
+#: svn/tags/1.1.1/trunk/js/SendFileBlockEditor.js:396
+#: svn/tags/1.1.1/trunk/js/SendMessageBlockEditor.js:415
+#: svn/tags/1.1.1/trunk/js/StoreFileBlockEditor.js:287
+#: svn/tags/1.1.1/trunk/js/StoreMessageBlockEditor.js:304
+#: svn/tags/1.1.2/js/SendFileBlockEditor.js:396
+#: svn/tags/1.1.2/js/SendMessageBlockEditor.js:415
+#: svn/tags/1.1.2/js/StoreFileBlockEditor.js:287
+#: svn/tags/1.1.2/js/StoreMessageBlockEditor.js:304
+#: svn/trunk/js/SendFileBlockEditor.js:396
+#: svn/trunk/js/SendMessageBlockEditor.js:415
+#: svn/trunk/js/StoreFileBlockEditor.js:287
+#: svn/trunk/js/StoreMessageBlockEditor.js:304
+msgid "Store it as a regular Catenis message"
 msgstr ""
 
-#: svn/tags/1.0.0/js/MessageHistoryBlock.js:908
-#: svn/tags/1.0.0/js/MessageInboxBlock.js:908
-#: svn/trunk/js/MessageHistoryBlock.js:908
-#: svn/trunk/js/MessageInboxBlock.js:908
-#: js/MessageHistoryBlock.js:908
-#: js/MessageInboxBlock.js:908
-msgid "false"
+#: js/SendFileBlockEditor.js:404
+#: js/SendMessageBlockEditor.js:442
+#: js/StoreFileBlockEditor.js:295
+#: js/StoreMessageBlockEditor.js:331
+#: svn/tags/1.0.0/js/SendFileBlockEditor.js:385
+#: svn/tags/1.0.0/js/SendMessageBlockEditor.js:419
+#: svn/tags/1.0.0/js/StoreFileBlockEditor.js:276
+#: svn/tags/1.0.0/js/StoreMessageBlockEditor.js:308
+#: svn/tags/1.1.0/js/SendFileBlockEditor.js:402
+#: svn/tags/1.1.0/js/SendMessageBlockEditor.js:440
+#: svn/tags/1.1.0/js/StoreFileBlockEditor.js:293
+#: svn/tags/1.1.0/js/StoreMessageBlockEditor.js:329
+#: svn/tags/1.1.1/js/SendFileBlockEditor.js:402
+#: svn/tags/1.1.1/js/SendMessageBlockEditor.js:440
+#: svn/tags/1.1.1/js/StoreFileBlockEditor.js:293
+#: svn/tags/1.1.1/js/StoreMessageBlockEditor.js:329
+#: svn/tags/1.1.1/trunk/js/SendFileBlockEditor.js:402
+#: svn/tags/1.1.1/trunk/js/SendMessageBlockEditor.js:440
+#: svn/tags/1.1.1/trunk/js/StoreFileBlockEditor.js:293
+#: svn/tags/1.1.1/trunk/js/StoreMessageBlockEditor.js:329
+#: svn/tags/1.1.2/js/SendFileBlockEditor.js:402
+#: svn/tags/1.1.2/js/SendMessageBlockEditor.js:440
+#: svn/tags/1.1.2/js/StoreFileBlockEditor.js:293
+#: svn/tags/1.1.2/js/StoreMessageBlockEditor.js:329
+#: svn/trunk/js/SendFileBlockEditor.js:402
+#: svn/trunk/js/SendMessageBlockEditor.js:440
+#: svn/trunk/js/StoreFileBlockEditor.js:293
+#: svn/trunk/js/StoreMessageBlockEditor.js:329
+msgid "Result"
 msgstr ""
 
-#: svn/tags/1.0.0/js/SendFileBlock.js:312
-#: svn/trunk/js/SendFileBlock.js:312
-#: js/SendFileBlock.js:312
-msgid "No file selected to be sent"
+#: js/SendFileBlockEditor.js:408
+#: js/SendMessageBlockEditor.js:446
+#: js/StoreFileBlockEditor.js:299
+#: js/StoreMessageBlockEditor.js:335
+#: svn/tags/1.0.0/js/SendFileBlockEditor.js:389
+#: svn/tags/1.0.0/js/SendMessageBlockEditor.js:423
+#: svn/tags/1.0.0/js/StoreFileBlockEditor.js:280
+#: svn/tags/1.0.0/js/StoreMessageBlockEditor.js:312
+#: svn/tags/1.1.0/js/SendFileBlockEditor.js:406
+#: svn/tags/1.1.0/js/SendMessageBlockEditor.js:444
+#: svn/tags/1.1.0/js/StoreFileBlockEditor.js:297
+#: svn/tags/1.1.0/js/StoreMessageBlockEditor.js:333
+#: svn/tags/1.1.1/js/SendFileBlockEditor.js:406
+#: svn/tags/1.1.1/js/SendMessageBlockEditor.js:444
+#: svn/tags/1.1.1/js/StoreFileBlockEditor.js:297
+#: svn/tags/1.1.1/js/StoreMessageBlockEditor.js:333
+#: svn/tags/1.1.1/trunk/js/SendFileBlockEditor.js:406
+#: svn/tags/1.1.1/trunk/js/SendMessageBlockEditor.js:444
+#: svn/tags/1.1.1/trunk/js/StoreFileBlockEditor.js:297
+#: svn/tags/1.1.1/trunk/js/StoreMessageBlockEditor.js:333
+#: svn/tags/1.1.2/js/SendFileBlockEditor.js:406
+#: svn/tags/1.1.2/js/SendMessageBlockEditor.js:444
+#: svn/tags/1.1.2/js/StoreFileBlockEditor.js:297
+#: svn/tags/1.1.2/js/StoreMessageBlockEditor.js:333
+#: svn/trunk/js/SendFileBlockEditor.js:406
+#: svn/trunk/js/SendMessageBlockEditor.js:444
+#: svn/trunk/js/StoreFileBlockEditor.js:297
+#: svn/trunk/js/StoreMessageBlockEditor.js:333
+msgid "Success Panel ID"
 msgstr ""
 
-#: svn/tags/1.0.0/js/SendFileBlock.js:321
-#: svn/tags/1.0.0/js/SendMessageBlock.js:174
-#: svn/trunk/js/SendFileBlock.js:321
-#: svn/trunk/js/SendMessageBlock.js:174
-#: js/SendFileBlock.js:321
-#: js/SendMessageBlock.js:174
-msgid "No target device product unique ID"
+#: js/SendFileBlockEditor.js:409
+#: js/SendFileBlockEditor.js:415
+#: js/SendMessageBlockEditor.js:447
+#: js/SendMessageBlockEditor.js:453
+#: js/StoreFileBlockEditor.js:300
+#: js/StoreFileBlockEditor.js:306
+#: js/StoreMessageBlockEditor.js:336
+#: js/StoreMessageBlockEditor.js:342
+#: svn/tags/1.0.0/js/SendFileBlockEditor.js:390
+#: svn/tags/1.0.0/js/SendFileBlockEditor.js:396
+#: svn/tags/1.0.0/js/SendMessageBlockEditor.js:424
+#: svn/tags/1.0.0/js/SendMessageBlockEditor.js:430
+#: svn/tags/1.0.0/js/StoreFileBlockEditor.js:281
+#: svn/tags/1.0.0/js/StoreFileBlockEditor.js:287
+#: svn/tags/1.0.0/js/StoreMessageBlockEditor.js:313
+#: svn/tags/1.0.0/js/StoreMessageBlockEditor.js:319
+#: svn/tags/1.1.0/js/SendFileBlockEditor.js:407
+#: svn/tags/1.1.0/js/SendFileBlockEditor.js:413
+#: svn/tags/1.1.0/js/SendMessageBlockEditor.js:445
+#: svn/tags/1.1.0/js/SendMessageBlockEditor.js:451
+#: svn/tags/1.1.0/js/StoreFileBlockEditor.js:298
+#: svn/tags/1.1.0/js/StoreFileBlockEditor.js:304
+#: svn/tags/1.1.0/js/StoreMessageBlockEditor.js:334
+#: svn/tags/1.1.0/js/StoreMessageBlockEditor.js:340
+#: svn/tags/1.1.1/js/SendFileBlockEditor.js:407
+#: svn/tags/1.1.1/js/SendFileBlockEditor.js:413
+#: svn/tags/1.1.1/js/SendMessageBlockEditor.js:445
+#: svn/tags/1.1.1/js/SendMessageBlockEditor.js:451
+#: svn/tags/1.1.1/js/StoreFileBlockEditor.js:298
+#: svn/tags/1.1.1/js/StoreFileBlockEditor.js:304
+#: svn/tags/1.1.1/js/StoreMessageBlockEditor.js:334
+#: svn/tags/1.1.1/js/StoreMessageBlockEditor.js:340
+#: svn/tags/1.1.1/trunk/js/SendFileBlockEditor.js:407
+#: svn/tags/1.1.1/trunk/js/SendFileBlockEditor.js:413
+#: svn/tags/1.1.1/trunk/js/SendMessageBlockEditor.js:445
+#: svn/tags/1.1.1/trunk/js/SendMessageBlockEditor.js:451
+#: svn/tags/1.1.1/trunk/js/StoreFileBlockEditor.js:298
+#: svn/tags/1.1.1/trunk/js/StoreFileBlockEditor.js:304
+#: svn/tags/1.1.1/trunk/js/StoreMessageBlockEditor.js:334
+#: svn/tags/1.1.1/trunk/js/StoreMessageBlockEditor.js:340
+#: svn/tags/1.1.2/js/SendFileBlockEditor.js:407
+#: svn/tags/1.1.2/js/SendFileBlockEditor.js:413
+#: svn/tags/1.1.2/js/SendMessageBlockEditor.js:445
+#: svn/tags/1.1.2/js/SendMessageBlockEditor.js:451
+#: svn/tags/1.1.2/js/StoreFileBlockEditor.js:298
+#: svn/tags/1.1.2/js/StoreFileBlockEditor.js:304
+#: svn/tags/1.1.2/js/StoreMessageBlockEditor.js:334
+#: svn/tags/1.1.2/js/StoreMessageBlockEditor.js:340
+#: svn/trunk/js/SendFileBlockEditor.js:407
+#: svn/trunk/js/SendFileBlockEditor.js:413
+#: svn/trunk/js/SendMessageBlockEditor.js:445
+#: svn/trunk/js/SendMessageBlockEditor.js:451
+#: svn/trunk/js/StoreFileBlockEditor.js:298
+#: svn/trunk/js/StoreFileBlockEditor.js:304
+#: svn/trunk/js/StoreMessageBlockEditor.js:334
+#: svn/trunk/js/StoreMessageBlockEditor.js:340
+msgid "Enter ID of an HTML element on the page"
 msgstr ""
 
-#: svn/tags/1.0.0/js/SendFileBlock.js:321
-#: svn/tags/1.0.0/js/SendMessageBlock.js:174
-#: svn/trunk/js/SendFileBlock.js:321
-#: svn/trunk/js/SendMessageBlock.js:174
-#: js/SendFileBlock.js:321
-#: js/SendMessageBlock.js:174
-msgid "No target device ID"
+#: js/SendFileBlockEditor.js:414
+#: js/SendMessageBlockEditor.js:452
+#: js/StoreFileBlockEditor.js:305
+#: js/StoreMessageBlockEditor.js:341
+#: svn/tags/1.0.0/js/SendFileBlockEditor.js:395
+#: svn/tags/1.0.0/js/SendMessageBlockEditor.js:429
+#: svn/tags/1.0.0/js/StoreFileBlockEditor.js:286
+#: svn/tags/1.0.0/js/StoreMessageBlockEditor.js:318
+#: svn/tags/1.1.0/js/SendFileBlockEditor.js:412
+#: svn/tags/1.1.0/js/SendMessageBlockEditor.js:450
+#: svn/tags/1.1.0/js/StoreFileBlockEditor.js:303
+#: svn/tags/1.1.0/js/StoreMessageBlockEditor.js:339
+#: svn/tags/1.1.1/js/SendFileBlockEditor.js:412
+#: svn/tags/1.1.1/js/SendMessageBlockEditor.js:450
+#: svn/tags/1.1.1/js/StoreFileBlockEditor.js:303
+#: svn/tags/1.1.1/js/StoreMessageBlockEditor.js:339
+#: svn/tags/1.1.1/trunk/js/SendFileBlockEditor.js:412
+#: svn/tags/1.1.1/trunk/js/SendMessageBlockEditor.js:450
+#: svn/tags/1.1.1/trunk/js/StoreFileBlockEditor.js:303
+#: svn/tags/1.1.1/trunk/js/StoreMessageBlockEditor.js:339
+#: svn/tags/1.1.2/js/SendFileBlockEditor.js:412
+#: svn/tags/1.1.2/js/SendMessageBlockEditor.js:450
+#: svn/tags/1.1.2/js/StoreFileBlockEditor.js:303
+#: svn/tags/1.1.2/js/StoreMessageBlockEditor.js:339
+#: svn/trunk/js/SendFileBlockEditor.js:412
+#: svn/trunk/js/SendMessageBlockEditor.js:450
+#: svn/trunk/js/StoreFileBlockEditor.js:303
+#: svn/trunk/js/StoreMessageBlockEditor.js:339
+msgid "Error Panel ID"
 msgstr ""
 
-#: svn/tags/1.0.0/js/SendFileBlock.js:427
-#: svn/trunk/js/SendFileBlock.js:427
-#: js/SendFileBlock.js:427
-msgid "Empty file; nothing to send"
+#: js/SendMessageBlock.js:165
+#: svn/tags/1.0.0/js/SendMessageBlock.js:165
+#: svn/tags/1.1.0/js/SendMessageBlock.js:165
+#: svn/tags/1.1.1/js/SendMessageBlock.js:165
+#: svn/tags/1.1.1/trunk/js/SendMessageBlock.js:165
+#: svn/tags/1.1.2/js/SendMessageBlock.js:165
+#: svn/trunk/js/SendMessageBlock.js:165
+msgid "No message to be sent"
 msgstr ""
 
-#: svn/tags/1.0.0/js/SendFileBlock.js:444
-#: svn/tags/1.0.0/js/StoreFileBlock.js:431
-#: svn/trunk/js/SendFileBlock.js:444
-#: svn/trunk/js/StoreFileBlock.js:431
-#: js/SendFileBlock.js:444
-#: js/StoreFileBlock.js:431
-msgid "Error reading file: "
+#: js/SendMessageBlockEditor.js:16
+#: js/StoreMessageBlockEditor.js:12
+#: svn/tags/1.0.0/js/SendMessageBlockEditor.js:16
+#: svn/tags/1.0.0/js/StoreMessageBlockEditor.js:12
+#: svn/tags/1.1.0/js/SendMessageBlockEditor.js:16
+#: svn/tags/1.1.0/js/StoreMessageBlockEditor.js:12
+#: svn/tags/1.1.1/js/SendMessageBlockEditor.js:16
+#: svn/tags/1.1.1/js/StoreMessageBlockEditor.js:12
+#: svn/tags/1.1.1/trunk/js/SendMessageBlockEditor.js:16
+#: svn/tags/1.1.1/trunk/js/StoreMessageBlockEditor.js:12
+#: svn/tags/1.1.2/js/SendMessageBlockEditor.js:16
+#: svn/tags/1.1.2/js/StoreMessageBlockEditor.js:12
+#: svn/trunk/js/SendMessageBlockEditor.js:16
+#: svn/trunk/js/StoreMessageBlockEditor.js:12
+msgid "Write your message"
 msgstr ""
 
-#: svn/tags/1.0.0/js/SendFileBlock.js:449
-#: svn/tags/1.0.0/js/StoreFileBlock.js:436
-#: svn/trunk/js/SendFileBlock.js:449
-#: svn/trunk/js/StoreFileBlock.js:436
-#: js/SendFileBlock.js:449
-#: js/StoreFileBlock.js:436
-msgid "Reading of file has been aborted"
-msgstr ""
-
-#: svn/tags/1.0.0/js/StoreFileBlock.js:311
-#: svn/trunk/js/StoreFileBlock.js:311
-#: js/StoreFileBlock.js:311
-msgid "No file selected to be stored"
-msgstr ""
-
-#: svn/tags/1.0.0/js/StoreFileBlock.js:414
-#: svn/trunk/js/StoreFileBlock.js:414
-#: js/StoreFileBlock.js:414
-msgid "Empty file; nothing to store"
-msgstr ""
-
-#: svn/tags/1.0.0/js/SendMessageBlockEditor.js:17
-#: svn/tags/1.0.0/js/SendMessageBlockEditor.js:27
-#: svn/trunk/js/SendMessageBlockEditor.js:17
-#: svn/trunk/js/SendMessageBlockEditor.js:28
 #: js/SendMessageBlockEditor.js:17
 #: js/SendMessageBlockEditor.js:28
+#: svn/tags/1.0.0/js/SendMessageBlockEditor.js:17
+#: svn/tags/1.0.0/js/SendMessageBlockEditor.js:27
+#: svn/tags/1.1.0/js/SendMessageBlockEditor.js:17
+#: svn/tags/1.1.0/js/SendMessageBlockEditor.js:28
+#: svn/tags/1.1.1/js/SendMessageBlockEditor.js:17
+#: svn/tags/1.1.1/js/SendMessageBlockEditor.js:28
+#: svn/tags/1.1.1/trunk/js/SendMessageBlockEditor.js:17
+#: svn/tags/1.1.1/trunk/js/SendMessageBlockEditor.js:28
+#: svn/tags/1.1.2/js/SendMessageBlockEditor.js:17
+#: svn/tags/1.1.2/js/SendMessageBlockEditor.js:28
+#: svn/trunk/js/SendMessageBlockEditor.js:17
+#: svn/trunk/js/SendMessageBlockEditor.js:28
 msgid "Send Message"
 msgstr ""
 
-#: svn/tags/1.0.0/js/SendMessageBlockEditor.js:18
-#: svn/trunk/js/SendMessageBlockEditor.js:18
 #: js/SendMessageBlockEditor.js:18
+#: svn/tags/1.0.0/js/SendMessageBlockEditor.js:18
+#: svn/tags/1.1.0/js/SendMessageBlockEditor.js:18
+#: svn/tags/1.1.1/js/SendMessageBlockEditor.js:18
+#: svn/tags/1.1.1/trunk/js/SendMessageBlockEditor.js:18
+#: svn/tags/1.1.2/js/SendMessageBlockEditor.js:18
+#: svn/trunk/js/SendMessageBlockEditor.js:18
 msgid ""
 "Message successfully sent.\n"
 "Message Id: {!messageId}"
 msgstr ""
 
-#: svn/tags/1.0.0/js/SendMessageBlockEditor.js:28
-#: svn/trunk/js/SendMessageBlockEditor.js:29
 #: js/SendMessageBlockEditor.js:29
+#: svn/tags/1.0.0/js/SendMessageBlockEditor.js:28
+#: svn/tags/1.1.0/js/SendMessageBlockEditor.js:29
+#: svn/tags/1.1.1/js/SendMessageBlockEditor.js:29
+#: svn/tags/1.1.1/trunk/js/SendMessageBlockEditor.js:29
+#: svn/tags/1.1.2/js/SendMessageBlockEditor.js:29
+#: svn/trunk/js/SendMessageBlockEditor.js:29
 msgid "Store a text message onto the Bitcoin blockchain addressing it to another Catenis virtual device"
 msgstr ""
 
+#: js/SendMessageBlockEditor.js:319
+#: js/StoreMessageBlockEditor.js:224
+#: svn/tags/1.0.0/js/SendMessageBlockEditor.js:306
+#: svn/tags/1.0.0/js/StoreMessageBlockEditor.js:211
+#: svn/tags/1.1.0/js/SendMessageBlockEditor.js:317
+#: svn/tags/1.1.0/js/StoreMessageBlockEditor.js:222
+#: svn/tags/1.1.1/js/SendMessageBlockEditor.js:317
+#: svn/tags/1.1.1/js/StoreMessageBlockEditor.js:222
+#: svn/tags/1.1.1/trunk/js/SendMessageBlockEditor.js:317
+#: svn/tags/1.1.1/trunk/js/StoreMessageBlockEditor.js:222
+#: svn/tags/1.1.2/js/SendMessageBlockEditor.js:317
+#: svn/tags/1.1.2/js/StoreMessageBlockEditor.js:222
+#: svn/trunk/js/SendMessageBlockEditor.js:317
+#: svn/trunk/js/StoreMessageBlockEditor.js:222
+msgid "Message Box"
+msgstr ""
+
+#: js/SendMessageBlockEditor.js:322
+#: js/StoreMessageBlockEditor.js:227
+#: svn/tags/1.0.0/js/SendMessageBlockEditor.js:309
+#: svn/tags/1.0.0/js/StoreMessageBlockEditor.js:214
+#: svn/tags/1.1.0/js/SendMessageBlockEditor.js:320
+#: svn/tags/1.1.0/js/StoreMessageBlockEditor.js:225
+#: svn/tags/1.1.1/js/SendMessageBlockEditor.js:320
+#: svn/tags/1.1.1/js/StoreMessageBlockEditor.js:225
+#: svn/tags/1.1.1/trunk/js/SendMessageBlockEditor.js:320
+#: svn/tags/1.1.1/trunk/js/StoreMessageBlockEditor.js:225
+#: svn/tags/1.1.2/js/SendMessageBlockEditor.js:320
+#: svn/tags/1.1.2/js/StoreMessageBlockEditor.js:225
+#: svn/trunk/js/SendMessageBlockEditor.js:320
+#: svn/trunk/js/StoreMessageBlockEditor.js:225
+msgid "Number of Lines"
+msgstr ""
+
+#: js/SendMessageBlockEditor.js:335
 #: svn/tags/1.0.0/js/SendMessageBlockEditor.js:322
+#: svn/tags/1.1.0/js/SendMessageBlockEditor.js:333
+#: svn/tags/1.1.1/js/SendMessageBlockEditor.js:333
+#: svn/tags/1.1.1/trunk/js/SendMessageBlockEditor.js:333
+#: svn/tags/1.1.2/js/SendMessageBlockEditor.js:333
 #: svn/trunk/js/SendMessageBlockEditor.js:333
-#: js/SendMessageBlockEditor.js:333
 msgid "Show animated icon while sending message"
 msgstr ""
 
+#: js/SendMessageBlockEditor.js:378
+#: js/StoreMessageBlockEditor.js:273
+#: svn/tags/1.0.0/js/SendMessageBlockEditor.js:365
+#: svn/tags/1.0.0/js/StoreMessageBlockEditor.js:260
+#: svn/tags/1.1.0/js/SendMessageBlockEditor.js:376
+#: svn/tags/1.1.0/js/StoreMessageBlockEditor.js:271
+#: svn/tags/1.1.1/js/SendMessageBlockEditor.js:376
+#: svn/tags/1.1.1/js/StoreMessageBlockEditor.js:271
+#: svn/tags/1.1.1/trunk/js/SendMessageBlockEditor.js:376
+#: svn/tags/1.1.1/trunk/js/StoreMessageBlockEditor.js:271
+#: svn/tags/1.1.2/js/SendMessageBlockEditor.js:376
+#: svn/tags/1.1.2/js/StoreMessageBlockEditor.js:271
+#: svn/trunk/js/SendMessageBlockEditor.js:376
+#: svn/trunk/js/StoreMessageBlockEditor.js:271
+msgid "Message Placeholder"
+msgstr ""
+
+#: js/SendMessageBlockEditor.js:405
 #: svn/tags/1.0.0/js/SendMessageBlockEditor.js:392
+#: svn/tags/1.1.0/js/SendMessageBlockEditor.js:403
+#: svn/tags/1.1.1/js/SendMessageBlockEditor.js:403
+#: svn/tags/1.1.1/trunk/js/SendMessageBlockEditor.js:403
+#: svn/tags/1.1.2/js/SendMessageBlockEditor.js:403
 #: svn/trunk/js/SendMessageBlockEditor.js:403
-#: js/SendMessageBlockEditor.js:403
 msgid "Send message with read confirmation"
 msgstr ""
 
-#: svn/tags/1.0.0/js/StoreFileBlockEditor.js:12
-#: svn/tags/1.0.0/js/StoreFileBlockEditor.js:21
-#: svn/trunk/js/StoreFileBlockEditor.js:12
-#: svn/trunk/js/StoreFileBlockEditor.js:22
+#: js/SendMessageBlockEditor.js:411
+#: js/StoreMessageBlockEditor.js:300
+#: svn/tags/1.0.0/js/SendMessageBlockEditor.js:398
+#: svn/tags/1.0.0/js/StoreMessageBlockEditor.js:287
+#: svn/tags/1.1.0/js/SendMessageBlockEditor.js:409
+#: svn/tags/1.1.0/js/StoreMessageBlockEditor.js:298
+#: svn/tags/1.1.1/js/SendMessageBlockEditor.js:409
+#: svn/tags/1.1.1/js/StoreMessageBlockEditor.js:298
+#: svn/tags/1.1.1/trunk/js/SendMessageBlockEditor.js:409
+#: svn/tags/1.1.1/trunk/js/StoreMessageBlockEditor.js:298
+#: svn/tags/1.1.2/js/SendMessageBlockEditor.js:409
+#: svn/tags/1.1.2/js/StoreMessageBlockEditor.js:298
+#: svn/trunk/js/SendMessageBlockEditor.js:409
+#: svn/trunk/js/StoreMessageBlockEditor.js:298
+msgid "Encrypt message before storing it"
+msgstr ""
+
+#: js/SendMessageBlockEditor.js:411
+#: js/StoreMessageBlockEditor.js:300
+#: svn/tags/1.0.0/js/SendMessageBlockEditor.js:398
+#: svn/tags/1.0.0/js/StoreMessageBlockEditor.js:287
+#: svn/tags/1.1.0/js/SendMessageBlockEditor.js:409
+#: svn/tags/1.1.0/js/StoreMessageBlockEditor.js:298
+#: svn/tags/1.1.1/js/SendMessageBlockEditor.js:409
+#: svn/tags/1.1.1/js/StoreMessageBlockEditor.js:298
+#: svn/tags/1.1.1/trunk/js/SendMessageBlockEditor.js:409
+#: svn/tags/1.1.1/trunk/js/StoreMessageBlockEditor.js:298
+#: svn/tags/1.1.2/js/SendMessageBlockEditor.js:409
+#: svn/tags/1.1.2/js/StoreMessageBlockEditor.js:298
+#: svn/trunk/js/SendMessageBlockEditor.js:409
+#: svn/trunk/js/StoreMessageBlockEditor.js:298
+msgid "Store message as it is"
+msgstr ""
+
+#: js/SendMessageBlockEditor.js:424
+#: js/StoreMessageBlockEditor.js:313
+#: svn/tags/1.0.0/js/SendMessageBlockEditor.js:403
+#: svn/tags/1.0.0/js/StoreMessageBlockEditor.js:292
+#: svn/tags/1.1.0/js/SendMessageBlockEditor.js:422
+#: svn/tags/1.1.0/js/StoreMessageBlockEditor.js:311
+#: svn/tags/1.1.1/js/SendMessageBlockEditor.js:422
+#: svn/tags/1.1.1/js/StoreMessageBlockEditor.js:311
+#: svn/tags/1.1.1/trunk/js/SendMessageBlockEditor.js:422
+#: svn/tags/1.1.1/trunk/js/StoreMessageBlockEditor.js:311
+#: svn/tags/1.1.2/js/SendMessageBlockEditor.js:422
+#: svn/tags/1.1.2/js/StoreMessageBlockEditor.js:311
+#: svn/trunk/js/SendMessageBlockEditor.js:422
+#: svn/trunk/js/StoreMessageBlockEditor.js:311
+msgid "Storage"
+msgstr ""
+
+#: js/StoreFileBlock.js:311
+#: svn/tags/1.0.0/js/StoreFileBlock.js:311
+#: svn/tags/1.1.0/js/StoreFileBlock.js:311
+#: svn/tags/1.1.1/js/StoreFileBlock.js:311
+#: svn/tags/1.1.1/trunk/js/StoreFileBlock.js:311
+#: svn/tags/1.1.2/js/StoreFileBlock.js:311
+#: svn/trunk/js/StoreFileBlock.js:311
+msgid "No file selected to be stored"
+msgstr ""
+
+#: js/StoreFileBlock.js:414
+#: svn/tags/1.0.0/js/StoreFileBlock.js:414
+#: svn/tags/1.1.0/js/StoreFileBlock.js:414
+#: svn/tags/1.1.1/js/StoreFileBlock.js:414
+#: svn/tags/1.1.1/trunk/js/StoreFileBlock.js:414
+#: svn/tags/1.1.2/js/StoreFileBlock.js:414
+#: svn/trunk/js/StoreFileBlock.js:414
+msgid "Empty file; nothing to store"
+msgstr ""
+
 #: js/StoreFileBlockEditor.js:12
 #: js/StoreFileBlockEditor.js:22
+#: svn/tags/1.0.0/js/StoreFileBlockEditor.js:12
+#: svn/tags/1.0.0/js/StoreFileBlockEditor.js:21
+#: svn/tags/1.1.0/js/StoreFileBlockEditor.js:12
+#: svn/tags/1.1.0/js/StoreFileBlockEditor.js:22
+#: svn/tags/1.1.1/js/StoreFileBlockEditor.js:12
+#: svn/tags/1.1.1/js/StoreFileBlockEditor.js:22
+#: svn/tags/1.1.1/trunk/js/StoreFileBlockEditor.js:12
+#: svn/tags/1.1.1/trunk/js/StoreFileBlockEditor.js:22
+#: svn/tags/1.1.2/js/StoreFileBlockEditor.js:12
+#: svn/tags/1.1.2/js/StoreFileBlockEditor.js:22
+#: svn/trunk/js/StoreFileBlockEditor.js:12
+#: svn/trunk/js/StoreFileBlockEditor.js:22
 msgid "Store File"
 msgstr ""
 
-#: svn/tags/1.0.0/js/StoreFileBlockEditor.js:13
-#: svn/trunk/js/StoreFileBlockEditor.js:13
 #: js/StoreFileBlockEditor.js:13
+#: svn/tags/1.0.0/js/StoreFileBlockEditor.js:13
+#: svn/tags/1.1.0/js/StoreFileBlockEditor.js:13
+#: svn/tags/1.1.1/js/StoreFileBlockEditor.js:13
+#: svn/tags/1.1.1/trunk/js/StoreFileBlockEditor.js:13
+#: svn/tags/1.1.2/js/StoreFileBlockEditor.js:13
+#: svn/trunk/js/StoreFileBlockEditor.js:13
 msgid ""
 "File successfully stored.\n"
 "Message Id: {!messageId}"
 msgstr ""
 
-#: svn/tags/1.0.0/js/StoreFileBlockEditor.js:22
-#: svn/trunk/js/StoreFileBlockEditor.js:23
 #: js/StoreFileBlockEditor.js:23
+#: svn/tags/1.0.0/js/StoreFileBlockEditor.js:22
+#: svn/tags/1.1.0/js/StoreFileBlockEditor.js:23
+#: svn/tags/1.1.1/js/StoreFileBlockEditor.js:23
+#: svn/tags/1.1.1/trunk/js/StoreFileBlockEditor.js:23
+#: svn/tags/1.1.2/js/StoreFileBlockEditor.js:23
+#: svn/trunk/js/StoreFileBlockEditor.js:23
 msgid "Store a file onto the Bitcoin blockchain"
 msgstr ""
 
+#: js/StoreFileBlockEditor.js:217
 #: svn/tags/1.0.0/js/StoreFileBlockEditor.js:204
+#: svn/tags/1.1.0/js/StoreFileBlockEditor.js:215
+#: svn/tags/1.1.1/js/StoreFileBlockEditor.js:215
+#: svn/tags/1.1.1/trunk/js/StoreFileBlockEditor.js:215
+#: svn/tags/1.1.2/js/StoreFileBlockEditor.js:215
 #: svn/trunk/js/StoreFileBlockEditor.js:215
-#: js/StoreFileBlockEditor.js:215
 msgid "Show animated icon while storing file"
 msgstr ""
 
-#: svn/tags/1.0.0/js/SendMessageBlock.js:165
-#: svn/trunk/js/SendMessageBlock.js:165
-#: js/SendMessageBlock.js:165
-msgid "No message to be sent"
+#: js/StoreMessageBlock.js:164
+#: svn/tags/1.0.0/js/StoreMessageBlock.js:164
+#: svn/tags/1.1.0/js/StoreMessageBlock.js:164
+#: svn/tags/1.1.1/js/StoreMessageBlock.js:164
+#: svn/tags/1.1.1/trunk/js/StoreMessageBlock.js:164
+#: svn/tags/1.1.2/js/StoreMessageBlock.js:164
+#: svn/trunk/js/StoreMessageBlock.js:164
+msgid "No message to be stored"
 msgstr ""
 
-#: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:28
-#: svn/trunk/js/MessageHistoryBlockEditor.js:28
-#: js/MessageHistoryBlockEditor.js:28
-msgid "Message History"
+#: js/StoreMessageBlockEditor.js:13
+#: js/StoreMessageBlockEditor.js:23
+#: svn/tags/1.0.0/js/StoreMessageBlockEditor.js:13
+#: svn/tags/1.0.0/js/StoreMessageBlockEditor.js:22
+#: svn/tags/1.1.0/js/StoreMessageBlockEditor.js:13
+#: svn/tags/1.1.0/js/StoreMessageBlockEditor.js:23
+#: svn/tags/1.1.1/js/StoreMessageBlockEditor.js:13
+#: svn/tags/1.1.1/js/StoreMessageBlockEditor.js:23
+#: svn/tags/1.1.1/trunk/js/StoreMessageBlockEditor.js:13
+#: svn/tags/1.1.1/trunk/js/StoreMessageBlockEditor.js:23
+#: svn/tags/1.1.2/js/StoreMessageBlockEditor.js:13
+#: svn/tags/1.1.2/js/StoreMessageBlockEditor.js:23
+#: svn/trunk/js/StoreMessageBlockEditor.js:13
+#: svn/trunk/js/StoreMessageBlockEditor.js:23
+msgid "Store Message"
 msgstr ""
 
-#: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:29
-#: svn/trunk/js/MessageHistoryBlockEditor.js:29
-#: js/MessageHistoryBlockEditor.js:29
-msgid "Display list with latest stored/sent messages"
+#: js/StoreMessageBlockEditor.js:14
+#: svn/tags/1.0.0/js/StoreMessageBlockEditor.js:14
+#: svn/tags/1.1.0/js/StoreMessageBlockEditor.js:14
+#: svn/tags/1.1.1/js/StoreMessageBlockEditor.js:14
+#: svn/tags/1.1.1/trunk/js/StoreMessageBlockEditor.js:14
+#: svn/tags/1.1.2/js/StoreMessageBlockEditor.js:14
+#: svn/trunk/js/StoreMessageBlockEditor.js:14
+msgid ""
+"Message successfully stored.\n"
+"Message Id: {!messageId}"
 msgstr ""
 
-#: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:377
-#: svn/trunk/js/MessageHistoryBlockEditor.js:377
-#: js/MessageHistoryBlockEditor.js:377
-msgid "Message Type"
+#: js/StoreMessageBlockEditor.js:24
+#: svn/tags/1.0.0/js/StoreMessageBlockEditor.js:23
+#: svn/tags/1.1.0/js/StoreMessageBlockEditor.js:24
+#: svn/tags/1.1.1/js/StoreMessageBlockEditor.js:24
+#: svn/tags/1.1.1/trunk/js/StoreMessageBlockEditor.js:24
+#: svn/tags/1.1.2/js/StoreMessageBlockEditor.js:24
+#: svn/trunk/js/StoreMessageBlockEditor.js:24
+msgid "Store a text message onto the Bitcoin blockchain"
 msgstr ""
 
-#: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:466
-#: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:490
-#: svn/trunk/js/MessageHistoryBlockEditor.js:466
-#: svn/trunk/js/MessageHistoryBlockEditor.js:490
-#: js/MessageHistoryBlockEditor.js:466
-#: js/MessageHistoryBlockEditor.js:490
-msgid "End Date"
-msgstr ""
-
-#: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:534
-#: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:704
-#: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:977
-#: svn/trunk/js/MessageHistoryBlockEditor.js:534
-#: svn/trunk/js/MessageHistoryBlockEditor.js:704
-#: svn/trunk/js/MessageHistoryBlockEditor.js:977
-#: js/MessageHistoryBlockEditor.js:534
-#: js/MessageHistoryBlockEditor.js:704
-#: js/MessageHistoryBlockEditor.js:977
-msgid "Type"
-msgstr ""
-
-#: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:546
-#: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:770
-#: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:1033
-#: svn/trunk/js/MessageHistoryBlockEditor.js:546
-#: svn/trunk/js/MessageHistoryBlockEditor.js:770
-#: svn/trunk/js/MessageHistoryBlockEditor.js:1033
-#: js/MessageHistoryBlockEditor.js:546
-#: js/MessageHistoryBlockEditor.js:770
-#: js/MessageHistoryBlockEditor.js:1033
-msgid "To"
-msgstr ""
-
-#: svn/tags/1.0.0/js/MessageHistoryBlockEditor.js:582
-#: svn/trunk/js/MessageHistoryBlockEditor.js:582
-#: js/MessageHistoryBlockEditor.js:582
-msgid "Target Device ID ('To' Column)"
-msgstr ""
-
-#: svn/tags/1.0.0/js/DisplayMessageBlockEditor.js:19
-#: svn/trunk/js/DisplayMessageBlockEditor.js:19
-#: js/DisplayMessageBlockEditor.js:19
-msgid "Display Message"
-msgstr ""
-
-#: svn/tags/1.0.0/js/DisplayMessageBlockEditor.js:20
-#: svn/trunk/js/DisplayMessageBlockEditor.js:20
-#: js/DisplayMessageBlockEditor.js:20
-msgid "Display a text message retrieved from the Bitcoin blockchain"
-msgstr ""
-
-#: svn/tags/1.0.0/js/DisplayMessageBlockEditor.js:174
-#: svn/trunk/js/DisplayMessageBlockEditor.js:174
-#: js/DisplayMessageBlockEditor.js:174
-msgid "Strip File Header"
-msgstr ""
-
-#: svn/tags/1.0.0/js/DisplayMessageBlockEditor.js:175
-#: svn/trunk/js/DisplayMessageBlockEditor.js:175
-#: js/DisplayMessageBlockEditor.js:175
-msgid "Do not display file header if present"
-msgstr ""
-
-#: svn/tags/1.0.0/js/DisplayMessageBlockEditor.js:175
-#: svn/trunk/js/DisplayMessageBlockEditor.js:175
-#: js/DisplayMessageBlockEditor.js:175
-msgid "Display message as it is"
-msgstr ""
-
-#: svn/tags/1.0.0/js/DisplayMessageBlockEditor.js:180
-#: svn/trunk/js/DisplayMessageBlockEditor.js:180
-#: js/DisplayMessageBlockEditor.js:180
-msgid "Limit Message"
-msgstr ""
-
-#: svn/tags/1.0.0/js/DisplayMessageBlockEditor.js:181
-#: svn/trunk/js/DisplayMessageBlockEditor.js:181
-#: js/DisplayMessageBlockEditor.js:181
-msgid "Truncate message if it is too large"
-msgstr ""
-
-#: svn/tags/1.0.0/js/DisplayMessageBlockEditor.js:181
-#: svn/trunk/js/DisplayMessageBlockEditor.js:181
-#: js/DisplayMessageBlockEditor.js:181
-msgid "Always display the whole message"
-msgstr ""
-
-#: svn/tags/1.0.0/js/DisplayMessageBlockEditor.js:188
-#: svn/trunk/js/DisplayMessageBlockEditor.js:188
-#: js/DisplayMessageBlockEditor.js:188
-msgid "Max Message Length"
-msgstr ""
-
-#: svn/tags/1.0.0/js/DisplayMessageBlockEditor.js:189
-#: svn/trunk/js/DisplayMessageBlockEditor.js:189
-#: js/DisplayMessageBlockEditor.js:189
-msgid "Maximum number of characters that can be displayed"
-msgstr ""
-
-#: svn/tags/1.0.0/js/DisplayMessageBlockEditor.js:237
-#: svn/trunk/js/DisplayMessageBlockEditor.js:237
-#: js/DisplayMessageBlockEditor.js:237
-msgid "Sample retrieved message"
-msgstr ""
-
-#: svn/trunk/js/StoreMessageBlockEditor.js:303
-#: svn/trunk/js/SendFileBlockEditor.js:395
-#: svn/trunk/js/SendMessageBlockEditor.js:414
-#: svn/trunk/js/StoreFileBlockEditor.js:286
-#: js/StoreMessageBlockEditor.js:303
-#: js/SendFileBlockEditor.js:395
-#: js/SendMessageBlockEditor.js:414
-#: js/StoreFileBlockEditor.js:286
-msgid "Off-Chain"
-msgstr ""
-
-#: svn/trunk/js/StoreMessageBlockEditor.js:304
-#: svn/trunk/js/SendFileBlockEditor.js:396
-#: svn/trunk/js/SendMessageBlockEditor.js:415
-#: svn/trunk/js/StoreFileBlockEditor.js:287
-#: js/StoreMessageBlockEditor.js:304
-#: js/SendFileBlockEditor.js:396
-#: js/SendMessageBlockEditor.js:415
-#: js/StoreFileBlockEditor.js:287
-msgid "Store it as a Catenis off-chain message"
-msgstr ""
-
-#: svn/trunk/js/StoreMessageBlockEditor.js:304
-#: svn/trunk/js/SendFileBlockEditor.js:396
-#: svn/trunk/js/SendMessageBlockEditor.js:415
-#: svn/trunk/js/StoreFileBlockEditor.js:287
-#: js/StoreMessageBlockEditor.js:304
-#: js/SendFileBlockEditor.js:396
-#: js/SendMessageBlockEditor.js:415
-#: js/StoreFileBlockEditor.js:287
-msgid "Store it as a regular Catenis message"
+#: js/StoreMessageBlockEditor.js:240
+#: svn/tags/1.0.0/js/StoreMessageBlockEditor.js:227
+#: svn/tags/1.1.0/js/StoreMessageBlockEditor.js:238
+#: svn/tags/1.1.1/js/StoreMessageBlockEditor.js:238
+#: svn/tags/1.1.1/trunk/js/StoreMessageBlockEditor.js:238
+#: svn/tags/1.1.2/js/StoreMessageBlockEditor.js:238
+#: svn/trunk/js/StoreMessageBlockEditor.js:238
+msgid "Show animated icon while storing message"
 msgstr ""
