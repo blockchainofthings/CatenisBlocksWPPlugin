@@ -3,7 +3,7 @@
 /*
 Plugin Name: Catenis Blocks
 Description: A set of Gutenberg blocks for interfacing with the Bitcoin blockchain via Catenis services
-Version: 1.1.2
+Version: 1.1.3
 Author: Blockchain of Things
 Author URI: https://blockchainofthings.com
 Text Domain: catenis-blocks
