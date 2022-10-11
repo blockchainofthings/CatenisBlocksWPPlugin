@@ -207,7 +207,7 @@
                 var $span = $(context.document.createElement('span'))
                         .html('... (<a href="#">show remaining ' + (message.length - truncatedMsg.length).toLocaleString() + ' characters</a>)');
 
-                $('a', $span[0]).click(onClickHandler);
+                $('a', $span[0]).on('click', onClickHandler);
 
                 $msgContainer
                     .after($span)

@@ -174,7 +174,7 @@
                     selectCustomStartDate: false
                 });
 
-                $('.ctn-date-picker.custom-start-date .components-text-control__input').focus();
+                $('.ctn-date-picker.custom-start-date .components-text-control__input').trigger('focus');
             }
 
             // eslint-disable-next-line no-unused-vars
@@ -226,7 +226,7 @@
                     selectCustomEndDate: false
                 });
 
-                $('.ctn-date-picker.custom-end-date .components-text-control__input').focus();
+                $('.ctn-date-picker.custom-end-date .components-text-control__input').trigger('focus');
             }
 
             function onChangeMsgsPerPage(newValue) {

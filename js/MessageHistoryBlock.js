@@ -189,7 +189,7 @@
             var $pageNumberField = $('span.page-number input[type="text"]', this.headerPanel);
 
             if ($pageNumberField.length > 0) {
-                $pageNumberField.change(this.pageNumberChanged.bind(this));
+                $pageNumberField.on('change', this.pageNumberChanged.bind(this));
                 $pageNumberField.on('input', this.pageNumberEntered.bind(this));
 
                 this.pageNumberField = $pageNumberField[0];
@@ -237,7 +237,7 @@
         var $headerName = $('table thead tr span.headerName', this.uiContainer);
         var _self = this;
 
-        $headerName.click(function (event) {
+        $headerName.on('click', function (event) {
             var column = $(event.target).parent()[0].className;
 
             if (_self.sortColumn === column) {
@@ -551,7 +551,7 @@
                                 $tdElem.append($(context.document.createElement('a'))
                                     .attr('href', '#')
                                     .text('display')
-                                    .click(getOnClickHandler(_self.displayTargetHtmlAnchor, messageInfo.messageId))
+                                    .on('click', getOnClickHandler(_self.displayTargetHtmlAnchor, messageInfo.messageId))
                                 );
                                 hasLink = true;
                             }
@@ -564,7 +564,7 @@
                                 $tdElem.append($(context.document.createElement('a'))
                                     .attr('href', '#')
                                     .text('save')
-                                    .click(getOnClickHandler(_self.saveTargetHtmlAnchor, messageInfo.messageId))
+                                    .on('click', getOnClickHandler(_self.saveTargetHtmlAnchor, messageInfo.messageId))
                                 );
                             }
                         }
