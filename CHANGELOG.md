@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.1.3] - 2022-10-11
+
+### Fixes
+- Several changes to make the plugin compatible with version 6.0 of WordPress.
+
 ## [1.1.2] - 2021-09-06
 
 ### Changes

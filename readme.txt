@@ -53,6 +53,9 @@ Catenis Blocks require that the Catenis API Client for WordPress plugin, version
 
 == Changelog ==
 
+= 1.1.3 =
+* Changes to make the plugin compatible with version 6.0 of WordPress.
+
 = 1.1.2 =
 * This release includes only documentation related changes.
 
@@ -66,6 +69,9 @@ Catenis Blocks require that the Catenis API Client for WordPress plugin, version
 * Initial release, including functionality to work with messages.
 
 == Upgrade Notice ==
+
+= 1.1.3 =
+This is a required update if using the plugin with version 6.0 of WordPress.
 
 = 1.1.2 =
 All users are advised to upgrade to this latest version.
