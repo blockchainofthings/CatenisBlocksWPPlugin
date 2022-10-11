@@ -4,7 +4,7 @@
   "description": "Catenis Blocks plugin for WordPress",
   "main": "index.js",
   "devDependencies": {
-    "eslint": "^5.16.0",
+    "eslint": "^8.25.0",
     "eslint-plugin-react": "^7.13.0"
   },
   "scripts": {
